@@ -102,7 +102,15 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t text-center">
+        {/* Unified Fine Print */}
+        <div className="mt-8 pt-6 border-t">
+          <p className="text-xs text-muted-foreground text-center leading-relaxed">
+            Vor-Ort ab 45 Min, Abrechnung in 15-Min-Blöcken. 20% Rabatt auf Vor-Ort-Arbeitszeit für aktive Abonnenten. 
+            Anfahrt nach PLZ-Zone. Ohne ausgewiesene USt. gem. §19 UStG, falls zutreffend.
+          </p>
+        </div>
+
+        <div className="mt-4 pt-4 border-t text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Tech Hilfe Pro. Alle Rechte vorbehalten.
           </p>
