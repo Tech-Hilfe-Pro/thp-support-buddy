@@ -32,6 +32,14 @@ const TerminZusammenfassung = () => {
     navigate("/termin/bestaetigt");
   };
 
+  const handleGoToCheckout = () => {
+    navigate("/kasse", { 
+      state: { 
+        mode: "one_time" 
+      } 
+    });
+  };
+
   const handleDownloadICS = () => {
     if (!bookingData) return;
     
@@ -195,9 +203,15 @@ const TerminZusammenfassung = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
-          <Button onClick={handleConfirm} className="flex-1" size="lg">
-            Termin bestätigen
-          </Button>
+          {quote && bookingData.appointmentType === "onsite" ? (
+            <Button onClick={handleGoToCheckout} className="flex-1" size="lg">
+              Zur Kasse
+            </Button>
+          ) : (
+            <Button onClick={handleConfirm} className="flex-1" size="lg">
+              Termin bestätigen
+            </Button>
+          )}
           <Button 
             onClick={() => navigate("/termin")} 
             variant="outline" 

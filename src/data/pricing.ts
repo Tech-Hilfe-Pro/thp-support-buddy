@@ -15,3 +15,12 @@ export const KMU_TIERS = [
   { id:"grow",    name:"Grow",    preisProGeraet:49, features:["+ Hardening/Policies","Inventar & SW-Rollout","Reaktionszeit < 8h"]},
   { id:"pro",     name:"Pro",     preisProGeraet:79, features:["SLA 4h","1x Vor-Ort/Monat inkl.","Endpoint-Backup basic"]},
 ];
+
+export const STRIPE_PLAN_TO_ENV: Record<string, string> = {
+  S: "PRICE_PRIVAT_S",
+  M: "PRICE_PRIVAT_M", 
+  L: "PRICE_PRIVAT_L",
+  starter: "PRICE_KMU_STARTER",
+  grow: "PRICE_KMU_GROW",
+  pro: "PRICE_KMU_PRO"
+};

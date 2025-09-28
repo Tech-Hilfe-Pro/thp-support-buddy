@@ -1,11 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PRIVAT_ABOS, PRIVAT_ON_DEMAND, KMU_TIERS } from "@/data/pricing";
 
 const PricingTabs = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"privat" | "kmu">("privat");
+
+  const handleSelectPlan = (planId: string) => {
+    navigate("/kasse", { 
+      state: { 
+        mode: "subscription", 
+        planId 
+      } 
+    });
+  };
 
   return (
     <div className="w-full">
@@ -49,6 +59,7 @@ const PricingTabs = () => {
                     <th scope="col" className="p-4 text-center border-b border-border font-semibold">Remote-Zeit</th>
                     <th scope="col" className="p-4 text-center border-b border-border font-semibold">Vor-Ort Rabatt</th>
                     <th scope="col" className="p-4 text-left border-b border-border font-semibold">Inklusive</th>
+                    <th scope="col" className="p-4 text-center border-b border-border font-semibold">Aktion</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -73,6 +84,15 @@ const PricingTabs = () => {
                             </li>
                           ))}
                         </ul>
+                      </td>
+                      <td className="p-4 text-center border-b border-border">
+                        <Button 
+                          onClick={() => handleSelectPlan(abo.id)}
+                          size="sm"
+                          className="min-w-[100px]"
+                        >
+                          Abo wählen
+                        </Button>
                       </td>
                     </tr>
                   ))}
@@ -140,6 +160,7 @@ const PricingTabs = () => {
                     <th scope="col" className="p-4 text-left border-b border-border font-semibold">Tier</th>
                     <th scope="col" className="p-4 text-center border-b border-border font-semibold">Preis ab</th>
                     <th scope="col" className="p-4 text-left border-b border-border font-semibold">Leistungen</th>
+                    <th scope="col" className="p-4 text-center border-b border-border font-semibold">Aktion</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -159,6 +180,15 @@ const PricingTabs = () => {
                             </li>
                           ))}
                         </ul>
+                      </td>
+                      <td className="p-4 text-center border-b border-border">
+                        <Button 
+                          onClick={() => handleSelectPlan(tier.id)}
+                          size="sm"
+                          className="min-w-[100px]"
+                        >
+                          Plan wählen
+                        </Button>
                       </td>
                     </tr>
                   ))}

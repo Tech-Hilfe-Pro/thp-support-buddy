@@ -1,10 +1,28 @@
 import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, CreditCard, Calendar } from "lucide-react";
 
 const TerminBestaetigt = () => {
+  const [searchParams] = useSearchParams();
+  const [paymentStatus, setPaymentStatus] = useState<string>("");
   const terminId = `THP-${Date.now().toString().slice(-6)}`;
+
+  useEffect(() => {
+    // Check if this is a return from Stripe
+    const paymentIntent = searchParams.get("payment_intent");
+    const paymentIntentClientSecret = searchParams.get("payment_intent_client_secret");
+    const redirectStatus = searchParams.get("redirect_status");
+    const subscription = searchParams.get("subscription");
+
+    if (paymentIntent && redirectStatus === "succeeded") {
+      setPaymentStatus("payment_succeeded");
+    } else if (subscription === "created") {
+      setPaymentStatus("subscription_created");
+    }
+  }, [searchParams]);
 
   return (
     <>
@@ -18,11 +36,31 @@ const TerminBestaetigt = () => {
       
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-8">
-          <CheckCircle className="mx-auto h-16 w-16 text-green-600 mb-4" />
-          <h1 className="text-4xl font-bold text-foreground mb-4">Termin bestätigt!</h1>
-          <p className="text-lg text-muted-foreground">
-            Vielen Dank für Ihr Vertrauen. Wir haben Ihren Termin erfolgreich registriert.
-          </p>
+          {paymentStatus === "payment_succeeded" ? (
+            <>
+              <CreditCard className="mx-auto h-16 w-16 text-green-600 mb-4" />
+              <h1 className="text-4xl font-bold text-foreground mb-4">Zahlung erfolgreich!</h1>
+              <p className="text-lg text-muted-foreground">
+                Vielen Dank! Ihre Zahlung wurde erfolgreich verarbeitet und Ihr Termin ist bestätigt.
+              </p>
+            </>
+          ) : paymentStatus === "subscription_created" ? (
+            <>
+              <Calendar className="mx-auto h-16 w-16 text-green-600 mb-4" />
+              <h1 className="text-4xl font-bold text-foreground mb-4">Abonnement aktiviert!</h1>
+              <p className="text-lg text-muted-foreground">
+                Ihr monatliches Abonnement wurde erfolgreich eingerichtet. Willkommen bei Tech Hilfe Pro!
+              </p>
+            </>
+          ) : (
+            <>
+              <CheckCircle className="mx-auto h-16 w-16 text-green-600 mb-4" />
+              <h1 className="text-4xl font-bold text-foreground mb-4">Termin bestätigt!</h1>
+              <p className="text-lg text-muted-foreground">
+                Vielen Dank für Ihr Vertrauen. Wir haben Ihren Termin erfolgreich registriert.
+              </p>
+            </>
+          )}
         </div>
         
         <Card className="max-w-2xl mx-auto">
@@ -42,10 +80,28 @@ const TerminBestaetigt = () => {
             <div className="space-y-4">
               <h3 className="font-semibold">Wie geht es weiter?</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details</li>
-                <li>• Wir melden uns 1 Tag vor dem Termin telefonisch bei Ihnen</li>
-                <li>• Bei Vor-Ort-Terminen: Unsere Techniker sind pünktlich vor Ort</li>
-                <li>• Bei Remote-Terminen: Sie erhalten die Einwahldetails per E-Mail</li>
+                {paymentStatus === "payment_succeeded" ? (
+                  <>
+                    <li>• Ihre Zahlung wurde bestätigt (Sandbox-Modus)</li>
+                    <li>• Sie erhalten in Kürze eine Rechnung per E-Mail</li>
+                    <li>• Wir melden uns 1 Tag vor dem Termin telefonisch bei Ihnen</li>
+                    <li>• Bei Vor-Ort-Terminen: Unsere Techniker sind pünktlich vor Ort</li>
+                  </>
+                ) : paymentStatus === "subscription_created" ? (
+                  <>
+                    <li>• Ihr Abonnement ist sofort aktiv</li>
+                    <li>• Die erste Rechnung erhalten Sie in den nächsten Tagen</li>
+                    <li>• Sie können jederzeit Remote-Support über unsere Hotline anfordern</li>
+                    <li>• Vor-Ort-Termine erhalten den vereinbarten Abo-Rabatt</li>
+                  </>
+                ) : (
+                  <>
+                    <li>• Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details</li>
+                    <li>• Wir melden uns 1 Tag vor dem Termin telefonisch bei Ihnen</li>
+                    <li>• Bei Vor-Ort-Terminen: Unsere Techniker sind pünktlich vor Ort</li>
+                    <li>• Bei Remote-Terminen: Sie erhalten die Einwahldetails per E-Mail</li>
+                  </>
+                )}
               </ul>
             </div>
 
