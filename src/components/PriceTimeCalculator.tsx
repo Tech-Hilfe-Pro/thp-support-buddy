@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { track, bucketAmount } from "@/lib/analytics";
 import { SERVICES } from "@/data/services";
 import { calculateOnsiteTotal, CalcInput, Urgency } from "@/lib/pricing";
 import { saveQuoteToStorage, Quote } from "@/lib/quote";
@@ -18,6 +19,11 @@ const PriceTimeCalculator = () => {
   const [subscription, setSubscription] = useState<boolean>(false);
   const [result, setResult] = useState<any>(null);
   const [errors, setErrors] = useState<{ service?: string; plz?: string }>({});
+
+  // Track calculator opened
+  useEffect(() => {
+    track("calculator_opened");
+  }, []);
 
   const handleCalculate = () => {
     const newErrors: { service?: string; plz?: string } = {};
@@ -51,6 +57,18 @@ const PriceTimeCalculator = () => {
     
     const calculation = calculateOnsiteTotal(input);
     setResult(calculation);
+    
+    if (calculation.inArea) {
+      // Track successful calculation result
+      track("calculator_result_shown", {
+        serviceId,
+        plzArea: "unknown", // Note: zone info not available in current calculation result
+        subscription,
+        urgency,
+        minutes: onsiteMinutes,
+        totalBucket: bucketAmount(calculation.total * 100)
+      });
+    }
   };
 
   const handleBookingRedirect = () => {

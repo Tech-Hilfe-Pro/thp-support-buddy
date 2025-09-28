@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import SEO from "@/components/SEO";
 import { toast } from "@/hooks/use-toast";
+import { track, bucketAmount } from "@/lib/analytics";
 import { TechnicianInput, calcTechnicianTotal, Urgency } from "@/lib/pricing";
 import { SERVICES } from "@/data/services";
 import { SEO_PAGES } from "@/data/seo";
@@ -37,6 +38,8 @@ const Techniker = () => {
     const techOk = sessionStorage.getItem("thp_tech_ok");
     if (techOk === "1") {
       setIsAuthenticated(true);
+      // Track technician quick charge started
+      track("tech_quickcharge_started");
     }
   }, []);
 
@@ -48,6 +51,8 @@ const Techniker = () => {
       sessionStorage.setItem("thp_tech_ok", "1");
       setIsAuthenticated(true);
       setPinError("");
+      // Track technician quick charge started
+      track("tech_quickcharge_started");
     } else {
       setPinError("Ungültiger PIN. Bitte versuchen Sie es erneut.");
       setPinInput("");
@@ -114,6 +119,11 @@ const Techniker = () => {
 
       const data = await response.json();
       setCheckoutUrl(data.url);
+      
+      // Track checkout link created
+      track("tech_checkoutlink_created", {
+        amountBucket: bucketAmount(calculation.total * 100)
+      });
       
       toast({ 
         title: "Checkout-Link erstellt", 

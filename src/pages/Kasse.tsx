@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import SEO from "@/components/SEO";
+import { track, bucketAmount } from "@/lib/analytics";
 import { readQuoteFromStorage, Quote } from "@/lib/quote";
 import StripeCheckout from "@/components/StripeCheckout";
 import { SEO_PAGES } from "@/data/seo";
@@ -57,6 +58,27 @@ const Kasse = () => {
     }
 
     setError("");
+
+    // Track checkout started based on mode
+    if (determinedMode === "one_time") {
+      const storedQuote = readQuoteFromStorage();
+      if (storedQuote) {
+        track("checkout_started", {
+          mode: "one_time",
+          amountBucket: bucketAmount(storedQuote.total * 100)
+        });
+      }
+    } else if (determinedMode === "subscription") {
+      const statePlanId = location.state?.planId;
+      const queryPlanId = searchParams.get("plan");
+      const planIdForTracking = statePlanId || queryPlanId;
+      if (planIdForTracking) {
+        track("checkout_started", {
+          mode: "subscription",
+          planId: planIdForTracking
+        });
+      }
+    }
   }, [location.state, searchParams]);
 
   if (error) {

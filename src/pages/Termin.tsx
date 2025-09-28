@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
+import { track } from "@/lib/analytics";
 import { SERVICES } from "@/data/services";
 import { readQuoteFromStorage } from "@/lib/quote";
 import QuoteSummary from "@/components/QuoteSummary";
@@ -48,6 +49,9 @@ const Termin = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
+    // Track booking started
+    track("booking_started");
+    
     if (fromCalculator) {
       const quote = readQuoteFromStorage();
       if (quote) {

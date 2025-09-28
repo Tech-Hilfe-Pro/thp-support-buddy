@@ -38,6 +38,10 @@ export function emitConsentGranted(): void {
   window.dispatchEvent(new CustomEvent("thp:consent-granted"));
 }
 
+// Import analytics flush when consent is granted
+import { flushQueue } from "./analytics";
+onConsentGranted(() => flushQueue());
+
 // Initialize global state on load
 if (typeof window !== "undefined") {
   (window as any).__thp_consent = getConsent();

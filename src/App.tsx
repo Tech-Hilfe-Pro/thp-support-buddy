@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import RouteTracker from "./components/RouteTracker";
 import CookieBanner from "./components/CookieBanner";
 import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
@@ -33,6 +34,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <RouteTracker />
           <div className="min-h-screen flex flex-col" lang="de-DE">
             <Header />
             <main className="flex-1">

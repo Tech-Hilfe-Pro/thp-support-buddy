@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, CreditCard, Calendar } from "lucide-react";
 import SEO from "@/components/SEO";
+import { track } from "@/lib/analytics";
 import { SEO_PAGES } from "@/data/seo";
 
 const TerminBestaetigt = () => {
@@ -13,6 +14,9 @@ const TerminBestaetigt = () => {
   const meta = SEO_PAGES.terminOk;
 
   useEffect(() => {
+    // Track booking confirmed
+    track("booking_confirmed");
+    
     // Check if this is a return from Stripe
     const paymentIntent = searchParams.get("payment_intent");
     const paymentIntentClientSecret = searchParams.get("payment_intent_client_secret");
@@ -21,8 +25,10 @@ const TerminBestaetigt = () => {
 
     if (paymentIntent && redirectStatus === "succeeded") {
       setPaymentStatus("payment_succeeded");
+      track("payment_succeeded", { mode: "one_time" });
     } else if (subscription === "created") {
       setPaymentStatus("subscription_created");
+      track("subscription_created");
     }
   }, [searchParams]);
 

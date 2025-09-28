@@ -69,7 +69,19 @@ const Datenschutz = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">4. Externe Dienste</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">4. Cookies & Einwilligung</h2>
+            <div className="text-muted-foreground space-y-4">
+              <p>
+                Wir verwenden nur technisch notwendige Cookies für die Grundfunktionen der Website. 
+                Weitere Dienste (wie anonymisierte Analyse) laden wir erst nach Ihrer Einwilligung 
+                gemäß TTDSG/DSGVO. Keine personenbezogenen Cookies; sessionStorage für 
+                Sitzungskennung (nicht personenbezogen).
+              </p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">5. Externe Dienste</h2>
             <div className="text-muted-foreground space-y-4">
               <h3 className="font-semibold text-foreground">Cloudflare</h3>
               <p>
@@ -87,7 +99,7 @@ const Datenschutz = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">5. Ihre Rechte</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">6. Ihre Rechte</h2>
             <div className="text-muted-foreground space-y-4">
               <p>Sie haben jederzeit das Recht:</p>
               <ul className="list-disc pl-6 space-y-2">
