@@ -1,43 +1,69 @@
-function parseSigHeader(sig: string) {
-  // Format: t=timestamp,v1=signature
-  const parts = sig.split(",").map(s => s.trim());
-  const out: Record<string,string> = {};
-  for (const p of parts) { const [k,v] = p.split("="); if (k && v) out[k] = v; }
-  return { t: out["t"], v1: out["v1"] };
-}
-async function hmacSHA256(key: string, msg: string) {
-  const enc = new TextEncoder();
-  const cryptoKey = await crypto.subtle.importKey("raw", enc.encode(key), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
-  const mac = await crypto.subtle.sign("HMAC", cryptoKey, enc.encode(msg));
-  return Array.from(new Uint8Array(mac)).map(b => b.toString(16).padStart(2,"0")).join("");
-}
+import Stripe from "stripe";
+
 export const onRequestPost: PagesFunction = async (ctx) => {
-  const secret = ctx.env?.STRIPE_WEBHOOK_SECRET;
-  if (!secret) return new Response("missing secret", { status: 500 });
+  const stripe = new Stripe((ctx.env as any).STRIPE_SECRET_KEY, { 
+    apiVersion: "2024-06-20" 
+  });
+  
+  const payload = await ctx.request.arrayBuffer();
   const sig = ctx.request.headers.get("stripe-signature") || "";
-  const { t, v1 } = parseSigHeader(sig);
-  if (!t || !v1) return new Response("bad signature header", { status: 400 });
+  const whsec = (ctx.env as any).STRIPE_WEBHOOK_SECRET;
 
-  // RAW body lesen
-  const raw = await ctx.request.arrayBuffer();
-  const payload = new TextDecoder().decode(raw);
-  const signedPayload = `${t}.${payload}`;
-  const computed = await hmacSHA256(secret, signedPayload);
-  const safeEqual = (a: string, b: string) => {
-    if (a.length !== b.length) return false;
-    let res = 0; for (let i = 0; i < a.length; i++) res |= a.charCodeAt(i) ^ b.charCodeAt(i);
-    return res === 0;
-  };
-  if (!safeEqual(computed, v1)) return new Response("invalid signature", { status: 400 });
-
-  // Ereignis nur grob prüfen und loggen
-  let event: any;
-  try { event = JSON.parse(payload); } catch { return new Response("bad json", { status: 400 }); }
-  const okTypes = new Set(["payment_intent.succeeded","invoice.paid","customer.subscription.created","customer.subscription.updated"]);
-  if (event?.type && okTypes.has(event.type)) {
-    console.log("STRIPE WEBHOOK OK:", event.type);
-  } else {
-    console.log("STRIPE WEBHOOK IGNORED:", event?.type);
+  let event: Stripe.Event;
+  try {
+    const cryptoProvider = Stripe.createSubtleCryptoProvider();
+    event = await stripe.webhooks.constructEventAsync(
+      payload, 
+      sig, 
+      whsec, 
+      undefined, 
+      cryptoProvider
+    );
+  } catch (err: any) {
+    console.error(`Webhook signature verification failed: ${err.message}`);
+    return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
-  return new Response(JSON.stringify({ received: true }), { headers: { "Content-Type":"application/json" } });
+
+  // Log the event for debugging
+  console.log(`Received Stripe event: ${event.type}`);
+
+  try {
+    switch (event.type) {
+      case "payment_intent.processing":
+        // SEPA: en proceso; actualizar pedido/CTA
+        console.log("Payment processing:", event.data.object.id);
+        break;
+        
+      case "payment_intent.succeeded":
+        // Marcar como pagado, enviar email, generar factura si aplica
+        console.log("Payment succeeded:", event.data.object.id);
+        break;
+        
+      case "payment_intent.payment_failed":
+        // Notificar fallo
+        console.log("Payment failed:", event.data.object.id);
+        break;
+        
+      case "invoice.paid":
+        // Subscription invoice paid
+        console.log("Invoice paid:", event.data.object.id);
+        break;
+        
+      case "customer.subscription.updated":
+      case "customer.subscription.created":
+      case "customer.subscription.deleted":
+        // Sync estado de suscripción
+        console.log("Subscription event:", event.type, event.data.object.id);
+        break;
+        
+      default:
+        console.log(`Unhandled event type: ${event.type}`);
+        break;
+    }
+    
+    return new Response("OK", { status: 200 });
+  } catch (error: any) {
+    console.error(`Webhook processing error: ${error.message}`);
+    return new Response(`Processing Error: ${error.message}`, { status: 500 });
+  }
 };

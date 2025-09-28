@@ -6,12 +6,13 @@ export const onRequestPost: PagesFunction = async (ctx) => {
   });
   
   const body = await ctx.request.json().catch(() => ({}));
-  const email = String(body.email || "");
-  const price = (ctx.env as any).STRIPE_PRICE_ABO_BASIC;
+  const amountCents = Math.floor(Number(body.amountCents) || 0);
+  const description = String(body.description || "Tech Hilfe Pro – Service");
 
-  if (!email || !price) {
+  // Validación mínima; en producción calcular en servidor desde la cita, no desde el cliente
+  if (!(amountCents >= 500 && amountCents <= 500000)) {
     return new Response(
-      JSON.stringify({ error: "email/price missing" }), 
+      JSON.stringify({ error: "Invalid amount" }), 
       { 
         status: 400, 
         headers: { "Content-Type": "application/json" } 
@@ -20,26 +21,16 @@ export const onRequestPost: PagesFunction = async (ctx) => {
   }
 
   try {
-    const customer = await stripe.customers.create(
-      { email }, 
-      { idempotencyKey: crypto.randomUUID() }
-    );
-    
-    const sub = await stripe.subscriptions.create({
-      customer: customer.id,
-      items: [{ price }],
-      payment_behavior: "default_incomplete",
-      expand: ["latest_invoice.payment_intent"]
+    const intent = await stripe.paymentIntents.create({
+      amount: amountCents,
+      currency: "eur",
+      automatic_payment_methods: { enabled: true }, // incluye SEPA y tarjeta
+      description,
+      metadata: { site: "techhilfepro.de" }
     }, { idempotencyKey: crypto.randomUUID() });
 
-    const pi = (sub.latest_invoice as any)?.payment_intent;
-    
     return new Response(
-      JSON.stringify({ 
-        clientSecret: pi?.client_secret, 
-        subscriptionId: sub.id, 
-        customerId: customer.id 
-      }), 
+      JSON.stringify({ clientSecret: intent.client_secret }), 
       {
         headers: { 
           "Content-Type": "application/json", 

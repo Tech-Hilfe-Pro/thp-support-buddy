@@ -1,17 +1,22 @@
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 
-let stripePromise: Promise<Stripe | null>;
+let _stripeClientPromise: Promise<Stripe | null>;
 
 export function loadStripeClient(): Promise<Stripe | null> {
-  if (!stripePromise) {
+  if (!_stripeClientPromise) {
     const publishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
     
     if (!publishableKey) {
       throw new Error('VITE_STRIPE_PUBLISHABLE_KEY ist nicht konfiguriert');
     }
     
-    stripePromise = loadStripe(publishableKey);
+    _stripeClientPromise = loadStripe(publishableKey);
   }
   
-  return stripePromise;
+  return _stripeClientPromise;
 }
+
+// Export the promise directly for React Stripe Elements
+export const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || ""
+);
