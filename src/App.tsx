@@ -3,24 +3,52 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { HelmetProvider } from "react-helmet-async";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Leistungen from "./pages/Leistungen";
+import PaketePreise from "./pages/PaketePreise";
+import Termin from "./pages/Termin";
+import UeberUns from "./pages/UeberUns";
+import Kontakt from "./pages/Kontakt";
+import Impressum from "./pages/recht/Impressum";
+import Datenschutz from "./pages/recht/Datenschutz";
+import AGB from "./pages/recht/AGB";
+import Widerruf from "./pages/recht/Widerruf";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <HelmetProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="min-h-screen flex flex-col" lang="de-DE">
+            <Header />
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/leistungen" element={<Leistungen />} />
+                <Route path="/pakete-preise" element={<PaketePreise />} />
+                <Route path="/termin" element={<Termin />} />
+                <Route path="/ueber-uns" element={<UeberUns />} />
+                <Route path="/kontakt" element={<Kontakt />} />
+                <Route path="/recht/impressum" element={<Impressum />} />
+                <Route path="/recht/datenschutz" element={<Datenschutz />} />
+                <Route path="/recht/agb" element={<AGB />} />
+                <Route path="/recht/widerruf" element={<Widerruf />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 
