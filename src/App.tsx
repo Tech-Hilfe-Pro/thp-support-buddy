@@ -34,7 +34,10 @@ const Error500 = lazy(() => import("./pages/Error500"));
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  console.log("App.tsx: App component rendering");
+  
+  return (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <TooltipProvider>
@@ -78,6 +81,7 @@ const App = () => (
       </TooltipProvider>
     </HelmetProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

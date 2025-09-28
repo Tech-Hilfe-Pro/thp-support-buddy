@@ -6,6 +6,8 @@ import { localBusiness, webSite } from "@/lib/structured";
 import { COPY } from "@/data/copy";
 
 const Home = () => {
+  console.log("Home.tsx: Home component rendering");
+  
   const meta = SEO_PAGES.home;
   const ld = [
     localBusiness({ /* TODO: echte Adresse/Telefon eintragen */ }),
