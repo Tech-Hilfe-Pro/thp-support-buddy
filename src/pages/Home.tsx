@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import ServiceCards from "@/components/ServiceCards";
 import BusinessGlossary from "@/components/BusinessGlossary";
 import Benefits from "@/components/Benefits";
 import Steps from "@/components/Steps";
@@ -28,6 +29,8 @@ const Home = () => {
       />
       
       <Hero />
+      
+      <ServiceCards />
       
       <BusinessGlossary items={[
         { key:"kmu", ...COPY.businessGlossary.kmu },
