@@ -185,3 +185,11 @@
   border-right: 2px solid hsl(var(--primary));
   animation: typewriter 2s steps(20) forwards, blink 1s infinite;
 }
+
+/* Header height and anchor offset */
+:root { --header-h: 64px; }
+[id] { scroll-margin-top: var(--header-h); }
+
+/* Scrollbar utilities */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
