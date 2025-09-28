@@ -1,12 +1,20 @@
  /*
-  Alle Routen: Security-Header
+  Security & Privacy Baseline (statics)
  */
-* 
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  X-Content-Type-Options: nosniff
+*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://js.stripe.com; connect-src 'self' https://api.stripe.com https://q.stripe.com https://errors.stripe.com; frame-src https://js.stripe.com; frame-ancestors 'none'
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://api.stripe.com; script-src 'self' https://js.stripe.com; frame-src https://js.stripe.com; frame-ancestors 'self';
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+
+# Previews de Pages: no indexar
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
 
 # Cache static assets with hash-based filenames for 1 year
 /assets/*

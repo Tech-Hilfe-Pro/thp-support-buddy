@@ -1,14 +1,21 @@
+const PUBLIC_ROUTES = [
+  "/", "/leistungen", "/pakete-preise", "/kontakt",
+  "/recht/impressum", "/recht/datenschutz", "/recht/agb"
+];
+
 export const onRequestGet: PagesFunction = async (ctx) => {
-  const SITE_URL = ctx.env?.SITE_URL || "https://www.techhilfepro.de";
-  const urls = [
-    "/", "/leistungen", "/pakete-preise", "/kontakt",
-    "/recht/impressum", "/recht/datenschutz", "/recht/agb"
-  ];
-  const lastmod = new Date().toISOString();
-  const body =
-    `<?xml version="1.0" encoding="UTF-8"?>` +
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
-    urls.map(u => `<url><loc>${SITE_URL}${u}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>${u === "/" ? "1.0" : "0.6"}</priority></url>`).join("") +
-    `</urlset>`;
-  return new Response(body, { headers: { "Content-Type": "application/xml; charset=utf-8" } });
+  const site = (ctx.env as any)?.SITE_URL || "https://www.techhilfepro.de";
+  const today = new Date().toISOString().slice(0,10);
+  const xml = [
+    `<?xml version="1.0" encoding="UTF-8"?>`,
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+    ...PUBLIC_ROUTES.map(u => `<url><loc>${site.replace(/\/$/, "")}${u}</loc><lastmod>${today}</lastmod></url>`),
+    `</urlset>`
+  ].join("");
+  return new Response(xml, {
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=0, s-maxage=86400"
+    }
+  });
 };
