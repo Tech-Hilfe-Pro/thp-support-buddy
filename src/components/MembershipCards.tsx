@@ -20,7 +20,7 @@ function MembershipCard({ p }: { p: MembershipPlan }) {
           {p.includes.map((x, i) => <li key={i}>• {x}</li>)}
         </ul>
         <div className="mt-auto">
-          <Button asChild className="w-full"><a href="/mitgliedschaft">Mitglied werden</a></Button>
+          <Button asChild className="w-full"><a href="/abo">Mitglied werden</a></Button>
           <p className="text-xs text-muted-foreground text-center mt-2">Kein Ausweis der USt. gem. § 19 UStG.</p>
         </div>
       </CardContent>
@@ -32,6 +32,7 @@ export default function MembershipCards() {
   const [audience, setAudience] = useState<"PRIVAT" | "KMU">("PRIVAT");
   const plans = useMemo(() => MEMBERSHIP_PLANS.filter(p => p.audience === audience), [audience]);
   const single = plans.length === 1;
+  const empty = plans.length === 0;
 
   return (
     <section id="mitgliedschaft" className="py-12">
@@ -44,9 +45,20 @@ export default function MembershipCards() {
           </div>
         </div>
 
-        <div className={single ? "mx-auto max-w-2xl" : "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
-          {plans.map(p => <MembershipCard key={p.id} p={p} />)}
-        </div>
+        {empty ? (
+          <div className="mx-auto max-w-2xl rounded-2xl border bg-white p-6 text-slate-700">
+            <h3 className="text-lg font-semibold">KMU-Pakete auf Anfrage</h3>
+            <p className="mt-1 text-sm">Planbare Betreuung mit MSP & SLA. Wir erstellen ein Angebot, das zu Ihrem Bedarf passt.</p>
+            <div className="mt-4 flex gap-2">
+              <a href="/kontakt" className="rounded-xl border px-4 py-2">Kontakt</a>
+              <a href="/termin" className="rounded-xl bg-indigo-600 px-4 py-2 text-white">Beratung buchen</a>
+            </div>
+          </div>
+        ) : (
+          <div className={single ? "mx-auto max-w-3xl" : "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
+            {plans.map(p => <MembershipCard key={p.id} p={p} />)}
+          </div>
+        )}
       </div>
     </section>
   );

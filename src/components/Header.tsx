@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 backdrop-blur bg-white/75 border-b">
       <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center gap-3">
-        <Link to="/" className="flex items-center gap-2 min-w-0">
+        <Link to="/" className="flex items-center gap-2 shrink-0 whitespace-nowrap">
           <img src="/brand/logo.svg" alt="Tech Hilfe Pro" className="h-7 w-auto"
                onError={(e:any)=>{ e.currentTarget.src="/brand/favicon.svg"; }} />
           <span className="font-semibold whitespace-nowrap">Tech Hilfe Pro</span>
@@ -39,7 +39,7 @@ export default function Header() {
           </div>
         </nav>
 
-        <div className="ml-auto hidden md:flex items-center gap-2">
+        <div className="ml-auto hidden md:flex items-center gap-2 shrink-0">
           <a href="/mitgliedschaft" className="rounded-xl border px-3 py-2">Mitglied werden</a>
           <a href="/termin" className="rounded-xl bg-blue-600 px-4 py-2 text-white">Jetzt Termin buchen</a>
           <a aria-label="Anrufen" href="tel:+4915565029989" className="opacity-70 hover:opacity-100">📞</a>
