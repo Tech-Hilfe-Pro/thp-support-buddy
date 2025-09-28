@@ -13,10 +13,12 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 backdrop-blur bg-white/75 border-b">
       <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center gap-3">
-        <Link to="/" className="flex items-center gap-2 shrink-0 whitespace-nowrap">
-          <img src="/brand/logo.svg" alt="Tech Hilfe Pro" className="h-7 w-auto"
-               onError={(e:any)=>{ e.currentTarget.src="/brand/favicon.svg"; }} />
-          <span className="font-semibold whitespace-nowrap">Tech Hilfe Pro</span>
+        <Link
+          to="/"
+          className="flex items-center gap-2 shrink-0 whitespace-nowrap"
+          aria-label="Tech Hilfe Pro"
+        >
+          <span className="text-lg font-semibold tracking-tight">Tech Hilfe Pro</span>
         </Link>
 
         <nav className="ml-2 hidden md:flex min-w-0 flex-1 items-center overflow-x-auto no-scrollbar" aria-label="Hauptnavigation">
