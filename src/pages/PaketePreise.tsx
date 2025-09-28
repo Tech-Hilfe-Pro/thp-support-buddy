@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import PricingTabs from "@/components/PricingTabs";
+import PriceTimeCalculator from "@/components/PriceTimeCalculator";
 
 const PaketePreise = () => {
   return (
@@ -29,29 +30,11 @@ const PaketePreise = () => {
             <PricingTabs />
           </section>
 
-          {/* Rechner Placeholder */}
+          {/* Price Calculator */}
           <section id="rechner" className="scroll-mt-24">
-            <Card className="max-w-2xl mx-auto text-center">
-              <CardHeader>
-                <CardTitle>Preis- & Zeit-Rechner</CardTitle>
-                <CardDescription>
-                  Berechnen Sie in 60 Sekunden Ihren individuellen Preis
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
-                  Der interaktive Rechner folgt im nächsten Entwicklungsschritt.
-                  Hier können Sie dann Ihre PLZ eingeben, Service auswählen und 
-                  sofort den genauen Preis und Zeitfenster erhalten.
-                </p>
-                <Button disabled size="lg" className="min-w-[200px]">
-                  Rechner starten (folgt)
-                </Button>
-                <div className="text-xs text-muted-foreground mt-4">
-                  Features: PLZ-Validierung • Serviceauswahl • Zeitfenster • Preis-Vorschau
-                </div>
-              </CardContent>
-            </Card>
+            <div className="max-w-2xl mx-auto">
+              <PriceTimeCalculator />
+            </div>
           </section>
 
           {/* Value Proposition */}
