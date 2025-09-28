@@ -62,7 +62,7 @@ export default function MembershipCards() {
   
   return (
     <section id="mitgliedschaft" className="py-16">
-      <div className="container max-w-6xl">
+      <div className="mx-auto max-w-7xl px-3 lg:px-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h2 className="text-3xl font-bold text-foreground">Mitgliedschaft</h2>
@@ -93,7 +93,7 @@ export default function MembershipCards() {
             </button>
           </div>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {data.map(p => <MembershipCard key={p.id} p={p} />)}
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function StickyCTA() {
     <div className="fixed bottom-3 inset-x-3 md:hidden z-40">
       <a 
         href="/abo" 
-        className="block rounded-full bg-primary text-primary-foreground text-center py-3 px-4 shadow-lg font-medium"
+        className="block rounded-full bg-primary text-primary-foreground text-center py-3 px-4 shadow-lg font-medium transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       >
         Mitgliedschaft ab {lowest.toFixed(2)} € / Monat
       </a>
