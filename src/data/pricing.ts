@@ -1,7 +1,7 @@
 export const PRIVAT_ABOS = [
-  { id:"S", name:"Senioren-S",  preis:9.90,  minuten:30,  rabattVorOrt:0.20, features:["30 Min Remote/Monat","20% Rabatt Vor-Ort","Quartals-Sicherheitscheck"]},
-  { id:"M", name:"Senioren-M",  preis:16.90, minuten:45,  rabattVorOrt:0.20, features:["45 Min Remote/Monat","20% Rabatt Vor-Ort","WLAN-Check jährlich"]},
-  { id:"L", name:"Senioren-L",  preis:24.90, minuten:60,  rabattVorOrt:0.20, features:["60 Min Remote/Monat","20% Rabatt Vor-Ort","AV gemanagt"]},
+  { id:"S", name:"Paket-S",  preis:9.90,  minuten:30,  rabattVorOrt:0.20, features:["30 Min Remote/Monat","20% Rabatt Vor-Ort","Quartals-Sicherheitscheck"]},
+  { id:"M", name:"Paket-M",  preis:16.90, minuten:45,  rabattVorOrt:0.20, features:["45 Min Remote/Monat","20% Rabatt Vor-Ort","WLAN-Check jährlich"]},
+  { id:"L", name:"Paket-L",  preis:24.90, minuten:60,  rabattVorOrt:0.20, features:["60 Min Remote/Monat","20% Rabatt Vor-Ort","AV gemanagt"]},
 ];
 
 export const PRIVAT_ON_DEMAND = {
