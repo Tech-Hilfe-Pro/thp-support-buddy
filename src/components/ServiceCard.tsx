@@ -9,7 +9,7 @@ interface ServiceCardProps {
   service: Service;
 }
 
-const ServiceCard = ({ service }: ServiceCardProps) => {
+export default function ServiceCard({ service }: ServiceCardProps) {
   const formatDuration = (minutes: number) => {
     if (minutes === 0) return "Laufend";
     if (minutes < 60) return `${minutes} Min`;
@@ -20,10 +20,10 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   };
 
   return (
-    <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
-      <CardHeader className="flex-none">
-        <div className="flex items-start justify-between">
-          <CardTitle className="text-lg leading-tight">{service.titel}</CardTitle>
+    <article className="rounded-2xl border bg-white shadow-sm overflow-hidden flex flex-col h-full hover:shadow-lg transition-shadow">
+      <div className="p-4 flex-1 flex flex-col">
+        <div className="flex items-start justify-between mb-2">
+          <h3 className="text-base font-semibold leading-snug line-clamp-2">{service.titel}</h3>
           {service.remote && (
             <Badge variant="secondary" className="ml-2 shrink-0">
               <Wifi className="w-3 h-3 mr-1" />
@@ -31,39 +31,32 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
             </Badge>
           )}
         </div>
-        <CardDescription className="text-sm">
-          {service.kurz}
-        </CardDescription>
-      </CardHeader>
-      
-      <CardContent className="flex-grow">
-        <div className="space-y-3">
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center text-muted-foreground">
-              <Clock className="w-4 h-4 mr-1" />
-              <span>Typisch: {formatDuration(service.zeitMin)}</span>
-            </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold text-primary">
-                ab {service.preisAb}€
-              </div>
+        
+        <p className="text-sm text-slate-600 line-clamp-2 mb-4">{service.kurz}</p>
+        
+        <div className="flex items-center justify-between text-sm mb-4">
+          <div className="flex items-center text-slate-500">
+            <Clock className="w-4 h-4 mr-1" />
+            <span>Typisch: {formatDuration(service.zeitMin)}</span>
+          </div>
+          <div className="text-right">
+            <div className="text-xl font-bold text-blue-600">
+              ab {service.preisAb}€
             </div>
           </div>
         </div>
-      </CardContent>
-      
-      <CardFooter className="flex-none">
-        <Button asChild className="w-full" size="sm">
-          <Link 
-            to="/pakete-preise#rechner"
-            aria-label={`Preis und Zeit für ${service.titel} berechnen`}
-          >
-            Preis & Zeit ansehen
-          </Link>
-        </Button>
-      </CardFooter>
-    </Card>
+        
+        <div className="mt-auto">
+          <Button asChild className="w-full" size="sm">
+            <Link 
+              to="/pakete-preise#rechner"
+              aria-label={`Preis und Zeit für ${service.titel} berechnen`}
+            >
+              Preis & Zeit ansehen
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </article>
   );
-};
-
-export default ServiceCard;
+}

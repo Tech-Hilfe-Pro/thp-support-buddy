@@ -193,3 +193,22 @@
 /* Scrollbar utilities */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Accessibility improvements */
+:focus-visible { 
+  outline: 2px solid theme(colors.indigo.600); 
+  outline-offset: 2px; 
+  border-radius: 8px; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { 
+    animation: none !important; 
+    transition: none !important; 
+    scroll-behavior: auto !important; 
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}

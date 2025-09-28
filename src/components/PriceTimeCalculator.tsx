@@ -135,6 +135,7 @@ const PriceTimeCalculator = () => {
               pattern="\d{5}"
               maxLength={5}
               placeholder="z.B. 50823"
+              title="Fünfstellige PLZ"
               value={plz}
               onChange={(e) => setPlz(e.target.value.replace(/\D/g, '').slice(0, 5))}
               aria-invalid={!!errors.plz}
@@ -184,77 +185,79 @@ const PriceTimeCalculator = () => {
       </Card>
 
       {/* Results */}
-      {result && (
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              {result.inArea ? "Ihr Vor-Ort-Preis" : "Service-Anfrage"}
-            </CardTitle>
-            {selectedService && (
-              <CardDescription>
-                {selectedService.titel} in PLZ {plz}
-              </CardDescription>
-            )}
-          </CardHeader>
-          <CardContent>
-            {result.inArea ? (
-              <div className="space-y-4" role="status" aria-live="polite">
-                {/* Price Breakdown */}
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span>Arbeitszeit {urgency !== "normal" && `(${urgency === "heute" ? "+15%" : "+30%"})`}</span>
-                    <span>{formatEUR(result.breakdown.arbeitszeitBrutto)}</span>
-                  </div>
-                  {subscription && (
-                    <div className="flex justify-between text-primary">
-                      <span>Abo-Rabatt (20%)</span>
-                      <span>–{formatEUR(result.breakdown.rabattAbo)}</span>
+      <div aria-live="polite" role="status">
+        {result && (
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                {result.inArea ? "Ihr Vor-Ort-Preis" : "Service-Anfrage"}
+              </CardTitle>
+              {selectedService && (
+                <CardDescription>
+                  {selectedService.titel} in PLZ {plz}
+                </CardDescription>
+              )}
+            </CardHeader>
+            <CardContent>
+              {result.inArea ? (
+                <div className="space-y-4">
+                  {/* Price Breakdown */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>Arbeitszeit {urgency !== "normal" && `(${urgency === "heute" ? "+15%" : "+30%"})`}</span>
+                      <output>{formatEUR(result.breakdown.arbeitszeitBrutto)}</output>
                     </div>
-                  )}
-                  <div className="flex justify-between">
-                    <span>Anfahrt</span>
-                    <span>{formatEUR(result.breakdown.anfahrt)}</span>
+                    {subscription && (
+                      <div className="flex justify-between text-primary">
+                        <span>Abo-Rabatt (20%)</span>
+                        <output>–{formatEUR(result.breakdown.rabattAbo)}</output>
+                      </div>
+                    )}
+                    <div className="flex justify-between">
+                      <span>Anfahrt</span>
+                      <output>{formatEUR(result.breakdown.anfahrt)}</output>
+                    </div>
+                    <hr />
+                    <div className="flex justify-between font-bold text-lg">
+                      <span>Gesamt</span>
+                      <output>{formatEUR(result.total)}</output>
+                    </div>
                   </div>
-                  <hr />
-                  <div className="flex justify-between font-bold text-lg">
-                    <span>Gesamt</span>
-                    <span>{formatEUR(result.total)}</span>
-                  </div>
-                </div>
 
-                {/* Time Window */}
-                <div className="bg-muted/50 p-3 rounded-lg">
-                  <p className="text-sm">
-                    <strong>Geschätztes Zeitfenster:</strong> {result.zeitfenster}
+                  {/* Time Window */}
+                  <div className="bg-muted/50 p-3 rounded-lg">
+                    <p className="text-sm">
+                      <strong>Geschätztes Zeitfenster:</strong> {result.zeitfenster}
+                    </p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button onClick={handleBookingRedirect} className="flex-1">
+                      Weiter zur Terminbuchung
+                    </Button>
+                    <Button asChild variant="outline" className="flex-1">
+                      <a href="/pakete-preise">Pakete vergleichen</a>
+                    </Button>
+                  </div>
+
+                  {/* Disclaimer */}
+                  <p className="text-xs text-muted-foreground">
+                    Hinweis: Preise inkl. Anfahrt gemäß PLZ. Ohne ausgewiesene USt. gem. §19 UStG, falls zutreffend.
                   </p>
                 </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button onClick={handleBookingRedirect} className="flex-1">
-                    Weiter zur Terminbuchung
-                  </Button>
-                  <Button asChild variant="outline" className="flex-1">
-                    <a href="/pakete-preise">Pakete vergleichen</a>
+              ) : (
+                <div className="space-y-4">
+                  <p className="text-muted-foreground">{result.message}</p>
+                  <Button asChild className="w-full">
+                    <a href="/termin">Unverbindliche Anfrage</a>
                   </Button>
                 </div>
-
-                {/* Disclaimer */}
-                <p className="text-xs text-muted-foreground">
-                  Hinweis: Preise inkl. Anfahrt gemäß PLZ. Ohne ausgewiesene USt. gem. §19 UStG, falls zutreffend.
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-4" role="status" aria-live="polite">
-                <p className="text-muted-foreground">{result.message}</p>
-                <Button asChild className="w-full">
-                  <a href="/termin">Unverbindliche Anfrage</a>
-                </Button>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      )}
+              )}
+            </CardContent>
+          </Card>
+        )}
+      </div>
     </div>
   );
 };

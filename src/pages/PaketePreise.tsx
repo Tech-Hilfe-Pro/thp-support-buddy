@@ -1,18 +1,14 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import PricingTabs from "@/components/PricingTabs";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
 import MembershipCards from "@/components/MembershipCards";
-import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
+import { Chip } from "@/components/Chip";
 import { COPY } from "@/data/copy";
-import { COMPANY } from "@/data/company";
 
-const PaketePreise = () => {
-  const [activeTab, setActiveTab] = useState("einmalig");
-  
+export default function PaketePreisePage() {
+  const [tab, setTab] = useState<"EINMALIG" | "ABO">("EINMALIG");
+
   return (
     <>
       <SEO 
@@ -22,118 +18,59 @@ const PaketePreise = () => {
         ogImage={`/og?title=${encodeURIComponent("Pakete & Preise")}&subtitle=${encodeURIComponent("Transparent. Planbar. Fair.")}`}
       />
       
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          <header className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">{COPY.pricing.title}</h1>
-            <p className="text-lg text-muted-foreground">
-              {COPY.pricing.intro}
-            </p>
-          </header>
+      <main id="main" className="mx-auto max-w-7xl px-3 lg:px-6 py-10">
+        <h1 className="text-3xl font-bold mb-4">Pakete & Preise</h1>
 
-          {/* Main Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-16">
-            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto">
-              <TabsTrigger value="einmalig">Einmalig</TabsTrigger>
-              <TabsTrigger value="mitgliedschaft">Mitgliedschaft</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="einmalig" className="space-y-16">
-              {/* Pricing Tabs */}
-              <section>
-                <PricingTabs />
-              </section>
+        <Tabs value={tab} onValueChange={(value) => setTab(value as typeof tab)} className="mb-8">
+          <TabsList className="grid w-full grid-cols-2 max-w-md">
+            <TabsTrigger value="EINMALIG">Einmalig</TabsTrigger>
+            <TabsTrigger value="ABO">Mitgliedschaft</TabsTrigger>
+          </TabsList>
 
-              {/* Price Calculator */}
-              <section id="rechner" className="scroll-mt-24">
-                <div className="max-w-2xl mx-auto">
-                  <PriceTimeCalculator />
-                </div>
-              </section>
-            </TabsContent>
-            
-            <TabsContent value="mitgliedschaft" className="space-y-16">
-              <MembershipCards />
-            </TabsContent>
-          </Tabs>
-
-          {/* Value Proposition */}
-          <section className="mt-16">
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="text-center">
-                <CardHeader>
-                  <CardTitle className="text-lg">Transparente Preise</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Keine versteckten Kosten oder Überraschungen. 
-                    Sie wissen vorher genau, was Sie bezahlen.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center">
-                <CardHeader>
-                  <CardTitle className="text-lg">Flexible Abrechnung</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Von monatlichen Abos bis hin zur minutengenauen 
-                    On-Demand-Abrechnung - Sie haben die Wahl.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center">
-                <CardHeader>
-                  <CardTitle className="text-lg">Faire Konditionen</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Attraktive Rabatte für Stammkunden und 
-                    planbare Kosten für Unternehmen.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          {/* Contact CTA */}
-          <section className="mt-16 text-center">
-            <div className="bg-muted/30 p-8 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-4">Haben Sie Fragen zu unseren Preisen?</h2>
-              <p className="text-muted-foreground mb-6">
-                Gerne beraten wir Sie persönlich und finden das passende Paket für Ihre Bedürfnisse.
+          <TabsContent value="EINMALIG" className="space-y-10">
+            <section id="rechner">
+              <h2 className="text-2xl font-semibold mb-2">Preis- & Zeit-Rechner</h2>
+              <PriceTimeCalculator />
+              <p className="mt-2 text-sm text-slate-600">
+                Hinweis: Mitglieder erhalten <strong>20 % Rabatt</strong> auf die <em>Arbeitszeit</em> vor Ort. Anfahrt bleibt unverändert.
+                Kein Ausweis der USt. gem. § 19 UStG.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <a href={`tel:${COMPANY.telE164}`}>
-                    Jetzt anrufen
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <a href={`mailto:${COMPANY.email}`}>
-                    E-Mail senden
-                  </a>
-                </Button>
+            </section>
+
+            <section id="kmu">
+              <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                Für KMU 
+                <Chip kind="KMU" />
+                <Chip kind="MSP" />
+                <Chip kind="SLA" />
+              </h2>
+              <p className="text-slate-600 text-sm">
+                Planbar mit Abo & SLA. Vertraglich gesicherte Reaktionszeiten je nach Paket.
+              </p>
+              <div className="mt-4 p-4 border rounded-xl bg-slate-50">
+                <p className="text-sm text-slate-700">
+                  Individuelle Pakete für Unternehmen verfügbar. Kontaktieren Sie uns für ein maßgeschneidertes Angebot.
+                </p>
               </div>
-            </div>
-          </section>
+            </section>
+          </TabsContent>
 
-          {/* FAQ Section */}
-          <FAQ title="Preise & Abrechnung – FAQ" items={COPY.faq.preise} />
-
-          {/* Fine Print */}
-          <div className="mx-auto max-w-3xl text-xs text-muted-foreground space-y-1 pb-10 text-center">
-            <p>{COPY.fineprint.onsiteMinimum}</p>
-            <p>{COPY.fineprint.subscriberDiscount}</p>
-            <p>{COPY.fineprint.travelZone}</p>
-            <p>{COPY.fineprint.taxNote}</p>
-          </div>
-        </div>
-      </div>
+          <TabsContent value="ABO" className="space-y-8">
+            <section id="vorteile">
+              <h2 className="text-2xl font-semibold">Mitgliedschaft – Vorteile</h2>
+              <ul className="list-disc list-inside text-slate-700 mt-2 space-y-1">
+                <li>Priorisierte Hilfe (Remote zuerst), Vor-Ort bei Bedarf</li>
+                <li><strong>20 % Rabatt</strong> auf Arbeitszeit vor Ort</li>
+                <li>Planbare Reaktionszeiten mit <strong>SLA</strong> je nach Paket</li>
+                <li>Inkludierte Remote-Minuten pro Monat</li>
+              </ul>
+              <p className="text-xs text-slate-500 mt-2">Kein Ausweis der USt. gem. § 19 UStG.</p>
+            </section>
+            
+            <MembershipCards />
+          </TabsContent>
+        </Tabs>
+      </main>
     </>
   );
-};
-
-export default PaketePreise;
+}

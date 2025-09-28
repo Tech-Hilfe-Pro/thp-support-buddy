@@ -1,44 +1,32 @@
-import { useState, useMemo } from "react";
-import { Search } from "lucide-react";
+import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import ServiceCard from "@/components/ServiceCard";
-import TagToggle from "@/components/TagToggle";
 import SEO from "@/components/SEO";
+import { Chip } from "@/components/Chip";
 import { SERVICES } from "@/data/services";
-import { COMPANY } from "@/data/company";
 
-const Leistungen = () => {
-  const [filter, setFilter] = useState<"alle" | "privat" | "kmu">("alle");
+export default function LeistungenPage() {
+  const [aud, setAud] = useState<"PRIVAT" | "KMU">("PRIVAT");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filterOptions = [
-    { value: "alle", label: "Alle" },
-    { value: "privat", label: "Privat" },
-    { value: "kmu", label: "KMU" },
-  ];
-
-  const filteredServices = useMemo(() => {
-    let filtered = SERVICES;
-
-    // Filter by target group
-    if (filter !== "alle") {
-      filtered = filtered.filter(
-        service => service.zielgruppe === filter || service.zielgruppe === "beide"
-      );
-    }
+  const view = useMemo(() => {
+    let filtered = SERVICES.filter((s: any) => 
+      aud === "PRIVAT" ? 
+        (s.zielgruppe === "privat" || s.zielgruppe === "beide") : 
+        (s.zielgruppe === "kmu" || s.zielgruppe === "beide")
+    );
 
     // Filter by search term
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
-      filtered = filtered.filter(
-        service =>
-          service.titel.toLowerCase().includes(term) ||
-          service.kurz.toLowerCase().includes(term)
+      filtered = filtered.filter((s: any) =>
+        s.titel.toLowerCase().includes(term) ||
+        s.kurz.toLowerCase().includes(term)
       );
     }
 
-    return filtered;
-  }, [filter, searchTerm]);
+    return filtered.slice(0, 9);
+  }, [aud, searchTerm]);
 
   return (
     <>
@@ -49,84 +37,75 @@ const Leistungen = () => {
         ogImage={`/og?title=${encodeURIComponent("IT-Leistungen")}&subtitle=${encodeURIComponent("Von WLAN bis Smart-Home")}`}
       />
       
-      <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          <header className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-6">Unsere Leistungen</h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Was wir konkret für Sie tun - von der einfachen PC-Hilfe bis zur komplexen IT-Infrastruktur
-            </p>
-          </header>
-
-          {/* Filter Controls */}
-          <section className="mb-8 space-y-4">
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-              <TagToggle
-                options={filterOptions}
-                value={filter}
-                onChange={(value) => setFilter(value as typeof filter)}
-              />
-              
-              <div className="relative w-full sm:max-w-xs">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder="Service suchen..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Results Summary */}
-          <div className="mb-6">
-            <p className="text-sm text-muted-foreground">
-              {filteredServices.length} {filteredServices.length === 1 ? "Service" : "Services"} gefunden
-              {filter !== "alle" && ` für ${filter === "privat" ? "Privatkunden" : "Unternehmen"}`}
-              {searchTerm && ` mit "${searchTerm}"`}
-            </p>
-          </div>
-
-          {/* Service Grid */}
-          {filteredServices.length > 0 ? (
-            <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-16">
-              {filteredServices.map((service) => (
-                <ServiceCard key={service.id} service={service} />
-              ))}
-            </section>
-          ) : (
-            <section className="text-center py-12 mb-16">
-              <p className="text-muted-foreground mb-4">
-                Keine Services gefunden, die Ihren Kriterien entsprechen.
-              </p>
-              <button
-                onClick={() => {
-                  setFilter("alle");
-                  setSearchTerm("");
-                }}
-                className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+      <main id="main" className="mx-auto max-w-7xl px-3 lg:px-6 py-10">
+        <header className="mb-6">
+          <h1 className="text-3xl font-bold">Unsere Leistungen</h1>
+          <p className="text-slate-600 mt-1">Von der PC-Einrichtung bis zur Smart-Home-Installation – wir sind Ihr zuverlässiger Partner.</p>
+          
+          <div className="mt-4 flex flex-wrap items-center gap-4">
+            <div className="inline-flex rounded-xl border bg-slate-50 p-1">
+              <button 
+                className={`px-3 py-1 rounded-lg text-sm ${aud === "PRIVAT" ? "bg-white shadow" : "text-slate-600"}`} 
+                onClick={() => setAud("PRIVAT")}
               >
-                Filter zurücksetzen
+                Privat
               </button>
-            </section>
-          )}
+              <button 
+                className={`px-3 py-1 rounded-lg text-sm ${aud === "KMU" ? "bg-white shadow" : "text-slate-600"}`} 
+                onClick={() => setAud("KMU")}
+              >
+                KMU
+              </button>
+            </div>
+            
+            <Input
+              type="text"
+              placeholder="Service suchen..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="max-w-xs"
+            />
+          </div>
+          
+          <div className="mt-3 flex gap-2">
+            <Chip kind="KMU" />
+            <Chip kind="MSP" />
+            <Chip kind="SLA" />
+          </div>
+        </header>
 
-          {/* Additional Info */}
-          <section className="bg-muted/30 p-8 rounded-lg text-center">
-            <h2 className="text-xl font-semibold mb-3">Ihr Service ist nicht dabei?</h2>
-            <p className="text-muted-foreground mb-4">
-              Wir bieten auch individuelle Lösungen für spezielle Anforderungen.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Kontaktieren Sie uns für eine maßgeschneiderte Beratung.
-            </p>
+        {view.length > 0 ? (
+          <section aria-label="Leistungen" className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 mb-8">
+            {view.map((s: any) => (
+              <ServiceCard key={s.id} service={s} />
+            ))}
           </section>
+        ) : (
+          <section className="text-center py-12 mb-8">
+            <p className="text-slate-600 mb-4">
+              Keine Services gefunden, die Ihren Kriterien entsprechen.
+            </p>
+            <button
+              onClick={() => {
+                setAud("PRIVAT");
+                setSearchTerm("");
+              }}
+              className="text-blue-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-md"
+            >
+              Filter zurücksetzen
+            </button>
+          </section>
+        )}
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a href="/pakete-preise#rechner" className="rounded-xl bg-indigo-600 text-white px-4 py-2 font-semibold hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600">
+            Preis in 60 Sekunden
+          </a>
+          <a href="/termin" className="rounded-xl border px-4 py-2 font-semibold hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600">
+            Jetzt Termin buchen
+          </a>
         </div>
       </main>
     </>
   );
-};
-
-export default Leistungen;
+}
