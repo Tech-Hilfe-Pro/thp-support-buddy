@@ -1,9 +1,9 @@
-import { getLowestPrice } from "@/data/memberships";
+import { PRIVAT_ABOS } from "@/data/pricing";
 import { useLocation } from "react-router-dom";
 
 export default function StickyCTA() {
   const location = useLocation();
-  const lowest = getLowestPrice();
+  const lowest = Math.min(...PRIVAT_ABOS.map(p => p.preis));
   
   // Don't show on certain pages
   const hiddenPaths = ['/abo', '/kasse', '/termin'];

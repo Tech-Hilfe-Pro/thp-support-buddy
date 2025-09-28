@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MEMBERSHIP_PLANS } from "@/data/memberships";
+import { PRIVAT_ABOS, KMU_TIERS, STRIPE_PLAN_TO_ENV } from "@/data/pricing";
 
 function AboForm() {
   const stripe = useStripe();
@@ -21,7 +21,8 @@ function AboForm() {
   const [message, setMessage] = useState<string | null>(null);
   
   const selectedPlanId = searchParams.get('plan');
-  const selectedPlan = selectedPlanId ? MEMBERSHIP_PLANS.find(p => p.id === selectedPlanId) : null;
+  const allPlans = [...PRIVAT_ABOS, ...KMU_TIERS];
+  const selectedPlan = selectedPlanId ? allPlans.find(p => p.id === selectedPlanId) : null;
 
   const start = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +37,7 @@ function AboForm() {
         headers: { "Content-Type": "application/json" }, 
         body: JSON.stringify({ 
           email,
-          priceId: selectedPlan?.stripePriceId || "price_basic_monthly" 
+          priceId: selectedPlan ? STRIPE_PLAN_TO_ENV[selectedPlan.id] : "PRICE_PRIVAT_S" 
         })
       });
       
@@ -115,7 +116,8 @@ function AboForm() {
 export default function AboPage() {
   const [searchParams] = useSearchParams();
   const selectedPlanId = searchParams.get('plan');
-  const selectedPlan = selectedPlanId ? MEMBERSHIP_PLANS.find(p => p.id === selectedPlanId) : null;
+  const allPlans = [...PRIVAT_ABOS, ...KMU_TIERS];
+  const selectedPlan = selectedPlanId ? allPlans.find(p => p.id === selectedPlanId) : null;
   
   return (
     <>
@@ -139,10 +141,10 @@ export default function AboPage() {
               <div className="bg-muted/30 p-6 rounded-lg mb-6">
                 <h2 className="text-xl font-semibold mb-2">Gewählter Plan: {selectedPlan.name}</h2>
                 <p className="text-2xl font-bold text-primary">
-                  {selectedPlan.priceMonthly.toFixed(2)} € / Monat
+                  {((selectedPlan as any).preis || (selectedPlan as any).preisProGeraet).toFixed(2)} € / Monat
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">
-                  {selectedPlan.laborDiscount && `Mitglieder sparen ${(selectedPlan.laborDiscount * 100).toFixed(0)} % auf Arbeitszeit vor Ort`}
+                  {(selectedPlan as any).rabattVorOrt && `Mitglieder sparen ${((selectedPlan as any).rabattVorOrt * 100).toFixed(0)} % auf Arbeitszeit vor Ort`}
                 </p>
               </div>
               
