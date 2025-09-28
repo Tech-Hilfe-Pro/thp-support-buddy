@@ -32,13 +32,14 @@ const Impressum = () => {
             </div>
           </section>
           
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Umsatzsteuer-ID</h2>
-            <p className="text-muted-foreground">
-              Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: 
-              [Platzhalter - falls vorhanden]
-            </p>
-          </section>
+          {COMPANY.ustId && (
+            <section>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Umsatzsteuer-ID</h2>
+              <p className="text-muted-foreground">
+                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: {COMPANY.ustId}
+              </p>
+            </section>
+          )}
           
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">Kleinunternehmerregelung</h2>
