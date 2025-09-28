@@ -14,7 +14,7 @@ const PaketePreise = () => {
         title="Pakete & Preise | Tech Hilfe Pro"
         description="Faire IT-Pakete für Privat & KMU. Mit Abo 20 % Rabatt auf Arbeitszeit bei Vor-Ort-Terminen."
         path="/pakete-preise" 
-        ogImage="/og/preise.jpg" 
+        ogImage={`/og?title=${encodeURIComponent("Pakete & Preise")}&subtitle=${encodeURIComponent("Transparent. Planbar. Fair.")}`}
       />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">

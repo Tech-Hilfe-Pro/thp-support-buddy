@@ -45,7 +45,8 @@ const Leistungen = () => {
       <SEO 
         title="IT-Leistungen in Köln & Neuss | Tech Hilfe Pro"
         description="Alle IT-Services im Überblick: PC-Hilfe, WLAN-Setup, Sicherheit, Smart-Home und mehr. Für Privat und KMU."
-        path="/leistungen" 
+        path="/leistungen"
+        ogImage={`/og?title=${encodeURIComponent("IT-Leistungen")}&subtitle=${encodeURIComponent("Von WLAN bis Smart-Home")}`}
       />
       
       <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">

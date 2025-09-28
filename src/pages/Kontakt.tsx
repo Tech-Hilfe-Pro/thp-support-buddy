@@ -11,7 +11,8 @@ const Kontakt = () => {
       <SEO 
         title="Kontakt | Tech Hilfe Pro"
         description="Kontaktieren Sie uns für IT-Support in Köln & Neuss. Telefon, E-Mail, WhatsApp oder vor Ort."
-        path="/kontakt" 
+        path="/kontakt"
+        ogImage={`/og?title=${encodeURIComponent("Kontakt")}&subtitle=${encodeURIComponent("Schnell erreichbar in Köln & Neuss")}`}
       />
       <script 
         type="application/ld+json" 
