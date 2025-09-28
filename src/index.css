@@ -85,7 +85,7 @@
   --sidebar-ring: 217.2 91.2% 59.8%;
 
   /* Clean hero background */
-  --thp-hero: radial-gradient(1200px 420px at 50% -10%, rgba(59,130,246,0.12), transparent 60%);
+  --thp-hero: radial-gradient(1200px 420px at 50% -10%, rgba(79,70,229,0.12), transparent 60%);
 }
 
 .dark {
@@ -127,6 +127,10 @@
     text-shadow: 0 2px 4px hsl(var(--foreground) / 0.1);
   }
 }
+
+/* Design tokens for clean UI */
+.card { @apply rounded-2xl border border-neutral-200 bg-white shadow-card; }
+.kicker { @apply text-xs font-semibold tracking-wide uppercase text-brand-700; }
 
 /* Accessibility: Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {

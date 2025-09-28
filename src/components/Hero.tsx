@@ -36,14 +36,14 @@ export default function Hero() {
           Wir lösen Ihre Technikprobleme – remote oder vor Ort in Köln, Neuss & Umgebung.
         </p>
         <div className="mt-6 h-7 sm:h-8">
-          <span className="inline-block text-indigo-600 font-medium">{txt}</span>
+          <span className="inline-block text-brand-600 font-medium">{txt}</span>
           {!reduced && <span className="ml-1 inline-block w-[1ch] align-baseline animate-pulse">▌</span>}
         </div>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/pakete-preise" className="inline-flex items-center justify-center rounded-xl bg-indigo-600 text-white px-6 py-3 text-base font-medium hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2">
+          <Link to="/pakete-preise" className="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-6 py-3 text-base font-medium hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 min-h-[44px]">
             Preis in 60 Sekunden
           </Link>
-          <Link to="/termin" className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white text-neutral-900 px-6 py-3 text-base font-medium hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2">
+          <Link to="/termin" className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white text-neutral-900 px-6 py-3 text-base font-medium hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 min-h-[44px]">
             Jetzt Termin buchen
           </Link>
         </div>

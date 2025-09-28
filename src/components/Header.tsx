@@ -66,9 +66,9 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 rounded-md"
+            className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-md"
           >
-            <img src="/logo-thp.svg" alt="Tech Hilfe Pro" className="h-6 w-auto" loading="eager" onError={(e) => {
+            <img src="/brand/logo.svg" alt="Tech Hilfe Pro" className="h-6 w-auto" fetchPriority="high" onError={(e) => {
               e.currentTarget.style.display = 'none';
               const span = document.createElement('span');
               span.textContent = 'Tech Hilfe Pro';
