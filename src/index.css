@@ -170,6 +170,25 @@
   color: #22c55e;
 }
 
+/* Header height and anchor offsets */
+:root { 
+  --header-h: 64px; 
+}
+
+/* Scrollbar utilities */
+.no-scrollbar::-webkit-scrollbar { 
+  display: none; 
+}
+.no-scrollbar { 
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+/* Anchor offset for sticky header */
+[id] { 
+  scroll-margin-top: var(--header-h); 
+}
+
 @keyframes typewriter {
   from { width: 0; }
   to { width: 100%; }

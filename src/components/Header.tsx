@@ -1,16 +1,24 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function Header() {
-  const [open, setOpen] = useState(false);
-  const location = useLocation();
+function Logo() {
+  return (
+    <Link to="/" className="flex items-center gap-2 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md px-1 py-1">
+      <img 
+        src="/brand/logo.svg" 
+        alt="Tech Hilfe Pro" 
+        className="h-7 w-auto" 
+        onError={(e: any) => { 
+          e.currentTarget.src = "/brand/favicon.png"; 
+        }} 
+      />
+      <span className="text-lg font-bold tracking-tight text-foreground">Tech Hilfe Pro</span>
+    </Link>
+  );
+}
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [location]);
-
-  const NavItem = ({ to, children }: { to: string; children: React.ReactNode }) => (
+function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
+  return (
     <NavLink
       to={to}
       className={({ isActive }) =>
@@ -22,30 +30,24 @@ export default function Header() {
       {children}
     </NavLink>
   );
+}
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto max-w-7xl px-3 lg:px-6">
         <div className="h-16 flex items-center gap-3">
-          {/* Brand */}
-          <Link 
-            to="/" 
-            className="shrink-0 flex items-center gap-2 text-xl font-bold tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md px-1 py-1"
-          >
-            <img 
-              src="/assets/power-icon.png" 
-              alt="" 
-              className="h-8 w-8" 
-              width="32" 
-              height="32"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-            Tech Hilfe Pro
-          </Link>
+          <Logo />
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav - no wrap, scroll if needed */}
           <nav
             className="ml-2 hidden md:flex min-w-0 flex-1 items-center overflow-x-auto no-scrollbar"
             aria-label="Hauptnavigation"
@@ -53,7 +55,6 @@ export default function Header() {
             <div className="flex flex-nowrap items-center gap-1 md:gap-2 lg:gap-3 xl:gap-4">
               <NavItem to="/">Startseite</NavItem>
               <NavItem to="/leistungen">Leistungen</NavItem>
-              {/* Kürzeres Label für kleinere Breakpoints */}
               <NavLink 
                 to="/pakete-preise" 
                 className={({ isActive }) =>
@@ -62,12 +63,14 @@ export default function Header() {
                   }`
                 }
               >
-                <span className="xl:inline hidden">Pakete & Preise</span>
+                <span className="hidden xl:inline">Pakete & Preise</span>
                 <span className="xl:hidden inline">Preise</span>
               </NavLink>
               <NavItem to="/abo">Mitgliedschaft</NavItem>
               <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
+
+              {/* Dropdown Rechtliches */}
               <div className="relative group">
                 <button className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md">
                   Rechtliches
@@ -85,21 +88,20 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* CTAs rechts (nicht schrumpfen) */}
+          {/* CTAs and compact icons - right aligned, no shrink */}
           <div className="ml-auto hidden md:flex items-center gap-2 shrink-0">
             <Link 
               to="/abo" 
-              className="px-3 py-2 rounded-lg border border-input text-sm font-medium text-foreground bg-background hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-colors"
+              className="px-3 py-2 rounded-lg border border-input text-sm font-medium text-foreground bg-background hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-colors whitespace-nowrap"
             >
               Mitglied werden
             </Link>
             <Link 
               to="/termin" 
-              className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-colors"
+              className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-colors whitespace-nowrap"
             >
               Jetzt Termin buchen
             </Link>
-            {/* Contact Icons */}
             <a 
               href="tel:+4915565029989" 
               className="p-2 text-foreground hover:bg-accent rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
