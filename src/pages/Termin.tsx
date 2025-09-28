@@ -7,12 +7,14 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
 import { readQuoteFromStorage } from "@/lib/quote";
 import QuoteSummary from "@/components/QuoteSummary";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
 import { breadcrumb } from "@/lib/structured";
+import { COPY, FORM_MSG } from "@/data/copy";
 
 const Termin = () => {
   const navigate = useNavigate();
@@ -101,7 +103,7 @@ const Termin = () => {
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold text-foreground mb-8">Termin buchen</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-8">{COPY.booking.title}</h1>
           <p className="text-lg text-muted-foreground mb-12">
             Buchen Sie schnell und unkompliziert einen Termin für Ihren IT-Support. 
             Wählen Sie zwischen Vor-Ort-Service oder Remote-Unterstützung.
@@ -384,10 +386,21 @@ const Termin = () => {
                     <p className="text-xs text-muted-foreground mt-4">
                       Abrechnung erfolgt nach tatsächlichem Aufwand
                     </p>
-                  </CardContent>
+                   </CardContent>
                 </Card>
               )}
             </div>
+          </div>
+
+          {/* FAQ Section */}
+          <FAQ title="Fragen zum Termin" items={COPY.faq.termin} />
+
+          {/* Fine Print */}
+          <div className="mx-auto max-w-3xl text-xs text-muted-foreground space-y-1 pb-10 text-center">
+            <p>{COPY.fineprint.onsiteMinimum}</p>
+            <p>{COPY.fineprint.subscriberDiscount}</p>
+            <p>{COPY.fineprint.travelZone}</p>
+            <p>{COPY.legal.contactHint}</p>
           </div>
         </div>
       </div>

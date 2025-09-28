@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import { readQuoteFromStorage, Quote } from "@/lib/quote";
 import StripeCheckout from "@/components/StripeCheckout";
 import { SEO_PAGES } from "@/data/seo";
+import { COPY } from "@/data/copy";
 
 type Mode = "one_time" | "subscription";
 type PlanId = "S"|"M"|"L"|"starter"|"grow"|"pro";
@@ -64,7 +65,7 @@ const Kasse = () => {
         <SEO title={meta.title} description={meta.description} path={meta.path} />
         
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-4xl font-bold text-foreground mb-8">Kasse</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-8">{COPY.checkout.title}</h1>
           
           <Alert variant="destructive">
             <AlertDescription>{error}</AlertDescription>

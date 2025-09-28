@@ -3,6 +3,7 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getConsent, setConsent, emitConsentGranted } from "@/lib/consent";
+import { COPY } from "@/data/copy";
 
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -102,9 +103,7 @@ const CookieBanner = () => {
           
           <div id="cookie-banner-description" className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              Wir verwenden technisch notwendige Cookies für die Grundfunktionen unserer Website. 
-              Für zusätzliche Funktionen und Analyse-Tools benötigen wir Ihre Einwilligung 
-              gemäß TTDSG/DSGVO.
+              {COPY.legal.cookiesBanner.text}
             </p>
             
             <p className="text-xs text-muted-foreground">
@@ -115,7 +114,7 @@ const CookieBanner = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Datenschutzerklärung
+                {COPY.legal.cookiesBanner.privacyLink}
               </a>
               .
             </p>
@@ -127,14 +126,14 @@ const CookieBanner = () => {
               onClick={handleAccept}
               className="flex-1"
             >
-              Akzeptieren
+              {COPY.legal.cookiesBanner.accept}
             </Button>
             <Button
               onClick={handleDeny}
               variant="outline"
               className="flex-1"
             >
-              Ablehnen
+              {COPY.legal.cookiesBanner.deny}
             </Button>
           </div>
         </CardContent>

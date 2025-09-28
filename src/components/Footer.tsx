@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, MapPin, Clock } from "lucide-react";
+import { COPY } from "@/data/copy";
 
 const Footer = () => {
   return (
@@ -105,8 +106,7 @@ const Footer = () => {
         {/* Unified Fine Print */}
         <div className="mt-8 pt-6 border-t">
           <p className="text-xs text-muted-foreground text-center leading-relaxed">
-            Vor-Ort ab 45 Min, Abrechnung in 15-Min-Blöcken. 20% Rabatt auf Vor-Ort-Arbeitszeit für aktive Abonnenten. 
-            Anfahrt nach PLZ-Zone. Ohne ausgewiesene USt. gem. §19 UStG, falls zutreffend.
+            {COPY.fineprint.onsiteMinimum} {COPY.fineprint.subscriberDiscount} {COPY.fineprint.travelZone} {COPY.fineprint.taxNote}
           </p>
         </div>
 

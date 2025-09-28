@@ -11,6 +11,7 @@ import { toast } from "@/hooks/use-toast";
 import { TechnicianInput, calcTechnicianTotal, Urgency } from "@/lib/pricing";
 import { SERVICES } from "@/data/services";
 import { SEO_PAGES } from "@/data/seo";
+import { COPY } from "@/data/copy";
 
 const Techniker = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -179,7 +180,7 @@ const Techniker = () => {
         <div className="container mx-auto max-w-md py-20">
           <Card>
             <CardHeader>
-              <CardTitle>Techniker-Zugang</CardTitle>
+              <CardTitle>{COPY.technician.pinTitle}</CardTitle>
               <CardDescription>PIN-geschützter Bereich für Vor-Ort-Einsätze</CardDescription>
             </CardHeader>
             <CardContent>
@@ -214,7 +215,7 @@ const Techniker = () => {
       <SEO title={meta.title} description={meta.description} path={meta.path} />
       <div className="container mx-auto max-w-4xl py-16">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Techniker-Bereich</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-4">{COPY.technician.title}</h1>
           <p className="text-lg text-muted-foreground">
             Quick Charge für Vor-Ort-Einsätze mit Checkout-Optionen
           </p>
@@ -224,7 +225,7 @@ const Techniker = () => {
           {/* Quick Charge Form */}
           <Card>
             <CardHeader>
-              <CardTitle>Quick Charge</CardTitle>
+              <CardTitle>{COPY.technician.quickCharge}</CardTitle>
               <CardDescription>
                 Berechnen Sie den Endbetrag basierend auf der tatsächlichen Arbeitszeit vor Ort
               </CardDescription>

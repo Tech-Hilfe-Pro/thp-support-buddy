@@ -2,9 +2,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import PricingTabs from "@/components/PricingTabs";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
+import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
 import { breadcrumb, faq } from "@/lib/structured";
+import { COPY } from "@/data/copy";
 
 const PaketePreise = () => {
   const meta = SEO_PAGES.preise;
@@ -27,9 +29,9 @@ const PaketePreise = () => {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">
           <header className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Pakete & Preise</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">{COPY.pricing.title}</h1>
             <p className="text-lg text-muted-foreground">
-              Wählen Sie das Modell, das zu Ihnen passt - faire und transparente Preise ohne versteckte Kosten
+              {COPY.pricing.intro}
             </p>
           </header>
 
@@ -107,6 +109,17 @@ const PaketePreise = () => {
               </div>
             </div>
           </section>
+
+          {/* FAQ Section */}
+          <FAQ title="Preise & Abrechnung – FAQ" items={COPY.faq.preise} />
+
+          {/* Fine Print */}
+          <div className="mx-auto max-w-3xl text-xs text-muted-foreground space-y-1 pb-10 text-center">
+            <p>{COPY.fineprint.onsiteMinimum}</p>
+            <p>{COPY.fineprint.subscriberDiscount}</p>
+            <p>{COPY.fineprint.travelZone}</p>
+            <p>{COPY.fineprint.taxNote}</p>
+          </div>
         </div>
       </div>
     </>

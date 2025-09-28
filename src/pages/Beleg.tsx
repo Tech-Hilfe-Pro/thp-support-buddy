@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Printer, Home } from "lucide-react";
 import SEO from "@/components/SEO";
 import { SEO_PAGES } from "@/data/seo";
+import { COPY } from "@/data/copy";
 
 const Beleg = () => {
   const [searchParams] = useSearchParams();
