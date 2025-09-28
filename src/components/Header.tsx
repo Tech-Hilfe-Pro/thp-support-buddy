@@ -20,7 +20,10 @@ export default function Header() {
           className="flex items-center gap-2 shrink-0 whitespace-nowrap"
           aria-label="Tech Hilfe Pro"
         >
-          <span className="text-lg font-semibold tracking-tight">Tech Hilfe Pro</span>
+          <img src="/logo.png" alt="Logo" className="w-6 h-6" />
+          <span className="text-lg font-semibold tracking-tight">
+            Tech <span style={{color: '#3BA9FF'}}>Hilfe</span> Pro
+          </span>
         </Link>
 
         {/* Desktop: Menu burger button - moved to right */}
