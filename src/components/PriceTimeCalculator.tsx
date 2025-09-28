@@ -206,7 +206,7 @@ const PriceTimeCalculator = () => {
                     <span>{formatEUR(result.breakdown.arbeitszeitBrutto)}</span>
                   </div>
                   {subscription && (
-                    <div className="flex justify-between text-green-600">
+                    <div className="flex justify-between text-primary">
                       <span>Abo-Rabatt (20%)</span>
                       <span>–{formatEUR(result.breakdown.rabattAbo)}</span>
                     </div>

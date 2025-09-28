@@ -146,7 +146,7 @@ const TerminZusammenfassung = () => {
                   }
                 </div>
                 {bookingData.subscription && (
-                  <div className="text-green-600">
+                  <div className="text-primary">
                     <strong>Mitgliedschaft:</strong> 20% Rabatt auf Arbeitszeit
                   </div>
                 )}
@@ -177,7 +177,7 @@ const TerminZusammenfassung = () => {
                     <span>{formatEUR(quote.breakdown.arbeitszeitBrutto)}</span>
                   </div>
                   {bookingData.subscription && (
-                    <div className="flex justify-between text-green-600">
+                    <div className="flex justify-between text-primary">
                       <span>Abo-Rabatt (20%)</span>
                       <span>–{formatEUR(quote.breakdown.rabattAbo)}</span>
                     </div>

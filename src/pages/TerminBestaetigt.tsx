@@ -41,7 +41,7 @@ const TerminBestaetigt = () => {
         <div className="text-center mb-8">
           {paymentStatus === "payment_succeeded" ? (
             <>
-              <CreditCard className="mx-auto h-16 w-16 text-green-600 mb-4" />
+              <CreditCard className="mx-auto h-16 w-16 text-primary mb-4" />
               <h1 className="text-4xl font-bold text-foreground mb-4">Zahlung erfolgreich!</h1>
               <p className="text-lg text-muted-foreground">
                 Vielen Dank! Ihre Zahlung wurde erfolgreich verarbeitet und Ihr Termin ist bestätigt.
@@ -49,7 +49,7 @@ const TerminBestaetigt = () => {
             </>
           ) : paymentStatus === "subscription_created" ? (
             <>
-              <Calendar className="mx-auto h-16 w-16 text-green-600 mb-4" />
+              <Calendar className="mx-auto h-16 w-16 text-primary mb-4" />
               <h1 className="text-4xl font-bold text-foreground mb-4">Abonnement aktiviert!</h1>
               <p className="text-lg text-muted-foreground">
                 Ihr monatliches Abonnement wurde erfolgreich eingerichtet. Willkommen bei Tech Hilfe Pro!
@@ -57,7 +57,7 @@ const TerminBestaetigt = () => {
             </>
           ) : (
             <>
-              <CheckCircle className="mx-auto h-16 w-16 text-green-600 mb-4" />
+              <CheckCircle className="mx-auto h-16 w-16 text-primary mb-4" />
               <h1 className="text-4xl font-bold text-foreground mb-4">Termin bestätigt!</h1>
               <p className="text-lg text-muted-foreground">
                 Vielen Dank für Ihr Vertrauen. Wir haben Ihren Termin erfolgreich registriert.

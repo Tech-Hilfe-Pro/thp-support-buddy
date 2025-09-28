@@ -305,7 +305,7 @@ const StripeCheckout = ({ mode, quote, planId }: CheckoutProps) => {
                     <span>{formatEUR(quote.breakdown.arbeitszeitBrutto)}</span>
                   </div>
                   {quote.subscription && (
-                    <div className="flex justify-between text-green-600">
+                    <div className="flex justify-between text-primary">
                       <span>Abo-Rabatt (20%)</span>
                       <span>–{formatEUR(quote.breakdown.rabattAbo)}</span>
                     </div>

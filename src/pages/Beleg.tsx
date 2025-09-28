@@ -297,7 +297,7 @@ const Beleg = () => {
                   </div>
 
                   {receipt.subscription && receipt.discount > 0 && (
-                    <div className="flex justify-between text-sm text-green-600">
+                    <div className="flex justify-between text-sm text-primary">
                       <span>Abo-Rabatt (20%):</span>
                       <span>-{formatEUR(receipt.discount)}</span>
                     </div>

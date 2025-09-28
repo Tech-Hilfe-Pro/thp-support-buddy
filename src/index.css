@@ -61,19 +61,19 @@
   --card-foreground: 218 32% 5%;
   --popover: 0 0% 100%;
   --popover-foreground: 218 32% 5%;
-  --primary: 217 91% 60%;
+  --primary: 214 95% 58%;
   --primary-foreground: 0 0% 98%;
   --secondary: 220 13% 91%;
   --secondary-foreground: 218 32% 5%;
   --muted: 220 13% 91%;
   --muted-foreground: 215 16% 47%;
-  --accent: 142 76% 36%;
-  --accent-foreground: 0 0% 98%;
+  --accent: 220 13% 91%;
+  --accent-foreground: 218 32% 5%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
   --border: 220 13% 91%;
   --input: 220 13% 91%;
-  --ring: 217 91% 60%;
+  --ring: 214 95% 58%;
   --radius: 0.75rem;
   --sidebar-background: 0 0% 98%;
   --sidebar-foreground: 240 5.3% 26.1%;
@@ -82,10 +82,10 @@
   --sidebar-accent: 240 4.8% 95.9%;
   --sidebar-accent-foreground: 240 5.9% 10%;
   --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 217 91% 60%;
+  --sidebar-ring: 214 95% 58%;
 
   /* Clean hero background with new primary */
-  --thp-hero: radial-gradient(1200px 420px at 50% -10%, hsl(217 91% 60% / 0.08), transparent 60%);
+  --thp-hero: radial-gradient(1200px 420px at 50% -10%, hsl(214 95% 58% / 0.08), transparent 60%);
 }
 
 .dark {
@@ -95,7 +95,7 @@
   --card-foreground: 210 40% 98%;
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
-  --primary: 217.2 91.2% 59.8%;
+  --primary: 214 95% 58%;
   --primary-foreground: 222.2 84% 4.9%;
   --secondary: 217.2 32.6% 17.5%;
   --secondary-foreground: 210 40% 98%;
@@ -107,7 +107,7 @@
   --destructive-foreground: 210 40% 98%;
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
-  --ring: 224.3 76.3% 94.0%;
+  --ring: 214 95% 58%;
   --sidebar-background: 240 5.9% 10%;
   --sidebar-foreground: 240 4.8% 95.9%;
   --sidebar-primary: 224.3 76.3% 48%;
@@ -115,7 +115,7 @@
   --sidebar-accent: 240 3.7% 15.9%;
   --sidebar-accent-foreground: 240 4.8% 95.9%;
   --sidebar-border: 240 3.7% 15.9%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
+  --sidebar-ring: 214 95% 58%;
 }
 
 @layer utilities {
@@ -154,6 +154,11 @@
 
 .muted {
   @apply text-muted-foreground;
+}
+
+/* Brand colors - only for brand-specific elements */
+.whatsapp-brand {
+  color: #22c55e;
 }
 
 @keyframes typewriter {
