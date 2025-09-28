@@ -1,6 +1,44 @@
+import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import ServiceCard from "@/components/ServiceCard";
+import TagToggle from "@/components/TagToggle";
+import { SERVICES } from "@/data/services";
 
 const Leistungen = () => {
+  const [filter, setFilter] = useState<"alle" | "privat" | "kmu">("alle");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filterOptions = [
+    { value: "alle", label: "Alle" },
+    { value: "privat", label: "Privat" },
+    { value: "kmu", label: "KMU" },
+  ];
+
+  const filteredServices = useMemo(() => {
+    let filtered = SERVICES;
+
+    // Filter by target group
+    if (filter !== "alle") {
+      filtered = filtered.filter(
+        service => service.zielgruppe === filter || service.zielgruppe === "beide"
+      );
+    }
+
+    // Filter by search term
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        service =>
+          service.titel.toLowerCase().includes(term) ||
+          service.kurz.toLowerCase().includes(term)
+      );
+    }
+
+    return filtered;
+  }, [filter, searchTerm]);
+
   return (
     <>
       <Helmet>
@@ -9,40 +47,82 @@ const Leistungen = () => {
           name="description" 
           content="Alle IT-Services im Überblick: PC/Mac-Hilfe, WLAN-Setup, Smart-Home, Sicherheits-Check und mehr. Für Privat und Unternehmen." 
         />
+        <meta name="keywords" content="IT-Support Leistungen, PC Hilfe, WLAN Setup, Smart-Home Installation, Sicherheitscheck" />
       </Helmet>
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-foreground mb-8">Unsere Leistungen</h1>
-          <p className="text-lg text-muted-foreground mb-12">
-            Von der einfachen PC-Hilfe bis zur komplexen IT-Infrastruktur - 
-            wir unterstützen Sie bei allen technischen Herausforderungen.
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-card p-6 rounded-lg border">
-              <h2 className="text-xl font-semibold mb-4">Für Privatkunden</h2>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• PC/Mac-Hilfe und Reparatur</li>
-                <li>• WLAN-Optimierung</li>
-                <li>• Drucker-Setup</li>
-                <li>• Smart-TV und Streaming</li>
-                <li>• Smart-Home Installation</li>
-                <li>• Schulungen für Senioren</li>
-              </ul>
+          <header className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-foreground mb-4">Unsere Leistungen</h1>
+            <p className="text-lg text-muted-foreground">
+              Was wir konkret für Sie tun - von der einfachen PC-Hilfe bis zur komplexen IT-Infrastruktur
+            </p>
+          </header>
+
+          {/* Filter Controls */}
+          <div className="mb-8 space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+              <TagToggle
+                options={filterOptions}
+                value={filter}
+                onChange={(value) => setFilter(value as typeof filter)}
+              />
+              
+              <div className="relative w-full sm:max-w-xs">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Service suchen..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
-            
-            <div className="bg-card p-6 rounded-lg border">
-              <h2 className="text-xl font-semibold mb-4">Für Unternehmen</h2>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• IT-Infrastruktur Management</li>
-                <li>• Netzwerk-Setup und Wartung</li>
-                <li>• Sicherheits-Audits</li>
-                <li>• Backup-Lösungen</li>
-                <li>• Remote-Support</li>
-                <li>• Mitarbeiter-Schulungen</li>
-              </ul>
+          </div>
+
+          {/* Results Summary */}
+          <div className="mb-6">
+            <p className="text-sm text-muted-foreground">
+              {filteredServices.length} {filteredServices.length === 1 ? "Service" : "Services"} gefunden
+              {filter !== "alle" && ` für ${filter === "privat" ? "Privatkunden" : "Unternehmen"}`}
+              {searchTerm && ` mit "${searchTerm}"`}
+            </p>
+          </div>
+
+          {/* Service Grid */}
+          {filteredServices.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {filteredServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
             </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground mb-4">
+                Keine Services gefunden, die Ihren Kriterien entsprechen.
+              </p>
+              <button
+                onClick={() => {
+                  setFilter("alle");
+                  setSearchTerm("");
+                }}
+                className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+              >
+                Filter zurücksetzen
+              </button>
+            </div>
+          )}
+
+          {/* Additional Info */}
+          <div className="mt-16 p-6 bg-muted/30 rounded-lg text-center">
+            <h2 className="text-xl font-semibold mb-3">Ihr Service ist nicht dabei?</h2>
+            <p className="text-muted-foreground mb-4">
+              Wir bieten auch individuelle Lösungen für spezielle Anforderungen.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Kontaktieren Sie uns für eine maßgeschneiderte Beratung.
+            </p>
           </div>
         </div>
       </div>
