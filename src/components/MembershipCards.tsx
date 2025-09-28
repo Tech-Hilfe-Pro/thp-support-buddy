@@ -59,7 +59,6 @@ function MembershipCard({ p }: { p: MembershipPlan }) {
 export default function MembershipCards() {
   const [audience, setAudience] = useState<"PRIVAT" | "KMU">("PRIVAT");
   const data = useMemo(() => MEMBERSHIP_PLANS.filter(p => p.audience === audience), [audience]);
-  const single = data.length === 1;
   
   return (
     <section id="mitgliedschaft" className="py-16">
@@ -94,7 +93,7 @@ export default function MembershipCards() {
             </button>
           </div>
         </div>
-        <div className={single ? "mx-auto max-w-2xl" : "grid gap-6 md:grid-cols-2 lg:grid-cols-3"}>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {data.map(p => <MembershipCard key={p.id} p={p} />)}
         </div>
       </div>

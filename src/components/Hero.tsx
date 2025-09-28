@@ -36,9 +36,9 @@ export default function Hero() {
   }, [i, txt, typing, reduced]);
 
   return (
-    <section className="relative overflow-hidden bg-white pt-8 pb-12 md:pt-10 md:pb-16">
+    <section className="relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-hero-soft" aria-hidden />
-      <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h1 className="text-[clamp(1.75rem,4vw,2.5rem)] sm:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground leading-tight">
           Schneller IT-Support für Zuhause & KMU
         </h1>
