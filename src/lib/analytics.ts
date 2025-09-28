@@ -18,8 +18,15 @@ type EventName =
   | "tech_quickcharge_started"
   | "tech_checkoutlink_created";
 
-const ENABLED = (import.meta as any)?.env?.ANALYTICS_ENABLE === "true";
-const TOKEN = (import.meta as any)?.env?.ANALYTICS_TOKEN || "";
+// Safe initialization of constants
+function getEnabled() {
+  return (import.meta as any)?.env?.ANALYTICS_ENABLE === "true";
+}
+
+function getToken() {
+  return (import.meta as any)?.env?.ANALYTICS_TOKEN || "";
+}
+
 const QUEUE_KEY = "thp_evt_queue";
 const SID_KEY = "thp_sid";
 
@@ -60,10 +67,11 @@ function writeQueue(q: any[]) {
 }
 
 async function send(payload: any) {
-  if (!ENABLED) return;
+  if (!getEnabled()) return;
   try {
     const headers: Record<string,string> = { "Content-Type":"application/json" };
-    if (TOKEN) headers["Authorization"] = `Bearer ${TOKEN}`;
+    const token = getToken();
+    if (token) headers["Authorization"] = `Bearer ${token}`;
     const body = JSON.stringify(payload);
     if (navigator.sendBeacon) {
       const blob = new Blob([body], { type: "application/json" });
@@ -75,7 +83,7 @@ async function send(payload: any) {
 }
 
 export function flushQueue() {
-  if (!ENABLED) return;
+  if (!getEnabled()) return;
   if (getConsent() !== "granted") return;
   const q = readQueue();
   if (!q.length) return;
@@ -84,7 +92,7 @@ export function flushQueue() {
 }
 
 export function track(event: EventName, props: Props = {}) {
-  if (!ENABLED) return;
+  if (!getEnabled()) return;
   const base = {
     sid: getSid(),
     ts: new Date().toISOString(),
