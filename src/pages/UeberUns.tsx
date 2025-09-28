@@ -1,32 +1,13 @@
 import SEO from "@/components/SEO";
-import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb, localBusiness } from "@/lib/structured";
 
 const UeberUns = () => {
-  const meta = SEO_PAGES.ueber;
-  const ld = [
-    breadcrumb([
-      { name: "Start", url: fullUrl("/") },
-      { name: "Über uns", url: fullUrl(meta.path) }
-    ]),
-    localBusiness({ 
-      telephone: "+49 1556 5029989",
-      address: {
-        streetAddress: "Schirmerstr. 7",
-        postalCode: "50823",
-        addressLocality: "Köln",
-        addressRegion: "NRW",
-        addressCountry: "DE"
-      },
-      areaServed: ["Köln", "Neuss"],
-      openingHours: ["Mo-Fr 09:00-18:00"],
-      sameAs: []
-    })
-  ];
-
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
+      <SEO 
+        title="Über uns | Tech Hilfe Pro"
+        description="Ihr IT-Service in Köln & Neuss. Persönlich, kompetent und verständlich - für Senioren und KMU."
+        path="/ueber-uns" 
+      />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">

@@ -5,34 +5,11 @@ import ServiceCard from "@/components/ServiceCard";
 import TagToggle from "@/components/TagToggle";
 import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
-import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb, localBusiness } from "@/lib/structured";
 import { COMPANY } from "@/data/company";
 
 const Leistungen = () => {
   const [filter, setFilter] = useState<"alle" | "privat" | "kmu">("alle");
   const [searchTerm, setSearchTerm] = useState("");
-
-  const meta = SEO_PAGES.leistungen;
-  const ld = [
-    breadcrumb([
-      { name: "Start", url: fullUrl("/") },
-      { name: "Leistungen", url: fullUrl(meta.path) }
-    ]),
-    localBusiness({ 
-      telephone: COMPANY.telE164,
-      address: {
-        streetAddress: COMPANY.street,
-        postalCode: COMPANY.postalCode,
-        addressLocality: COMPANY.city,
-        addressRegion: "NW",
-        addressCountry: "DE"
-      },
-      areaServed: ["Köln", "Neuss"],
-      openingHours: ["Mo-Fr 09:00-18:00"],
-      sameAs: []
-    })
-  ];
 
   const filterOptions = [
     { value: "alle", label: "Alle" },
@@ -65,7 +42,11 @@ const Leistungen = () => {
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
+      <SEO 
+        title="IT-Leistungen in Köln & Neuss | Tech Hilfe Pro"
+        description="Alle IT-Services im Überblick: PC-Hilfe, WLAN-Setup, Sicherheit, Smart-Home und mehr. Für Privat und KMU."
+        path="/leistungen" 
+      />
       
       <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">

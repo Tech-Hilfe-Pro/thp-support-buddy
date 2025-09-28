@@ -13,8 +13,6 @@ import { track } from "@/lib/analytics";
 import { SERVICES } from "@/data/services";
 import { readQuoteFromStorage } from "@/lib/quote";
 import QuoteSummary from "@/components/QuoteSummary";
-import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb, localBusiness } from "@/lib/structured";
 import { COPY, FORM_MSG } from "@/data/copy";
 import { COMPANY } from "@/data/company";
 
@@ -23,26 +21,6 @@ const Termin = () => {
   const [searchParams] = useSearchParams();
   const fromCalculator = searchParams.get("from") === "rechner";
 
-  const meta = SEO_PAGES.termin;
-  const ld = [
-    breadcrumb([
-      { name: "Start", url: fullUrl("/") },
-      { name: "Termin buchen", url: fullUrl(meta.path) }
-    ]),
-    localBusiness({ 
-      telephone: COMPANY.telE164,
-      address: {
-        streetAddress: COMPANY.street,
-        postalCode: COMPANY.postalCode,
-        addressLocality: COMPANY.city,
-        addressRegion: "NW",
-        addressCountry: "DE"
-      },
-      areaServed: ["Köln", "Neuss"],
-      openingHours: ["Mo-Fr 09:00-18:00"],
-      sameAs: []
-    })
-  ];
   
   const [formData, setFormData] = useState({
     firstName: "",
@@ -123,7 +101,12 @@ const Termin = () => {
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
+      <SEO 
+        title="Termin buchen | Tech Hilfe Pro" 
+        description="Wunschtermin für Remote oder Vor-Ort. Klarer Preis, klare Zeitfenster." 
+        path="/termin" 
+        robots="noindex,follow" 
+      />
       
       <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">

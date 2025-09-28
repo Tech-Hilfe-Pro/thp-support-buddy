@@ -5,34 +5,26 @@ import Steps from "@/components/Steps";
 import FinalCTA from "@/components/FinalCTA";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
-import { SEO_PAGES } from "@/data/seo";
-import { localBusiness, webSite } from "@/lib/structured";
+import { buildOrganizationJsonLd } from "@/lib/structuredData";
 import { COPY } from "@/data/copy";
 
 const Home = () => {
   console.log("Home.tsx: Home component rendering");
   
-  const meta = SEO_PAGES.home;
-  const ld = [
-    localBusiness({ 
-      telephone: "+49 1556 5029989",
-      address: {
-        streetAddress: "Schirmerstr. 7",
-        postalCode: "50823",
-        addressLocality: "Köln",
-        addressRegion: "NRW",
-        addressCountry: "DE"
-      },
-      areaServed: ["Köln", "Neuss"],
-      openingHours: ["Mo-Fr 09:00-18:00"],
-      sameAs: []
-    }),
-    webSite()
-  ];
+  const orgLd = buildOrganizationJsonLd();
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
+      <SEO 
+        title="IT-Support in Köln & Neuss | Tech Hilfe Pro"
+        description="Schnelle PC/Mac-Hilfe für Zuhause & KMU. Remote zuerst, Vor-Ort bei Bedarf. Preis in 60 Sekunden."
+        path="/" 
+        ogType="website" 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} 
+      />
       
       <Hero />
       

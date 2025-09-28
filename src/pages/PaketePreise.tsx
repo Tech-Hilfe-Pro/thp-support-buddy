@@ -4,41 +4,18 @@ import PricingTabs from "@/components/PricingTabs";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
-import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb, faq, localBusiness } from "@/lib/structured";
 import { COPY } from "@/data/copy";
 import { COMPANY } from "@/data/company";
 
 const PaketePreise = () => {
-  const meta = SEO_PAGES.preise;
-  const ld = [
-    breadcrumb([
-      { name: "Start", url: fullUrl("/") },
-      { name: "Pakete & Preise", url: fullUrl(meta.path) }
-    ]),
-    localBusiness({ 
-      telephone: COMPANY.telE164,
-      address: {
-        streetAddress: COMPANY.street,
-        postalCode: COMPANY.postalCode,
-        addressLocality: COMPANY.city,
-        addressRegion: "NW",
-        addressCountry: "DE"
-      },
-      areaServed: ["Köln", "Neuss"],
-      openingHours: ["Mo-Fr 09:00-18:00"],
-      sameAs: []
-    }),
-    faq([
-      { question: "Gibt es Vor-Ort einen Mindestzeitraum?", answer: "Ja, 45 Minuten. Danach in 15-Minuten-Blöcken." },
-      { question: "Erhalten Abonnenten Rabatt vor Ort?", answer: "Ja, 20 % auf die Arbeitszeit. Anfahrt ist ausgenommen." },
-      { question: "Welche Regionen decken Sie ab?", answer: "Köln, Neuss & Umgebung gemäß PLZ-Zonen." }
-    ])
-  ];
-
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
+      <SEO 
+        title="Pakete & Preise | Tech Hilfe Pro"
+        description="Faire IT-Pakete für Privat & KMU. Mit Abo 20 % Rabatt auf Arbeitszeit bei Vor-Ort-Terminen."
+        path="/pakete-preise" 
+        ogImage="/og/preise.jpg" 
+      />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">

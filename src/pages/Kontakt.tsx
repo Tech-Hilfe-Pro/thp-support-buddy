@@ -1,34 +1,22 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import SEO from "@/components/SEO";
-import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb, localBusiness } from "@/lib/structured";
+import { buildLocalBusinessJsonLd } from "@/lib/structuredData";
 import { COMPANY, ADDRESS_LINE } from "@/data/company";
 
 const Kontakt = () => {
-  const meta = SEO_PAGES.kontakt;
-  const ld = [
-    breadcrumb([
-      { name: "Start", url: fullUrl("/") },
-      { name: "Kontakt", url: fullUrl(meta.path) }
-    ]),
-    localBusiness({ 
-      telephone: COMPANY.telE164,
-      address: {
-        streetAddress: COMPANY.street,
-        postalCode: COMPANY.postalCode,
-        addressLocality: COMPANY.city,
-        addressRegion: "NW",
-        addressCountry: "DE"
-      },
-      areaServed: ["Köln", "Neuss"],
-      openingHours: ["Mo-Fr 09:00-18:00"],
-      sameAs: []
-    })
-  ];
+  const businessLd = buildLocalBusinessJsonLd();
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
+      <SEO 
+        title="Kontakt | Tech Hilfe Pro"
+        description="Kontaktieren Sie uns für IT-Support in Köln & Neuss. Telefon, E-Mail, WhatsApp oder vor Ort."
+        path="/kontakt" 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessLd) }} 
+      />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">

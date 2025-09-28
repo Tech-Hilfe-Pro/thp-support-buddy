@@ -1,8 +1,12 @@
 export const onRequestGet: PagesFunction = async (ctx) => {
-  const SITE_URL = ctx.env?.SITE_URL || "https://techhilfepro.de";
+  const SITE_URL = ctx.env?.SITE_URL || "https://www.techhilfepro.de";
   const body =
 `User-agent: *
 Allow: /
+Disallow: /kasse
+Disallow: /techniker
+Disallow: /beleg
+Disallow: /termin
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;

@@ -1,8 +1,8 @@
 export const onRequestGet: PagesFunction = async (ctx) => {
-  const SITE_URL = ctx.env?.SITE_URL || "https://techhilfepro.de";
+  const SITE_URL = ctx.env?.SITE_URL || "https://www.techhilfepro.de";
   const urls = [
-    "/", "/leistungen", "/pakete-preise", "/termin", "/ueber-uns", "/kontakt",
-    "/recht/impressum", "/recht/datenschutz", "/recht/agb", "/recht/widerruf"
+    "/", "/leistungen", "/pakete-preise", "/kontakt",
+    "/recht/impressum", "/recht/datenschutz", "/recht/agb"
   ];
   const lastmod = new Date().toISOString();
   const body =
