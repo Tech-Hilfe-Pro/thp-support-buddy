@@ -18,3 +18,11 @@ export function formEncode(data: Record<string, any>): string {
     })
     .join('&');
 }
+
+export function getOrigin(req: any): string {
+  try {
+    return new URL(req.url).origin;
+  } catch {
+    return 'http://localhost:8788'; // Fallback for development
+  }
+}

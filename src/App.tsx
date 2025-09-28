@@ -13,6 +13,8 @@ import Termin from "./pages/Termin";
 import TerminZusammenfassung from "./pages/TerminZusammenfassung";
 import TerminBestaetigt from "./pages/TerminBestaetigt";
 import Kasse from "./pages/Kasse";
+import Techniker from "./pages/Techniker";
+import Beleg from "./pages/Beleg";
 import UeberUns from "./pages/UeberUns";
 import Kontakt from "./pages/Kontakt";
 import Impressum from "./pages/recht/Impressum";
@@ -41,6 +43,8 @@ const App = () => (
                 <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
                 <Route path="/termin/bestaetigt" element={<TerminBestaetigt />} />
                 <Route path="/kasse" element={<Kasse />} />
+                <Route path="/techniker" element={<Techniker />} />
+                <Route path="/beleg" element={<Beleg />} />
                 <Route path="/ueber-uns" element={<UeberUns />} />
                 <Route path="/kontakt" element={<Kontakt />} />
                 <Route path="/recht/impressum" element={<Impressum />} />

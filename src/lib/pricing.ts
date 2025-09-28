@@ -100,3 +100,34 @@ export function calculateOnsiteTotal(input: CalcInput) {
     zeitfenster: estimateWindow(input.onsiteMinutes)
   };
 }
+
+export type TechnicianInput = {
+  serviceTitle: string;
+  plz: string;
+  minutesWorked: number;      // tatsächliche Minuten vor Ort
+  urgency: Urgency;           // normal | heute | jetzt
+  subscription: boolean;      // Abo aktiv?
+};
+
+export function calcTechnicianTotal(input: TechnicianInput) {
+  const trFee = calcTravelFee(input.plz);
+
+  if (Number.isNaN(trFee)) {
+    return { inArea: false, message: "Außerhalb des Einsatzgebiets", total: NaN };
+  }
+
+  const { laborGross, discount, laborNet } = calcLaborCost(input.minutesWorked, input.urgency, input.subscription);
+  const total = round2(laborNet + trFee);
+
+  return {
+    inArea: true,
+    breakdown: {
+      arbeitszeitBrutto: laborGross,
+      rabattAbo: discount,
+      arbeitszeitNetto: laborNet,
+      anfahrt: trFee
+    },
+    total,
+    zeitfenster: estimateWindow(input.minutesWorked)
+  };
+}
