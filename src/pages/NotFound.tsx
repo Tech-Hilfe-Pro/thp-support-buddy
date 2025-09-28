@@ -1,11 +1,20 @@
 import SEO from "../components/SEO";
 
 export default function NotFound() {
-  const meta = { title:"Seite nicht gefunden | Tech Hilfe Pro", description:"Die angeforderte Seite existiert nicht.", path:"/404" };
+  const meta = { 
+    title: "Seite nicht gefunden | Tech Hilfe Pro", 
+    description: "Die angeforderte Seite existiert nicht.", 
+    path: "/404" 
+  };
   
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
+      <SEO 
+        title={meta.title} 
+        description={meta.description} 
+        path={meta.path} 
+        robots="noindex,nofollow" 
+      />
       <section className="max-w-3xl mx-auto p-8">
         <h1 className="text-2xl font-semibold mb-3">404 – Seite nicht gefunden</h1>
         <p className="mb-6">Die Seite existiert nicht oder wurde verschoben.</p>
