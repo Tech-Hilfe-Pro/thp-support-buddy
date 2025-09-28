@@ -70,11 +70,8 @@ export default function SEO(props: SEOProps) {
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", image.startsWith("http") ? image : fullUrl(image));
     
-    // hreflang (einsprachig DE, dennoch rel alternate & x-default setzen)
-    removeExisting('link[rel="alternate"]');
-    const selfHref = abs;
-    upsertLink("alternate", selfHref, { hreflang: "de-DE" });
-    upsertLink("alternate", selfHref, { hreflang: "x-default" });
+    // Canonical only (monolingual DE site)
+    // No hreflang needed for single language sites
     
     // JSON-LD
     document.head.querySelectorAll('script[data-thp="jsonld"]').forEach(s => s.remove());

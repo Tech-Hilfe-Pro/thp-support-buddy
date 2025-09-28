@@ -68,7 +68,7 @@ const Header = () => {
             to="/"
             className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-md"
           >
-            <img src="/brand/logo.png" alt="Tech Hilfe Pro" className="h-6 w-auto" fetchPriority="high" onError={(e) => {
+            <img src="/brand/logo.png" alt="Tech Hilfe Pro" className="h-6 w-auto" fetchPriority="high" width="120" height="32" onError={(e) => {
               e.currentTarget.style.display = 'none';
               const span = document.createElement('span');
               span.textContent = 'Tech Hilfe Pro';

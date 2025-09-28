@@ -1,7 +1,7 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import SEO from "@/components/SEO";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb } from "@/lib/structured";
+import { breadcrumb, localBusiness } from "@/lib/structured";
 
 const Kontakt = () => {
   const meta = SEO_PAGES.kontakt;
@@ -9,7 +9,20 @@ const Kontakt = () => {
     breadcrumb([
       { name: "Start", url: fullUrl("/") },
       { name: "Kontakt", url: fullUrl(meta.path) }
-    ])
+    ]),
+    localBusiness({ 
+      telephone: "+49 1556 5029989",
+      address: {
+        streetAddress: "Schirmerstr. 7",
+        postalCode: "50823",
+        addressLocality: "Köln",
+        addressRegion: "NRW",
+        addressCountry: "DE"
+      },
+      areaServed: ["Köln", "Neuss"],
+      openingHours: ["Mo-Fr 09:00-18:00"],
+      sameAs: []
+    })
   ];
 
   return (

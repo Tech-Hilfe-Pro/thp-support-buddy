@@ -6,7 +6,7 @@ import TagToggle from "@/components/TagToggle";
 import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb } from "@/lib/structured";
+import { breadcrumb, localBusiness } from "@/lib/structured";
 
 const Leistungen = () => {
   const [filter, setFilter] = useState<"alle" | "privat" | "kmu">("alle");
@@ -17,7 +17,20 @@ const Leistungen = () => {
     breadcrumb([
       { name: "Start", url: fullUrl("/") },
       { name: "Leistungen", url: fullUrl(meta.path) }
-    ])
+    ]),
+    localBusiness({ 
+      telephone: "+49 1556 5029989",
+      address: {
+        streetAddress: "Schirmerstr. 7",
+        postalCode: "50823",
+        addressLocality: "Köln",
+        addressRegion: "NRW",
+        addressCountry: "DE"
+      },
+      areaServed: ["Köln", "Neuss"],
+      openingHours: ["Mo-Fr 09:00-18:00"],
+      sameAs: []
+    })
   ];
 
   const filterOptions = [

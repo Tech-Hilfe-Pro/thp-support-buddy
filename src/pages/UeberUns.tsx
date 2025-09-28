@@ -1,6 +1,6 @@
 import SEO from "@/components/SEO";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
-import { breadcrumb } from "@/lib/structured";
+import { breadcrumb, localBusiness } from "@/lib/structured";
 
 const UeberUns = () => {
   const meta = SEO_PAGES.ueber;
@@ -8,7 +8,20 @@ const UeberUns = () => {
     breadcrumb([
       { name: "Start", url: fullUrl("/") },
       { name: "Über uns", url: fullUrl(meta.path) }
-    ])
+    ]),
+    localBusiness({ 
+      telephone: "+49 1556 5029989",
+      address: {
+        streetAddress: "Schirmerstr. 7",
+        postalCode: "50823",
+        addressLocality: "Köln",
+        addressRegion: "NRW",
+        addressCountry: "DE"
+      },
+      areaServed: ["Köln", "Neuss"],
+      openingHours: ["Mo-Fr 09:00-18:00"],
+      sameAs: []
+    })
   ];
 
   return (

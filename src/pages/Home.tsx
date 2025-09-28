@@ -14,7 +14,19 @@ const Home = () => {
   
   const meta = SEO_PAGES.home;
   const ld = [
-    localBusiness({ /* TODO: echte Adresse/Telefon eintragen */ }),
+    localBusiness({ 
+      telephone: "+49 1556 5029989",
+      address: {
+        streetAddress: "Schirmerstr. 7",
+        postalCode: "50823",
+        addressLocality: "Köln",
+        addressRegion: "NRW",
+        addressCountry: "DE"
+      },
+      areaServed: ["Köln", "Neuss"],
+      openingHours: ["Mo-Fr 09:00-18:00"],
+      sameAs: []
+    }),
     webSite()
   ];
 

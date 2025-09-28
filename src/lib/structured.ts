@@ -25,16 +25,16 @@ export function localBusiness(params: {
     name: params.name || SITE_NAME,
     url: params.url || SITE_URL,
     image: `${SITE_URL}/og/default.jpg`,
-    telephone: params.telephone || "[Telefon einfügen]",
+    telephone: params.telephone || "+49 1556 5029989",
     address: {
       "@type": "PostalAddress",
-      streetAddress: params.address?.streetAddress || "[Straße Nr.]",
-      postalCode: params.address?.postalCode || "50xxx",
+      streetAddress: params.address?.streetAddress || "Schirmerstr. 7",
+      postalCode: params.address?.postalCode || "50823",
       addressLocality: params.address?.addressLocality || "Köln",
       addressRegion: params.address?.addressRegion || "NRW",
       addressCountry: params.address?.addressCountry || "DE"
     },
-    areaServed: params.areaServed || ["Köln", "Neuss", "Umgebung"],
+    areaServed: params.areaServed || ["Köln", "Neuss"],
     openingHours: params.openingHours || ["Mo-Fr 09:00-18:00"],
     geo: params.geo ? { "@type": "GeoCoordinates", ...params.geo } : undefined
   };
