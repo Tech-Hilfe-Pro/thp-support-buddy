@@ -1,20 +1,28 @@
-import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import PricingTabs from "@/components/PricingTabs";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
+import SEO from "@/components/SEO";
+import { SEO_PAGES, fullUrl } from "@/data/seo";
+import { breadcrumb, faq } from "@/lib/structured";
 
 const PaketePreise = () => {
+  const meta = SEO_PAGES.preise;
+  const ld = [
+    breadcrumb([
+      { name: "Start", url: fullUrl("/") },
+      { name: "Pakete & Preise", url: fullUrl(meta.path) }
+    ]),
+    faq([
+      { question: "Gibt es Vor-Ort einen Mindestzeitraum?", answer: "Ja, 45 Minuten. Danach in 15-Minuten-Blöcken." },
+      { question: "Erhalten Abonnenten Rabatt vor Ort?", answer: "Ja, 20 % auf die Arbeitszeit. Anfahrt ist ausgenommen." },
+      { question: "Welche Regionen decken Sie ab?", answer: "Köln, Neuss & Umgebung gemäß PLZ-Zonen." }
+    ])
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>Pakete & Preise - Tech Hilfe Pro</title>
-        <meta 
-          name="description" 
-          content="Transparente Preise für IT-Support. Flexible Pakete für Privat und Unternehmen. Berechnen Sie Ihren Preis in 60 Sekunden." 
-        />
-        <meta name="keywords" content="IT-Support Preise, Senioren Abo, KMU IT-Pakete, Remote Support Kosten" />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">

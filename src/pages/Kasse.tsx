@@ -1,11 +1,12 @@
-import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import SEO from "@/components/SEO";
 import { readQuoteFromStorage, Quote } from "@/lib/quote";
 import StripeCheckout from "@/components/StripeCheckout";
+import { SEO_PAGES } from "@/data/seo";
 
 type Mode = "one_time" | "subscription";
 type PlanId = "S"|"M"|"L"|"starter"|"grow"|"pro";
@@ -13,6 +14,7 @@ type PlanId = "S"|"M"|"L"|"starter"|"grow"|"pro";
 const Kasse = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
+  const meta = SEO_PAGES.kasse;
   const [mode, setMode] = useState<Mode | null>(null);
   const [quote, setQuote] = useState<Quote | null>(null);
   const [planId, setPlanId] = useState<PlanId | null>(null);
@@ -59,10 +61,7 @@ const Kasse = () => {
   if (error) {
     return (
       <>
-        <Helmet>
-          <title>Kasse - Tech Hilfe Pro</title>
-          <meta name="description" content="Sichere Zahlung für IT-Support Services" />
-        </Helmet>
+        <SEO title={meta.title} description={meta.description} path={meta.path} />
         
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
           <h1 className="text-4xl font-bold text-foreground mb-8">Kasse</h1>
@@ -99,10 +98,7 @@ const Kasse = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Kasse - Tech Hilfe Pro</title>
-        <meta name="description" content="Sichere Zahlung für IT-Support Services" />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">

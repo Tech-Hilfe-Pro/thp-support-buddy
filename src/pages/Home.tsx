@@ -1,21 +1,18 @@
-import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
+import SEO from "@/components/SEO";
+import { SEO_PAGES } from "@/data/seo";
+import { localBusiness, webSite } from "@/lib/structured";
 
 const Home = () => {
+  const meta = SEO_PAGES.home;
+  const ld = [
+    localBusiness({ /* TODO: echte Adresse/Telefon eintragen */ }),
+    webSite()
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>Tech Hilfe Pro - IT-Support für Privat & KMU in Köln, Neuss</title>
-        <meta 
-          name="description" 
-          content="Professioneller IT-Support für Senioren und Unternehmen in Köln, Neuss & Umgebung. PC-Hilfe, WLAN-Setup, Smart-Home und mehr. Vor Ort & Remote." 
-        />
-        <meta name="keywords" content="IT-Support Köln, PC Hilfe Neuss, Computerhilfe Senioren, WLAN Techniker, Smart-Home Setup" />
-        <meta property="og:title" content="Tech Hilfe Pro - IT-Support für Privat & KMU" />
-        <meta property="og:description" content="Wir richten es ein. Wir halten es am Laufen. Professioneller IT-Support in Köln, Neuss & Umgebung." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="/" />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
       <Hero />
       

@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,9 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Printer, Home } from "lucide-react";
+import SEO from "@/components/SEO";
+import { SEO_PAGES } from "@/data/seo";
 
 const Beleg = () => {
   const [searchParams] = useSearchParams();
+  const meta = SEO_PAGES.beleg;
   const [receipt, setReceipt] = useState({
     customerName: searchParams.get("customerName") || "",
     customerEmail: searchParams.get("customerEmail") || "",
@@ -37,10 +39,7 @@ const Beleg = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Beleg - Tech Hilfe Pro</title>
-        <meta name="description" content="Druckbarer Beleg für IT-Support Service" />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} />
       
       <div className="min-h-screen bg-white">
         {/* Print Controls - Hidden in print */}

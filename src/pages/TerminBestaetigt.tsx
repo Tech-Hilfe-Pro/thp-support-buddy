@@ -1,14 +1,16 @@
-import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, CreditCard, Calendar } from "lucide-react";
+import SEO from "@/components/SEO";
+import { SEO_PAGES } from "@/data/seo";
 
 const TerminBestaetigt = () => {
   const [searchParams] = useSearchParams();
   const [paymentStatus, setPaymentStatus] = useState<string>("");
   const terminId = `THP-${Date.now().toString().slice(-6)}`;
+  const meta = SEO_PAGES.terminOk;
 
   useEffect(() => {
     // Check if this is a return from Stripe
@@ -26,13 +28,7 @@ const TerminBestaetigt = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Termin bestätigt - Tech Hilfe Pro</title>
-        <meta 
-          name="description" 
-          content="Ihr IT-Support Termin wurde erfolgreich gebucht" 
-        />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} />
       
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-8">

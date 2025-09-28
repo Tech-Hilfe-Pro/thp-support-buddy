@@ -1,14 +1,24 @@
 import { useState, useMemo } from "react";
-import { Helmet } from "react-helmet-async";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ServiceCard from "@/components/ServiceCard";
 import TagToggle from "@/components/TagToggle";
+import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
+import { SEO_PAGES, fullUrl } from "@/data/seo";
+import { breadcrumb } from "@/lib/structured";
 
 const Leistungen = () => {
   const [filter, setFilter] = useState<"alle" | "privat" | "kmu">("alle");
   const [searchTerm, setSearchTerm] = useState("");
+
+  const meta = SEO_PAGES.leistungen;
+  const ld = [
+    breadcrumb([
+      { name: "Start", url: fullUrl("/") },
+      { name: "Leistungen", url: fullUrl(meta.path) }
+    ])
+  ];
 
   const filterOptions = [
     { value: "alle", label: "Alle" },
@@ -41,14 +51,7 @@ const Leistungen = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Leistungen - Tech Hilfe Pro</title>
-        <meta 
-          name="description" 
-          content="Alle IT-Services im Überblick: PC/Mac-Hilfe, WLAN-Setup, Smart-Home, Sicherheits-Check und mehr. Für Privat und Unternehmen." 
-        />
-        <meta name="keywords" content="IT-Support Leistungen, PC Hilfe, WLAN Setup, Smart-Home Installation, Sicherheitscheck" />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">

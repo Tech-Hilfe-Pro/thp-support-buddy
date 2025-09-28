@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -8,14 +7,25 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
 import { readQuoteFromStorage } from "@/lib/quote";
 import QuoteSummary from "@/components/QuoteSummary";
+import { SEO_PAGES, fullUrl } from "@/data/seo";
+import { breadcrumb } from "@/lib/structured";
 
 const Termin = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const fromCalculator = searchParams.get("from") === "rechner";
+
+  const meta = SEO_PAGES.termin;
+  const ld = [
+    breadcrumb([
+      { name: "Start", url: fullUrl("/") },
+      { name: "Termin buchen", url: fullUrl(meta.path) }
+    ])
+  ];
   
   const [formData, setFormData] = useState({
     firstName: "",
@@ -87,13 +97,7 @@ const Termin = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Termin buchen - Tech Hilfe Pro</title>
-        <meta 
-          name="description" 
-          content="Buchen Sie schnell und einfach einen Termin für IT-Support. Online-Terminbuchung für Vor-Ort und Remote-Service." 
-        />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">

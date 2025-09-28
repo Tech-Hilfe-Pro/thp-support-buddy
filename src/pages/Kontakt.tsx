@@ -1,16 +1,20 @@
-import { Helmet } from "react-helmet-async";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import SEO from "@/components/SEO";
+import { SEO_PAGES, fullUrl } from "@/data/seo";
+import { breadcrumb } from "@/lib/structured";
 
 const Kontakt = () => {
+  const meta = SEO_PAGES.kontakt;
+  const ld = [
+    breadcrumb([
+      { name: "Start", url: fullUrl("/") },
+      { name: "Kontakt", url: fullUrl(meta.path) }
+    ])
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>Kontakt - Tech Hilfe Pro</title>
-        <meta 
-          name="description" 
-          content="Kontaktieren Sie Tech Hilfe Pro für IT-Support in Köln, Neuss & Umgebung. Telefon, E-Mail oder persönlich vor Ort." 
-        />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">

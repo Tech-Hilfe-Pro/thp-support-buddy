@@ -1,16 +1,18 @@
-import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
 import { readQuoteFromStorage, clearQuoteInStorage } from "@/lib/quote";
 import { buildICS, downloadICS } from "@/lib/ics";
+import { SEO_PAGES } from "@/data/seo";
 
 const TerminZusammenfassung = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState<any>(null);
   const [quote, setQuote] = useState<any>(null);
+  const meta = SEO_PAGES.terminSum;
 
   useEffect(() => {
     const storedBookingData = sessionStorage.getItem("thp_booking_data");
@@ -69,13 +71,7 @@ const TerminZusammenfassung = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Terminzusammenfassung - Tech Hilfe Pro</title>
-        <meta 
-          name="description" 
-          content="Bestätigen Sie Ihren IT-Support Termin bei Tech Hilfe Pro" 
-        />
-      </Helmet>
+      <SEO title={meta.title} description={meta.description} path={meta.path} />
       
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl font-bold text-foreground mb-8">Terminzusammenfassung</h1>
