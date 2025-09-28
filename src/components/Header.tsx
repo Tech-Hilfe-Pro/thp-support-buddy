@@ -14,33 +14,25 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 backdrop-blur bg-white/75 border-b">
-        <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center gap-3">
-          {/* Desktop: Menu burger button */}
-          <button 
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors"
-            onClick={() => setSidebarOpen(true)}
-            aria-label="Menü öffnen"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+      <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center gap-3">
+        <Link
+          to="/"
+          className="flex items-center gap-2 shrink-0 whitespace-nowrap"
+          aria-label="Tech Hilfe Pro"
+        >
+          <span className="text-lg font-semibold tracking-tight">Tech Hilfe Pro</span>
+        </Link>
 
-          <Link
-            to="/"
-            className="flex items-center gap-2 shrink-0 whitespace-nowrap"
-            aria-label="Tech Hilfe Pro"
-          >
-            <span className="text-lg font-semibold tracking-tight">Tech Hilfe Pro</span>
-          </Link>
-
-          {/* Desktop: Right side CTAs */}
-          <div className="ml-auto hidden md:flex items-center gap-2 shrink-0">
-            <a href="/mitgliedschaft" className="rounded-xl border px-3 py-2 hover:bg-slate-50 transition-colors">Mitglied werden</a>
-            <a href="/termin" className="rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition-colors">Jetzt Termin buchen</a>
-            <a aria-label="Anrufen" href="tel:+4915565029989" className="opacity-70 hover:opacity-100 transition-opacity">📞</a>
-            <a aria-label="WhatsApp" href="https://wa.me/4915565029989" className="opacity-70 hover:opacity-100 transition-opacity">🟢</a>
-          </div>
+        {/* Desktop: Menu burger button - moved to right */}
+        <button 
+          className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors ml-auto"
+          onClick={() => setSidebarOpen(true)}
+          aria-label="Menü öffnen"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
 
           {/* Mobile: Menu button */}
           <button className="ml-auto md:hidden rounded-lg border px-3 py-2" onClick={()=>setOpen(v=>!v)} aria-expanded={open}>Menü</button>
@@ -72,7 +64,7 @@ export default function Header() {
           />
           
           {/* Sidebar */}
-          <div className="fixed top-0 left-0 h-full w-80 bg-white shadow-xl z-50 hidden md:block animate-in slide-in-from-left duration-300">
+          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 hidden md:block animate-in slide-in-from-right duration-300">
             <div className="flex items-center justify-between p-4 border-b">
               <h2 className="text-lg font-semibold">Menü</h2>
               <button 
