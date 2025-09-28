@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import BusinessGlossary from "@/components/BusinessGlossary";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
 import { SEO_PAGES } from "@/data/seo";
@@ -19,6 +20,12 @@ const Home = () => {
       <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
       <Hero />
+      
+      <BusinessGlossary items={[
+        { key:"kmu", ...COPY.businessGlossary.kmu },
+        { key:"msp", ...COPY.businessGlossary.msp },
+        { key:"sla", ...COPY.businessGlossary.sla },
+      ]}/>
       
       {/* Why Tech Hilfe Pro */}
       <section className="py-16 bg-muted/30">

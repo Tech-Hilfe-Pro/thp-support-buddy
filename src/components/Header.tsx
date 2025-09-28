@@ -66,9 +66,16 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center space-x-2 text-xl font-bold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+            className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 rounded-md"
           >
-            <span>Tech Hilfe Pro</span>
+            <img src="/logo-thp.svg" alt="Tech Hilfe Pro" className="h-6 w-auto" loading="eager" onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              const span = document.createElement('span');
+              span.textContent = 'Tech Hilfe Pro';
+              span.className = 'text-xl font-bold text-primary';
+              e.currentTarget.parentElement?.appendChild(span);
+            }} />
+            <span className="sr-only">Tech Hilfe Pro</span>
           </Link>
 
           {/* Desktop Navigation */}

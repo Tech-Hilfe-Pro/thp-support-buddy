@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Inter Variable – lokale Einbindung, fallback system-ui */
+@font-face{
+  font-family:"Inter var";
+  src:url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap") format("woff2-variations");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
+}
+
 /* Fokus sichtbar */
 :focus-visible { 
   outline: 2px solid #4f46e5; 
@@ -25,11 +34,13 @@
   
   html {
     scroll-behavior: smooth;
+    font-size: 18px;
   }
   
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family:"Inter var",Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -37,6 +48,12 @@
   }
 }
 
+/* Zahlen in Tabellen/Preisen sauber ausrichten */
+.tabular, .prices, table { 
+  font-variant-numeric: tabular-nums; 
+}
+
+/* Sanfter Hero-Hintergrund (statt Blobs) */
 :root {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -67,11 +84,8 @@
   --sidebar-border: 220 13% 91%;
   --sidebar-ring: 217.2 91.2% 59.8%;
 
-  /* Morphic design tokens */
-  --gradient-primary: linear-gradient(135deg, hsl(221.2 83.2% 53.3%), hsl(262.1 83.3% 57.8%));
-  --gradient-secondary: linear-gradient(45deg, hsl(210 40% 96%), hsl(214.3 31.8% 91.4%));
-  --shadow-morphic: 0 20px 60px -10px hsl(221.2 83.2% 53.3% / 0.3);
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Clean hero background */
+  --thp-hero: radial-gradient(1200px 420px at 50% -10%, rgba(59,130,246,0.12), transparent 60%);
 }
 
 .dark {
@@ -105,11 +119,8 @@
 }
 
 @layer utilities {
-  .morphic-blob {
-    background: var(--gradient-primary);
-    filter: blur(40px);
-    border-radius: 50%;
-    opacity: 0.7;
+  .bg-hero-soft {
+    background-image: var(--thp-hero);
   }
   
   .text-shadow {
@@ -124,10 +135,6 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-  
-  .morphic-blob {
-    animation: none !important;
   }
 }
 
@@ -150,23 +157,4 @@
   white-space: nowrap;
   border-right: 2px solid hsl(var(--primary));
   animation: typewriter 2s steps(20) forwards, blink 1s infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-20px) rotate(120deg); }
-  66% { transform: translateY(10px) rotate(240deg); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-
-.morphic-float {
-  animation: float 20s ease-in-out infinite;
-}
-
-.morphic-pulse {
-  animation: pulse-glow 8s ease-in-out infinite;
 }

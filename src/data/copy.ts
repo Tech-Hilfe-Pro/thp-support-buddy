@@ -172,6 +172,23 @@ export const COPY = {
       { q: "Wie erhalte ich eine Bestätigung?", a: "Sie erhalten eine Zusammenfassung auf der Website und optional eine ICS-Datei." },
       { q: "Wie kann ich bezahlen?", a: "Online per SEPA-Lastschrift, Karte oder vor Ort per Checkout-Link. Abos per SEPA." }
     ]
+  },
+  businessGlossary: {
+    kmu: {
+      abbr: "KMU",
+      title: "Klein- und Mittelunternehmen",
+      desc: "Unternehmen mit 1–249 Mitarbeitenden. Planbare, flexible IT-Betreuung ohne hohe Fixkosten."
+    },
+    msp: {
+      abbr: "MSP",
+      title: "Managed Service Provider",
+      desc: "Laufende IT-Betreuung inkl. Monitoring, Updates und Support – statt reiner Ad-hoc-Hilfe."
+    },
+    sla: {
+      abbr: "SLA",
+      title: "Service Level Agreement",
+      desc: "Vertraglich zugesicherte Reaktions-/Lösungszeiten, z. B. 4–24 Stunden je nach Paket."
+    }
   }
 };
 
