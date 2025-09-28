@@ -2,7 +2,6 @@ import Hero from "@/components/Hero";
 import BusinessGlossary from "@/components/BusinessGlossary";
 import Benefits from "@/components/Benefits";
 import Steps from "@/components/Steps";
-import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
@@ -59,12 +58,6 @@ const Home = () => {
         { n: 2, t: COPY.home.steps[1].t, d: COPY.home.steps[1].d },
         { n: 3, t: COPY.home.steps[2].t, d: COPY.home.steps[2].d },
         { n: 4, t: COPY.home.steps[3].t, d: COPY.home.steps[3].d },
-      ]}/>
-
-      <Testimonials items={[
-        { quote: "Schnell und freundlich. Drucker läuft wieder.", author: "K. Wagner", meta: "Köln-Ehrenfeld" },
-        { quote: "WLAN endlich stabil im Büro.", author: "Autohaus M.", meta: "Neuss" },
-        { quote: "Hat mir alles ruhig erklärt – top.", author: "H. Schneider", meta: "Senior" }
       ]}/>
 
       <FinalCTA />
