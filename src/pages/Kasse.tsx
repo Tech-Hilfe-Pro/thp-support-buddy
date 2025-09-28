@@ -132,40 +132,71 @@ const Kasse = () => {
     <>
       <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
       
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Kasse</h1>
-          <p className="text-lg text-muted-foreground mb-12">
-            {mode === "one_time" 
-              ? "Bezahlen Sie sicher für Ihre IT-Support-Leistung"
-              : "Richten Sie Ihr monatliches Abonnement ein"
-            }
-          </p>
+      <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-4xl mx-auto">
+          <header className="mb-8">
+            <h1 className="text-4xl font-bold text-foreground mb-4">Kasse</h1>
+            <p className="text-lg text-muted-foreground">
+              {mode === "one_time" 
+                ? "Bezahlen Sie sicher für Ihre IT-Support-Leistung"
+                : "Richten Sie Ihr monatliches Abonnement ein"
+              }
+            </p>
+          </header>
 
-          <StripeCheckout 
-            mode={mode}
-            quote={quote || undefined}
-            planId={planId || undefined}
-          />
+          <section className="mb-8">
+            <StripeCheckout 
+              mode={mode}
+              quote={quote || undefined}
+              planId={planId || undefined}
+            />
+          </section>
+
+          {/* Payment Methods Info */}
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="text-lg">Zahlungsmethoden</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <h4 className="font-medium mb-2">Einmalzahlungen:</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>• Kreditkarte (Visa, Mastercard)</li>
+                    <li>• SEPA-Lastschrift</li>
+                    <li>• Apple Pay / Google Pay</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Abonnements:</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>• SEPA-Lastschriftmandat</li>
+                    <li>• Kreditkarte mit Speicherung</li>
+                    <li>• Automatische Verlängerung</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Security Notice */}
-          <Card className="mt-8">
+          <Card>
             <CardContent className="p-6">
-              <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0 mt-0.5">
                   <svg className="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <div className="text-sm">
-                  <strong>Sichere Zahlung:</strong> Ihre Zahlungsdaten werden verschlüsselt über Stripe verarbeitet. 
-                  Wir speichern keine Kreditkartendaten.
+                <div className="text-sm space-y-2">
+                  <p><strong>Sichere Zahlung:</strong> Ihre Zahlungsdaten werden verschlüsselt über Stripe verarbeitet. Wir speichern keine Kreditkartendaten.</p>
+                  <p><strong>SEPA-Lastschrift:</strong> Ihr Lastschriftmandat können Sie jederzeit bei Ihrer Bank widerrufen. Abbuchungen erfolgen 1-2 Werktage vor Fälligkeit mit Vorabinformation.</p>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
-      </div>
+      </main>
     </>
   );
 };

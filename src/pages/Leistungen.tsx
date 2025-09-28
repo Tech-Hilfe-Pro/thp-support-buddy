@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
 import { breadcrumb, localBusiness } from "@/lib/structured";
+import { COMPANY } from "@/data/company";
 
 const Leistungen = () => {
   const [filter, setFilter] = useState<"alle" | "privat" | "kmu">("alle");
@@ -19,12 +20,12 @@ const Leistungen = () => {
       { name: "Leistungen", url: fullUrl(meta.path) }
     ]),
     localBusiness({ 
-      telephone: "+49 1556 5029989",
+      telephone: COMPANY.telE164,
       address: {
-        streetAddress: "Schirmerstr. 7",
-        postalCode: "50823",
-        addressLocality: "Köln",
-        addressRegion: "NRW",
+        streetAddress: COMPANY.street,
+        postalCode: COMPANY.postalCode,
+        addressLocality: COMPANY.city,
+        addressRegion: "NW",
         addressCountry: "DE"
       },
       areaServed: ["Köln", "Neuss"],
@@ -66,17 +67,17 @@ const Leistungen = () => {
     <>
       <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-4xl mx-auto">
+      <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto">
           <header className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">Unsere Leistungen</h1>
-            <p className="text-lg text-muted-foreground">
+            <h1 className="text-4xl font-bold text-foreground mb-6">Unsere Leistungen</h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Was wir konkret für Sie tun - von der einfachen PC-Hilfe bis zur komplexen IT-Infrastruktur
             </p>
           </header>
 
           {/* Filter Controls */}
-          <div className="mb-8 space-y-4">
+          <section className="mb-8 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
               <TagToggle
                 options={filterOptions}
@@ -95,7 +96,7 @@ const Leistungen = () => {
                 />
               </div>
             </div>
-          </div>
+          </section>
 
           {/* Results Summary */}
           <div className="mb-6">
@@ -108,13 +109,13 @@ const Leistungen = () => {
 
           {/* Service Grid */}
           {filteredServices.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-16">
               {filteredServices.map((service) => (
                 <ServiceCard key={service.id} service={service} />
               ))}
-            </div>
+            </section>
           ) : (
-            <div className="text-center py-12">
+            <section className="text-center py-12 mb-16">
               <p className="text-muted-foreground mb-4">
                 Keine Services gefunden, die Ihren Kriterien entsprechen.
               </p>
@@ -127,11 +128,11 @@ const Leistungen = () => {
               >
                 Filter zurücksetzen
               </button>
-            </div>
+            </section>
           )}
 
           {/* Additional Info */}
-          <div className="mt-16 p-6 bg-muted/30 rounded-lg text-center">
+          <section className="bg-muted/30 p-8 rounded-lg text-center">
             <h2 className="text-xl font-semibold mb-3">Ihr Service ist nicht dabei?</h2>
             <p className="text-muted-foreground mb-4">
               Wir bieten auch individuelle Lösungen für spezielle Anforderungen.
@@ -139,9 +140,9 @@ const Leistungen = () => {
             <p className="text-sm text-muted-foreground">
               Kontaktieren Sie uns für eine maßgeschneiderte Beratung.
             </p>
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
     </>
   );
 };

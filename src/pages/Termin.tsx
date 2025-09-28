@@ -16,6 +16,7 @@ import QuoteSummary from "@/components/QuoteSummary";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
 import { breadcrumb, localBusiness } from "@/lib/structured";
 import { COPY, FORM_MSG } from "@/data/copy";
+import { COMPANY } from "@/data/company";
 
 const Termin = () => {
   const navigate = useNavigate();
@@ -29,12 +30,12 @@ const Termin = () => {
       { name: "Termin buchen", url: fullUrl(meta.path) }
     ]),
     localBusiness({ 
-      telephone: "+49 1556 5029989",
+      telephone: COMPANY.telE164,
       address: {
-        streetAddress: "Schirmerstr. 7",
-        postalCode: "50823",
-        addressLocality: "Köln",
-        addressRegion: "NRW",
+        streetAddress: COMPANY.street,
+        postalCode: COMPANY.postalCode,
+        addressLocality: COMPANY.city,
+        addressRegion: "NW",
         addressCountry: "DE"
       },
       areaServed: ["Köln", "Neuss"],
@@ -62,7 +63,6 @@ const Termin = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    // Track booking started
     track("booking_started");
     
     if (fromCalculator) {
@@ -105,12 +105,10 @@ const Termin = () => {
     const form = new FormData(e.currentTarget as HTMLFormElement);
     const honeypot = String(form.get("company") || "");
     if (honeypot.trim() !== "") {
-      // Bot detected, silently fail
       return;
     }
     
     if (validateForm()) {
-      // Store form data and navigate to summary
       sessionStorage.setItem("thp_booking_data", JSON.stringify(formData));
       navigate("/termin/zusammenfassung");
     }
@@ -127,17 +125,19 @@ const Termin = () => {
     <>
       <SEO title={meta.title} description={meta.description} path={meta.path} jsonLd={ld} />
       
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+      <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold text-foreground mb-8">{COPY.booking.title}</h1>
-          <p className="text-lg text-muted-foreground mb-12">
-            Buchen Sie schnell und unkompliziert einen Termin für Ihren IT-Support. 
-            Wählen Sie zwischen Vor-Ort-Service oder Remote-Unterstützung.
-          </p>
+          <header className="mb-12">
+            <h1 className="text-4xl font-bold text-foreground mb-6">{COPY.booking.title}</h1>
+            <p className="text-lg text-muted-foreground max-w-3xl">
+              Buchen Sie schnell und unkompliziert einen Termin für Ihren IT-Support. 
+              Wählen Sie zwischen Vor-Ort-Service oder Remote-Unterstützung.
+            </p>
+          </header>
           
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Form Column */}
-            <div className="lg:col-span-2">
+            {/* Form Section */}
+            <section className="lg:col-span-2">
               <Card>
                 <CardHeader>
                   <CardTitle>Ihre Angaben</CardTitle>
@@ -156,9 +156,10 @@ const Termin = () => {
                           value={formData.firstName}
                           onChange={(e) => handleInputChange("firstName", e.target.value)}
                           aria-invalid={!!errors.firstName}
+                          aria-describedby={errors.firstName ? "firstName-error" : undefined}
                         />
                         {errors.firstName && (
-                          <p className="text-sm text-destructive" role="alert">
+                          <p id="firstName-error" className="text-sm text-destructive" role="alert">
                             {errors.firstName}
                           </p>
                         )}
@@ -170,9 +171,10 @@ const Termin = () => {
                           value={formData.lastName}
                           onChange={(e) => handleInputChange("lastName", e.target.value)}
                           aria-invalid={!!errors.lastName}
+                          aria-describedby={errors.lastName ? "lastName-error" : undefined}
                         />
                         {errors.lastName && (
-                          <p className="text-sm text-destructive" role="alert">
+                          <p id="lastName-error" className="text-sm text-destructive" role="alert">
                             {errors.lastName}
                           </p>
                         )}
@@ -189,9 +191,10 @@ const Termin = () => {
                           value={formData.email}
                           onChange={(e) => handleInputChange("email", e.target.value)}
                           aria-invalid={!!errors.email}
+                          aria-describedby={errors.email ? "email-error" : undefined}
                         />
                         {errors.email && (
-                          <p className="text-sm text-destructive" role="alert">
+                          <p id="email-error" className="text-sm text-destructive" role="alert">
                             {errors.email}
                           </p>
                         )}
@@ -204,9 +207,10 @@ const Termin = () => {
                           value={formData.phone}
                           onChange={(e) => handleInputChange("phone", e.target.value)}
                           aria-invalid={!!errors.phone}
+                          aria-describedby={errors.phone ? "phone-error" : undefined}
                         />
                         {errors.phone && (
-                          <p className="text-sm text-destructive" role="alert">
+                          <p id="phone-error" className="text-sm text-destructive" role="alert">
                             {errors.phone}
                           </p>
                         )}
@@ -224,9 +228,10 @@ const Termin = () => {
                           value={formData.plz}
                           onChange={(e) => handleInputChange("plz", e.target.value.replace(/\D/g, '').slice(0, 5))}
                           aria-invalid={!!errors.plz}
+                          aria-describedby={errors.plz ? "plz-error" : undefined}
                         />
                         {errors.plz && (
-                          <p className="text-sm text-destructive" role="alert">
+                          <p id="plz-error" className="text-sm text-destructive" role="alert">
                             {errors.plz}
                           </p>
                         )}
@@ -358,7 +363,7 @@ const Termin = () => {
                       />
                     </div>
 
-                    {/* Buttons */}
+                    {/* Form Actions */}
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button type="submit" className="flex-1">
                         Termin prüfen
@@ -371,7 +376,7 @@ const Termin = () => {
                 </CardContent>
               </Card>
 
-              {/* Info Box */}
+              {/* Info Card */}
               <Card className="mt-6">
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-3">Wichtige Hinweise</h3>
@@ -390,10 +395,10 @@ const Termin = () => {
                   )}
                 </CardContent>
               </Card>
-            </div>
+            </section>
 
-            {/* Quote Summary Column */}
-            <div className="lg:col-span-1">
+            {/* Quote Summary Section */}
+            <aside className="lg:col-span-1">
               {formData.appointmentType === "onsite" ? (
                 <QuoteSummary />
               ) : (
@@ -405,37 +410,40 @@ const Termin = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span>Erstdiagnose (30 Min)</span>
-                        <span>39,00 €</span>
+                    <div className="space-y-4">
+                      <div className="text-center">
+                        <p className="text-2xl font-bold tabular-nums">39,00 €</p>
+                        <p className="text-sm text-muted-foreground">Erstdiagnose (30 Min)</p>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Weitere Blöcke (15 Min)</span>
-                        <span>9,90 €</span>
+                      <div className="text-center">
+                        <p className="text-lg font-semibold tabular-nums">9,90 €</p>
+                        <p className="text-sm text-muted-foreground">je 15-Min-Block danach</p>
+                      </div>
+                      <div className="text-xs text-muted-foreground space-y-1">
+                        <p>Remote-Support wird minutengenau abgerechnet</p>
+                        <p>Endpreis wird vor Beginn bestätigt</p>
                       </div>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-4">
-                      Abrechnung erfolgt nach tatsächlichem Aufwand
-                    </p>
-                   </CardContent>
+                  </CardContent>
                 </Card>
               )}
-            </div>
+            </aside>
           </div>
 
           {/* FAQ Section */}
-          <FAQ title="Fragen zum Termin" items={COPY.faq.termin} />
+          <section className="mt-16">
+            <FAQ title="Termin buchen – FAQ" items={COPY.faq.termin} />
+          </section>
 
           {/* Fine Print */}
-          <div className="mx-auto max-w-3xl text-xs text-muted-foreground space-y-1 pb-10 text-center">
+          <div className="mx-auto max-w-3xl text-xs text-muted-foreground space-y-1 pt-10 text-center">
             <p>{COPY.fineprint.onsiteMinimum}</p>
             <p>{COPY.fineprint.subscriberDiscount}</p>
             <p>{COPY.fineprint.travelZone}</p>
-            <p>{COPY.legal.contactHint}</p>
+            <p>{COPY.fineprint.taxNote}</p>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import { SEO_PAGES, fullUrl } from "@/data/seo";
 import { breadcrumb, faq, localBusiness } from "@/lib/structured";
 import { COPY } from "@/data/copy";
+import { COMPANY } from "@/data/company";
 
 const PaketePreise = () => {
   const meta = SEO_PAGES.preise;
@@ -16,12 +17,12 @@ const PaketePreise = () => {
       { name: "Pakete & Preise", url: fullUrl(meta.path) }
     ]),
     localBusiness({ 
-      telephone: "+49 1556 5029989",
+      telephone: COMPANY.telE164,
       address: {
-        streetAddress: "Schirmerstr. 7",
-        postalCode: "50823",
-        addressLocality: "Köln",
-        addressRegion: "NRW",
+        streetAddress: COMPANY.street,
+        postalCode: COMPANY.postalCode,
+        addressLocality: COMPANY.city,
+        addressRegion: "NW",
         addressCountry: "DE"
       },
       areaServed: ["Köln", "Neuss"],
@@ -110,12 +111,12 @@ const PaketePreise = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
-                  <a href="tel:+492211234567">
+                  <a href={`tel:${COMPANY.telE164}`}>
                     Jetzt anrufen
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <a href="mailto:info@techhilfe-pro.de">
+                  <a href={`mailto:${COMPANY.email}`}>
                     E-Mail senden
                   </a>
                 </Button>

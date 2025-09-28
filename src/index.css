@@ -147,6 +147,15 @@
   outline-offset: 2px;
 }
 
+/* Layout utilities */
+.section {
+  @apply py-16 px-4 sm:px-6 lg:px-8;
+}
+
+.muted {
+  @apply text-muted-foreground;
+}
+
 @keyframes typewriter {
   from { width: 0; }
   to { width: 100%; }

@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { COMPANY } from "@/data/company";
 
 const Impressum = () => {
   return (
@@ -14,20 +15,20 @@ const Impressum = () => {
         
         <div className="prose prose-lg max-w-none space-y-8">
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Angaben gemäß § 5 TMG</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">Angaben gemäß § 5 DDG</h2>
             <div className="text-muted-foreground space-y-2">
-              <p>Tech Hilfe Pro</p>
-              <p>Max Mustermann</p>
-              <p>Musterstraße 123</p>
-              <p>50667 Köln</p>
+              <p>{COMPANY.brand}</p>
+              <p>{COMPANY.owner}</p>
+              <p>{COMPANY.street}</p>
+              <p>{COMPANY.postalCode} {COMPANY.city}</p>
             </div>
           </section>
           
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">Kontakt</h2>
             <div className="text-muted-foreground space-y-2">
-              <p>Telefon: +49 221 123 45 67</p>
-              <p>E-Mail: info@techhilfe-pro.de</p>
+              <p>Telefon: <a href={`tel:${COMPANY.telE164}`} className="hover:text-primary transition-colors">{COMPANY.telDisplay}</a></p>
+              <p>E-Mail: <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">{COMPANY.email}</a></p>
             </div>
           </section>
           
@@ -48,11 +49,11 @@ const Impressum = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h2>
             <div className="text-muted-foreground space-y-2">
-              <p>Max Mustermann</p>
-              <p>Musterstraße 123</p>
-              <p>50667 Köln</p>
+              <p>{COMPANY.owner}</p>
+              <p>{COMPANY.street}</p>
+              <p>{COMPANY.postalCode} {COMPANY.city}</p>
             </div>
           </section>
           
@@ -62,8 +63,8 @@ const Impressum = () => {
               <div>
                 <h3 className="font-semibold text-foreground">Haftung für Inhalte</h3>
                 <p>
-                  Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf 
-                  diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG 
+                  Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf 
+                  diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG 
                   sind wir als Diensteanbieter jedoch nicht unter der Verpflichtung, übermittelte 
                   oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu 
                   forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
