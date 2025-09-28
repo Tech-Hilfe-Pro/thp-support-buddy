@@ -1,5 +1,5 @@
 export const onRequestGet: PagesFunction = async (ctx) => {
-  const SITE_URL = ctx.env?.SITE_URL || "https://example.com";
+  const SITE_URL = ctx.env?.SITE_URL || "https://techhilfepro.de";
   const urls = [
     "/", "/leistungen", "/pakete-preise", "/termin", "/ueber-uns", "/kontakt",
     "/recht/impressum", "/recht/datenschutz", "/recht/agb", "/recht/widerruf"

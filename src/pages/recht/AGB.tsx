@@ -6,7 +6,7 @@ const AGB = () => {
       <Helmet>
         <title>AGB - Tech Hilfe Pro</title>
         <meta name="description" content="Allgemeine Geschäftsbedingungen von Tech Hilfe Pro für IT-Support-Dienstleistungen." />
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="index, nofollow" />
       </Helmet>
       
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">

@@ -2,7 +2,7 @@ export const SITE_NAME = "Tech Hilfe Pro";
 export const DEFAULT_LOCALE = "de-DE";
 export const DEFAULT_OG_LOCALE = "de_DE";
 export const DEFAULT_IMAGE = "/og/default.jpg"; // Platzhalter in /public anlegen
-export const SITE_URL = (import.meta as any)?.env?.SITE_URL || "https://example.com";
+export const SITE_URL = (import.meta as any)?.env?.SITE_URL || "https://techhilfepro.de";
 
 type SeoEntry = { title: string; description: string; path: string; type?: "website" | "article" };
 

@@ -6,7 +6,7 @@ const Impressum = () => {
       <Helmet>
         <title>Impressum - Tech Hilfe Pro</title>
         <meta name="description" content="Impressum und Anbieterkennzeichnung von Tech Hilfe Pro, IT-Support Köln." />
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="index, nofollow" />
       </Helmet>
       
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
