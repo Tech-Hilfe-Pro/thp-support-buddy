@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { COMPANY } from "@/data/company";
 
 const Datenschutz = () => {
   return (
@@ -35,15 +36,14 @@ const Datenschutz = () => {
                 gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
               </p>
               
-              <h3 className="font-semibold text-foreground">Hinweis zur verantwortlichen Stelle</h3>
+              <h3 className="font-semibold text-foreground">Verantwortlicher</h3>
               <div className="space-y-2">
                 <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-                <p>Tech Hilfe Pro<br />
-                Max Mustermann<br />
-                Musterstraße 123<br />
-                50667 Köln<br />
-                Telefon: +49 221 123 45 67<br />
-                E-Mail: info@techhilfe-pro.de</p>
+                <p>{COMPANY.brand} – {COMPANY.owner}</p>
+                <p>{COMPANY.street}, {COMPANY.postalCode} {COMPANY.city}</p>
+                <p>E-Mail: <a className="underline hover:no-underline" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></p>
+                <p>Telefon: <a className="underline hover:no-underline" href={`tel:${COMPANY.telE164}`}>{COMPANY.telDisplay}</a></p>
+                <p className="mt-2 text-sm">Kontakt für Datenschutzanfragen: <a className="underline hover:no-underline" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></p>
               </div>
             </div>
           </section>
