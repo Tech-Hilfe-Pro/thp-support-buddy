@@ -1,9 +1,41 @@
-/*
+ /*
   Alle Routen: Security-Header
-*/
+ */
 * 
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://api.stripe.com; script-src 'self' https://js.stripe.com; frame-src https://js.stripe.com; frame-ancestors 'self';
+
+# Cache static assets with hash-based filenames for 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 month
+*.jpg
+  Cache-Control: public, max-age=2592000
+
+*.png
+  Cache-Control: public, max-age=2592000
+
+*.svg
+  Cache-Control: public, max-age=2592000
+
+*.webp
+  Cache-Control: public, max-age=2592000
+
+# Cache CSS and JS files for 1 year (they have hashes)
+*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# No cache for HTML files to ensure fresh content
+*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Short cache for root HTML
+/
+  Cache-Control: public, max-age=300
