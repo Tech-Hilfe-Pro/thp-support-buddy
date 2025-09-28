@@ -55,6 +55,7 @@ const Header = () => {
     { label: "Startseite", href: "/" },
     { label: "Leistungen", href: "/leistungen" },
     { label: "Pakete & Preise", href: "/pakete-preise" },
+    { label: "Mitgliedschaft", href: "/abo" },
     { label: "Über uns", href: "/ueber-uns" },
     { label: "Kontakt", href: "/kontakt" },
   ];
@@ -139,10 +140,15 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* CTA Button */}
-            <Button asChild size="sm">
-              <Link to="/termin">Jetzt Termin buchen</Link>
-            </Button>
+            {/* CTA Buttons */}
+            <div className="flex items-center space-x-2">
+              <Button asChild variant="outline" size="sm" className="hidden lg:inline-flex">
+                <Link to="/abo">Mitglied werden</Link>
+              </Button>
+              <Button asChild size="sm">
+                <Link to="/termin">Jetzt Termin buchen</Link>
+              </Button>
+            </div>
           </nav>
 
           {/* Contact Icons & Mobile Menu */}

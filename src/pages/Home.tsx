@@ -6,6 +6,7 @@ import Steps from "@/components/Steps";
 import FinalCTA from "@/components/FinalCTA";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
+import MembershipCards from "@/components/MembershipCards";
 import { buildOrganizationJsonLd } from "@/lib/structuredData";
 import { COPY } from "@/data/copy";
 
@@ -29,6 +30,9 @@ const Home = () => {
       />
       
       <Hero />
+      
+      {/* Membership Section */}
+      <MembershipCards />
       
       <ServiceCards />
       

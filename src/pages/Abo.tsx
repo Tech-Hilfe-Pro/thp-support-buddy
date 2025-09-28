@@ -2,19 +2,26 @@ import { Elements } from "@stripe/react-stripe-js";
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { stripePromise } from "@/lib/stripeClient";
 import SEO from "@/components/SEO";
-import { useState } from "react";
+import MembershipCards from "@/components/MembershipCards";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { MEMBERSHIP_PLANS } from "@/data/memberships";
 
 function AboForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  
+  const selectedPlanId = searchParams.get('plan');
+  const selectedPlan = selectedPlanId ? MEMBERSHIP_PLANS.find(p => p.id === selectedPlanId) : null;
 
   const start = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +34,10 @@ function AboForm() {
       const r = await fetch("/api/stripe/create-subscription", { 
         method: "POST", 
         headers: { "Content-Type": "application/json" }, 
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ 
+          email,
+          priceId: selectedPlan?.stripePriceId || "price_basic_monthly" 
+        })
       });
       
       const d = await r.json();
@@ -103,38 +113,77 @@ function AboForm() {
 }
 
 export default function AboPage() {
+  const [searchParams] = useSearchParams();
+  const selectedPlanId = searchParams.get('plan');
+  const selectedPlan = selectedPlanId ? MEMBERSHIP_PLANS.find(p => p.id === selectedPlanId) : null;
+  
   return (
     <>
       <SEO 
         title="Mitgliedschaft | Tech Hilfe Pro" 
-        description="Monatliche IT-Unterstützung für Privat & KMU." 
+        description="Planbare IT-Unterstützung für Zuhause & KMU. Mitglieder sparen 20 % Vor-Ort." 
         path="/abo" 
       />
-      <section className="section">
-        <div className="container max-w-2xl">
-          <h1 className="text-2xl font-semibold mb-6">IT-Mitgliedschaft</h1>
-          <p className="text-muted-foreground mb-6">
-            Erhalten Sie kontinuierliche IT-Unterstützung mit unserer monatlichen Mitgliedschaft.
-          </p>
-          
-          <Elements 
-            stripe={stripePromise} 
-            options={{ 
-              appearance: { 
-                theme: "stripe",
-                variables: { 
-                  colorPrimary: "hsl(217 91% 60%)" 
-                } 
-              }, 
-              currency: "eur", 
-              mode: "subscription", 
-              amount: 0 
-            }}
-          >
-            <AboForm />
-          </Elements>
+      
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto">
+          <header className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-foreground mb-4">IT-Mitgliedschaft</h1>
+            <p className="text-lg text-muted-foreground">
+              Planbare IT-Unterstützung – ohne hohe Fixkosten. Remote zuerst, Vor-Ort bei Bedarf.
+            </p>
+          </header>
+
+          {selectedPlan ? (
+            <section id="checkout" className="max-w-2xl mx-auto mb-16">
+              <div className="bg-muted/30 p-6 rounded-lg mb-6">
+                <h2 className="text-xl font-semibold mb-2">Gewählter Plan: {selectedPlan.name}</h2>
+                <p className="text-2xl font-bold text-primary">
+                  {selectedPlan.priceMonthly.toFixed(2)} € / Monat
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {selectedPlan.laborDiscount && `Mitglieder sparen ${(selectedPlan.laborDiscount * 100).toFixed(0)} % auf Arbeitszeit vor Ort`}
+                </p>
+              </div>
+              
+              <Elements 
+                stripe={stripePromise} 
+                options={{ 
+                  appearance: { 
+                    theme: "stripe",
+                    variables: { 
+                      colorPrimary: "hsl(217 91% 60%)" 
+                    } 
+                  }, 
+                  currency: "eur", 
+                  mode: "subscription", 
+                  amount: 0 
+                }}
+              >
+                <AboForm />
+              </Elements>
+            </section>
+          ) : null}
+
+          {/* Membership Cards */}
+          <section id="vorteile" className="scroll-mt-24">
+            <MembershipCards />
+          </section>
+
+          {/* Cross-link to pricing */}
+          <section className="mt-16 text-center">
+            <div className="bg-muted/30 p-8 rounded-lg max-w-2xl mx-auto">
+              <h2 className="text-xl font-semibold mb-4">Einzeltermine gewünscht?</h2>
+              <p className="text-muted-foreground mb-6">
+                Für gelegentliche IT-Hilfe bieten wir auch Einzeltermine an.
+              </p>
+              <Button asChild variant="outline" size="lg">
+                <a href="/pakete-preise">Zu den Einzelpreisen</a>
+              </Button>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </>
   );
 }

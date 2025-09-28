@@ -11,6 +11,7 @@ import SkipLink from "./components/SkipLink";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
+import StickyCTA from "./components/StickyCTA";
 import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
 import PaketePreise from "./pages/PaketePreise";
@@ -22,6 +23,9 @@ const Termin = lazy(() => import("./pages/Termin"));
 const TerminZusammenfassung = lazy(() => import("./pages/TerminZusammenfassung"));
 const TerminBestaetigt = lazy(() => import("./pages/TerminBestaetigt"));
 const Kasse = lazy(() => import("./pages/Kasse"));
+const KasseErfolg = lazy(() => import("./pages/kasse/Erfolg"));
+const KasseFehler = lazy(() => import("./pages/kasse/Fehler"));
+const Abo = lazy(() => import("./pages/Abo"));
 const Techniker = lazy(() => import("./pages/Techniker"));
 const Beleg = lazy(() => import("./pages/Beleg"));
 const UeberUns = lazy(() => import("./pages/UeberUns"));
@@ -58,6 +62,9 @@ const App = () => {
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
                     <Route path="/termin/bestaetigt" element={<TerminBestaetigt />} />
                     <Route path="/kasse" element={<Kasse />} />
+                    <Route path="/kasse/erfolg" element={<KasseErfolg />} />
+                    <Route path="/kasse/fehler" element={<KasseFehler />} />
+                    <Route path="/abo" element={<Abo />} />
                     <Route path="/techniker" element={<Techniker />} />
                     <Route path="/beleg" element={<Beleg />} />
                     <Route path="/ueber-uns" element={<UeberUns />} />
@@ -74,6 +81,7 @@ const App = () => {
             </main>
             <Footer />
             <CookieBanner />
+            <StickyCTA />
           </div>
           <RouteTracker />
           <RouteFocus />

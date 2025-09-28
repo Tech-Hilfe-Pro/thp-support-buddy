@@ -7,9 +7,9 @@ export const onRequestPost: PagesFunction = async (ctx) => {
   
   const body = await ctx.request.json().catch(() => ({}));
   const email = String(body.email || "");
-  const price = (ctx.env as any).STRIPE_PRICE_ABO_BASIC;
+  const priceId = String(body.priceId || "") || (ctx.env as any).STRIPE_PRICE_ABO_BASIC;
 
-  if (!email || !price) {
+  if (!email || !priceId) {
     return new Response(
       JSON.stringify({ error: "email/price missing" }), 
       { 
@@ -27,7 +27,7 @@ export const onRequestPost: PagesFunction = async (ctx) => {
     
     const sub = await stripe.subscriptions.create({
       customer: customer.id,
-      items: [{ price }],
+      items: [{ price: priceId }],
       payment_behavior: "default_incomplete",
       expand: ["latest_invoice.payment_intent"]
     }, { idempotencyKey: crypto.randomUUID() });

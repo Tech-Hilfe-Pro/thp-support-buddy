@@ -1,13 +1,18 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PricingTabs from "@/components/PricingTabs";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
+import MembershipCards from "@/components/MembershipCards";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
 import { COPY } from "@/data/copy";
 import { COMPANY } from "@/data/company";
 
 const PaketePreise = () => {
+  const [activeTab, setActiveTab] = useState("einmalig");
+  
   return (
     <>
       <SEO 
@@ -26,17 +31,31 @@ const PaketePreise = () => {
             </p>
           </header>
 
-          {/* Pricing Tabs */}
-          <section className="mb-16">
-            <PricingTabs />
-          </section>
+          {/* Main Tabs */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-16">
+            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto">
+              <TabsTrigger value="einmalig">Einmalig</TabsTrigger>
+              <TabsTrigger value="mitgliedschaft">Mitgliedschaft</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="einmalig" className="space-y-16">
+              {/* Pricing Tabs */}
+              <section>
+                <PricingTabs />
+              </section>
 
-          {/* Price Calculator */}
-          <section id="rechner" className="scroll-mt-24">
-            <div className="max-w-2xl mx-auto">
-              <PriceTimeCalculator />
-            </div>
-          </section>
+              {/* Price Calculator */}
+              <section id="rechner" className="scroll-mt-24">
+                <div className="max-w-2xl mx-auto">
+                  <PriceTimeCalculator />
+                </div>
+              </section>
+            </TabsContent>
+            
+            <TabsContent value="mitgliedschaft" className="space-y-16">
+              <MembershipCards />
+            </TabsContent>
+          </Tabs>
 
           {/* Value Proposition */}
           <section className="mt-16">
