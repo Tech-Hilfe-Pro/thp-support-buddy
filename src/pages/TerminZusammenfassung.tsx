@@ -7,6 +7,9 @@ import { SERVICES } from "@/data/services";
 import { readQuoteFromStorage, clearQuoteInStorage } from "@/lib/quote";
 import { buildICS, downloadICS } from "@/lib/ics";
 import { SEO_PAGES } from "@/data/seo";
+import { formatEUR } from "@/lib/format";
+
+const meta = { title: "Intern – Bitte nicht indexieren", description: "", path: typeof location !== "undefined" ? location.pathname : "/" };
 
 const TerminZusammenfassung = () => {
   const navigate = useNavigate();
@@ -71,7 +74,7 @@ const TerminZusammenfassung = () => {
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} />
+      <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
       
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl font-bold text-foreground mb-8">Terminzusammenfassung</h1>
@@ -171,22 +174,22 @@ const TerminZusammenfassung = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span>Arbeitszeit {bookingData.urgency !== "normal" && `(${bookingData.urgency === "heute" ? "+15%" : "+30%"})`}</span>
-                    <span>{quote.breakdown.arbeitszeitBrutto.toFixed(2)} €</span>
+                    <span>{formatEUR(quote.breakdown.arbeitszeitBrutto)}</span>
                   </div>
                   {bookingData.subscription && (
                     <div className="flex justify-between text-green-600">
                       <span>Abo-Rabatt (20%)</span>
-                      <span>–{quote.breakdown.rabattAbo.toFixed(2)} €</span>
+                      <span>–{formatEUR(quote.breakdown.rabattAbo)}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
                     <span>Anfahrt</span>
-                    <span>{quote.breakdown.anfahrt.toFixed(2)} €</span>
+                    <span>{formatEUR(quote.breakdown.anfahrt)}</span>
                   </div>
                   <hr />
                   <div className="flex justify-between font-bold text-lg">
                     <span>Geschätzter Gesamtpreis</span>
-                    <span>{quote.total.toFixed(2)} €</span>
+                    <span>{formatEUR(quote.total)}</span>
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4">

@@ -8,6 +8,7 @@ import { LoaderCircle } from "lucide-react";
 import { loadStripeClient } from "@/lib/stripeClient";
 import { Quote } from "@/lib/quote";
 import { PRIVAT_ABOS, KMU_TIERS, STRIPE_PLAN_TO_ENV } from "@/data/pricing";
+import { formatEUR } from "@/lib/format";
 
 type Mode = "one_time" | "subscription";
 type CheckoutProps = { 
@@ -301,22 +302,22 @@ const StripeCheckout = ({ mode, quote, planId }: CheckoutProps) => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span>Arbeitszeit {quote.urgency !== "normal" && `(${quote.urgency === "heute" ? "+15%" : "+30%"})`}</span>
-                    <span>{quote.breakdown.arbeitszeitBrutto.toFixed(2)} €</span>
+                    <span>{formatEUR(quote.breakdown.arbeitszeitBrutto)}</span>
                   </div>
                   {quote.subscription && (
                     <div className="flex justify-between text-green-600">
                       <span>Abo-Rabatt (20%)</span>
-                      <span>–{quote.breakdown.rabattAbo.toFixed(2)} €</span>
+                      <span>–{formatEUR(quote.breakdown.rabattAbo)}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
                     <span>Anfahrt</span>
-                    <span>{quote.breakdown.anfahrt.toFixed(2)} €</span>
+                    <span>{formatEUR(quote.breakdown.anfahrt)}</span>
                   </div>
                   <hr />
                   <div className="flex justify-between font-bold text-lg">
                     <span>Gesamt</span>
-                    <span>{quote.total.toFixed(2)} €</span>
+                    <span>{formatEUR(quote.total)}</span>
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -331,8 +332,8 @@ const StripeCheckout = ({ mode, quote, planId }: CheckoutProps) => {
                 <div>
                   <strong>Preis:</strong> {
                     "preis" in planDetails 
-                      ? `${planDetails.preis.toFixed(2)} €/Monat`
-                      : `${planDetails.preisProGeraet.toFixed(2)} €/Gerät/Monat`
+                      ? `${formatEUR(planDetails.preis)}/Monat`
+                      : `${formatEUR(planDetails.preisProGeraet)}/Gerät/Monat`
                   }
                 </div>
                 <hr />

@@ -1,80 +1,43 @@
-export async function onRequestPost(context: any) {
-  try {
-    const { request, env } = context;
-    
-    if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405 });
-    }
-
-    const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
-    const allowUnverified = env.ALLOW_UNVERIFIED_WEBHOOKS === 'true';
-
-    // Get raw body
-    const body = await request.text();
-    const sig = request.headers.get('stripe-signature');
-
-    // In sandbox mode, we can allow unverified webhooks for testing
-    if (!allowUnverified && (!webhookSecret || !sig)) {
-      console.error('Missing webhook secret or signature');
-      return new Response('Unauthorized', { status: 401 });
-    }
-
-    let event;
-    try {
-      // Parse the event
-      event = JSON.parse(body);
-      
-      // Basic event validation (without full signature verification for sandbox)
-      if (!event.type || !event.data) {
-        throw new Error('Invalid event format');
-      }
-    } catch (err) {
-      console.error('Webhook parse error:', err);
-      return new Response('Invalid payload', { status: 400 });
-    }
-
-    // Handle the event
-    console.log(`Received webhook: ${event.type}`);
-
-    switch (event.type) {
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object;
-        console.log(`PaymentIntent succeeded: ${paymentIntent.id}`);
-        // Here you could update your database, send confirmation emails, etc.
-        break;
-
-      case 'invoice.paid':
-        const invoice = event.data.object;
-        console.log(`Invoice paid: ${invoice.id}`);
-        // Handle successful subscription payment
-        break;
-
-      case 'customer.subscription.created':
-        const subscription = event.data.object;
-        console.log(`Subscription created: ${subscription.id}`);
-        // Handle new subscription
-        break;
-
-      case 'customer.subscription.updated':
-        const updatedSubscription = event.data.object;
-        console.log(`Subscription updated: ${updatedSubscription.id}`);
-        // Handle subscription changes
-        break;
-
-      default:
-        console.log(`Unhandled event type: ${event.type}`);
-    }
-
-    return new Response(JSON.stringify({ received: true }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-  } catch (error) {
-    console.error('Webhook error:', error);
-    return new Response(JSON.stringify({ error: 'Webhook processing failed' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
+function parseSigHeader(sig: string) {
+  // Format: t=timestamp,v1=signature
+  const parts = sig.split(",").map(s => s.trim());
+  const out: Record<string,string> = {};
+  for (const p of parts) { const [k,v] = p.split("="); if (k && v) out[k] = v; }
+  return { t: out["t"], v1: out["v1"] };
 }
+async function hmacSHA256(key: string, msg: string) {
+  const enc = new TextEncoder();
+  const cryptoKey = await crypto.subtle.importKey("raw", enc.encode(key), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const mac = await crypto.subtle.sign("HMAC", cryptoKey, enc.encode(msg));
+  return Array.from(new Uint8Array(mac)).map(b => b.toString(16).padStart(2,"0")).join("");
+}
+export const onRequestPost: PagesFunction = async (ctx) => {
+  const secret = ctx.env?.STRIPE_WEBHOOK_SECRET;
+  if (!secret) return new Response("missing secret", { status: 500 });
+  const sig = ctx.request.headers.get("stripe-signature") || "";
+  const { t, v1 } = parseSigHeader(sig);
+  if (!t || !v1) return new Response("bad signature header", { status: 400 });
+
+  // RAW body lesen
+  const raw = await ctx.request.arrayBuffer();
+  const payload = new TextDecoder().decode(raw);
+  const signedPayload = `${t}.${payload}`;
+  const computed = await hmacSHA256(secret, signedPayload);
+  const safeEqual = (a: string, b: string) => {
+    if (a.length !== b.length) return false;
+    let res = 0; for (let i = 0; i < a.length; i++) res |= a.charCodeAt(i) ^ b.charCodeAt(i);
+    return res === 0;
+  };
+  if (!safeEqual(computed, v1)) return new Response("invalid signature", { status: 400 });
+
+  // Ereignis nur grob prüfen und loggen
+  let event: any;
+  try { event = JSON.parse(payload); } catch { return new Response("bad json", { status: 400 }); }
+  const okTypes = new Set(["payment_intent.succeeded","invoice.paid","customer.subscription.created","customer.subscription.updated"]);
+  if (event?.type && okTypes.has(event.type)) {
+    console.log("STRIPE WEBHOOK OK:", event.type);
+  } else {
+    console.log("STRIPE WEBHOOK IGNORED:", event?.type);
+  }
+  return new Response(JSON.stringify({ received: true }), { headers: { "Content-Type":"application/json" } });
+};

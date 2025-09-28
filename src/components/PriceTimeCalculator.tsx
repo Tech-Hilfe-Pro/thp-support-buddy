@@ -10,6 +10,7 @@ import { track, bucketAmount } from "@/lib/analytics";
 import { SERVICES } from "@/data/services";
 import { calculateOnsiteTotal, CalcInput, Urgency } from "@/lib/pricing";
 import { saveQuoteToStorage, Quote } from "@/lib/quote";
+import { formatEUR } from "@/lib/format";
 
 const PriceTimeCalculator = () => {
   const navigate = useNavigate();
@@ -202,22 +203,22 @@ const PriceTimeCalculator = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span>Arbeitszeit {urgency !== "normal" && `(${urgency === "heute" ? "+15%" : "+30%"})`}</span>
-                    <span>{result.breakdown.arbeitszeitBrutto.toFixed(2)} €</span>
+                    <span>{formatEUR(result.breakdown.arbeitszeitBrutto)}</span>
                   </div>
                   {subscription && (
                     <div className="flex justify-between text-green-600">
                       <span>Abo-Rabatt (20%)</span>
-                      <span>–{result.breakdown.rabattAbo.toFixed(2)} €</span>
+                      <span>–{formatEUR(result.breakdown.rabattAbo)}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
                     <span>Anfahrt</span>
-                    <span>{result.breakdown.anfahrt.toFixed(2)} €</span>
+                    <span>{formatEUR(result.breakdown.anfahrt)}</span>
                   </div>
                   <hr />
                   <div className="flex justify-between font-bold text-lg">
                     <span>Gesamt</span>
-                    <span>{result.total.toFixed(2)} €</span>
+                    <span>{formatEUR(result.total)}</span>
                   </div>
                 </div>
 

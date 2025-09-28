@@ -9,6 +9,9 @@ import { Printer, Home } from "lucide-react";
 import SEO from "@/components/SEO";
 import { SEO_PAGES } from "@/data/seo";
 import { COPY } from "@/data/copy";
+import { formatEUR } from "@/lib/format";
+
+const meta = { title: "Intern – Bitte nicht indexieren", description: "", path: typeof location !== "undefined" ? location.pathname : "/" };
 
 const Beleg = () => {
   const [searchParams] = useSearchParams();
@@ -40,7 +43,7 @@ const Beleg = () => {
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} />
+      <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
       
       <div className="min-h-screen bg-white">
         {/* Print Controls - Hidden in print */}
@@ -219,13 +222,13 @@ const Beleg = () => {
                     <div>Leistung: {receipt.service || "—"}</div>
                     <div>PLZ: {receipt.plz || "—"}</div>
                     <div className="mt-2">
-                      <div>Arbeitszeit: {receipt.laborGross.toFixed(2)} €</div>
+                      <div>Arbeitszeit: {formatEUR(receipt.laborGross)}</div>
                       {receipt.subscription && receipt.discount > 0 && (
-                        <div>Abo-Rabatt (-20%): -{receipt.discount.toFixed(2)} €</div>
+                        <div>Abo-Rabatt (-20%): -{formatEUR(receipt.discount)}</div>
                       )}
-                      <div>Anfahrt: {receipt.travel.toFixed(2)} €</div>
+                      <div>Anfahrt: {formatEUR(receipt.travel)}</div>
                       <div className="border-t mt-1 pt-1">
-                        <strong>Gesamt: {receipt.total.toFixed(2)} €</strong>
+                        <strong>Gesamt: {formatEUR(receipt.total)}</strong>
                       </div>
                     </div>
                   </div>
@@ -290,25 +293,25 @@ const Beleg = () => {
                 <div className="border-t border-gray-300 pt-4 space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Arbeitszeit {receipt.urgency !== "normal" && `(${receipt.urgency === "heute" ? "+15%" : "+30%"})`}:</span>
-                    <span>{receipt.laborGross.toFixed(2)} €</span>
+                    <span>{formatEUR(receipt.laborGross)}</span>
                   </div>
 
                   {receipt.subscription && receipt.discount > 0 && (
                     <div className="flex justify-between text-sm text-green-600">
                       <span>Abo-Rabatt (20%):</span>
-                      <span>-{receipt.discount.toFixed(2)} €</span>
+                      <span>-{formatEUR(receipt.discount)}</span>
                     </div>
                   )}
 
                   <div className="flex justify-between text-sm">
                     <span>Anfahrt:</span>
-                    <span>{receipt.travel.toFixed(2)} €</span>
+                    <span>{formatEUR(receipt.travel)}</span>
                   </div>
 
                   <div className="border-t border-gray-300 pt-2">
                     <div className="flex justify-between font-bold">
                       <span>Gesamt:</span>
-                      <span>{receipt.total.toFixed(2)} €</span>
+                      <span>{formatEUR(receipt.total)}</span>
                     </div>
                   </div>
                 </div>

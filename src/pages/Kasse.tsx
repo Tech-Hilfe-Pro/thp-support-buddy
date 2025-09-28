@@ -10,6 +10,8 @@ import StripeCheckout from "@/components/StripeCheckout";
 import { SEO_PAGES } from "@/data/seo";
 import { COPY } from "@/data/copy";
 
+const meta = { title: "Intern – Bitte nicht indexieren", description: "", path: typeof location !== "undefined" ? location.pathname : "/" };
+
 type Mode = "one_time" | "subscription";
 type PlanId = "S"|"M"|"L"|"starter"|"grow"|"pro";
 
@@ -21,6 +23,13 @@ const Kasse = () => {
   const [quote, setQuote] = useState<Quote | null>(null);
   const [planId, setPlanId] = useState<PlanId | null>(null);
   const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    const l = document.createElement("link");
+    l.rel = "preconnect"; l.href = "https://js.stripe.com"; l.crossOrigin = "";
+    document.head.appendChild(l);
+    return () => { if (document.head.contains(l)) document.head.removeChild(l); };
+  }, []);
 
   useEffect(() => {
     // Determine mode
@@ -84,7 +93,7 @@ const Kasse = () => {
   if (error) {
     return (
       <>
-        <SEO title={meta.title} description={meta.description} path={meta.path} />
+        <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
         
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
           <h1 className="text-4xl font-bold text-foreground mb-8">{COPY.checkout.title}</h1>
@@ -121,7 +130,7 @@ const Kasse = () => {
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} />
+      <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-6xl mx-auto">

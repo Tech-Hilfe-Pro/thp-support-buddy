@@ -77,6 +77,7 @@ const Datenschutz = () => {
                 gemäß TTDSG/DSGVO. Keine personenbezogenen Cookies; sessionStorage für 
                 Sitzungskennung (nicht personenbezogen).
               </p>
+              <p>Analytics werden nur nach Ihrer Einwilligung geladen. Es werden keine Cookies gesetzt; wir verwenden eine nicht-personenbezogene Sitzungskennung im sessionStorage.</p>
             </div>
           </section>
           

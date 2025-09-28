@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { readQuoteFromStorage } from "@/lib/quote";
 import { useEffect, useState } from "react";
+import { formatEUR } from "@/lib/format";
 
 const QuoteSummary = () => {
   const [quote, setQuote] = useState<any>(null);
@@ -45,22 +46,22 @@ const QuoteSummary = () => {
         <div className="space-y-2">
           <div className="flex justify-between">
             <span>Arbeitszeit {quote.urgency !== "normal" && `(${quote.urgency === "heute" ? "+15%" : "+30%"})`}</span>
-            <span>{quote.breakdown.arbeitszeitBrutto.toFixed(2)} €</span>
+            <span>{formatEUR(quote.breakdown.arbeitszeitBrutto)}</span>
           </div>
           {quote.subscription && (
             <div className="flex justify-between text-green-600">
               <span>Abo-Rabatt (20%)</span>
-              <span>–{quote.breakdown.rabattAbo.toFixed(2)} €</span>
+              <span>–{formatEUR(quote.breakdown.rabattAbo)}</span>
             </div>
           )}
           <div className="flex justify-between">
             <span>Anfahrt</span>
-            <span>{quote.breakdown.anfahrt.toFixed(2)} €</span>
+            <span>{formatEUR(quote.breakdown.anfahrt)}</span>
           </div>
           <hr />
           <div className="flex justify-between font-bold text-lg">
             <span>Gesamt</span>
-            <span>{quote.total.toFixed(2)} €</span>
+            <span>{formatEUR(quote.total)}</span>
           </div>
         </div>
 

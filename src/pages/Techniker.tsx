@@ -13,6 +13,9 @@ import { TechnicianInput, calcTechnicianTotal, Urgency } from "@/lib/pricing";
 import { SERVICES } from "@/data/services";
 import { SEO_PAGES } from "@/data/seo";
 import { COPY } from "@/data/copy";
+import { formatEUR } from "@/lib/format";
+
+const meta = { title: "Intern – Bitte nicht indexieren", description: "", path: typeof location !== "undefined" ? location.pathname : "/" };
 
 const Techniker = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -90,7 +93,7 @@ const Techniker = () => {
     }
 
     setCalculation(result);
-    toast({ title: "Berechnung erfolgreich", description: `Gesamt: ${result.total.toFixed(2)} €` });
+    toast({ title: "Berechnung erfolgreich", description: `Gesamt: ${formatEUR(result.total)}` });
   };
 
   const handleCreateCheckoutSession = async () => {
@@ -186,7 +189,7 @@ const Techniker = () => {
   if (!isAuthenticated) {
     return (
       <>
-        <SEO title={meta.title} description={meta.description} path={meta.path} />
+        <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
         <div className="container mx-auto max-w-md py-20">
           <Card>
             <CardHeader>
@@ -222,7 +225,7 @@ const Techniker = () => {
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} />
+      <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
       <div className="container mx-auto max-w-4xl py-16">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-4">{COPY.technician.title}</h1>
@@ -342,20 +345,20 @@ const Techniker = () => {
                   <h3 className="font-semibold">Berechnung</h3>
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     <span>Arbeitszeit (Brutto):</span>
-                    <span>{calculation.breakdown.arbeitszeitBrutto.toFixed(2)} €</span>
+                    <span>{formatEUR(calculation.breakdown.arbeitszeitBrutto)}</span>
                     
                     {calculation.breakdown.rabattAbo > 0 && (
                       <>
                         <span>Abo-Rabatt (20 %):</span>
-                        <span className="text-destructive">-{calculation.breakdown.rabattAbo.toFixed(2)} €</span>
+                        <span className="text-destructive">-{formatEUR(calculation.breakdown.rabattAbo)}</span>
                       </>
                     )}
                     
                     <span>Anfahrt:</span>
-                    <span>{calculation.breakdown.anfahrt.toFixed(2)} €</span>
+                    <span>{formatEUR(calculation.breakdown.anfahrt)}</span>
                     
                     <span className="font-semibold">Gesamt:</span>
-                    <span className="font-semibold">{calculation.total.toFixed(2)} €</span>
+                    <span className="font-semibold">{formatEUR(calculation.total)}</span>
                   </div>
                   
                   <Alert>

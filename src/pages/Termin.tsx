@@ -87,6 +87,15 @@ const Termin = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check
+    const form = new FormData(e.currentTarget as HTMLFormElement);
+    const honeypot = String(form.get("company") || "");
+    if (honeypot.trim() !== "") {
+      // Bot detected, silently fail
+      return;
+    }
+    
     if (validateForm()) {
       // Store form data and navigate to summary
       sessionStorage.setItem("thp_booking_data", JSON.stringify(formData));
@@ -317,6 +326,12 @@ const Termin = () => {
                         )}
                       </div>
                     </div>
+
+                    {/* Honeypot */}
+                    <label className="hidden" aria-hidden="true">
+                      Firmenname
+                      <input type="text" name="company" autoComplete="off" tabIndex={-1} className="hidden" />
+                    </label>
 
                     {/* Description */}
                     <div className="space-y-2">

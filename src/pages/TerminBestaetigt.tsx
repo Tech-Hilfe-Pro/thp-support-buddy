@@ -7,11 +7,12 @@ import SEO from "@/components/SEO";
 import { track } from "@/lib/analytics";
 import { SEO_PAGES } from "@/data/seo";
 
+const meta = { title: "Intern – Bitte nicht indexieren", description: "", path: typeof location !== "undefined" ? location.pathname : "/" };
+
 const TerminBestaetigt = () => {
   const [searchParams] = useSearchParams();
   const [paymentStatus, setPaymentStatus] = useState<string>("");
   const terminId = `THP-${Date.now().toString().slice(-6)}`;
-  const meta = SEO_PAGES.terminOk;
 
   useEffect(() => {
     // Track booking confirmed
@@ -34,7 +35,7 @@ const TerminBestaetigt = () => {
 
   return (
     <>
-      <SEO title={meta.title} description={meta.description} path={meta.path} />
+      <SEO title={meta.title} description={meta.description} path={meta.path} robots="noindex,nofollow" />
       
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-8">
