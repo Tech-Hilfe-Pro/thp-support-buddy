@@ -1,13 +1,13 @@
 export const PRIVAT_ABOS = [
-  { id:"S", name:"Senioren-S",  preis:9.90,  minuten:30,  rabattVorOrt:0.10, features:["30 Min Remote/Monat","10% Rabatt Vor-Ort","Quartals-Sicherheitscheck"]},
+  { id:"S", name:"Senioren-S",  preis:9.90,  minuten:30,  rabattVorOrt:0.20, features:["30 Min Remote/Monat","20% Rabatt Vor-Ort","Quartals-Sicherheitscheck"]},
   { id:"M", name:"Senioren-M",  preis:16.90, minuten:45,  rabattVorOrt:0.20, features:["45 Min Remote/Monat","20% Rabatt Vor-Ort","WLAN-Check jährlich"]},
-  { id:"L", name:"Senioren-L",  preis:24.90, minuten:60,  rabattVorOrt:0.30, features:["60 Min Remote/Monat","30% Rabatt Vor-Ort","AV gemanagt"]},
+  { id:"L", name:"Senioren-L",  preis:24.90, minuten:60,  rabattVorOrt:0.20, features:["60 Min Remote/Monat","20% Rabatt Vor-Ort","AV gemanagt"]},
 ];
 
 export const PRIVAT_ON_DEMAND = {
   erstdiagnose: { preis:39, dauerMin:30, text:"Erstdiagnose Remote (30 Min). Danach 15-Min-Blöcke." },
   folgeblock: { preis:9.90, blockMin:15 },
-  vorOrtHinweis: "Vor-Ort pro Stunde (min. 45 Min) zzgl. PLZ-Zone."
+  vorOrtHinweis: "Vor-Ort ab 45 Min; Anfahrt je PLZ-Zone; Ohne ausgewiesene USt. gem. §19 UStG, falls zutreffend."
 };
 
 export const KMU_TIERS = [

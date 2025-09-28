@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
 import PaketePreise from "./pages/PaketePreise";
 import Termin from "./pages/Termin";
+import TerminZusammenfassung from "./pages/TerminZusammenfassung";
+import TerminBestaetigt from "./pages/TerminBestaetigt";
 import UeberUns from "./pages/UeberUns";
 import Kontakt from "./pages/Kontakt";
 import Impressum from "./pages/recht/Impressum";
@@ -35,6 +37,8 @@ const App = () => (
                 <Route path="/leistungen" element={<Leistungen />} />
                 <Route path="/pakete-preise" element={<PaketePreise />} />
                 <Route path="/termin" element={<Termin />} />
+                <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
+                <Route path="/termin/bestaetigt" element={<TerminBestaetigt />} />
                 <Route path="/ueber-uns" element={<UeberUns />} />
                 <Route path="/kontakt" element={<Kontakt />} />
                 <Route path="/recht/impressum" element={<Impressum />} />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,8 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { SERVICES } from "@/data/services";
 import { calculateOnsiteTotal, CalcInput, Urgency } from "@/lib/pricing";
+import { saveQuoteToStorage, Quote } from "@/lib/quote";
 
 const PriceTimeCalculator = () => {
+  const navigate = useNavigate();
   const [serviceId, setServiceId] = useState<string>("");
   const [plz, setPlz] = useState<string>("");
   const [urgency, setUrgency] = useState<Urgency>("normal");
@@ -48,6 +51,26 @@ const PriceTimeCalculator = () => {
     
     const calculation = calculateOnsiteTotal(input);
     setResult(calculation);
+  };
+
+  const handleBookingRedirect = () => {
+    if (result && result.inArea && selectedService) {
+      const quote: Quote = {
+        serviceId,
+        serviceTitle: selectedService.titel,
+        plz,
+        urgency,
+        subscription,
+        onsiteMinutes: selectedService.zeitMin || 60,
+        breakdown: result.breakdown,
+        total: result.total,
+        zeitfenster: result.zeitfenster,
+        createdAtISO: new Date().toISOString()
+      };
+      
+      saveQuoteToStorage(quote);
+      navigate("/termin?from=rechner");
+    }
   };
 
   const selectedService = SERVICES.find(s => s.id === serviceId);
@@ -189,8 +212,8 @@ const PriceTimeCalculator = () => {
 
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="flex-1">
-                    <a href="/termin">Jetzt Termin buchen</a>
+                  <Button onClick={handleBookingRedirect} className="flex-1">
+                    Weiter zur Terminbuchung
                   </Button>
                   <Button asChild variant="outline" className="flex-1">
                     <a href="/pakete-preise">Pakete vergleichen</a>
