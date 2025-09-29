@@ -56,7 +56,8 @@ export default function Hero() {
         <h1 className="text-3xl md:text-5xl font-extrabold">Schneller IT-Support für Zuhause & Unternehmen</h1>
         <div className="text-3xl md:text-5xl font-extrabold mt-2 text-primary h-[1.2em] flex items-center justify-center">
           <span 
-            className={`transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+            key={currentWord}
+            className={`typewriter-text ${reduced ? '' : 'animate-typewriter'}`}
             style={{ minWidth: '20ch', textAlign: 'center' }}
           >
             {currentWord}
