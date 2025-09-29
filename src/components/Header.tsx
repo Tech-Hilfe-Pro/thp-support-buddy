@@ -48,7 +48,7 @@ export default function Header() {
               <NavItem to="/">Startseite</NavItem>
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/pakete-preise">Pakete & Preise</NavItem>
-              <NavItem to="/abo">Mitgliedschaft</NavItem>
+              <NavItem to="/abo">Mitglied werden</NavItem>
               <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a href="/termin" className="rounded-xl bg-blue-600 px-4 py-2 text-white text-center">Jetzt Termin buchen</a>
@@ -85,7 +85,7 @@ export default function Header() {
               <NavItem to="/">Startseite</NavItem>
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/pakete-preise">Pakete & Preise</NavItem>
-              <NavItem to="/abo">Mitgliedschaft</NavItem>
+              <NavItem to="/abo">Mitglied werden</NavItem>
               <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               
