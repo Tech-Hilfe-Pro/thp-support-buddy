@@ -57,7 +57,9 @@ export default function Hero() {
         <div className="text-3xl md:text-5xl font-extrabold mt-2 text-primary h-[1.2em] flex items-center justify-center">
           <span 
             key={currentWord}
-            className={`typewriter-text ${reduced ? '' : 'animate-typewriter'}`}
+            className={`typewriter-text transition-opacity duration-200 ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            } ${reduced ? '' : ''}`}
             style={{ minWidth: '20ch', textAlign: 'center' }}
           >
             {currentWord}
