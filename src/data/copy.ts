@@ -1,3 +1,19 @@
+export const BENEFITS_PRIVAT = [
+  "Remote zuerst – schneller und günstiger für Sie",
+  "20 % Rabatt auf Vor-Ort-Arbeitszeit mit Mitgliedschaft",
+  "Inklusiv-Minuten pro Monat – vorhersagbare Kosten",
+  "Priorisierte Hilfe bei Problemen",
+  "Quartals-Sicherheitschecks und WLAN-Optimierung"
+];
+
+export const BENEFITS_KMU = [
+  "Monitoring & Patch-Management für alle Geräte",
+  "Planbare Kosten pro Gerät/Monat",
+  "Vertraglich gesicherte Reaktionszeiten (SLA)",
+  "Remote-Support und Vor-Ort-Service inkludiert",
+  "Hardening, Backup und Endpoint-Protection verfügbar"
+];
+
 export const COPY = {
   brand: {
     name: "Tech Hilfe Pro",

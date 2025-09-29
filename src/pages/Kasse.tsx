@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import SEO from "@/components/SEO";
+import VatNotice from "@/components/VatNotice";
 import { track, bucketAmount } from "@/lib/analytics";
 import { readQuoteFromStorage, Quote } from "@/lib/quote";
 import StripeCheckout from "@/components/StripeCheckout";
@@ -156,6 +157,7 @@ const Kasse = () => {
               quote={quote || undefined}
               planId={planId || undefined}
             />
+            <VatNotice />
           </section>
 
           {/* Payment Methods Info */}

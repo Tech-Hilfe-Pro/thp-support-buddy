@@ -3,8 +3,10 @@ import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { stripePromise } from "@/lib/stripeClient";
 import SEO from "@/components/SEO";
 import MembershipCards from "@/components/MembershipCards";
+import VatNotice from "@/components/VatNotice";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { BENEFITS_PRIVAT } from "@/data/copy";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -167,9 +169,23 @@ export default function AboPage() {
             </section>
           ) : null}
 
+          {/* Benefits Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Ihre Vorteile als Mitglied</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {BENEFITS_PRIVAT.map((benefit, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg">
+                  <span className="text-green-600 mt-0.5 font-bold">✓</span>
+                  <span className="text-sm">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
           {/* Membership Cards */}
           <section id="vorteile" className="scroll-mt-24">
             <MembershipCards />
+            <VatNotice />
           </section>
 
           {/* Cross-link to pricing */}

@@ -9,6 +9,7 @@ import { loadStripeClient } from "@/lib/stripeClient";
 import { Quote } from "@/lib/quote";
 import { PRIVAT_ABOS, KMU_TIERS, STRIPE_PLAN_TO_ENV } from "@/data/pricing";
 import { formatEUR } from "@/lib/format";
+import VatNotice from "@/components/VatNotice";
 
 type Mode = "one_time" | "subscription";
 type CheckoutProps = { 
@@ -320,9 +321,10 @@ const StripeCheckout = ({ mode, quote, planId }: CheckoutProps) => {
                     <span>{formatEUR(quote.total)}</span>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Einmalige Zahlung für IT-Support-Leistung
-                </p>
+                <div className="text-xs text-muted-foreground">
+                  <p>Einmalige Zahlung für IT-Support-Leistung</p>
+                  <VatNotice />
+                </div>
               </div>
             ) : mode === "subscription" && planDetails ? (
               <div className="space-y-3">
@@ -345,9 +347,10 @@ const StripeCheckout = ({ mode, quote, planId }: CheckoutProps) => {
                     ))}
                   </ul>
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Monatliche Abrechnung, jederzeit kündbar
-                </p>
+                <div className="text-xs text-muted-foreground">
+                  <p>Monatliche Abrechnung, jederzeit kündbar</p>
+                  <VatNotice />
+                </div>
               </div>
             ) : (
               <div className="text-muted-foreground">
