@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { PRIVAT_ABOS, KMU_TIERS } from "@/data/pricing";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatEUR } from "@/lib/format";
+import BuyButton from "@/components/BuyButton";
+import VatNotice from "@/components/VatNotice";
 
 type PlanData = (typeof PRIVAT_ABOS)[0] | (typeof KMU_TIERS)[0];
 
@@ -36,12 +37,14 @@ function MembershipCard({ p, type }: { p: PlanData; type: "privat" | "kmu" }) {
           ))}
         </ul>
         <div className="mt-auto">
-          <Button asChild className="w-full">
-            <a href="/abo">Abo wählen</a>
-          </Button>
-          <p className="text-xs text-muted-foreground text-center mt-2">
-            Kein Ausweis der USt. gem. § 19 UStG.
-          </p>
+          <BuyButton 
+            kind={type} 
+            plan={plan.id} 
+            className="w-full"
+          >
+            Abo wählen
+          </BuyButton>
+          <VatNotice />
         </div>
       </CardContent>
     </Card>
@@ -76,6 +79,7 @@ export default function MembershipCards() {
               <a href="/kontakt" className="rounded-xl border px-4 py-2">Kontakt</a>
               <a href="/termin" className="rounded-xl bg-indigo-600 px-4 py-2 text-white">Beratung buchen</a>
             </div>
+            <VatNotice />
           </div>
         ) : (
           <div className={single ? "mx-auto max-w-3xl" : "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
