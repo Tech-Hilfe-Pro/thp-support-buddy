@@ -61,7 +61,7 @@
   --card-foreground: 218 32% 5%;
   --popover: 0 0% 100%;
   --popover-foreground: 218 32% 5%;
-  --primary: 206 100% 62%;
+  --primary: 205 100% 63%;
   --primary-foreground: 0 0% 98%;
   --secondary: 220 13% 91%;
   --secondary-foreground: 218 32% 5%;
@@ -73,7 +73,7 @@
   --destructive-foreground: 0 0% 98%;
   --border: 220 13% 91%;
   --input: 220 13% 91%;
-  --ring: 206 100% 62%;
+  --ring: 205 100% 63%;
   --radius: 0.75rem;
   --sidebar-background: 0 0% 98%;
   --sidebar-foreground: 240 5.3% 26.1%;
@@ -82,10 +82,10 @@
   --sidebar-accent: 240 4.8% 95.9%;
   --sidebar-accent-foreground: 240 5.9% 10%;
   --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 206 100% 62%;
+  --sidebar-ring: 205 100% 63%;
 
   /* Clean hero background with new primary */
-  --thp-hero: radial-gradient(1200px 420px at 50% -10%, hsl(206 100% 62% / 0.08), transparent 60%);
+  --thp-hero: radial-gradient(1200px 420px at 50% -10%, hsl(205 100% 63% / 0.08), transparent 60%);
 }
 
 .dark {
