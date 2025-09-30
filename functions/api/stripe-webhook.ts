@@ -1,7 +1,15 @@
 /**
- * POST /api/stripe/webhook
+ * POST /api/stripe-webhook
  * Webhook para eventos de Stripe
- * Verifica firma y actualiza estado de suscripciones
+ * 
+ * Variables .env:
+ * - STRIPE_SECRET_KEY
+ * - STRIPE_WEBHOOK_SECRET (opcional para verificación de firma)
+ * 
+ * Eventos manejados:
+ * - checkout.session.completed
+ * - customer.subscription.{created|updated|deleted}
+ * - invoice.payment_{succeeded|failed}
  */
 
 import { serve } from 'https://deno.land/std@0.190.0/http/server.ts';
@@ -39,9 +47,8 @@ serve(async (req) => {
       console.warn('STRIPE_WEBHOOK_SECRET no configurada. No se verificará la firma.');
     }
 
-    const stripe = new Stripe(stripeKey, {
-      apiVersion: '2025-08-27.basil',
-    });
+    // NO fijar apiVersion, usar la de la cuenta
+    const stripe = new Stripe(stripeKey);
 
     const body = await req.text();
     const signature = req.headers.get('stripe-signature');

@@ -1,7 +1,17 @@
 /**
  * POST /api/checkout
- * Endpoint para crear sesión de Stripe Checkout
+ * Endpoint para crear sesión de Stripe Checkout (mode=subscription)
  * Soporta planes KMU y Privat
+ * 
+ * Variables .env:
+ * - STRIPE_SECRET_KEY
+ * - STRIPE_PRICE_KMU_BASIC, STRIPE_PRICE_KMU_STANDARD, STRIPE_PRICE_KMU_PREMIUM
+ * - STRIPE_PRICE_PRIVAT_START, STRIPE_PRICE_PRIVAT_PLUS
+ * - APP_URL
+ * 
+ * Body: { planType:'kmu'|'privat', planId:string, qty?:number, companyName?:string, email:string }
+ * KMU: qty = endpoints (≥1); metadata { endpoints, minMonthly, planType, planId }
+ * PRIVAT: quantity=1; metadata { planType, planId }
  */
 
 import { serve } from 'https://deno.land/std@0.190.0/http/server.ts';
@@ -15,14 +25,13 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-// Mapeo de plan IDs a Stripe Price IDs
-// NOTA: Estos deben configurarse en variables de entorno o aquí según los price IDs reales de Stripe
+// Mapeo de plan IDs a Stripe Price IDs (desde .env)
 const STRIPE_PRICE_MAP: Record<string, string> = {
-  'kmu-basic': Deno.env.get('STRIPE_PRICE_KMU_BASIC') || 'price_kmu_basic_placeholder',
-  'kmu-standard': Deno.env.get('STRIPE_PRICE_KMU_STANDARD') || 'price_kmu_standard_placeholder',
-  'kmu-premium': Deno.env.get('STRIPE_PRICE_KMU_PREMIUM') || 'price_kmu_premium_placeholder',
-  'privat-start': Deno.env.get('STRIPE_PRICE_PRIVAT_START') || 'price_privat_start_placeholder',
-  'privat-plus': Deno.env.get('STRIPE_PRICE_PRIVAT_PLUS') || 'price_privat_plus_placeholder',
+  'kmu-basic': Deno.env.get('STRIPE_PRICE_KMU_BASIC') || '',
+  'kmu-standard': Deno.env.get('STRIPE_PRICE_KMU_STANDARD') || '',
+  'kmu-premium': Deno.env.get('STRIPE_PRICE_KMU_PREMIUM') || '',
+  'privat-start': Deno.env.get('STRIPE_PRICE_PRIVAT_START') || '',
+  'privat-plus': Deno.env.get('STRIPE_PRICE_PRIVAT_PLUS') || '',
 };
 
 serve(async (req) => {
@@ -102,7 +111,7 @@ serve(async (req) => {
 
     // Get Stripe price ID
     const stripePriceId = STRIPE_PRICE_MAP[planId];
-    if (!stripePriceId || stripePriceId.includes('placeholder')) {
+    if (!stripePriceId) {
       return new Response(
         JSON.stringify({
           error: 'Stripe Price ID no configurado para este plan. Configure las variables de entorno.',
@@ -114,7 +123,7 @@ serve(async (req) => {
       );
     }
 
-    // Initialize Stripe
+    // Initialize Stripe (NO fijar apiVersion, usar la de la cuenta)
     const stripeKey = Deno.env.get('STRIPE_SECRET_KEY');
     if (!stripeKey) {
       return new Response(
@@ -126,9 +135,7 @@ serve(async (req) => {
       );
     }
 
-    const stripe = new Stripe(stripeKey, {
-      apiVersion: '2025-08-27.basil',
-    });
+    const stripe = new Stripe(stripeKey);
 
     // Check if customer exists
     const customers = await stripe.customers.list({ email, limit: 1 });

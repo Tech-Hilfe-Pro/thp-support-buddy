@@ -8,23 +8,23 @@ export type PlanType = 'kmu' | 'privat';
 export interface PriceRequest {
   plz: string;
   serviceId: string;
-  hours: number;
-  onsite: boolean;
-  subscriptionTier?: SubscriptionTier;
-  urgency?: boolean;
-  hardware?: boolean;
+  hours: number;       // 0.5–8 en pasos de 0.5
+  onsite: boolean;     // true = in situ, false = remoto
+  urgency?: boolean;   // +25%
+  hardware?: boolean;  // +10%
+  subscriptionTier?: SubscriptionTier; // descuento SOLO si onsite
 }
 
 export interface PriceResponse {
   baseRate: number;
   zone: string;
   surcharges: {
-    urgency: number;
-    hardware: number;
+    urgency: number;  // en %
+    hardware: number; // en %
   };
   discount: {
     type: SubscriptionTier;
-    pct: number;
+    pct: number; // en %
   };
   hours: number;
   total: number;

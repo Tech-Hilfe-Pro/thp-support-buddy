@@ -1,6 +1,7 @@
 /**
- * Catálogo de servicios (Leistungen) Tech Hilfe Pro
+ * Catálogo de 17 servicios (Leistungen) Tech Hilfe Pro
  * IDs, slugs y nombres exactos según especificación
+ * Con remoteAvailable y descriptionShort de 2–3 líneas
  */
 
 import { Service } from './types.ts';
@@ -46,7 +47,7 @@ export const SERVICES: Service[] = [
     slug: 'heimnetzwerk-wlan',
     nameDe: 'Heimnetzwerk & WLAN',
     descriptionShort: 'Optimierung Ihres WLAN-Netzwerks, Router-Konfiguration und Mesh-Systeme.',
-    remoteAvailable: false,
+    remoteAvailable: true,
   },
   {
     id: '7',
