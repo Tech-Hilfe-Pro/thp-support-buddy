@@ -3,24 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   const words = [
-    "PC-Soforthilfe",
-    "Office & Programme", 
-    "Scan & Druck Service",
-    "Datenrettung NRW",
-    "WLAN Turbo Check",
-    "Gaming & VR Setup",
-    "SmartHome Assistent",
-    "Fitness & Wearables",
-    "Handy Soforthilfe",
-    "Audio & Musik Setup",
-    "TV Startklar machen",
-    "Streaming Support",
-    "Receiver Einrichtung",
-    "Windows Update Fix",
-    "Tablet & E-Reader"
+    "PC-Reparatur vor Ort",
+    "Netzwerk-Setup",
+    "Digitalisierung für KMU"
   ];
   
-  const [shuffledWords] = useState(() => [...words].sort(() => Math.random() - 0.5));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [reduced, setReduced] = useState(false);
@@ -40,15 +27,15 @@ export default function Hero() {
       setIsVisible(false);
       
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % shuffledWords.length);
+        setCurrentIndex((prev) => (prev + 1) % words.length);
         setIsVisible(true);
-      }, 200);
-    }, 3000);
+      }, 300);
+    }, 3500);
 
     return () => clearInterval(interval);
-  }, [shuffledWords.length, reduced]);
+  }, [words.length, reduced]);
 
-  const currentWord = shuffledWords[currentIndex];
+  const currentWord = reduced ? words.join(" • ") : words[currentIndex];
 
   return (
     <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-thp-primary via-thp-primary-dark to-[hsl(205,90%,53%)] overflow-hidden">
@@ -57,9 +44,9 @@ export default function Hero() {
         <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
           Schneller IT-Support für Zuhause & Unternehmen
         </h1>
-        <div className="text-3xl md:text-5xl font-extrabold mt-2 text-white/95 h-[1.2em] flex items-center justify-center overflow-hidden">
+        <div className="text-3xl md:text-5xl font-extrabold mt-2 text-white/95 min-h-[1.2em] flex items-center justify-center overflow-hidden">
           <span 
-            className={`transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0'} max-w-full px-2`}
+            className={`transition-all duration-300 ${isVisible || reduced ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} max-w-full px-2`}
             style={{ textAlign: 'center' }}
           >
             {currentWord}
