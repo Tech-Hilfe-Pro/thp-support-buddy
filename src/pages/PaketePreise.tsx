@@ -55,7 +55,7 @@ export default function PaketePreisePage() {
                     </li>
                   ))}
                 </ul>
-                <div className="grid grid-cols-3 gap-2 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   {PRIVAT_ABOS.map((abo) => (
                     <div key={abo.id} className="p-3 border rounded-lg text-center">
                       <div className="font-medium">{abo.name}</div>
@@ -81,7 +81,7 @@ export default function PaketePreisePage() {
                     </li>
                   ))}
                 </ul>
-                <div className="grid grid-cols-3 gap-2 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   {KMU_TIERS.map((tier) => (
                     <div key={tier.id} className="p-3 border rounded-lg text-center">
                       <div className="font-medium">{tier.name}</div>

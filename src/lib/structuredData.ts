@@ -62,3 +62,57 @@ export function buildLocalBusinessJsonLd() {
     }
   };
 }
+
+export function buildPricingOffersJsonLd() {
+  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://www.techhilfepro.de";
+  
+  const offers = [
+    {
+      "@type": "Offer",
+      "name": "Home-Office+ Basic",
+      "description": "Monitoring leicht, AV/Updates verwaltet, Priorität Standard",
+      "price": "16.90",
+      "priceCurrency": "EUR",
+      "category": "IT-Support für Privatpersonen",
+      "url": `${siteUrl}/pakete-preise`
+    },
+    {
+      "@type": "Offer", 
+      "name": "Home-Office+ Plus",
+      "description": "Premium-Virenschutz, jährlicher WLAN-Check, Priorität Express",
+      "price": "24.90",
+      "priceCurrency": "EUR",
+      "category": "IT-Support für Privatpersonen",
+      "url": `${siteUrl}/pakete-preise`
+    },
+    {
+      "@type": "Offer",
+      "name": "KMU Grow", 
+      "description": "Monitoring, Patch-Management, Remote-Support, M365-Backup",
+      "price": "49",
+      "priceCurrency": "EUR",
+      "category": "Managed IT für KMU",
+      "url": `${siteUrl}/pakete-preise`
+    },
+    {
+      "@type": "Offer",
+      "name": "KMU Pro",
+      "description": "Image-Backup, Vor-Ort inkl., SLA 4h", 
+      "price": "79",
+      "priceCurrency": "EUR",
+      "category": "Managed IT für KMU",
+      "url": `${siteUrl}/pakete-preise`
+    }
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "IT-Support & Managed Services",
+    "provider": {
+      "@type": "Organization",
+      "name": COMPANY.brand
+    },
+    "offers": offers
+  };
+}

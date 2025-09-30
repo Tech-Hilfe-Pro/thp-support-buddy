@@ -1,7 +1,34 @@
 export const PRIVAT_ABOS = [
-  { id:"S", name:"Paket-S",  preis:9.90,  minuten:30,  rabattVorOrt:0.20, features:["30 Min Remote/Monat","20% Rabatt Vor-Ort","Quartals-Sicherheitscheck"]},
-  { id:"M", name:"Paket-M",  preis:16.90, minuten:45,  rabattVorOrt:0.20, features:["45 Min Remote/Monat","20% Rabatt Vor-Ort","WLAN-Check jährlich"]},
-  { id:"L", name:"Paket-L",  preis:24.90, minuten:60,  rabattVorOrt:0.20, features:["60 Min Remote/Monat","20% Rabatt Vor-Ort","AV gemanagt"]},
+  { 
+    id: "basic", 
+    name: "Home-Office+ Basic", 
+    preis: 16.90, 
+    segment: "privat" as const,
+    devicesHint: "1–5 Geräte",
+    rabattVorOrt: 0.20, 
+    features: [
+      "Monitoring leicht",
+      "AV/Updates verwaltet", 
+      "Priorität Standard",
+      "20% Vor-Ort-Rabatt für Abonnenten"
+    ],
+    legacyIds: ["S", "M"] // Mapping für bestehende Referenzen
+  },
+  { 
+    id: "plus", 
+    name: "Home-Office+ Plus", 
+    preis: 24.90, 
+    segment: "privat" as const,
+    devicesHint: "1–5 Geräte",
+    rabattVorOrt: 0.20, 
+    features: [
+      "Alle Basic-Features",
+      "Jährlicher WLAN-Check",
+      "Verwalteter Premium-Virenschutz",
+      "Priorität Express"
+    ],
+    legacyIds: ["L"] // Mapping für bestehende Referenzen
+  },
 ];
 
 export const PRIVAT_ON_DEMAND = {
@@ -11,16 +38,48 @@ export const PRIVAT_ON_DEMAND = {
 };
 
 export const KMU_TIERS = [
-  { id:"starter", name:"Starter", preisProGeraet:29, features:["Monitoring & Remote-Support","Patch-Management","Monatsbericht"]},
-  { id:"grow",    name:"Grow",    preisProGeraet:49, features:["+ Hardening/Policies","Inventar & SW-Rollout","Reaktionszeit < 8h"]},
-  { id:"pro",     name:"Pro",     preisProGeraet:79, features:["SLA 4h","1x Vor-Ort/Monat inkl.","Endpoint-Backup basic"]},
+  { 
+    id: "grow", 
+    name: "KMU Grow", 
+    preisProGeraet: 49, 
+    segment: "kmu" as const,
+    devicesHint: "bis 29 Mitarbeitende",
+    features: [
+      "Monitoring + Patch-Management",
+      "Remote-Support",
+      "Monatsreport",
+      "M365-Backup",
+      "MDM/MTD mobil",
+      "Reaktionszeit < 8h"
+    ],
+    legacyIds: ["starter", "grow"] // Mapping für bestehende Referenzen
+  },
+  { 
+    id: "pro", 
+    name: "KMU Pro", 
+    preisProGeraet: 79, 
+    segment: "kmu" as const,
+    devicesHint: "bis 29 Mitarbeitende", 
+    features: [
+      "Alle Grow-Features",
+      "Image-Backup auf kritischen Geräten",
+      "1× Vor-Ort/Monat inkl.",
+      "SLA 4h"
+    ],
+    legacyIds: ["pro"] // Mapping für bestehende Referenzen
+  },
 ];
 
 export const STRIPE_PLAN_TO_ENV: Record<string, string> = {
-  S: "PRICE_PRIVAT_S",
-  M: "PRICE_PRIVAT_M", 
-  L: "PRICE_PRIVAT_L",
-  starter: "PRICE_KMU_STARTER",
-  grow: "PRICE_KMU_GROW",
-  pro: "PRICE_KMU_PRO"
+  // Neue Struktur
+  basic: "PRICE_PRIVAT_BASIC",
+  plus: "PRICE_PRIVAT_PLUS",
+  grow: "PRICE_KMU_GROW", 
+  pro: "PRICE_KMU_PRO",
+  
+  // Legacy Support
+  S: "PRICE_PRIVAT_BASIC", // Maps to Basic
+  M: "PRICE_PRIVAT_BASIC", // Maps to Basic  
+  L: "PRICE_PRIVAT_PLUS",  // Maps to Plus
+  starter: "PRICE_KMU_GROW" // Maps to Grow
 };

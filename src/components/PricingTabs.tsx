@@ -48,7 +48,8 @@ const PricingTabs = () => {
         <div className="space-y-8">
           {/* Abo-Pakete */}
           <section>
-            <h3 className="text-2xl font-semibold mb-6 text-center">Senioren-Abos</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-center">Home-Office+ Pakete</h3>
+            <p className="text-center text-muted-foreground mb-6">Für Privatpersonen · 1–5 Geräte</p>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-border rounded-lg">
                 <caption className="sr-only">Senioren-Abo Pakete im Vergleich</caption>
@@ -148,6 +149,7 @@ const PricingTabs = () => {
           {/* KMU Tiers */}
           <section>
             <h3 className="text-2xl font-semibold mb-6 text-center">Managed IT-Services</h3>
+            <p className="text-center text-muted-foreground mb-6">Managed IT für bis 29 Mitarbeitende</p>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-border rounded-lg">
                 <caption className="sr-only">KMU IT-Service Pakete im Vergleich</caption>
