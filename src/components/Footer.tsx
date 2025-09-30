@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Linkedin, MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import { COPY } from "@/data/copy";
-import { COMPANY, ADDRESS_LINE } from "@/data/company";
+import { COMPANY } from "@/data/company";
 
 const Footer = () => {
   return (
@@ -15,13 +15,13 @@ const Footer = () => {
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary" />
                 <div>
-                <div className="flex items-center gap-2 font-medium">
-                  <img src="/logo.png" alt="Logo" className="w-5 h-5" />
-                  <span>Tech <span className="text-thp-primary">Hilfe</span> Pro</span>
-                </div>
-                <p>Büro in Köln (virtuell)</p>
-                <p>Remote-Arbeiten möglich</p>
-                <p className="mt-1">Vor-Ort-Service: Köln, Neuss & Umgebung (40 km)</p>
+                  <div className="flex items-center gap-2 font-medium">
+                    <img src="/logo.png" alt="Logo" className="w-5 h-5" />
+                    <span>Tech <span className="text-[hsl(var(--thp-primary))]">Hilfe</span> Pro</span>
+                  </div>
+                  <p>Büro in Köln (virtuell)</p>
+                  <p>Remote-Arbeiten möglich</p>
+                  <p className="mt-1">Vor-Ort-Service: Köln, Neuss & Umgebung (40 km)</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -98,46 +98,45 @@ const Footer = () => {
               >
                 Widerruf
               </Link>
+              <Link
+                to="/recht/cookies"
+                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+              >
+                Cookie-Richtlinie
+              </Link>
+            </nav>
+          </div>
+
+          {/* Hilfe & Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Hilfe & Support</h3>
+            <nav className="space-y-2">
+              <Link
+                to="/faq"
+                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+              >
+                FAQ - Häufige Fragen
+              </Link>
+              <Link
+                to="/kontakt"
+                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+              >
+                Kontakt
+              </Link>
+              <a
+                href={COMPANY.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                WhatsApp-Support
+              </a>
             </nav>
             <div className="mt-4 pt-4 border-t">
               <p className="text-xs text-muted-foreground">
-                Kleinunternehmer i.S.d. § 19 UStG - keine Ausweisung der Umsatzsteuer
+                Kleinunternehmer i.S.d. § 19 UStG<br />
+                Zahlungen sicher via Stripe
               </p>
-            </div>
-          </div>
-
-          {/* Social Media */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-foreground">Folge uns</h3>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
             </div>
           </div>
         </div>

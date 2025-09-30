@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const AGB = () => {
   return (
@@ -53,17 +54,26 @@ const AGB = () => {
             <h2 className="text-2xl font-semibold text-foreground mb-4">§ 3 Preise und Zahlungsbedingungen</h2>
             <div className="text-muted-foreground space-y-4">
               <p>
-                Es gelten die zum Zeitpunkt der Bestellung aktuellen Preise. 
-                Alle Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer, 
-                sofern diese anfällt.
+                Es gelten die zum Zeitpunkt der Bestellung aktuellen Preise.
+              </p>
+              <p>
+                <strong>§ 19 UStG (Kleinunternehmerregelung):</strong> Der Anbieter ist 
+                Kleinunternehmer im Sinne von § 19 Abs. 1 UStG. Daher wird keine 
+                Umsatzsteuer berechnet und ausgewiesen.
               </p>
               <p>
                 Die Abrechnung erfolgt in 15-Minuten-Blöcken. Angefangene Blöcke werden 
                 voll berechnet. Bei Vor-Ort-Terminen wird zusätzlich eine Anfahrtspauschale 
-                je nach Entfernung berechnet.
+                je nach PLZ-Zone (Entfernung) berechnet.
+              </p>
+              <p>
+                <strong>Zahlungsabwicklung:</strong> Zahlungen erfolgen sicher über Stripe. 
+                Akzeptiert werden Kreditkarte, Debitkarte, SEPA-Lastschrift und weitere 
+                Zahlungsmethoden je nach Verfügbarkeit.
               </p>
               <p>
                 Rechnungen sind binnen 14 Tagen nach Rechnungsdatum ohne Abzug zur Zahlung fällig.
+                Bei Abonnements erfolgt die Abbuchung monatlich im Voraus.
               </p>
             </div>
           </section>
@@ -101,7 +111,33 @@ const AGB = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">§ 6 Kleinunternehmerregelung</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">§ 6 Abonnements und Kündigung</h2>
+            <div className="text-muted-foreground space-y-4">
+              <p>
+                Abonnements (Haus-IT Start, Haus-IT Plus, KMU-Pakete) haben keine Mindestlaufzeit 
+                und können monatlich zum Monatsende gekündigt werden. Die Kündigung muss 
+                schriftlich (E-Mail genügt) erfolgen.
+              </p>
+              <p>
+                Rabatte aus Abonnements gelten nur bei aktivem Abo. Nach Kündigung entfallen 
+                alle Vergünstigungen ab dem nächsten Abrechnungszeitraum.
+              </p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">§ 7 Datenschutz und Datenverarbeitung</h2>
+            <div className="text-muted-foreground">
+              <p>
+                Bei Remote-Support-Sitzungen verarbeiten wir personenbezogene Daten 
+                (Name, E-Mail, Telefon, IP-Adresse) gemäß unserer Datenschutzerklärung. 
+                Details siehe: <Link to="/recht/datenschutz" className="text-primary underline">Datenschutzerklärung</Link>
+              </p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">§ 8 Kleinunternehmerregelung</h2>
             <div className="text-muted-foreground">
               <p>
                 Der Anbieter ist Kleinunternehmer im Sinne von § 19 UStG und 
@@ -111,7 +147,7 @@ const AGB = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">§ 7 Schlussbestimmungen</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">§ 9 Schlussbestimmungen</h2>
             <div className="text-muted-foreground space-y-4">
               <p>
                 Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts. 

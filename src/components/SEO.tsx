@@ -1,3 +1,6 @@
+import { Helmet } from "react-helmet-async";
+import { COMPANY } from "@/data/company";
+
 const SITE_URL = import.meta.env.SITE_URL || import.meta.env.VITE_SITE_URL || "https://www.techhilfepro.de";
 
 type Props = {
@@ -15,25 +18,90 @@ export default function SEO({ title, description, path, robots, ogImage="/og/def
   const url = `${base}${path}`;
   const img = ogImage.startsWith("http") ? ogImage : `${base}${ogImage}`;
   
+  // Schema.org structured data
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": COMPANY.brand,
+    "image": `${base}/brand/logo.png`,
+    "url": base,
+    "telephone": COMPANY.telE164,
+    "email": COMPANY.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": COMPANY.street,
+      "addressLocality": COMPANY.city,
+      "postalCode": COMPANY.postalCode,
+      "addressCountry": "DE"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Köln"
+      },
+      {
+        "@type": "City",
+        "name": "Neuss"
+      },
+      {
+        "@type": "State",
+        "name": "Nordrhein-Westfalen"
+      }
+    ],
+    "paymentAccepted": "Stripe, Überweisung, Rechnung",
+    "priceRange": "€€",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "10:00",
+        "closes": "16:00"
+      }
+    ],
+    "sameAs": [
+      COMPANY.whatsappUrl
+    ],
+    "description": "IT-Support für Privat & KMU in Köln, Neuss & Umgebung. Remote-First, Vor-Ort bei Bedarf. Transparente Preise, monatlich kündbar."
+  };
+  
   return (
-    <>
+    <Helmet>
+      <html lang={lang} />
       <title>{title}</title>
       <meta name="description" content={description} />
       {robots && <meta name="robots" content={robots} />}
       <link rel="canonical" href={url} />
+      
+      {/* OpenGraph */}
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content={lang==="de"?"de_DE":"en_US"} />
+      <meta property="og:site_name" content={COMPANY.brand} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={img} />
+      
+      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={img} />
+      
+      {/* Favicons */}
       <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
-      <meta name="theme-color" content="#111827" />
-    </>
+      <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon.png" />
+      <meta name="theme-color" content="#3BA9FF" />
+      
+      {/* Schema.org structured data */}
+      <script type="application/ld+json">
+        {JSON.stringify(organizationSchema)}
+      </script>
+    </Helmet>
   );
 }

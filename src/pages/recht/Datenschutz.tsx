@@ -93,8 +93,17 @@ const Datenschutz = () => {
               
               <h3 className="font-semibold text-foreground">Stripe (bei Zahlungen)</h3>
               <p>
-                Für die Zahlungsabwicklung nutzen wir Stripe. Weitere Informationen zum 
-                Datenschutz bei Stripe finden Sie unter: https://stripe.com/privacy
+                Für die Zahlungsabwicklung nutzen wir Stripe. Stripe verarbeitet Ihre 
+                Zahlungsdaten sicher und DSGVO-konform. Wir speichern keine vollständigen 
+                Kreditkartendaten auf unseren Servern. Weitere Informationen zum 
+                Datenschutz bei Stripe finden Sie unter: 
+                <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary underline ml-1">
+                  https://stripe.com/privacy
+                </a>
+              </p>
+              <p className="text-sm italic">
+                Hinweis: Alle Zahlungen erfolgen sicher über Stripe. Ihre Daten werden 
+                verschlüsselt übertragen und gespeichert.
               </p>
             </div>
           </section>
