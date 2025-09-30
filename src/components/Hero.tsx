@@ -54,10 +54,10 @@ export default function Hero() {
     <section id="hero" className="pt-10 md:pt-14 pb-12 md:pb-16">
       <div className="mx-auto max-w-5xl px-4 text-center">
         <h1 className="text-3xl md:text-5xl font-extrabold">Schneller IT-Support für Zuhause & Unternehmen</h1>
-        <div className="text-3xl md:text-5xl font-extrabold mt-2 text-primary h-[1.2em] flex items-center justify-center">
+        <div className="text-3xl md:text-5xl font-extrabold mt-2 text-primary h-[1.2em] flex items-center justify-center overflow-hidden">
           <span 
-            className={`transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-            style={{ minWidth: '20ch', textAlign: 'center' }}
+            className={`transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0'} max-w-full px-2`}
+            style={{ textAlign: 'center' }}
           >
             {currentWord}
           </span>

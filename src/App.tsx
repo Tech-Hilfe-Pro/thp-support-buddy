@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import RouteTracker from "./components/RouteTracker";
 import RouteFocus from "./components/RouteFocus";
 import SkipLink from "./components/SkipLink";
@@ -40,6 +40,36 @@ const queryClient = new QueryClient();
 
 const App = () => {
   console.log("App.tsx: App component rendering");
+  
+  // Prevenir scroll horizontal accidental en iOS/Safari mediante touch events
+  useEffect(() => {
+    let startX = 0;
+    let startY = 0;
+    
+    const handleTouchStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    };
+    
+    const handleTouchMove = (e: TouchEvent) => {
+      const deltaX = Math.abs(e.touches[0].clientX - startX);
+      const deltaY = Math.abs(e.touches[0].clientY - startY);
+      
+      // Si el movimiento es predominantemente horizontal, prevenir el scroll
+      if (deltaX > deltaY && deltaX > 10) {
+        e.preventDefault();
+      }
+    };
+    
+    // Añadir listeners con passive: false para poder usar preventDefault en iOS
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
   
   return (
   <QueryClientProvider client={queryClient}>

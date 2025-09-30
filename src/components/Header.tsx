@@ -66,8 +66,8 @@ export default function Header() {
             onClick={() => setSidebarOpen(false)}
           />
           
-          {/* Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 hidden md:block animate-in slide-in-from-right duration-300">
+          {/* Sidebar - max-w-full para prevenir overflow en tablets */}
+          <div className="fixed top-0 right-0 h-full w-80 max-w-full bg-white shadow-xl z-50 hidden md:block animate-in slide-in-from-right duration-300 overflow-y-auto">
             <div className="flex items-center justify-between p-4 border-b">
               <h2 className="text-lg font-semibold">Menü</h2>
               <button 
