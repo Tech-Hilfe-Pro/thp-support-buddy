@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Check } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,101 +11,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import SEO from "@/components/SEO";
+import { KMU_PLANS } from "@/data/pricingData";
 
 /**
  * Página "KMU – Managed Services"
- * - 3 cards con precios fijos y mínimos:
- *   • Basic – 14,90 €/Endpoint/Monat — Mindestumsatz 99 €/Monat
- *   • Standard – 24,90 €/Endpoint/Monat — Mindestumsatz 179 €/Monat
- *   • Premium – 39,90 €/Endpoint/Monat — Mindestumsatz 299 €/Monat
- * - Tabla comparativa (RMM, Patches, Backup Basic, Reporting, SLA)
- * - Badges: "–10% Vorauszahlung", "–25% Vor-Ort mit aktivem Abo"
- * - CTA "Plan wählen" → POST /api/checkout (plan, qty endpoints)
- * - Integración con GET /api/plans-kmu
+ * Lee exclusivamente de pricingData.ts - sin hardcodes
  */
 
-interface KMUPlan {
-  id: string;
-  name: string;
-  price: number;
-  minMonthly: number;
-  annualDiscount: number;
-  onsiteDiscount: number;
-}
-
 export default function KMUPage() {
-  // Hardcoded plans mientras Edge Functions se despliegan
-  const [plans] = useState<KMUPlan[]>([
-    {
-      id: 'kmu-basic',
-      name: 'Managed IT-Partner (Basic)',
-      price: 14.90,
-      minMonthly: 99,
-      annualDiscount: 0.10,
-      onsiteDiscount: 0.25,
-    },
-    {
-      id: 'kmu-standard',
-      name: 'Advanced IT-Pro (Standard)',
-      price: 24.90,
-      minMonthly: 179,
-      annualDiscount: 0.10,
-      onsiteDiscount: 0.25,
-    },
-    {
-      id: 'kmu-premium',
-      name: 'Enterprise IT-Guard (Premium)',
-      price: 39.90,
-      minMonthly: 299,
-      annualDiscount: 0.10,
-      onsiteDiscount: 0.25,
-    },
-  ]);
-  const [loading] = useState(false);
-  const [error] = useState<string | null>(null);
-
-  // TODO: Reactivar cuando Edge Functions estén desplegadas
-  // useEffect(() => {
-  //   fetch('/api/plans-kmu')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       if (data.error) throw new Error(data.error);
-  //       setPlans(data.plans || []);
-  //     })
-  //     .catch(err => {
-  //       console.error('Error loading KMU plans:', err);
-  //       setError('Fehler beim Laden der Pläne.');
-  //     })
-  //     .finally(() => setLoading(false));
-  // }, []);
-
-  const features = {
-    'kmu-basic': {
-      rmm: true,
-      patches: true,
-      backup: false,
-      reporting: 'Monatlich',
-      sla: '16h/Werktag',
-      onsite: '1× pro Quartal'
-    },
-    'kmu-standard': {
-      rmm: true,
-      patches: true,
-      backup: 'Basic',
-      reporting: 'Wöchentlich',
-      sla: '4h/Werktag',
-      onsite: '1× pro Monat'
-    },
-    'kmu-premium': {
-      rmm: true,
-      patches: true,
-      backup: 'Advanced',
-      reporting: 'Täglich',
-      sla: '1h/8h (24/7)',
-      onsite: '2× pro Monat'
-    }
-  };
-
   return (
     <>
       <SEO 
@@ -138,179 +50,142 @@ export default function KMUPage() {
           </Badge>
         </div>
 
-        {loading && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">Pläne werden geladen...</p>
-          </div>
-        )}
-
-        {error && (
-          <div className="text-center py-12">
-            <p className="text-destructive">{error}</p>
-          </div>
-        )}
-
-        {/* DEBUG: Verificación de precios */}
-        <p data-check="prices" className="text-center text-sm font-mono mb-8 text-muted-foreground">
-          14,90 | 24,90 | 39,90
-        </p>
-
-        {/* 3 Cards con precios */}
-        {!loading && !error && plans.length > 0 && (
-          <>
-            <section className="grid md:grid-cols-3 gap-6 mb-16 items-stretch">
-              {plans.map((plan, idx) => {
-                const isPopular = idx === 1; // Standard como más popular
-                return (
-                  <Card 
-                    key={plan.id} 
-                    className={`relative flex flex-col ${isPopular ? 'border-2 border-primary shadow-lg' : 'border border-border'}`}
+        {/* 3 Cards con precios desde pricingData.ts */}
+        <section className="grid md:grid-cols-3 gap-6 mb-16 items-stretch">
+          {KMU_PLANS.map((plan, idx) => {
+            const isPopular = idx === 1; // Standard como más popular
+            return (
+              <Card 
+                key={plan.id} 
+                className={`relative flex flex-col ${isPopular ? 'border-2 border-primary shadow-lg' : 'border border-border'}`}
+              >
+                {isPopular && (
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[hsl(var(--thp-cta))] text-white">
+                    Beliebt
+                  </Badge>
+                )}
+                <CardHeader>
+                  <CardTitle className="text-xl">{plan.name}</CardTitle>
+                  <CardDescription className="text-xs uppercase tracking-wide">
+                    {plan.subtitle}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 flex flex-col flex-1">
+                  <div>
+                    <div className="text-3xl font-bold text-primary">
+                      {plan.pricePerEndpoint.toFixed(2)} €
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      pro Endpoint/Monat
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Mindestumsatz: {plan.minMonthly} €/Monat
+                    </div>
+                  </div>
+                  
+                  <ul className="space-y-2 text-sm flex-1">
+                    {plan.bullets.map((bullet, bidx) => (
+                      <li key={bidx} className="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Link 
+                    to="/kontakt"
+                    className={`block w-full rounded-xl px-4 py-3 text-center font-semibold transition-colors mt-auto ${
+                      isPopular 
+                        ? 'bg-[hsl(var(--thp-cta))] text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2' 
+                        : 'bg-[hsl(var(--thp-primary))] text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-primary))] focus-visible:ring-offset-2'
+                    }`}
                   >
-                    {isPopular && (
-                      <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cta text-white">
-                        Beliebt
-                      </Badge>
-                    )}
-                    <CardHeader>
-                      <CardTitle className="text-xl">{plan.name}</CardTitle>
-                      <CardDescription>
-                        {idx === 0 && 'Für kleinere Teams'}
-                        {idx === 1 && 'Für wachsende Unternehmen'}
-                        {idx === 2 && 'Für anspruchsvolle IT-Anforderungen'}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4 flex flex-col flex-1">
-                      <div>
-                        <div className="text-3xl font-bold text-primary">
-                          {plan.price.toFixed(2)} €
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          pro Endpoint/Monat
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          Mindestumsatz: {plan.minMonthly} €/Monat
-                        </div>
-                      </div>
-                      
-                      <ul className="space-y-2 text-sm">
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span>Remote Monitoring & Management</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span>Automatisches Patch-Management</span>
-                        </li>
-                        {features[plan.id as keyof typeof features].backup && (
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                            <span>Backup {features[plan.id as keyof typeof features].backup}</span>
-                          </li>
-                        )}
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span>
-                            Reporting {features[plan.id as keyof typeof features].reporting}
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span>SLA: {features[plan.id as keyof typeof features].sla}</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span>
-                            Vor-Ort: {features[plan.id as keyof typeof features].onsite}
-                          </span>
-                        </li>
-                      </ul>
-                      
-                      <Link 
-                        to="/kontakt"
-                        className={`block w-full rounded-xl px-4 py-3 text-center font-semibold transition-colors mt-auto ${
-                          isPopular 
-                            ? 'bg-[hsl(var(--thp-cta))] text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2' 
-                            : 'bg-[hsl(var(--thp-primary))] text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-primary))] focus-visible:ring-offset-2'
-                        }`}
-                      >
-                        Plan wählen
-                      </Link>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </section>
+                    Plan wählen
+                  </Link>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </section>
 
-            {/* Tabla comparativa */}
-            <section className="mb-16">
-              <h2 className="text-2xl font-semibold mb-6 text-center">
-                Vergleichen Sie unsere KMU-Pakete
-              </h2>
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Feature</TableHead>
-                      <TableHead className="text-center">Basic</TableHead>
-                      <TableHead className="text-center">Standard</TableHead>
-                      <TableHead className="text-center">Premium</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">RMM (Monitoring)</TableCell>
-                      <TableCell className="text-center">
-                        <Check className="w-5 h-5 text-green-600 mx-auto" />
+        {/* Tabla comparativa - sin "incluidas", solo features */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold mb-6 text-center">
+            Vergleichen Sie unsere KMU-Pakete
+          </h2>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Feature</TableHead>
+                  {KMU_PLANS.map(p => (
+                    <TableHead key={p.id} className="text-center">{p.subtitle}</TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-medium">RMM (Monitoring)</TableCell>
+                  {KMU_PLANS.map(p => (
+                    <TableCell key={p.id} className="text-center">
+                      {p.features.rmm ? <Check className="w-5 h-5 text-green-600 mx-auto" /> : '–'}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Patch-Management</TableCell>
+                  {KMU_PLANS.map(p => (
+                    <TableCell key={p.id} className="text-center">
+                      {p.features.patch ? <Check className="w-5 h-5 text-green-600 mx-auto" /> : '–'}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Backup</TableCell>
+                  {KMU_PLANS.map(p => (
+                    <TableCell key={p.id} className="text-center capitalize">
+                      {p.features.backup === 'none' ? '–' : p.features.backup}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Reporting</TableCell>
+                  {KMU_PLANS.map(p => (
+                    <TableCell key={p.id} className="text-center capitalize">
+                      {p.features.reporting}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">SLA Reaktionszeit</TableCell>
+                  {KMU_PLANS.map(p => (
+                    <TableCell key={p.id} className="text-center">
+                      {p.features.sla}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Vor-Ort-Service</TableCell>
+                  {KMU_PLANS.map(p => (
+                    <TableCell key={p.id} className="text-center text-xs">
+                      {p.features.onsite}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {KMU_PLANS.some(p => p.features.consulting) && (
+                  <TableRow>
+                    <TableCell className="font-medium">Consulting</TableCell>
+                    {KMU_PLANS.map(p => (
+                      <TableCell key={p.id} className="text-center text-xs">
+                        {p.features.consulting || '–'}
                       </TableCell>
-                      <TableCell className="text-center">
-                        <Check className="w-5 h-5 text-green-600 mx-auto" />
-                      </TableCell>
-                      <TableCell className="text-center">
-                        <Check className="w-5 h-5 text-green-600 mx-auto" />
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Patch-Management</TableCell>
-                      <TableCell className="text-center">
-                        <Check className="w-5 h-5 text-green-600 mx-auto" />
-                      </TableCell>
-                      <TableCell className="text-center">
-                        <Check className="w-5 h-5 text-green-600 mx-auto" />
-                      </TableCell>
-                      <TableCell className="text-center">
-                        <Check className="w-5 h-5 text-green-600 mx-auto" />
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Backup</TableCell>
-                      <TableCell className="text-center">–</TableCell>
-                      <TableCell className="text-center">Basic</TableCell>
-                      <TableCell className="text-center">Advanced</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Reporting</TableCell>
-                      <TableCell className="text-center">Monatlich</TableCell>
-                      <TableCell className="text-center">Wöchentlich</TableCell>
-                      <TableCell className="text-center">Täglich</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">SLA Reaktionszeit</TableCell>
-                      <TableCell className="text-center">16h/Werktag</TableCell>
-                      <TableCell className="text-center">4h/Werktag</TableCell>
-                      <TableCell className="text-center">1h/8h (24/7)</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Vor-Ort-Service</TableCell>
-                      <TableCell className="text-center">1× pro Quartal</TableCell>
-                      <TableCell className="text-center">1× pro Monat</TableCell>
-                      <TableCell className="text-center">2× pro Monat</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-            </section>
-          </>
-        )}
+                    ))}
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        </section>
 
         {/* CTA final */}
         <section className="text-center bg-muted/30 rounded-2xl p-8">
@@ -323,7 +198,7 @@ export default function KMUPage() {
           </p>
           <Link 
             to="/kontakt"
-            className="inline-block rounded-xl bg-thp-cta px-6 py-3 font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
+            className="inline-block rounded-xl bg-[hsl(var(--thp-cta))] px-6 py-3 font-semibold text-white transition-all hover:opacity-90 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2"
           >
             Jetzt Beratung anfragen
           </Link>

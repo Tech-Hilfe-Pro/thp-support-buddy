@@ -26,7 +26,7 @@ export default function Pricing() {
               onClick={() => setMode('privat')}
               className={`px-6 py-2 rounded-md transition-colors ${
                 mode === 'privat'
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-[hsl(var(--thp-primary))] text-white'
                   : 'hover:bg-muted'
               }`}
             >
@@ -36,7 +36,7 @@ export default function Pricing() {
               onClick={() => setMode('kmu')}
               className={`px-6 py-2 rounded-md transition-colors ${
                 mode === 'kmu'
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-[hsl(var(--thp-primary))] text-white'
                   : 'hover:bg-muted'
               }`}
             >
@@ -64,22 +64,22 @@ export default function Pricing() {
                     </CardDescription>
                     <div className="mt-4">
                       <span className="text-4xl font-bold text-foreground">
-                        {plan.preis.toFixed(2).replace('.', ',')} €
+                        {plan.monthly.toFixed(2).replace('.', ',')} €
                       </span>
                       <span className="text-muted-foreground ml-2">/Monat</span>
                     </div>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
                     <ul className="space-y-3 mb-6 flex-1">
-                      {plan.features.map((feature, idx) => (
+                      {plan.bullets.map((bullet, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                          <span className="text-sm">{feature}</span>
+                          <span className="text-sm">{bullet}</span>
                         </li>
                       ))}
                     </ul>
                     <Button asChild className="w-full mt-auto">
-                      <Link to="/kontakt">Abo wählen</Link>
+                      <Link to="/kontakt">Jetzt wählen</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -155,42 +155,65 @@ export default function Pricing() {
             </div>
           </>
         ) : (
-          <div className="grid md:grid-cols-3 gap-8">
-            {KMU_PLANS.map((plan) => (
-              <Card key={plan.id} className={plan.id === 'standard' ? 'border-primary shadow-lg' : ''}>
-                {plan.id === 'standard' && (
-                  <div className="bg-primary text-primary-foreground text-center py-1 text-sm font-medium">
-                    Empfohlen
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle>{plan.name}</CardTitle>
-                  <CardDescription>
-                    <span className="text-3xl font-bold text-foreground">
-                      {plan.preisProEndpoint.toFixed(2)} €
-                    </span>
-                    <span className="text-muted-foreground">/Endpoint/Monat</span>
-                  </CardDescription>
-                  <Badge variant="outline" className="w-fit mt-2">
-                    Mindestumsatz: {plan.mindestumsatz} €/Monat
-                  </Badge>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild className="w-full" variant={plan.id === 'standard' ? 'default' : 'outline'}>
-                    <Link to="/kmu">Mehr erfahren</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <>
+            {/* KMU Badges */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              <Badge variant="outline" className="text-sm">
+                –10% bei Vorauszahlung (12 Monate)
+              </Badge>
+              <Badge variant="outline" className="text-sm">
+                –25% Vor-Ort-Rabatt mit aktivem Abo
+              </Badge>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 items-stretch">
+              {KMU_PLANS.map((plan) => (
+                <Card key={plan.id} className={`flex flex-col ${plan.id === 'kmu-standard' ? 'border-2 border-primary shadow-lg' : ''}`}>
+                  {plan.id === 'kmu-standard' && (
+                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[hsl(var(--thp-cta))] text-white">
+                      Beliebt
+                    </Badge>
+                  )}
+                  <CardHeader>
+                    <CardTitle className="text-xl">{plan.name}</CardTitle>
+                    <CardDescription className="text-xs uppercase tracking-wide text-muted-foreground">
+                      {plan.subtitle}
+                    </CardDescription>
+                    <div className="mt-3">
+                      <span className="text-3xl font-bold text-foreground">
+                        {plan.pricePerEndpoint.toFixed(2)} €
+                      </span>
+                      <span className="text-sm text-muted-foreground">/Endpoint/Monat</span>
+                    </div>
+                    <Badge variant="outline" className="w-fit mt-2 text-xs">
+                      Mindestumsatz: {plan.minMonthly} €/Monat
+                    </Badge>
+                  </CardHeader>
+                  <CardContent className="flex-1 flex flex-col">
+                    <ul className="space-y-2 mb-6 flex-1">
+                      {plan.bullets.map((bullet, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                          <span className="text-sm">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button 
+                      asChild 
+                      className={`w-full mt-auto ${
+                        plan.id === 'kmu-standard' 
+                          ? 'bg-[hsl(var(--thp-cta))] hover:opacity-90' 
+                          : ''
+                      }`}
+                      variant={plan.id === 'kmu-standard' ? 'default' : 'outline'}
+                    >
+                      <Link to="/kmu">Mehr erfahren</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </>
         )}
 
         <p className="text-center text-sm text-muted-foreground mt-8">

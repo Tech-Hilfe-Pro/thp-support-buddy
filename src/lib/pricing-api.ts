@@ -3,6 +3,8 @@
  * Wrapper para facilitar las llamadas desde el frontend
  */
 
+import { KMU_PLANS as KMU_DATA, PRIVAT_PLANS as PRIVAT_DATA } from '@/data/pricingData';
+
 export interface PriceRequest {
   plz: string;
   serviceId: string;
@@ -91,7 +93,8 @@ export class PricingAPI {
       return data;
     } catch (error) {
       console.error('Error fetching KMU plans:', error);
-      return { error: 'Fehler beim Laden der KMU-Pläne.' };
+      // Fallback: use pricingData.ts
+      return getKMUPlansFallback();
     }
   }
 
@@ -102,9 +105,38 @@ export class PricingAPI {
       return data;
     } catch (error) {
       console.error('Error fetching Privat plans:', error);
-      return { error: 'Fehler beim Laden der Privat-Pläne.' };
+      // Fallback: use pricingData.ts
+      return getPrivatPlansFallback();
     }
   }
+}
+
+/**
+ * Fallback functions - read from pricingData.ts if Edge functions fail
+ */
+
+function getKMUPlansFallback(): { plans: KMUPlan[] } {
+  return {
+    plans: KMU_DATA.map(p => ({
+      id: p.id,
+      name: `${p.name} (${p.subtitle})`,
+      price: p.pricePerEndpoint,
+      minMonthly: p.minMonthly,
+      annualDiscount: p.discounts.annual,
+      onsiteDiscount: p.discounts.onsite
+    }))
+  };
+}
+
+function getPrivatPlansFallback(): { plans: PrivatPlan[] } {
+  return {
+    plans: PRIVAT_DATA.map(p => ({
+      id: p.id,
+      name: p.name,
+      monthly: p.monthly,
+      onsiteDiscount: p.onsiteDiscountPct
+    }))
+  };
 }
 
 /**

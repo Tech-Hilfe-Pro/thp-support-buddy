@@ -1,103 +1,165 @@
 /**
- * Tech Hilfe Pro - Preise (fest hardcodiert)
+ * Tech Hilfe Pro - Single Source of Truth für Preise
+ * PRIVAT: Haus-IT Start (9,90 €) & Plus (19,90 €)
+ * KMU: Basic (14,90 €), Standard (24,90 €), Premium (39,90 €)
  */
 
 export interface PrivatPlan {
   id: string;
   name: string;
-  preis: number;
-  rabattVorOrt: number;
-  features: string[];
+  monthly: number;
+  onsiteDiscountPct: number;
+  claim: string;
+  badges: string[];
+  bullets: string[];
+}
+
+export interface KMUPlanFeatures {
+  rmm: boolean;
+  patch: boolean;
+  backup: 'none' | 'basic' | 'advanced';
+  reporting: 'monthly' | 'weekly' | 'daily';
+  sla: string;
+  onsite: string;
+  consulting?: string;
 }
 
 export interface KMUPlan {
   id: string;
   name: string;
-  preisProEndpoint: number;
-  mindestumsatz: number;
-  features: string[];
+  subtitle: string;
+  pricePerEndpoint: number;
+  minMonthly: number;
+  discounts: {
+    annual: number;
+    onsite: number;
+  };
+  bullets: string[];
+  features: KMUPlanFeatures;
 }
 
-export interface PrivatPlanExtended extends PrivatPlan {
-  claim: string;
-  badges: string[];
-}
-
-export const PRIVAT_PLANS: PrivatPlanExtended[] = [
+/**
+ * PRIVAT PLANS
+ */
+export const PRIVAT_PLANS: PrivatPlan[] = [
   {
     id: 'start',
     name: 'Haus-IT Start',
-    preis: 9.90,
-    rabattVorOrt: 0.15,
+    monthly: 9.90,
+    onsiteDiscountPct: 0.15,
     claim: 'Für Haushalte, die Sicherheit und Priorität beim IT-Support möchten.',
     badges: ['Priorität', '–15% Vor-Ort', 'WhatsApp'],
-    features: [
-      '–15% Vor-Ort-Rabatt',
-      'Termin-Priorität (Antwort ≤ 48h)',
-      'WhatsApp-Direktkanal',
-      'Update-Reminder & Schritt-für-Schritt-Guides',
-      '1× jährlicher Remote-Gesundheitscheck',
-      'Preisgarantie 12 Monate'
+    bullets: [
+      '–15% Vor-Ort-Rabatt auf alle Einsätze',
+      'Priorisierte Terminvergabe (Ziel: ≤ 48h Antwort)',
+      'WhatsApp-Direktkanal für schnelle Anfragen',
+      'Update-Erinnerungen & Schritt-für-Schritt-Guides',
+      '1× jährlicher Remote-Gesundheitscheck (Basis)',
+      'Preisgarantie 12 Monate auf Stundensatz'
     ]
   },
   {
     id: 'plus',
     name: 'Haus-IT Plus',
-    preis: 19.90,
-    rabattVorOrt: 0.25,
+    monthly: 19.90,
+    onsiteDiscountPct: 0.25,
     claim: 'Premium-Vorteile für Familien und Power-User mit schnellerer Reaktion.',
     badges: ['Priority', '–25% Vor-Ort', 'WhatsApp-Priority'],
-    features: [
-      '–25% Vor-Ort-Rabatt',
-      'Schnellere Reaktion (Antwort ≤ 4h)',
-      'Same/Next-Business-Day (Best-Effort)',
-      '2× jährlicher Sicherheits-Check (remote)',
-      'Backup-Plan-Setup (einmalig)',
-      'WhatsApp-Priority'
+    bullets: [
+      '–25% Vor-Ort-Rabatt auf alle Einsätze',
+      'Schnellere Reaktion (Ziel: ≤ 4h Antwort)',
+      'Same/Next-Business-Day Termin-Ziel (Best-Effort)',
+      '2× jährlicher Remote-Check inkl. Sicherheits-Review',
+      'Backup-Plan-Setup (einmalige Einrichtung & Check)',
+      'WhatsApp-Priority & bevorzugte Slot-Vergabe'
     ]
   }
 ];
 
+/**
+ * KMU PLANS
+ */
 export const KMU_PLANS: KMUPlan[] = [
   {
-    id: 'basic',
-    name: 'Basic',
-    preisProEndpoint: 14.90,
-    mindestumsatz: 99,
-    features: [
-      'Remote-Monitoring & Verwaltung (RMM)',
+    id: 'kmu-basic',
+    name: 'Managed IT-Partner',
+    subtitle: 'Basic',
+    pricePerEndpoint: 14.90,
+    minMonthly: 99,
+    discounts: {
+      annual: 0.10,
+      onsite: 0.25
+    },
+    bullets: [
+      'Remote Monitoring & Management',
       'Automatisches Patch-Management',
-      'Inventarverwaltung',
-      'Remote-Support',
-      'Standard-Reporting'
-    ]
+      'Inventarverwaltung & Asset-Tracking',
+      'Remote-Support bei Problemen',
+      'Monatliches Reporting'
+    ],
+    features: {
+      rmm: true,
+      patch: true,
+      backup: 'none',
+      reporting: 'monthly',
+      sla: '16h Werktag',
+      onsite: 'Nach Bedarf (reguläre Abrechnung mit –25% Rabatt)'
+    }
   },
   {
-    id: 'standard',
-    name: 'Standard',
-    preisProEndpoint: 24.90,
-    mindestumsatz: 179,
-    features: [
+    id: 'kmu-standard',
+    name: 'Advanced IT-Pro',
+    subtitle: 'Standard',
+    pricePerEndpoint: 24.90,
+    minMonthly: 179,
+    discounts: {
+      annual: 0.10,
+      onsite: 0.25
+    },
+    bullets: [
       'Alles aus Basic',
-      'Erweiterte Security-Policies',
-      'Software-Rollout',
-      'Basis-Backup',
-      'SLA: 4h Reaktion / 16h Lösung',
-      'Monatliches Review'
-    ]
+      'Erweiterte Security-Policies & Hardening',
+      'Software-Rollout & Deployment',
+      'Basis-Backup (lokale Sicherung)',
+      'Wöchentliches Reporting',
+      'SLA: 4h Reaktion (Werktag)'
+    ],
+    features: {
+      rmm: true,
+      patch: true,
+      backup: 'basic',
+      reporting: 'weekly',
+      sla: '4h Werktag',
+      onsite: 'Priorisierte Terminvergabe (mit –25% Rabatt)',
+      consulting: 'NIS-2 Prep: Gap-Check (optional)'
+    }
   },
   {
-    id: 'premium',
-    name: 'Premium',
-    preisProEndpoint: 39.90,
-    mindestumsatz: 299,
-    features: [
+    id: 'kmu-premium',
+    name: 'Enterprise IT-Guard',
+    subtitle: 'Premium',
+    pricePerEndpoint: 39.90,
+    minMonthly: 299,
+    discounts: {
+      annual: 0.10,
+      onsite: 0.25
+    },
+    bullets: [
       'Alles aus Standard',
-      'EDR / Endpoint-Backup',
+      'EDR (Endpoint Detection & Response)',
+      'Advanced Backup (Cloud + lokal)',
       'Custom Playbooks & Automation',
-      '1× Vor-Ort pro Monat inkludiert',
-      'SLA: 1h Reaktion / 8h Lösung',
-      'Wöchentliches Review'
-    ]
+      'Tägliches Reporting',
+      'SLA: 1h Reaktion / 8h Lösung (24/7)'
+    ],
+    features: {
+      rmm: true,
+      patch: true,
+      backup: 'advanced',
+      reporting: 'daily',
+      sla: '1h/8h (24/7)',
+      onsite: 'Bevorzugte Slots & schnellere Vor-Ort-Reaktion (mit –25% Rabatt)',
+      consulting: 'NIS-2 Prep: Gap-Check + Roadmap (optional)'
+    }
   }
 ];
