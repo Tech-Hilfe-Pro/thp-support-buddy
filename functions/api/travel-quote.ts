@@ -53,6 +53,8 @@ interface TravelQuoteResponse {
   fallback?: boolean;
 }
 
+import { getFromDataset } from "../lib/plzDataset";
+
 // Cache en memoria para geocodificación (simple, sin KV)
 const geoCache = new Map<string, { coords: Coordinates; timestamp: number }>();
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 1 día
@@ -87,7 +89,7 @@ function validateInput(data: any): TravelQuoteInput | null {
   };
 }
 
-// Geocodificación de PLZ alemana usando ORS
+// Geocodificación de PLZ alemana
 async function geocodePLZ(plz: string, apiKey: string): Promise<Coordinates | null> {
   // Verificar cache
   const cached = geoCache.get(plz);
@@ -95,6 +97,19 @@ async function geocodePLZ(plz: string, apiKey: string): Promise<Coordinates | nu
     return cached.coords;
   }
 
+  // Primero intentar desde dataset local
+  try {
+    const datasetResult = await getFromDataset(plz);
+    if (datasetResult) {
+      const coords = { lat: datasetResult.lat, lon: datasetResult.lon };
+      geoCache.set(plz, { coords, timestamp: Date.now() });
+      return coords;
+    }
+  } catch (error) {
+    console.warn("Failed to load from PLZ dataset:", error);
+  }
+
+  // Fallback a ORS Geocoding API
   try {
     const response = await fetch(
       `https://api.openrouteservice.org/geocode/search?api_key=${apiKey}&text=${plz},Germany&boundary.country=DE&size=1`,
