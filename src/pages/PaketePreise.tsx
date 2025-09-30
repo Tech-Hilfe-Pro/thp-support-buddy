@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
-import PricingCards from "@/components/PricingCards";
-import BillingPortal from "@/components/BillingPortal";
 import SEO from "@/components/SEO";
 import VatNotice from "@/components/VatNotice";
 import { Chip } from "@/components/Chip";
@@ -40,24 +38,6 @@ export default function PaketePreisePage() {
             <VatNotice />
           </section>
 
-          {/* Nueva sección de tarjetas de precios comparativas */}
-          <section id="planes">
-            <PricingCards />
-          </section>
-          
-          {/* Abo-Verwaltung */}
-          <section className="py-16 bg-accent/20">
-            <div className="container">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold mb-4">Bereits Kunde?</h2>
-                <p className="text-muted-foreground">
-                  Verwalten Sie Ihr bestehendes Abonnement
-                </p>
-              </div>
-              <BillingPortal />
-            </div>
-          </section>
-
           <section id="vergleich" className="space-y-6">
             <h2 className="text-2xl font-semibold">Preisvergleich auf einen Blick</h2>
             
@@ -75,7 +55,7 @@ export default function PaketePreisePage() {
                     </li>
                   ))}
                 </ul>
-                <div className="grid grid-cols-2 gap-2 text-sm">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   {PRIVAT_ABOS.map((abo) => (
                     <div key={abo.id} className="p-3 border rounded-lg text-center">
                       <div className="font-medium">{abo.name}</div>
@@ -101,7 +81,7 @@ export default function PaketePreisePage() {
                     </li>
                   ))}
                 </ul>
-                <div className="grid grid-cols-2 gap-2 text-sm">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   {KMU_TIERS.map((tier) => (
                     <div key={tier.id} className="p-3 border rounded-lg text-center">
                       <div className="font-medium">{tier.name}</div>

@@ -1,11 +1,13 @@
 export const STRIPE_LINKS = {
   privat: {
-    basic: "", // Stripe Payment Link für Home-Office+ Basic
-    plus: "",  // Stripe Payment Link für Home-Office+ Plus
+    s: "", // Stripe Payment Link für Paket-S
+    m: "", // Stripe Payment Link für Paket-M  
+    l: "", // Stripe Payment Link für Paket-L
   },
   kmu: {
-    grow: "", // Stripe Payment Link für KMU Grow  
-    pro: "",  // Stripe Payment Link für KMU Pro
+    starter: "", // Stripe Payment Link für KMU Starter
+    grow: "",    // Stripe Payment Link für KMU Grow
+    pro: "",     // Stripe Payment Link für KMU Pro
   }
 };
 

@@ -13,12 +13,12 @@ const PlanTable = ({ type }: PlanTableProps) => {
   const plans = type === "privat" ? PRIVAT_ABOS : KMU_TIERS;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="grid gap-6 lg:grid-cols-3">
       {plans.map((plan, index) => (
         <Card
           key={plan.id}
           className={`relative ${
-            index === 1 ? "ring-2 ring-primary/20" : ""
+            index === 1 ? "ring-2 ring-primary/20 scale-105" : ""
           }`}
         >
           {index === 1 && (
@@ -56,11 +56,8 @@ const PlanTable = ({ type }: PlanTableProps) => {
             </ul>
             
             <Button className="w-full" size="lg">
-              Jetzt buchen
+              Abo wählen
             </Button>
-            <p className="text-xs text-muted-foreground text-center mt-2">
-              Monatlich kündbar. Transparent. Keine versteckten Kosten.
-            </p>
           </CardContent>
         </Card>
       ))}

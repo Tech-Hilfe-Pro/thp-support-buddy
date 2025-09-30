@@ -2,7 +2,7 @@
    - env ANALYTICS_ENABLE === "true"
    - user consent === "granted"
    No cookies. Uses sessionStorage for a non-persistent SID. */
-import { getConsent, onConsentGranted, hasAnalyticsConsent } from "./consent";
+import { getConsent, onConsentGranted } from "./consent";
 
 type Props = Record<string, unknown>;
 type EventName =
@@ -84,7 +84,7 @@ async function send(payload: any) {
 
 export function flushQueue() {
   if (!getEnabled()) return;
-  if (!hasAnalyticsConsent()) return;
+  if (getConsent() !== "granted") return;
   const q = readQueue();
   if (!q.length) return;
   writeQueue([]);
@@ -101,10 +101,10 @@ export function track(event: EventName, props: Props = {}) {
     ua: typeof navigator !== "undefined" ? navigator.userAgent : ""
   };
   const payload = { event, ...base, props };
-  
-  if (hasAnalyticsConsent()) {
+  const consent = getConsent();
+  if (consent === "granted") {
     void send(payload);
-  } else if (getConsent() === "unset") {
+  } else if (consent === "unset") {
     const q = readQueue();
     q.push(payload);
     writeQueue(q);

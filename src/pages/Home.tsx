@@ -4,34 +4,27 @@ import BusinessGlossary from "@/components/BusinessGlossary";
 import FinalCTA from "@/components/FinalCTA";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
-import Comparison from "@/components/Comparison";
 import MembershipCards from "@/components/MembershipCards";
+import { buildOrganizationJsonLd } from "@/lib/structuredData";
 import { COPY } from "@/data/copy";
-import { generateLocalBusinessSchema, generateFAQSchema, generateWebSiteSchema, generateOrganizationSchema } from "@/lib/localSEO";
-import { SEO_PAGES } from "@/data/seo";
-import { HOME_FAQ_LOCAL } from "@/data/localFAQ";
 
 const Home = () => {
   console.log("Home.tsx: Home component rendering");
   
-  // Generate structured data
-  const localBusinessSchema = generateLocalBusinessSchema();
-  const organizationSchema = generateOrganizationSchema();
-  const websiteSchema = generateWebSiteSchema();
-  const faqSchema = generateFAQSchema(HOME_FAQ_LOCAL);
-  
-  const structuredData = [localBusinessSchema, organizationSchema, websiteSchema, faqSchema];
+  const orgLd = buildOrganizationJsonLd();
 
   return (
     <>
       <SEO 
-        title={SEO_PAGES.home.title}
-        description={SEO_PAGES.home.description}
-        path={SEO_PAGES.home.path}
-        keywords="IT-Service Köln, PC-Hilfe Neuss, Computer-Reparatur, WLAN-Setup, Smart-Home Installation, IT-Support vor Ort"
+        title="IT-Support in Köln & Neuss | Tech Hilfe Pro"
+        description="Schnelle PC/Mac-Hilfe für Zuhause & KMU. Remote zuerst, Vor-Ort bei Bedarf. Preis in 60 Sekunden."
+        path="/" 
         ogType="website"
-        structuredData={structuredData}
-        ogImage="/og/default.jpg"
+        ogImage={`/og?title=${encodeURIComponent("Tech Hilfe Pro")}&subtitle=${encodeURIComponent("Schneller IT-Support für Zuhause & KMU")}`}
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} 
       />
       
       <Hero />
@@ -53,7 +46,7 @@ const Home = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
               {COPY.home.bulletsTitle}
             </h2>
           </div>
@@ -67,14 +60,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Comparison Section */}
-      <Comparison />
-
       {/* How we work */}
       <section className="py-16">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
               {COPY.home.stepsTitle}
             </h2>
           </div>
@@ -89,9 +79,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FAQ Section - Local SEO optimized */}
+      {/* FAQ Section */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <FAQ title="Häufige Fragen zu IT-Service in Köln & Neuss" items={HOME_FAQ_LOCAL} />
+        <FAQ title="Häufige Fragen" items={COPY.faq.home} />
       </div>
     </>
   );

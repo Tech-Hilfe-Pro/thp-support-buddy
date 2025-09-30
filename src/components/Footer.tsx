@@ -97,12 +97,6 @@ const Footer = () => {
               >
                 Widerruf
               </Link>
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('thp:open-cookie-settings'))}
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md text-left"
-              >
-                Cookie-Einstellungen
-              </button>
             </nav>
             <div className="mt-4 pt-4 border-t">
               <p className="text-xs text-muted-foreground">

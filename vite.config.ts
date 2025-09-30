@@ -15,26 +15,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: ["./src/test/setup.ts"],
-    coverage: {
-      provider: "v8",
-      reporter: ["text", "json", "html"],
-      include: ["src/**/*.{ts,tsx}", "functions/**/*.ts"],
-      exclude: [
-        "src/**/*.d.ts",
-        "src/test/**",
-        "src/main.tsx",
-        "src/vite-env.d.ts",
-      ],
-      thresholds: {
-        lines: 85,
-        functions: 85,
-        branches: 85,
-        statements: 85,
-      },
-    },
-  },
 }));

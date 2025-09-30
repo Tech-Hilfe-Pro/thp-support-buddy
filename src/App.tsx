@@ -11,25 +11,20 @@ import SkipLink from "./components/SkipLink";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
-import CookieSettings from "./components/CookieSettings";
 import StickyCTA from "./components/StickyCTA";
 import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
 import PaketePreise from "./pages/PaketePreise";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
-// Importar utilidad para prevenir scroll horizontal en móviles
-import "./lib/preventHorizontalScroll";
 
 // Lazy load heavy routes
-const ServicePage = lazy(() => import("./pages/ServicePage"));
 const Termin = lazy(() => import("./pages/Termin"));
 const TerminZusammenfassung = lazy(() => import("./pages/TerminZusammenfassung"));
 const TerminBestaetigt = lazy(() => import("./pages/TerminBestaetigt"));
 const Kasse = lazy(() => import("./pages/Kasse"));
 const KasseErfolg = lazy(() => import("./pages/kasse/Erfolg"));
 const KasseFehler = lazy(() => import("./pages/kasse/Fehler"));
-const KasseAbbruch = lazy(() => import("./pages/kasse/Abbruch"));
 const Abo = lazy(() => import("./pages/Abo"));
 const Techniker = lazy(() => import("./pages/Techniker"));
 const Beleg = lazy(() => import("./pages/Beleg"));
@@ -54,8 +49,7 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <SkipLink />
-          {/* Contenedor principal con overflow-x oculto para prevenir scroll horizontal */}
-          <div className="min-h-screen flex flex-col overflow-x-hidden" lang="de-DE">
+          <div className="min-h-screen flex flex-col" lang="de-DE">
             <Header />
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>
@@ -63,7 +57,6 @@ const App = () => {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/leistungen" element={<Leistungen />} />
-                    <Route path="/service/:slug" element={<ServicePage />} />
                     <Route path="/pakete-preise" element={<PaketePreise />} />
                     <Route path="/termin" element={<Termin />} />
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
@@ -71,7 +64,6 @@ const App = () => {
                     <Route path="/kasse" element={<Kasse />} />
                     <Route path="/kasse/erfolg" element={<KasseErfolg />} />
                     <Route path="/kasse/fehler" element={<KasseFehler />} />
-                    <Route path="/kasse/abbruch" element={<KasseAbbruch />} />
                     <Route path="/abo" element={<Abo />} />
                     <Route path="/techniker" element={<Techniker />} />
                     <Route path="/beleg" element={<Beleg />} />
@@ -89,7 +81,6 @@ const App = () => {
             </main>
             <Footer />
             <CookieBanner />
-            <CookieSettings />
             <StickyCTA />
           </div>
           <RouteTracker />
