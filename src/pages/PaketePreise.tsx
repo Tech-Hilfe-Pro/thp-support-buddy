@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
 import PricingCards from "@/components/PricingCards";
+import BillingPortal from "@/components/BillingPortal";
 import SEO from "@/components/SEO";
 import VatNotice from "@/components/VatNotice";
 import { Chip } from "@/components/Chip";
@@ -41,11 +42,20 @@ export default function PaketePreisePage() {
 
           {/* Nueva sección de tarjetas de precios comparativas */}
           <section id="planes">
-            <PricingCards onPlanSelect={(planId) => {
-              // Manejar selección de plan - por ahora redirigir a booking
-              console.log('Plan seleccionado:', planId);
-              window.location.href = '/termin';
-            }} />
+            <PricingCards />
+          </section>
+          
+          {/* Abo-Verwaltung */}
+          <section className="py-16 bg-accent/20">
+            <div className="container">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold mb-4">Bereits Kunde?</h2>
+                <p className="text-muted-foreground">
+                  Verwalten Sie Ihr bestehendes Abonnement
+                </p>
+              </div>
+              <BillingPortal />
+            </div>
           </section>
 
           <section id="vergleich" className="space-y-6">

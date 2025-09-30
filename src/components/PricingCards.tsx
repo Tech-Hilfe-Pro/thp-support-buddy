@@ -1,14 +1,19 @@
-import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Check } from "lucide-react";
+import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { toast } from "sonner";
 
 interface PricingPlan {
   id: string;
   name: string;
   price: number;
-  isPopular?: boolean;
-  features: string[];
   description: string;
+  features: string[];
+  isPopular?: boolean;
+  planKey: string; // Mapping zu Backend
 }
 
 const pricingPlans: PricingPlan[] = [
@@ -16,43 +21,45 @@ const pricingPlans: PricingPlan[] = [
     id: "basic",
     name: "Plan Básico",
     price: 89,
-    description: "Perfekt für kleine Haushalte und Einzelpersonen",
+    description: "Perfekt für kleine Unternehmen",
+    planKey: "privat_s",
     features: [
       "Bis 3 Geräte abgedeckt",
-      "Remote-Support (2h/Monat)",
-      "E-Mail-Support",
-      "Grundlegende Systemwartung",
-      "Kostenloser Erstcheck",
-      "Monatlich kündbar"
+      "Remote-Support 4h/Monat",
+      "Telefon-Support werktags",
+      "Software-Updates basic",
+      "E-Mail-Support"
     ]
   },
   {
-    id: "standard",
+    id: "standard", 
     name: "Plan Estándar",
-    price: 150,
+    price: 149,
+    description: "Ideal für wachsende Teams",
+    planKey: "privat_m",
     isPopular: true,
-    description: "Ideal für Familien und kleine Büros",
     features: [
-      "Bis 5 Geräte abgedeckt",
+      "Bis 8 Geräte abgedeckt", 
       "Remote-Support unbegrenzt",
-      "Vor-Ort-Service (1x/Monat)",
-      "24/7 Telefon-Hotline",
-      "Proaktive Systemüberwachung",
-      "Backup-Einrichtung inklusive"
+      "Prioritätssupport 24/7",
+      "Erweiterte Sicherheitsupdates",
+      "Monatliche Wartung vor Ort",
+      "Datensicherung inklusive"
     ]
   },
   {
     id: "premium",
-    name: "Plan Premium",
-    price: 250,
-    description: "Vollumfassender IT-Service für anspruchsvolle Nutzer",
+    name: "Plan Premium", 
+    price: 229,
+    description: "Vollumfängliche IT-Betreuung",
+    planKey: "privat_l",
     features: [
       "Unbegrenzte Geräte",
-      "Premium-Support rund um die Uhr",
-      "Vor-Ort-Service (2x/Monat)",
-      "Persönlicher IT-Betreuer",
-      "Cybersecurity-Paket",
-      "Hardware-Rabatte exklusiv"
+      "Dedicated Account Manager",
+      "SLA 2h Reaktionszeit",
+      "Proaktive Systemüberwachung",
+      "Wöchentliche Vor-Ort-Termine",
+      "Notfall-Support außerhalb der Geschäftszeiten"
     ]
   }
 ];
@@ -62,130 +69,173 @@ interface PricingCardsProps {
 }
 
 export default function PricingCards({ onPlanSelect }: PricingCardsProps) {
-  const handlePlanSelect = (planId: string) => {
+  const [loading, setLoading] = useState<string | null>(null);
+  const [dsgvoAccepted, setDsgvoAccepted] = useState(false);
+
+  const handlePlanSelect = async (plan: PricingPlan) => {
+    if (!dsgvoAccepted) {
+      toast.error("Bitte akzeptieren Sie die Datenschutzbestimmungen");
+      return;
+    }
+
     if (onPlanSelect) {
-      onPlanSelect(planId);
-    } else {
-      // Por defecto, navegar a la página de checkout/contacto
-      window.location.href = "/termin";
+      onPlanSelect(plan.id);
+      return;
+    }
+
+    setLoading(plan.id);
+
+    try {
+      // Create checkout session
+      const response = await fetch('/checkout/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          plan: plan.planKey,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Fehler beim Erstellen der Checkout-Session');
+      }
+
+      // Load Stripe and redirect
+      const publishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+      if (!publishableKey) {
+        throw new Error('Stripe Publishable Key nicht konfiguriert');
+      }
+
+      const stripe = await loadStripe(publishableKey);
+      if (!stripe) {
+        throw new Error('Stripe konnte nicht geladen werden');
+      }
+
+      // Redirect to Stripe Checkout
+      const result = await stripe.redirectToCheckout({
+        sessionId: data.sessionId,
+      });
+
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast.error(error instanceof Error ? error.message : 'Ein Fehler ist aufgetreten');
+    } finally {
+      setLoading(null);
     }
   };
 
   return (
-    <section className="py-16 bg-background">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section className="py-16">
+      <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Wählen Sie Ihren Plan
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Transparente Preise für professionellen IT-Support. Alle Pläne sind monatlich kündbar 
-            und ohne versteckte Kosten.
+          <h2 className="text-3xl font-bold mb-4">Unsere Preispakete</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Wählen Sie den Plan, der am besten zu Ihren IT-Anforderungen passt. 
+            Transparent, fair und ohne versteckte Kosten.
           </p>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid gap-8 md:grid-cols-3 lg:gap-12 mb-8">
+        {/* DSGVO Hinweis */}
+        <div className="max-w-2xl mx-auto mb-8 p-4 bg-accent/50 rounded-lg">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={dsgvoAccepted}
+              onChange={(e) => setDsgvoAccepted(e.target.checked)}
+              className="w-4 h-4 accent-primary"
+            />
+            <span className="text-sm">
+              Ich habe die{" "}
+              <a 
+                href="/recht/datenschutz" 
+                className="text-primary underline hover:no-underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Datenschutzerklärung
+              </a>{" "}
+              gelesen und stimme der Verarbeitung meiner Daten durch Stripe zu.
+            </span>
+          </label>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {pricingPlans.map((plan) => (
             <Card 
-              key={plan.id}
-              className={`relative flex flex-col p-8 h-full transition-all duration-200 hover:shadow-xl hover:-translate-y-1 ${
+              key={plan.id} 
+              className={`relative p-6 hover:shadow-lg transition-shadow ${
                 plan.isPopular 
-                  ? 'border-2 shadow-lg' 
-                  : 'border hover:border-border'
+                  ? 'border-orange-500 bg-orange-50/50 dark:bg-orange-950/50' 
+                  : ''
               }`}
-              style={plan.isPopular ? { 
-                borderColor: '#f97316',
-                backgroundColor: 'rgba(249, 115, 22, 0.02)'
-              } : {}}
             >
-              {/* Popular Badge */}
               {plan.isPopular && (
-                <div 
-                  className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md"
-                  style={{ backgroundColor: '#f97316' }}
-                >
+                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white">
                   Am beliebtesten
-                </div>
+                </Badge>
               )}
-
-              {/* Plan Header */}
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-foreground mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {plan.description}
-                </p>
+              
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold mb-2">{plan.name}</h3>
+                <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
                 <div className="mb-2">
-                  <span className="text-4xl md:text-5xl font-bold text-foreground">
-                    {plan.price} €
-                  </span>
-                  <span className="text-muted-foreground ml-2">/Monat</span>
+                  <span className="text-3xl font-bold">{plan.price} €</span>
+                  <span className="text-muted-foreground">/Monat</span>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   *Kündbar monatlich, keine MwSt gem. §19 UStG
                 </p>
               </div>
 
-              {/* Features List */}
-              <div className="flex-grow mb-8">
-                <ul className="space-y-4">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <Check 
-                        className="h-5 w-5 text-green-600 shrink-0 mt-0.5" 
-                        aria-hidden="true"
-                      />
-                      <span className="text-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
 
-              {/* CTA Button */}
               <Button 
-                onClick={() => handlePlanSelect(plan.id)}
-                className={`w-full py-3 font-semibold transition-all duration-200 ${
-                  plan.isPopular
-                    ? 'text-white shadow-lg hover:shadow-xl'
-                    : 'bg-background border-2 text-foreground hover:text-white'
+                onClick={() => handlePlanSelect(plan)}
+                disabled={loading === plan.id || !dsgvoAccepted}
+                className={`w-full ${
+                  plan.isPopular 
+                    ? 'bg-orange-500 hover:bg-orange-600 text-white' 
+                    : ''
                 }`}
-                style={plan.isPopular 
-                  ? { backgroundColor: '#f97316' }
-                  : { borderColor: '#f97316' }
-                }
-                onMouseEnter={(e) => {
-                  if (!plan.isPopular) {
-                    e.currentTarget.style.backgroundColor = '#f97316';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!plan.isPopular) {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }
-                }}
               >
-                Plan auswählen
+                {loading === plan.id ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                    Wird geladen...
+                  </div>
+                ) : (
+                  'Plan auswählen'
+                )}
               </Button>
             </Card>
           ))}
         </div>
 
-        {/* Legal Notice */}
-        <div className="text-center">
-          <p className="text-sm text-muted-foreground mb-2">
-            *Alle Preise sind Endpreise (nach §19 UStG).
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Vertragsdetails und AGB finden Sie in unseren{" "}
-            <a 
-              href="/recht/agb" 
-              className="underline hover:no-underline"
-              style={{ color: '#f97316' }}
-            >
-              Allgemeinen Geschäftsbedingungen
+        {/* Legal disclaimers */}
+        <div className="text-center mt-12 space-y-2 text-sm text-muted-foreground">
+          <p>*Alle Preise sind Endpreise (nach §19 UStG).</p>
+          <p>
+            Weitere Informationen finden Sie in unseren{" "}
+            <a href="/recht/agb" className="text-primary underline hover:no-underline">
+              AGB
+            </a>{" "}
+            und der{" "}
+            <a href="/recht/datenschutz" className="text-primary underline hover:no-underline">
+              Datenschutzerklärung
             </a>
             .
           </p>

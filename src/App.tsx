@@ -28,6 +28,7 @@ const TerminBestaetigt = lazy(() => import("./pages/TerminBestaetigt"));
 const Kasse = lazy(() => import("./pages/Kasse"));
 const KasseErfolg = lazy(() => import("./pages/kasse/Erfolg"));
 const KasseFehler = lazy(() => import("./pages/kasse/Fehler"));
+const KasseAbbruch = lazy(() => import("./pages/kasse/Abbruch"));
 const Abo = lazy(() => import("./pages/Abo"));
 const Techniker = lazy(() => import("./pages/Techniker"));
 const Beleg = lazy(() => import("./pages/Beleg"));
@@ -68,6 +69,7 @@ const App = () => {
                     <Route path="/kasse" element={<Kasse />} />
                     <Route path="/kasse/erfolg" element={<KasseErfolg />} />
                     <Route path="/kasse/fehler" element={<KasseFehler />} />
+                    <Route path="/kasse/abbruch" element={<KasseAbbruch />} />
                     <Route path="/abo" element={<Abo />} />
                     <Route path="/techniker" element={<Techniker />} />
                     <Route path="/beleg" element={<Beleg />} />
