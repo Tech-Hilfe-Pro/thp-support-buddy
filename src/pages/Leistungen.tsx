@@ -39,7 +39,13 @@ export default function Leistungen() {
             placeholder="Service suchen..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            aria-label="Nach Services suchen"
           />
+          {searchTerm && (
+            <p className="text-sm text-muted-foreground mt-2 text-center">
+              {filtered.length} {filtered.length === 1 ? 'Ergebnis' : 'Ergebnisse'} gefunden
+            </p>
+          )}
         </div>
 
         {filtered.length > 0 ? (

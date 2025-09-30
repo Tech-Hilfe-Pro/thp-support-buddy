@@ -39,10 +39,9 @@
     scroll-behavior: smooth;
     font-size: 18px;
     overflow-x: hidden;
-    overscroll-behavior-x: contain;
-    /* Evitar bounce effect en iOS */
+    /* iOS scroll fixes */
     overscroll-behavior: none;
-    /* Asegurar que el ancho nunca supere el viewport */
+    -webkit-overflow-scrolling: touch;
     max-width: 100vw;
   }
   
@@ -52,10 +51,11 @@
     font-family:"Inter var",Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
     /* Prevenir scroll horizontal en body */
     overflow-x: hidden;
-    overscroll-behavior-x: contain;
     max-width: 100vw;
-    /* Forzar box-sizing correcto en todos los elementos */
     box-sizing: border-box;
+    /* iOS-specific fixes */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
   }
   
   /* Asegurar box-sizing en todos los elementos hijos */

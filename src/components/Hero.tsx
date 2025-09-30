@@ -21,7 +21,9 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    if (reduced) return;
+    // Slower rotation for reduced motion, but still visible content change
+    const duration = reduced ? 6000 : 3500;
+    const fadeDuration = reduced ? 200 : 300;
     
     const interval = setInterval(() => {
       setIsVisible(false);
@@ -29,16 +31,14 @@ export default function Hero() {
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % words.length);
         setIsVisible(true);
-      }, 300);
-    }, 3500);
+      }, fadeDuration);
+    }, duration);
 
     return () => clearInterval(interval);
   }, [words.length, reduced]);
 
-  const currentWord = reduced ? words.join(" • ") : words[currentIndex];
-
   return (
-    <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-thp-primary via-thp-primary-dark to-[hsl(205,90%,53%)] overflow-hidden">
+    <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,100%,58%)] to-[hsl(205,90%,53%)] overflow-hidden">
 
       <div className="mx-auto max-w-5xl px-4 text-center relative z-10">
         <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
@@ -46,10 +46,11 @@ export default function Hero() {
         </h1>
         <div className="text-3xl md:text-5xl font-extrabold mt-2 text-white/95 min-h-[1.2em] flex items-center justify-center overflow-hidden">
           <span 
-            className={`transition-all duration-300 ${isVisible || reduced ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} max-w-full px-2`}
+            key={currentIndex}
+            className={`transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} max-w-full px-2`}
             style={{ textAlign: 'center' }}
           >
-            {currentWord}
+            {words[currentIndex]}
           </span>
         </div>
         <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">
@@ -58,13 +59,13 @@ export default function Hero() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link 
             to="/preise#rechner" 
-            className="rounded-xl bg-thp-cta px-6 py-3.5 text-white font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl"
+            className="rounded-xl bg-[hsl(var(--thp-cta))] px-6 py-3.5 text-white font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--thp-primary))]"
           >
             Preis in 60 Sekunden
           </Link>
           <Link 
             to="/termin" 
-            className="rounded-xl bg-white/95 backdrop-blur px-6 py-3.5 font-semibold text-thp-primary hover:bg-white transition-all shadow-md"
+            className="rounded-xl bg-white/95 backdrop-blur px-6 py-3.5 font-semibold text-[hsl(var(--thp-primary))] hover:bg-white transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
           >
             Jetzt Termin buchen
           </Link>

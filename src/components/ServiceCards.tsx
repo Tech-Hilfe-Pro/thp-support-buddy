@@ -16,49 +16,53 @@ const services: ServiceCardData[] = [
     title: "PC & Laptop",
     description: "Einrichtung, Wartung und Reparatur Ihres Computers für optimale Leistung.",
     image: "/images/services/pc-laptop.jpg",
-    slug: "pc-laptop"
+    slug: "computer"
   },
   {
     id: "laptop",
     title: "Laptop Service",
     description: "Professionelle Laptop-Wartung und Konfiguration für mobile Arbeitsplätze.",
     image: "/images/services/laptop.jpg", 
-    slug: "laptop"
+    slug: "computer"
   },
   {
     id: "tv",
     title: "Smart-TV & Streaming",
     description: "TV-Einrichtung, Sender-Konfiguration und Streaming-Dienste optimal nutzen.",
     image: "/images/services/smart-tv.jpg",
-    slug: "smart-tv"
+    slug: "tv-internet-streaming"
   },
   {
     id: "wlan", 
     title: "WLAN & Netzwerk",
     description: "Schnelles Internet im ganzen Haus mit professioneller WLAN-Optimierung.",
     image: "/images/services/wlan.jpg",
-    slug: "wlan"
+    slug: "heimnetzwerk-wlan"
   },
   {
     id: "drucker",
     title: "Drucker & Scanner", 
     description: "Installation und Konfiguration von Druckern und Scannern aller Marken.",
     image: "/images/services/drucker.jpg",
-    slug: "drucker"
+    slug: "drucker-kopierer-scanner"
   },
   {
     id: "smarthome",
     title: "Smart-Home",
     description: "Intelligente Haussteuerung einfach gemacht – von Beleuchtung bis Heizung.",
     image: "/images/services/smart-home.jpg", 
-    slug: "smart-home"
+    slug: "smarthome-assistenten"
   }
 ];
 
 const ServiceCard = ({ service, isVisible }: { service: ServiceCardData; isVisible: boolean }) => {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer h-full">
-      <Link to={`/leistungen/${service.slug}`} className="block h-full">
+      <Link 
+        to={`/leistungen/${service.slug}`} 
+        className="block h-full"
+        aria-label={`${service.title} - Mehr erfahren`}
+      >
         <div className="aspect-[3/2] overflow-hidden bg-muted">
           {isVisible && (
             <img

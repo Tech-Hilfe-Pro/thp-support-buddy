@@ -158,13 +158,13 @@ export default function KMUPage() {
         {/* 3 Cards con precios */}
         {!loading && !error && plans.length > 0 && (
           <>
-            <section className="grid md:grid-cols-3 gap-6 mb-16">
+            <section className="grid md:grid-cols-3 gap-6 mb-16 items-stretch">
               {plans.map((plan, idx) => {
                 const isPopular = idx === 1; // Standard como más popular
                 return (
                   <Card 
                     key={plan.id} 
-                    className={`relative ${isPopular ? 'border-2 border-primary shadow-lg' : 'border border-border'}`}
+                    className={`relative flex flex-col ${isPopular ? 'border-2 border-primary shadow-lg' : 'border border-border'}`}
                   >
                     {isPopular && (
                       <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cta text-white">
@@ -179,7 +179,7 @@ export default function KMUPage() {
                         {idx === 2 && 'Für anspruchsvolle IT-Anforderungen'}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-4 flex flex-col flex-1">
                       <div>
                         <div className="text-3xl font-bold text-primary">
                           {plan.price.toFixed(2)} €
@@ -227,10 +227,10 @@ export default function KMUPage() {
                       
                       <Link 
                         to="/kontakt"
-                        className={`block w-full rounded-xl px-4 py-3 text-center font-semibold transition-colors ${
+                        className={`block w-full rounded-xl px-4 py-3 text-center font-semibold transition-colors mt-auto ${
                           isPopular 
-                            ? 'bg-thp-cta text-white hover:opacity-90' 
-                            : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                            ? 'bg-[hsl(var(--thp-cta))] text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2' 
+                            : 'bg-[hsl(var(--thp-primary))] text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-primary))] focus-visible:ring-offset-2'
                         }`}
                       >
                         Plan wählen
