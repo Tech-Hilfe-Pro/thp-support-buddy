@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import PriceTimeCalculator from "@/components/PriceTimeCalculator";
+import PricingCards from "@/components/PricingCards";
 import SEO from "@/components/SEO";
 import VatNotice from "@/components/VatNotice";
 import { Chip } from "@/components/Chip";
@@ -36,6 +37,15 @@ export default function PaketePreisePage() {
             <h2 className="text-2xl font-semibold mb-4">Preis- & Zeit-Rechner</h2>
             <PriceTimeCalculator />
             <VatNotice />
+          </section>
+
+          {/* Nueva sección de tarjetas de precios comparativas */}
+          <section id="planes">
+            <PricingCards onPlanSelect={(planId) => {
+              // Manejar selección de plan - por ahora redirigir a booking
+              console.log('Plan seleccionado:', planId);
+              window.location.href = '/termin';
+            }} />
           </section>
 
           <section id="vergleich" className="space-y-6">
