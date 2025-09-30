@@ -52,10 +52,6 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,95%,58%)] to-[hsl(205,90%,53%)] overflow-hidden">
-      {/* TODO: Remover banner debug después de verificar */}
-      <div data-debug="thp" className="fixed bottom-0 inset-x-0 bg-[#3BA9FF] text-[#0B2A45] py-2 px-4 text-center z-[9999] text-sm font-semibold shadow-lg">
-        🔍 DEBUG: #3BA9FF ACTIVO · PRECIOS KMU: 14,90 / 24,90 / 39,90 · PRIVAT: 9,90 / 19,90
-      </div>
 
       <div className="mx-auto max-w-5xl px-4 text-center relative z-10">
         <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
@@ -74,7 +70,7 @@ export default function Hero() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link 
-            to="/pakete-preise#rechner" 
+            to="/preise#rechner" 
             className="rounded-xl bg-[hsl(24,95%,53%)] px-6 py-3.5 text-white font-semibold hover:bg-[hsl(24,95%,48%)] transition-all shadow-lg hover:shadow-xl"
           >
             Preis in 60 Sekunden
@@ -89,7 +85,7 @@ export default function Hero() {
         <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-white/90 font-medium">
           <span>✓ Vor-Ort & Remote</span>
           <span>✓ Faire Preise</span>
-          <span>✓ Seniorenfreundlich</span>
+          <span>✓ Verständliche Hilfe</span>
           <span>✓ Schnelle Hilfe</span>
         </div>
       </div>

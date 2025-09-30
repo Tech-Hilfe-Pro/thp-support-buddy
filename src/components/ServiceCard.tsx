@@ -49,7 +49,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         <div className="mt-auto">
           <Button asChild className="w-full" size="sm">
             <Link 
-              to="/pakete-preise#rechner"
+              to="/preise#rechner"
               aria-label={`Preis und Zeit für ${service.titel} berechnen`}
             >
               Preis & Zeit ansehen

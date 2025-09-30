@@ -5,8 +5,8 @@ const UeberUns = () => {
     <>
       <SEO 
         title="Über uns | Tech Hilfe Pro"
-        description="Ihr IT-Service in Köln & Neuss. Persönlich, kompetent und verständlich - für Senioren und KMU."
-        path="/ueber-uns" 
+        description="Ihr IT-Service in Köln & Neuss. Persönlich, kompetent und verständlich – für Privatkunden und KMU."
+        path="/ueber-uns"
       />
       
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
@@ -26,10 +26,10 @@ const UeberUns = () => {
             
             <h2 className="text-2xl font-semibold text-foreground mb-4">Unser Team</h2>
             <p className="text-muted-foreground mb-8">
-              Unser erfahrenes Team besteht aus zertifizierten IT-Experten, 
+              Unser erfahrenes Team besteht aus IT-Experten, 
               die sich auf die Betreuung von Privatkunden und kleinen bis mittelständischen 
-              Unternehmen spezialisiert haben. Besonders stolz sind wir auf unsere 
-              seniorenfreundliche Herangehensweise.
+              Unternehmen spezialisiert haben. Besonders wichtig ist uns eine 
+              verständliche und geduldige Herangehensweise.
             </p>
             
             <h2 className="text-2xl font-semibold text-foreground mb-4">Warum Tech Hilfe Pro?</h2>
@@ -37,7 +37,7 @@ const UeberUns = () => {
               <li>• Transparente Preise ohne versteckte Kosten (gem. §19 UStG)</li>
               <li>• Flexible Lösungen für jedes Budget</li>
               <li>• Persönlicher Service vor Ort und remote</li>
-              <li>• Spezialisierung auf Senioren und KMU</li>
+              <li>• Spezialisierung auf Privatkunden und KMU</li>
               <li>• Remote-First, bei Bedarf vor Ort in Köln/Neuss</li>
             </ul>
           </div>

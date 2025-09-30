@@ -26,7 +26,7 @@ const QuoteSummary = () => {
             Nutzen Sie unseren Rechner für eine individuelle Preisberechnung.
           </p>
           <Button asChild variant="outline" className="w-full">
-            <a href="/pakete-preise#rechner">Zum Preis-Rechner</a>
+            <a href="/preise#rechner">Zum Preis-Rechner</a>
           </Button>
         </CardContent>
       </Card>

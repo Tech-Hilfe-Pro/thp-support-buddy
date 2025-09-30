@@ -237,7 +237,7 @@ const PriceTimeCalculator = () => {
                       Weiter zur Terminbuchung
                     </Button>
                     <Button asChild variant="outline" className="flex-1">
-                      <a href="/pakete-preise">Pakete vergleichen</a>
+                      <a href="/preise">Pakete vergleichen</a>
                     </Button>
                   </div>
 

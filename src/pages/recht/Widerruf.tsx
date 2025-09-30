@@ -25,9 +25,9 @@ const Widerruf = () => {
               </p>
               <p>
                 Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (Tech Hilfe Pro, 
-                Musterstraße 123, 50667 Köln, E-Mail: info@techhilfe-pro.de) 
-                mittels einer eindeutigen Erklärung (z.B. ein mit der Post versandter Brief 
-                oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.
+                E-Mail: info@techhilfe-pro.de, Telefon: +49 221 98652990) 
+                mittels einer eindeutigen Erklärung (z.B. E-Mail oder Brief) 
+                über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.
               </p>
             </div>
           </section>
@@ -89,7 +89,7 @@ const Widerruf = () => {
                 Formular aus und senden Sie es zurück.)
               </p>
               <div className="space-y-2">
-                <p>An: Tech Hilfe Pro, Musterstraße 123, 50667 Köln, E-Mail: info@techhilfe-pro.de</p>
+                <p>An: Tech Hilfe Pro, E-Mail: info@techhilfe-pro.de</p>
                 <p>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung (*)</p>
                 <p>Bestellt am (*)/erhalten am (*)</p>
                 <p>Name des/der Verbraucher(s)</p>

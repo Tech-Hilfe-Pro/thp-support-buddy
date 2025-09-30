@@ -1,4 +1,6 @@
-import { SITE_NAME, SITE_URL, DEFAULT_LOCALE } from "../data/seo";
+import { SITE_URL, DEFAULT_OG_LOCALE } from "../data/seo";
+
+const SITE_NAME = "Tech Hilfe Pro";
 
 type PostalAddress = { 
   streetAddress: string; 
@@ -25,17 +27,17 @@ export function localBusiness(params: {
     name: params.name || SITE_NAME,
     url: params.url || SITE_URL,
     image: `${SITE_URL}/og/default.jpg`,
-    telephone: params.telephone || "+49 1556 5029989",
+    telephone: params.telephone || "+49 221 98652990",
     address: {
       "@type": "PostalAddress",
-      streetAddress: params.address?.streetAddress || "Schirmerstr. 7",
-      postalCode: params.address?.postalCode || "50823",
+      streetAddress: params.address?.streetAddress || "Büro in Köln (virtuell)",
+      postalCode: params.address?.postalCode || "50667",
       addressLocality: params.address?.addressLocality || "Köln",
       addressRegion: params.address?.addressRegion || "NRW",
       addressCountry: params.address?.addressCountry || "DE"
     },
-    areaServed: params.areaServed || ["Köln", "Neuss"],
-    openingHours: params.openingHours || ["Mo-Fr 09:00-18:00"],
+    areaServed: params.areaServed || ["Köln", "Neuss", "40 km Umkreis"],
+    openingHours: params.openingHours || ["Mo-Fr 09:00-18:00", "Sa 10:00-16:00"],
     geo: params.geo ? { "@type": "GeoCoordinates", ...params.geo } : undefined
   };
 }
@@ -46,7 +48,7 @@ export function webSite() {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    inLanguage: DEFAULT_LOCALE
+    inLanguage: "de-DE"
   };
 }
 

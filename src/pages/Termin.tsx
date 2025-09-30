@@ -225,7 +225,7 @@ const Termin = () => {
                           id="address"
                           value={formData.address}
                           onChange={(e) => handleInputChange("address", e.target.value)}
-                          placeholder="z.B. Musterstraße 123"
+                          placeholder="z.B. Hauptstraße 42"
                         />
                       </div>
                     </div>
@@ -352,7 +352,7 @@ const Termin = () => {
                         Termin prüfen
                       </Button>
                       <Button asChild variant="outline" className="flex-1">
-                        <a href="/pakete-preise">Zurück zu Pakete & Preise</a>
+                        <a href="/preise">Zurück zu Preise</a>
                       </Button>
                     </div>
                   </form>

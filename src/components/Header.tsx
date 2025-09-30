@@ -49,6 +49,7 @@ export default function Header() {
               <NavItem to="/leistungen">Leistungen (Privat)</NavItem>
               <NavItem to="/kmu">KMU Managed Services</NavItem>
               <NavItem to="/preise">Preise</NavItem>
+              <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a href="https://wa.me/4922198652990" target="_blank" rel="noopener noreferrer" className="px-3 py-2 text-sm text-muted-foreground hover:text-primary">WhatsApp</a>
@@ -87,6 +88,7 @@ export default function Header() {
               <NavItem to="/leistungen">Leistungen (Privat)</NavItem>
               <NavItem to="/kmu">KMU Managed Services</NavItem>
               <NavItem to="/preise">Preise</NavItem>
+              <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a 

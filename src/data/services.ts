@@ -18,7 +18,7 @@ export const SERVICES: Service[] = [
   { id:"backup", zielgruppe:"beide", titel:"Backups & Cloud", kurz:"3-2-1-Strategie, Cloud-Sync.", zeitMin:60, preisAb:59, remote:true },
   { id:"datarecovery", zielgruppe:"beide", titel:"Datenrettung (basic)", kurz:"Gelöschte Dateien, externe Medien.", zeitMin:60, preisAb:79, remote:false },
   { id:"router", zielgruppe:"beide", titel:"Router & Mesh", kurz:"Neukonfig., Gastnetz, QoS.", zeitMin:60, preisAb:69, remote:false },
-  { id:"schulung", zielgruppe:"privat", titel:"Schulung für Senioren", kurz:"Einfach erklärt, Schritt für Schritt.", zeitMin:45, preisAb:39, remote:true },
+  { id:"schulung", zielgruppe:"privat", titel:"Schulung & Einweisung", kurz:"Einfach erklärt, Schritt für Schritt.", zeitMin:45, preisAb:49, remote:true },
 
   // KMU-spezifisch
   { id:"rmm", zielgruppe:"kmu", titel:"Monitoring & Patching", kurz:"Remote-Überwachung, Updates, Scripts (NinjaOne).", zeitMin:0, preisAb:29, remote:true },

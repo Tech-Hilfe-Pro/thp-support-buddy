@@ -21,7 +21,7 @@ export default function NotFound() {
         <ul className="list-disc ml-6 space-y-1">
           <li><a className="text-indigo-600 underline" href="/">Startseite</a></li>
           <li><a className="text-indigo-600 underline" href="/leistungen">Leistungen</a></li>
-          <li><a className="text-indigo-600 underline" href="/pakete-preise">Pakete & Preise</a></li>
+          <li><a className="text-indigo-600 underline" href="/preise">Preise</a></li>
           <li><a className="text-indigo-600 underline" href="/termin">Termin buchen</a></li>
         </ul>
       </section>

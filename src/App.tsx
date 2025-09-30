@@ -16,6 +16,7 @@ import Leistungen from "./pages/Leistungen";
 import ServiceDetail from "./pages/ServiceDetail";
 import KMU from "./pages/KMU";
 import PaketePreise from "./pages/PaketePreise";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
 
@@ -90,7 +91,8 @@ const App = () => {
                     <Route path="/service/:slug" element={<ServiceDetail />} />
                     <Route path="/kmu" element={<KMU />} />
                     <Route path="/preise" element={<PaketePreise />} />
-                    <Route path="/pakete-preise" element={<PaketePreise />} />
+                    <Route path="/pakete-preise" element={<PaketePreise />} /> {/* Legacy redirect */}
+                    <Route path="/faq" element={<FAQ />} />
                     <Route path="/termin" element={<Termin />} />
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
                     <Route path="/termin/bestaetigt" element={<TerminBestaetigt />} />
