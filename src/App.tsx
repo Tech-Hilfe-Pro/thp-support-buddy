@@ -11,10 +11,9 @@ import SkipLink from "./components/SkipLink";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
-import StickyCTA from "./components/StickyCTA";
 import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
-import LeistungenNeu from "./pages/LeistungenNeu";
+import ServiceDetail from "./pages/ServiceDetail";
 import KMU from "./pages/KMU";
 import PaketePreise from "./pages/PaketePreise";
 import NotFound from "./pages/NotFound";
@@ -27,7 +26,6 @@ const TerminBestaetigt = lazy(() => import("./pages/TerminBestaetigt"));
 const Kasse = lazy(() => import("./pages/Kasse"));
 const KasseErfolg = lazy(() => import("./pages/kasse/Erfolg"));
 const KasseFehler = lazy(() => import("./pages/kasse/Fehler"));
-const Abo = lazy(() => import("./pages/Abo"));
 const Techniker = lazy(() => import("./pages/Techniker"));
 const Beleg = lazy(() => import("./pages/Beleg"));
 const UeberUns = lazy(() => import("./pages/UeberUns"));
@@ -88,9 +86,10 @@ const App = () => {
                 <Suspense fallback={<div className="p-8">Laden…</div>}>
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/leistungen" element={<LeistungenNeu />} />
-                    <Route path="/leistungen-alt" element={<Leistungen />} />
+                    <Route path="/leistungen" element={<Leistungen />} />
+                    <Route path="/service/:slug" element={<ServiceDetail />} />
                     <Route path="/kmu" element={<KMU />} />
+                    <Route path="/preise" element={<PaketePreise />} />
                     <Route path="/pakete-preise" element={<PaketePreise />} />
                     <Route path="/termin" element={<Termin />} />
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
@@ -98,7 +97,6 @@ const App = () => {
                     <Route path="/kasse" element={<Kasse />} />
                     <Route path="/kasse/erfolg" element={<KasseErfolg />} />
                     <Route path="/kasse/fehler" element={<KasseFehler />} />
-                    <Route path="/abo" element={<Abo />} />
                     <Route path="/techniker" element={<Techniker />} />
                     <Route path="/beleg" element={<Beleg />} />
                     <Route path="/ueber-uns" element={<UeberUns />} />
@@ -115,7 +113,6 @@ const App = () => {
             </main>
             <Footer />
             <CookieBanner />
-            <StickyCTA />
           </div>
           <RouteTracker />
           <RouteFocus />

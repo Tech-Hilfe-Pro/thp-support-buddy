@@ -15,12 +15,13 @@ const Footer = () => {
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary" />
                 <div>
-                  <div className="flex items-center gap-2 font-medium">
-                    <img src="/logo.png" alt="Logo" className="w-5 h-5" />
-                    <span>Tech <span style={{color: '#3BA9FF'}}>Hilfe</span> Pro</span>
-                  </div>
-                  <p>{ADDRESS_LINE}</p>
-                  <p className="mt-1">Servicegebiet: Köln, Neuss & Umgebung</p>
+                <div className="flex items-center gap-2 font-medium">
+                  <img src="/logo.png" alt="Logo" className="w-5 h-5" />
+                  <span>Tech <span style={{color: '#3BA9FF'}}>Hilfe</span> Pro</span>
+                </div>
+                <p>Büro in Köln (virtuell)</p>
+                <p>Remote-Arbeiten möglich</p>
+                <p className="mt-1">Vor-Ort-Service: Köln, Neuss & Umgebung (40 km)</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">

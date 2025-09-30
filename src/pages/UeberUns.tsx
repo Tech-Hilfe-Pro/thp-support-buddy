@@ -13,8 +13,7 @@ const UeberUns = () => {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-foreground mb-8">Über uns</h1>
           <p className="text-lg text-muted-foreground mb-12">
-            Seit über 10 Jahren sind wir Ihr vertrauensvoller Partner für 
-            IT-Support in Köln, Neuss und der ganzen Region.
+            Wir sind Ihr vertrauensvoller Partner für IT-Support in Köln, Neuss und der ganzen Region.
           </p>
           
           <div className="prose prose-lg max-w-none">
@@ -35,12 +34,11 @@ const UeberUns = () => {
             
             <h2 className="text-2xl font-semibold text-foreground mb-4">Warum Tech Hilfe Pro?</h2>
             <ul className="space-y-2 text-muted-foreground">
-              <li>• Über 10 Jahre Erfahrung in der Region</li>
-              <li>• Zertifizierte und geschulte Techniker</li>
-              <li>• Transparente Preise ohne versteckte Kosten</li>
+              <li>• Transparente Preise ohne versteckte Kosten (gem. §19 UStG)</li>
               <li>• Flexible Lösungen für jedes Budget</li>
               <li>• Persönlicher Service vor Ort und remote</li>
               <li>• Spezialisierung auf Senioren und KMU</li>
+              <li>• Remote-First, bei Bedarf vor Ort in Köln/Neuss</li>
             </ul>
           </div>
         </div>

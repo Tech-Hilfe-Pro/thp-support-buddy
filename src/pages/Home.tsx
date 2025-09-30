@@ -1,10 +1,11 @@
 import Hero from "@/components/Hero";
+import Pricing from "@/components/Pricing";
 import ServiceCards from "@/components/ServiceCards";
 import BusinessGlossary from "@/components/BusinessGlossary";
 import FinalCTA from "@/components/FinalCTA";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
-import MembershipCards from "@/components/MembershipCards";
+import WhatsAppFab from "@/components/WhatsAppFab";
 import { buildOrganizationJsonLd } from "@/lib/structuredData";
 import { COPY } from "@/data/copy";
 
@@ -29,10 +30,11 @@ const Home = () => {
       
       <Hero />
       
-      {/* Membership Section */}
-      <MembershipCards />
+      <Pricing />
       
       <ServiceCards />
+      
+      <WhatsAppFab />
       
       <BusinessGlossary items={[
         { key:"kmu", ...COPY.businessGlossary.kmu },
