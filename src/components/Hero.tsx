@@ -101,10 +101,10 @@ export default function Hero() {
       
       <div className="relative container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          {/* Título principal con texto dinámico */}
+          {/* Título principal con texto dinámico - optimizado para SEO local */}
           <h1 className="text-white mb-6">
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Tech Hilfe Pro –
+              IT-Service in Köln & Neuss
             </span>
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mt-2">
               Ihr Partner für
