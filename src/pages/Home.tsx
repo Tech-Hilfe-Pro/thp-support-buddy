@@ -8,6 +8,7 @@ import SEO from "@/components/SEO";
 import WhatsAppFab from "@/components/WhatsAppFab";
 import { buildOrganizationJsonLd } from "@/lib/structuredData";
 import { COPY } from "@/data/copy";
+import { Zap, ShieldCheck, MapPin } from "lucide-react";
 
 const Home = () => {
   console.log("Home.tsx: Home component rendering");
@@ -34,52 +35,77 @@ const Home = () => {
       
       <ServiceCards />
       
-      <WhatsAppFab />
-      
-      <BusinessGlossary items={[
-        { key:"kmu", ...COPY.businessGlossary.kmu },
-        { key:"msp", ...COPY.businessGlossary.msp },
-        { key:"sla", ...COPY.businessGlossary.sla },
-      ]}/>
-
-      <FinalCTA />
-      
       {/* Why Tech Hilfe Pro */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-background">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               {COPY.home.bulletsTitle}
             </h2>
           </div>
-          <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {COPY.home.bullets.map((bullet, index) => (
-              <li key={index} className="p-6 bg-card border border-border rounded-xl text-center">
-                <p className="text-sm font-medium text-foreground">{bullet}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-thp-primary/10 mb-4">
+                <Zap className="w-8 h-8 text-thp-primary" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                {COPY.home.bullets[0]}
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Wir reagieren schnell – remote sofort, vor Ort innerhalb von 24h.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-thp-primary/10 mb-4">
+                <ShieldCheck className="w-8 h-8 text-thp-primary" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                {COPY.home.bullets[1]}
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Sie wissen vorher, was es kostet – keine versteckten Gebühren.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-thp-primary/10 mb-4">
+                <MapPin className="w-8 h-8 text-thp-primary" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                {COPY.home.bullets[2]}
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Lokaler Service für Privatpersonen und kleine Unternehmen.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* How we work */}
-      <section className="py-16">
+      <section className="py-16 bg-muted/30">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               {COPY.home.stepsTitle}
             </h2>
           </div>
-          <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 md:grid-cols-3">
             {COPY.home.steps.map((step, index) => (
-              <li key={index} className="p-6 bg-card border border-border rounded-xl">
-                <h3 className="font-semibold text-foreground mb-2">{step.t}</h3>
+              <div key={index} className="relative p-6 bg-card border border-border rounded-xl">
+                <div className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-thp-primary text-white flex items-center justify-center font-bold text-sm">
+                  {index + 1}
+                </div>
+                <h3 className="font-semibold text-foreground mb-2 pt-2">{step.t}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{step.d}</p>
-              </li>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
+
+      <WhatsAppFab />
+
+      <FinalCTA />
 
       {/* FAQ Section */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

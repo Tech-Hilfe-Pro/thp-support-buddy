@@ -42,17 +42,15 @@ export const COPY = {
     heroSub: "Schnelle IT-Hilfe für Zuhause & Unternehmen",
     bulletsTitle: "Warum Tech Hilfe Pro?",
     bullets: [
-      "Remote zuerst. Vor-Ort, wenn nötig.",
-      "Transparente Preise",
-      "Bis zu 25% Vor-Ort-Rabatt mit Haus-IT-Paket",
-      "Köln, Neuss & Umgebung"
+      "Schneller Vor-Ort & Remote-Support",
+      "Transparente Preise ohne Überraschungen",
+      "Für Privat & KMU im Raum Köln/Neuss"
     ],
     stepsTitle: "So arbeiten wir",
     steps: [
-      { t: "1. Anfrage", d: "Kurz beschreiben, was nicht funktioniert. PLZ angeben." },
-      { t: "2. Diagnose", d: "Remote prüfen wir zuerst. Zeit & Preis transparent." },
-      { t: "3. Lösung", d: "Wir lösen es remote oder kommen vorbei." },
-      { t: "4. Nachsorge", d: "Kurzer Check. Tipps für die Zukunft." }
+      { t: "Anfrage", d: "Sie beschreiben Ihr Problem – wir schätzen Zeit und Preis." },
+      { t: "Diagnose & Lösung", d: "Remote-Check zuerst. Wenn nötig, kommen wir vorbei." },
+      { t: "Nachsorge", d: "Kurzer Check und Tipps, damit es beim nächsten Mal läuft." }
     ],
     trustTitle: "Kundenstimmen aus der Region",
     trustNote: "Echte Bewertungen von zufriedenen Kunden."
