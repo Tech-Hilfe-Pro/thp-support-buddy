@@ -3,6 +3,8 @@
  * Calcula distancia, tiempo y coste de desplazamiento usando OpenRouteService Matrix API
  */
 
+import { getTravelConfig, roundTo05, BASES, type BaseLocation } from "../lib/travelConfig";
+
 interface Env {
   ORS_API_KEY: string;
   CONSUMO_L_100KM?: string;
@@ -29,13 +31,6 @@ interface Coordinates {
   lon: number;
 }
 
-interface BaseLocation {
-  name: string;
-  plz: string;
-  lat: number;
-  lon: number;
-}
-
 interface ORSMatrixResponse {
   durations: number[][];
   distances: number[][];
@@ -57,13 +52,6 @@ interface TravelQuoteResponse {
   currency: string;
   fallback?: boolean;
 }
-
-// Bases fijas de salida
-const BASES: BaseLocation[] = [
-  { name: "Köln", plz: "50823", lat: 50.949, lon: 6.920 },
-  { name: "Pulheim", plz: "50259", lat: 50.999, lon: 6.804 },
-  { name: "Neuss", plz: "41460", lat: 51.204, lon: 6.689 },
-];
 
 // Cache en memoria para geocodificación (simple, sin KV)
 const geoCache = new Map<string, { coords: Coordinates; timestamp: number }>();
@@ -189,30 +177,17 @@ async function getORSMatrix(
   }
 }
 
-// Redondear a 0.5 €
-function roundToHalf(value: number): number {
-  return Math.round(value * 2) / 2;
-}
-
-// Calcular coste de viaje
+// Calcular coste de viaje usando configuración centralizada
 function calculateTravelCost(
   distance_km: number,
   duration_min: number,
-  config: {
-    consumo: number;
-    precioFuel: number;
-    desgaste: number;
-    tarifaHora: number;
-    margen: number;
-    freeKm: number;
-    freeMin: number;
-  }
+  config: ReturnType<typeof getTravelConfig>
 ): { travel_fee: number; breakdown: any } {
   const km_total = distance_km * 2;
   const min_total = duration_min * 2;
 
   // Si está dentro de zona gratuita
-  if (distance_km <= config.freeKm || duration_min <= config.freeMin) {
+  if (distance_km <= config.free_km || duration_min <= config.free_min) {
     return {
       travel_fee: 0,
       breakdown: {
@@ -224,11 +199,11 @@ function calculateTravelCost(
     };
   }
 
-  const fuel_cost = (km_total * config.consumo / 100) * config.precioFuel;
-  const wear_cost = km_total * config.desgaste;
-  const time_cost = (min_total / 60) * config.tarifaHora;
+  const fuel_cost = (km_total * config.consumo_l_100km / 100) * config.precio_fuel_eur_l;
+  const wear_cost = km_total * config.desgaste_eur_km;
+  const time_cost = (min_total / 60) * config.tarifa_hora_viaje;
   const subtotal = fuel_cost + wear_cost + time_cost;
-  const travel_fee = roundToHalf(subtotal * config.margen);
+  const travel_fee = roundTo05(subtotal * config.margen);
 
   return {
     travel_fee,
@@ -282,16 +257,8 @@ export async function onRequest(context: { request: Request; env: Env }): Promis
       });
     }
 
-    // Configuración de costes (con valores por defecto)
-    const config = {
-      consumo: parseFloat(env.CONSUMO_L_100KM || "7.5"),
-      precioFuel: parseFloat(env.PRECIO_FUEL_EUR_L || "1.66"),
-      desgaste: parseFloat(env.DESGASTE_EUR_KM || "0.18"),
-      tarifaHora: parseFloat(env.TARIFA_HORA_VIAJE || "40"),
-      margen: parseFloat(env.MARGEN || "1.12"),
-      freeKm: parseFloat(env.FREE_KM || "5"),
-      freeMin: parseFloat(env.FREE_MIN || "15"),
-    };
+    // Configuración de costes usando módulo centralizado
+    const config = getTravelConfig(env);
 
     // Obtener coordenadas del destino
     let destination: Coordinates;
