@@ -31,7 +31,7 @@ const PlanTable = ({ type }: PlanTableProps) => {
             <CardTitle className="text-xl">{plan.name}</CardTitle>
             <CardDescription>
               {type === "privat" 
-                ? `${(plan as any).minuten} Min Remote/Monat` 
+                ? "Monatliches Abo" 
                 : "Pro Gerät/Monat"
               }
             </CardDescription>

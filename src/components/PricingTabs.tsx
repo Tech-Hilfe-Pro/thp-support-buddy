@@ -56,7 +56,6 @@ const PricingTabs = () => {
                   <tr className="bg-muted/50">
                     <th scope="col" className="p-4 text-left border-b border-border font-semibold">Paket</th>
                     <th scope="col" className="p-4 text-center border-b border-border font-semibold">Preis/Monat</th>
-                    <th scope="col" className="p-4 text-center border-b border-border font-semibold">Remote-Zeit</th>
                     <th scope="col" className="p-4 text-center border-b border-border font-semibold">Vor-Ort Rabatt</th>
                     <th scope="col" className="p-4 text-left border-b border-border font-semibold">Inklusive</th>
                     <th scope="col" className="p-4 text-center border-b border-border font-semibold">Aktion</th>
@@ -68,9 +67,6 @@ const PricingTabs = () => {
                       <th scope="row" className="p-4 font-medium border-b border-border">{abo.name}</th>
                       <td className="p-4 text-center border-b border-border font-bold text-primary">
                         {abo.preis.toFixed(2)}€
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        {abo.minuten} Min
                       </td>
                       <td className="p-4 text-center border-b border-border">
                         {(abo.rabattVorOrt * 100).toFixed(0)}%
