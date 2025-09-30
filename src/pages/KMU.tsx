@@ -35,24 +35,50 @@ interface KMUPlan {
 }
 
 export default function KMUPage() {
-  const [plans, setPlans] = useState<KMUPlan[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Hardcoded plans mientras Edge Functions se despliegan
+  const [plans] = useState<KMUPlan[]>([
+    {
+      id: 'kmu-basic',
+      name: 'Managed IT-Partner (Basic)',
+      price: 14.90,
+      minMonthly: 99,
+      annualDiscount: 0.10,
+      onsiteDiscount: 0.25,
+    },
+    {
+      id: 'kmu-standard',
+      name: 'Advanced IT-Pro (Standard)',
+      price: 24.90,
+      minMonthly: 179,
+      annualDiscount: 0.10,
+      onsiteDiscount: 0.25,
+    },
+    {
+      id: 'kmu-premium',
+      name: 'Enterprise IT-Guard (Premium)',
+      price: 39.90,
+      minMonthly: 299,
+      annualDiscount: 0.10,
+      onsiteDiscount: 0.25,
+    },
+  ]);
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Cargar planes KMU del backend
-    fetch('/api/plans-kmu')
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) throw new Error(data.error);
-        setPlans(data.plans || []);
-      })
-      .catch(err => {
-        console.error('Error loading KMU plans:', err);
-        setError('Fehler beim Laden der Pläne.');
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  // TODO: Reactivar cuando Edge Functions estén desplegadas
+  // useEffect(() => {
+  //   fetch('/api/plans-kmu')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if (data.error) throw new Error(data.error);
+  //       setPlans(data.plans || []);
+  //     })
+  //     .catch(err => {
+  //       console.error('Error loading KMU plans:', err);
+  //       setError('Fehler beim Laden der Pläne.');
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
 
   const features = {
     'kmu-basic': {
@@ -123,6 +149,11 @@ export default function KMUPage() {
             <p className="text-destructive">{error}</p>
           </div>
         )}
+
+        {/* DEBUG: Verificación de precios */}
+        <p data-check="prices" className="text-center text-sm font-mono mb-8 text-muted-foreground">
+          14,90 | 24,90 | 39,90
+        </p>
 
         {/* 3 Cards con precios */}
         {!loading && !error && plans.length > 0 && (

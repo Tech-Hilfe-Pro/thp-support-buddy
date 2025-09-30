@@ -28,24 +28,43 @@ interface Service {
 }
 
 export default function LeistungenNeuPage() {
-  const [services, setServices] = useState<Service[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Hardcoded services mientras Edge Functions se despliegan
+  const [services] = useState<Service[]>([
+    { id: '1', slug: 'computer', nameDe: 'Computer & Laptop', descriptionShort: 'Installation, Reparatur und Wartung von Desktop-PCs und Laptops. Wir helfen bei Hardware-Problemen und System-Optimierung.', remoteAvailable: true },
+    { id: '2', slug: 'computer-software', nameDe: 'Software & Programme', descriptionShort: 'Installation und Konfiguration von Anwendungen, Betriebssystem-Updates und Lizenzverwaltung.', remoteAvailable: true },
+    { id: '3', slug: 'drucker-kopierer-scanner', nameDe: 'Drucker, Kopierer & Scanner', descriptionShort: 'Einrichtung, Treiber-Installation und Fehlerbehebung für alle Druckgeräte im Netzwerk.', remoteAvailable: false },
+    { id: '4', slug: 'ebook-reader-tablets', nameDe: 'E-Book Reader & Tablets', descriptionShort: 'Hilfe bei Einrichtung, App-Installation und Synchronisation Ihrer mobilen Lesegeräte.', remoteAvailable: true },
+    { id: '5', slug: 'festplatten-datensicherung', nameDe: 'Festplatten & Datensicherung', descriptionShort: 'Backup-Lösungen, Datenrettung und sichere Datenmigration auf neue Systeme.', remoteAvailable: false },
+    { id: '6', slug: 'heimnetzwerk-wlan', nameDe: 'Heimnetzwerk & WLAN', descriptionShort: 'Router-Konfiguration, WLAN-Optimierung und Netzwerk-Sicherheit für Ihr Zuhause.', remoteAvailable: true },
+    { id: '7', slug: 'konsolen-vr', nameDe: 'Konsolen & VR', descriptionShort: 'Setup von Gaming-Konsolen, VR-Brillen und Optimierung für beste Performance.', remoteAvailable: false },
+    { id: '8', slug: 'kueche-haushalt', nameDe: 'Küche & Haushalt', descriptionShort: 'Smart-Home Integration von Küchengeräten und Haushaltsautomation.', remoteAvailable: false },
+    { id: '9', slug: 'smarthome-assistenten', nameDe: 'Smart-Home & Assistenten', descriptionShort: 'Einrichtung von Alexa, Google Home und Integration aller Smart-Geräte.', remoteAvailable: true },
+    { id: '10', slug: 'smartwatch-fitnesstracker', nameDe: 'Smartwatch & Fitnesstracker', descriptionShort: 'Setup und Synchronisation mit Smartphone, App-Konfiguration für Gesundheitsdaten.', remoteAvailable: true },
+    { id: '11', slug: 'telefon-handy-fax', nameDe: 'Telefon, Handy & Fax', descriptionShort: 'Smartphone-Einrichtung, Datenübertragung und Fax-Integration ins Netzwerk.', remoteAvailable: true },
+    { id: '12', slug: 'ton-hifi-lautsprecher', nameDe: 'Ton, HiFi & Lautsprecher', descriptionShort: 'Audio-System Setup, Streaming-Dienste und Surround-Sound-Konfiguration.', remoteAvailable: false },
+    { id: '13', slug: 'tv-dvd-bluray-video', nameDe: 'TV, DVD, Blu-ray & Video', descriptionShort: 'Fernseher-Installation, Heimkino-Setup und Verbindung aller Multimedia-Geräte.', remoteAvailable: false },
+    { id: '14', slug: 'tv-internet-streaming', nameDe: 'TV-Internet & Streaming', descriptionShort: 'Smart-TV Konfiguration, Netflix, Prime Video und alle Streaming-Apps einrichten.', remoteAvailable: true },
+    { id: '15', slug: 'tv-receiver', nameDe: 'TV-Receiver', descriptionShort: 'Setup von Kabel-, Satelliten- oder IPTV-Receivern und Sendersortierung.', remoteAvailable: false },
+    { id: '16', slug: 'tv-einrichtung', nameDe: 'TV-Einrichtung', descriptionShort: 'Komplette Ersteinrichtung Ihres neuen Fernsehers inkl. Bildoptimierung.', remoteAvailable: false },
+    { id: '17', slug: 'windows-11', nameDe: 'Windows 11', descriptionShort: 'Migration zu Windows 11, Installation, Treiber-Updates und System-Optimierung.', remoteAvailable: true },
+  ]);
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Cargar servicios del backend
-    fetch('/api/services')
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) throw new Error(data.error);
-        setServices(data.services || []);
-      })
-      .catch(err => {
-        console.error('Error loading services:', err);
-        setError('Fehler beim Laden der Services.');
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  // TODO: Reactivar cuando Edge Functions estén desplegadas
+  // useEffect(() => {
+  //   fetch('/api/services')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if (data.error) throw new Error(data.error);
+  //       setServices(data.services || []);
+  //     })
+  //     .catch(err => {
+  //       console.error('Error loading services:', err);
+  //       setError('Fehler beim Laden der Services.');
+  //     })
+  //     .finally(() => setLoading(false));
+  // }, []);
 
   return (
     <>
