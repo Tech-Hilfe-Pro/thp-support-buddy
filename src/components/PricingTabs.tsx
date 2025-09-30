@@ -50,7 +50,8 @@ const PricingTabs = () => {
           <section>
             <h3 className="text-2xl font-semibold mb-6 text-center">Home-Office+ Pakete</h3>
             <p className="text-center text-muted-foreground mb-6">Für Privatpersonen · 1–5 Geräte</p>
-            <div className="overflow-x-auto">
+            {/* Tabla de precios con scroll horizontal permitido */}
+            <div className="overflow-x-auto" data-allow-horizontal-scroll="true">
               <table className="w-full border-collapse border border-border rounded-lg">
                 <caption className="sr-only">Senioren-Abo Pakete im Vergleich</caption>
                 <thead>

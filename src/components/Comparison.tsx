@@ -132,7 +132,8 @@ const Comparison = () => {
           </p>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Tabla con scroll horizontal controlado - permitir en este elemento específico */}
+        <div className="overflow-x-auto" data-allow-horizontal-scroll="true">
           <table className="w-full border border-border rounded-lg bg-card">
             <caption className="sr-only">
               Vergleich der Leistungen zwischen Tech Hilfe Pro und anderen Anbietern

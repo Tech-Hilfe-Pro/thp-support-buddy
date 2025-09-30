@@ -30,6 +30,15 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box; /* Asegurar box-sizing consistente */
+  }
+  
+  /* Prevenir overflow horizontal en móviles - especialmente iOS Safari */
+  html, body {
+    overflow-x: hidden; /* Ocultar scrollbar horizontal */
+    overscroll-behavior-x: contain; /* Contener overscroll horizontal */
+    overscroll-behavior: none; /* Prevenir efecto "bounce" de iOS */
+    max-width: 100%; /* Asegurar que no excedan viewport */
   }
   
   html {
@@ -41,6 +50,12 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family:"Inter var",Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+  }
+  
+  /* Prevenir overflow en todos los elementos */
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -189,6 +204,17 @@
 /* Header height and anchor offset */
 :root { --header-h: 64px; }
 [id] { scroll-margin-top: var(--header-h); }
+
+/* Prevenir overflow horizontal en contenedores principales */
+#root, main, section, div {
+  max-width: 100%;
+}
+
+/* Asegurar que elementos con width fijo no causen overflow */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 /* Scrollbar utilities */
 .no-scrollbar::-webkit-scrollbar { display: none; }

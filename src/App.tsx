@@ -18,6 +18,8 @@ import Leistungen from "./pages/Leistungen";
 import PaketePreise from "./pages/PaketePreise";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
+// Importar utilidad para prevenir scroll horizontal en móviles
+import "./lib/preventHorizontalScroll";
 
 // Lazy load heavy routes
 const Termin = lazy(() => import("./pages/Termin"));
@@ -50,7 +52,8 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <SkipLink />
-          <div className="min-h-screen flex flex-col" lang="de-DE">
+          {/* Contenedor principal con overflow-x oculto para prevenir scroll horizontal */}
+          <div className="min-h-screen flex flex-col overflow-x-hidden" lang="de-DE">
             <Header />
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>
