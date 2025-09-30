@@ -55,10 +55,12 @@ const services: ServiceCardData[] = [
   }
 ];
 
-const ServiceCard = ({ service, isVisible }: { service: ServiceCardData; isVisible: boolean }) => {
+const ServiceCard = ({ service, isVisible, plz }: { service: ServiceCardData; isVisible: boolean; plz?: string }) => {
+  const linkTo = plz ? `/service/${service.slug}?plz=${plz}` : `/service/${service.slug}`;
+  
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer h-full">
-      <Link to={`/leistungen/${service.slug}`} className="block h-full">
+      <Link to={linkTo} className="block h-full">
         <div className="aspect-[3/2] overflow-hidden bg-muted">
           {isVisible && (
             <img
@@ -91,7 +93,7 @@ const ServiceCard = ({ service, isVisible }: { service: ServiceCardData; isVisib
   );
 };
 
-export default function ServiceCards() {
+export default function ServiceCards({ plz }: { plz?: string } = {}) {
   const [visibleCards, setVisibleCards] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -152,6 +154,7 @@ export default function ServiceCards() {
               <ServiceCard 
                 service={service} 
                 isVisible={visibleCards.has(service.id)}
+                plz={plz}
               />
             </div>
           ))}

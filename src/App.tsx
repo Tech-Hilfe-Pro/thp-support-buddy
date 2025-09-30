@@ -22,6 +22,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import "./lib/preventHorizontalScroll";
 
 // Lazy load heavy routes
+const ServicePage = lazy(() => import("./pages/ServicePage"));
 const Termin = lazy(() => import("./pages/Termin"));
 const TerminZusammenfassung = lazy(() => import("./pages/TerminZusammenfassung"));
 const TerminBestaetigt = lazy(() => import("./pages/TerminBestaetigt"));
@@ -62,6 +63,7 @@ const App = () => {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/leistungen" element={<Leistungen />} />
+                    <Route path="/service/:slug" element={<ServicePage />} />
                     <Route path="/pakete-preise" element={<PaketePreise />} />
                     <Route path="/termin" element={<Termin />} />
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
