@@ -4,6 +4,7 @@ import BusinessGlossary from "@/components/BusinessGlossary";
 import FinalCTA from "@/components/FinalCTA";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
+import Comparison from "@/components/Comparison";
 import MembershipCards from "@/components/MembershipCards";
 import { buildOrganizationJsonLd } from "@/lib/structuredData";
 import { COPY } from "@/data/copy";
@@ -59,6 +60,9 @@ const Home = () => {
           </ul>
         </div>
       </section>
+
+      {/* Comparison Section */}
+      <Comparison />
 
       {/* How we work */}
       <section className="py-16">
