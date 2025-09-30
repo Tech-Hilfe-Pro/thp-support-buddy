@@ -9,7 +9,7 @@ export default function Error500() {
       <section className="max-w-3xl mx-auto p-8">
         <h1 className="text-2xl font-semibold mb-3">Unerwarteter Fehler</h1>
         <p className="mb-6">Bitte versuchen Sie es erneut oder gehen Sie zur Startseite.</p>
-        <a className="text-indigo-600 underline" href="/">Zur Startseite</a>
+        <a className="text-thp-primary underline hover:opacity-80" href="/">Zur Startseite</a>
       </section>
     </>
   );

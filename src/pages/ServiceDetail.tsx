@@ -84,7 +84,7 @@ export default function ServiceDetail() {
           </Button>
         </div>
 
-        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-6 rounded-lg">
+        <div className="bg-thp-hover border border-thp-primary/30 p-6 rounded-lg">
           <h3 className="font-semibold mb-2 flex items-center gap-2">
             💡 Tipp
           </h3>

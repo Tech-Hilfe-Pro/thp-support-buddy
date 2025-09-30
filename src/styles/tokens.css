@@ -1,72 +1,211 @@
 /* Tech Hilfe Pro - Design Tokens */
 
 :root {
-  /* Brand Colors */
-  --thp-primary: #3BA9FF;
-  --thp-primary-ink: #0B2A45;
-  --thp-cta: #F97316;
-  --thp-text: #111827;
-  --thp-bg: #F3F4F6;
-  --thp-white: #FFFFFF;
-  --thp-hover: #DBEAFE;
+  /* === THP Brand Colors === */
+  /* Primary: #3BA9FF (OBLIGATORIO) */
+  --thp-primary: 205 100% 63%;
+  --thp-primary-rgb: 59 169 255;
   
-  /* Semantic Tokens */
+  /* Primary Dark: #2563EB (hover/acento) */
+  --thp-primary-dark: 217 91% 60%;
+  --thp-primary-dark-rgb: 37 99 235;
+  
+  /* CTA Orange: #F97316 */
+  --thp-cta: 24 95% 53%;
+  --thp-cta-rgb: 249 115 22;
+  
+  /* Status Colors */
+  --thp-danger: 0 84% 60%;     /* #DC2626 */
+  --thp-success: 142 71% 45%;   /* #16A34A */
+  
+  /* Text Colors */
+  --thp-text: 0 0% 7%;          /* #111111 */
+  --thp-muted: 215 19% 35%;     /* #374151 */
+  
+  /* Background Colors */
+  --thp-bg: 0 0% 100%;          /* #FFFFFF */
+  --thp-bg-soft: 220 13% 96%;   /* #F3F4F6 */
+  
+  /* Hover State */
+  --thp-hover: 214 86% 92%;     /* #DBEAFE */
+  
+  /* === Semantic Tokens (Shadcn) === */
   --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --foreground: 0 0% 7%;
+  
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card-foreground: 0 0% 7%;
+  
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 205 100% 63%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
+  --popover-foreground: 0 0% 7%;
+  
+  --primary: 205 100% 63%;           /* #3BA9FF */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 220 13% 96%;
+  --secondary-foreground: 0 0% 7%;
+  
+  --muted: 220 13% 96%;
+  --muted-foreground: 215 19% 35%;
+  
+  --accent: 220 13% 96%;
+  --accent-foreground: 0 0% 7%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
   --ring: 205 100% 63%;
+  
   --radius: 0.5rem;
+  
+  /* === Typography Scale === */
+  --font-sans: 'Inter var', 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Headings */
+  --text-h1: 2.25rem;        /* 36px */
+  --text-h1-lh: 2.75rem;     /* 44px */
+  --text-h1-weight: 700;
+  
+  --text-h2: 1.875rem;       /* 30px */
+  --text-h2-lh: 2.375rem;    /* 38px */
+  --text-h2-weight: 700;
+  
+  --text-h3: 1.5rem;         /* 24px */
+  --text-h3-lh: 2rem;        /* 32px */
+  --text-h3-weight: 600;
+  
+  --text-h4: 1.25rem;        /* 20px */
+  --text-h4-lh: 1.75rem;     /* 28px */
+  --text-h4-weight: 600;
+  
+  --text-h5: 1.125rem;       /* 18px */
+  --text-h5-lh: 1.625rem;    /* 26px */
+  --text-h5-weight: 600;
+  
+  --text-h6: 1rem;           /* 16px */
+  --text-h6-lh: 1.5rem;      /* 24px */
+  --text-h6-weight: 600;
+  
+  /* Body */
+  --text-base: 1rem;         /* 16px */
+  --text-base-lh: 1.5rem;    /* 24px */
+  --text-base-weight: 400;
+  
+  --text-sm: 0.875rem;       /* 14px */
+  --text-sm-lh: 1.25rem;     /* 20px */
+  
+  --text-xs: 0.75rem;        /* 12px */
+  --text-xs-lh: 1rem;        /* 16px */
+  
+  /* === Spacing === */
+  --spacing-xs: 0.5rem;      /* 8px */
+  --spacing-sm: 1rem;        /* 16px */
+  --spacing-md: 1.5rem;      /* 24px */
+  --spacing-lg: 2rem;        /* 32px */
+  --spacing-xl: 3rem;        /* 48px */
+  --spacing-2xl: 4rem;       /* 64px */
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
+  --background: 222 84% 5%;
   --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
+  
+  --card: 222 84% 5%;
   --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
+  
+  --popover: 222 84% 5%;
   --popover-foreground: 210 40% 98%;
+  
   --primary: 205 100% 63%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-  --secondary: 217.2 32.6% 17.5%;
+  --primary-foreground: 222 84% 5%;
+  
+  --secondary: 217 33% 18%;
   --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
+  
+  --muted: 217 33% 18%;
+  --muted-foreground: 215 20% 65%;
+  
+  --accent: 217 33% 18%;
   --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
+  
+  --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 212.7 26.8% 83.9%;
+  
+  --border: 217 33% 18%;
+  --input: 217 33% 18%;
+  --ring: 213 27% 84%;
 }
 
-/* Base Resets */
+/* === Base Resets === */
 * {
   border-color: hsl(var(--border));
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   overscroll-behavior-x: contain;
 }
 
 body {
-  font-family: 'Inter var', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--text-base-lh);
+  font-weight: var(--text-base-weight);
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Typography Classes === */
+h1 {
+  font-size: var(--text-h1);
+  line-height: var(--text-h1-lh);
+  font-weight: var(--text-h1-weight);
+}
+
+h2 {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2-lh);
+  font-weight: var(--text-h2-weight);
+}
+
+h3 {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3-lh);
+  font-weight: var(--text-h3-weight);
+}
+
+h4 {
+  font-size: var(--text-h4);
+  line-height: var(--text-h4-lh);
+  font-weight: var(--text-h4-weight);
+}
+
+h5 {
+  font-size: var(--text-h5);
+  line-height: var(--text-h5-lh);
+  font-weight: var(--text-h5-weight);
+}
+
+h6 {
+  font-size: var(--text-h6);
+  line-height: var(--text-h6-lh);
+  font-weight: var(--text-h6-weight);
+}
+
+/* === Utility Classes === */
+.text-thp-primary {
+  color: hsl(var(--thp-primary));
+}
+
+.bg-thp-primary {
+  background-color: hsl(var(--thp-primary));
+}
+
+.border-thp-primary {
+  border-color: hsl(var(--thp-primary));
 }

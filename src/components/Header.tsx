@@ -8,7 +8,7 @@ export default function Header() {
   useEffect(()=>{ setOpen(false); setSidebarOpen(false); }, [loc]);
 
   const NavItem = ({ to, children }: { to:string; children:React.ReactNode }) => (
-    <NavLink to={to} className={({isActive}) => `px-3 py-2 rounded-lg block ${isActive?"bg-indigo-100 text-indigo-700":"text-slate-600 hover:bg-slate-100 hover:text-black"}`}>{children}</NavLink>
+    <NavLink to={to} className={({isActive}) => `px-3 py-2 rounded-lg block ${isActive?"bg-thp-hover text-thp-primary":"text-slate-600 hover:bg-slate-100 hover:text-black"}`}>{children}</NavLink>
   );
 
   return (
@@ -22,7 +22,7 @@ export default function Header() {
         >
           <img src="/logo.png" alt="Logo" className="w-6 h-6" />
           <span className="text-lg font-semibold tracking-tight">
-            Tech <span style={{color: '#3BA9FF'}}>Hilfe</span> Pro
+            Tech <span className="text-thp-primary">Hilfe</span> Pro
           </span>
         </Link>
 

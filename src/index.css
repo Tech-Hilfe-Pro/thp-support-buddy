@@ -182,7 +182,7 @@
 
 /* Design tokens for clean UI */
 .card { @apply rounded-2xl border border-neutral-200 bg-white shadow-card; }
-.kicker { @apply text-xs font-semibold tracking-wide uppercase text-brand-700; }
+.kicker { @apply text-xs font-semibold tracking-wide uppercase text-thp-primary; }
 
 /* Accessibility: Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
@@ -237,9 +237,9 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Accessibility improvements */
+/* Focus styles */
 :focus-visible { 
-  outline: 2px solid theme(colors.indigo.600); 
+  outline: 2px solid hsl(var(--thp-primary)); 
   outline-offset: 2px; 
   border-radius: 8px; 
 }

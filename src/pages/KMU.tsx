@@ -229,10 +229,9 @@ export default function KMUPage() {
                         to="/kontakt"
                         className={`block w-full rounded-xl px-4 py-3 text-center font-semibold transition-colors ${
                           isPopular 
-                            ? 'text-white hover:opacity-90' 
+                            ? 'bg-thp-cta text-white hover:opacity-90' 
                             : 'bg-primary text-primary-foreground hover:bg-primary/90'
                         }`}
-                        style={isPopular ? { background: 'hsl(var(--thp-cta))' } : {}}
                       >
                         Plan wählen
                       </Link>
@@ -324,8 +323,7 @@ export default function KMUPage() {
           </p>
           <Link 
             to="/kontakt"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-white transition-all hover:scale-105"
-            style={{ background: 'hsl(var(--thp-cta))' }}
+            className="inline-block rounded-xl bg-thp-cta px-6 py-3 font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
           >
             Jetzt Beratung anfragen
           </Link>

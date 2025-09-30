@@ -22,7 +22,7 @@ export default class ErrorBoundary extends React.Component<React.PropsWithChildr
         <div className="max-w-2xl mx-auto p-8">
           <h1 className="text-2xl font-semibold mb-2">Etwas ist schiefgelaufen.</h1>
           <p className="mb-4">Bitte laden Sie die Seite neu oder kehren Sie zur Startseite zurück.</p>
-          <a className="text-indigo-600 underline" href="/">Zur Startseite</a>
+          <a className="text-thp-primary underline hover:opacity-80" href="/">Zur Startseite</a>
         </div>
       );
     }

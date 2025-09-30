@@ -19,10 +19,10 @@ export default function NotFound() {
         <h1 className="text-2xl font-semibold mb-3">404 – Seite nicht gefunden</h1>
         <p className="mb-6">Die Seite existiert nicht oder wurde verschoben.</p>
         <ul className="list-disc ml-6 space-y-1">
-          <li><a className="text-indigo-600 underline" href="/">Startseite</a></li>
-          <li><a className="text-indigo-600 underline" href="/leistungen">Leistungen</a></li>
-          <li><a className="text-indigo-600 underline" href="/preise">Preise</a></li>
-          <li><a className="text-indigo-600 underline" href="/termin">Termin buchen</a></li>
+          <li><a className="text-thp-primary underline hover:opacity-80" href="/">Startseite</a></li>
+          <li><a className="text-thp-primary underline hover:opacity-80" href="/leistungen">Leistungen</a></li>
+          <li><a className="text-thp-primary underline hover:opacity-80" href="/preise">Preise</a></li>
+          <li><a className="text-thp-primary underline hover:opacity-80" href="/termin">Termin buchen</a></li>
         </ul>
       </section>
     </>

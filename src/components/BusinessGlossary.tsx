@@ -8,7 +8,7 @@ export default function BusinessGlossary({ items }: { items: Item[] }) {
           {items.map(it => (
             <article key={it.key} className="w-full sm:w-auto min-w-[260px] max-w-sm flex-1 rounded-2xl border border-neutral-200 bg-white shadow-sm p-4">
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center justify-center rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1">{it.abbr}</span>
+                <span className="inline-flex items-center justify-center rounded-full bg-thp-hover text-thp-primary text-xs font-semibold px-3 py-1">{it.abbr}</span>
                 <h3 className="text-sm font-semibold text-neutral-900">{it.title}</h3>
               </div>
               <p className="mt-2 text-sm leading-6 text-neutral-600">{it.desc}</p>

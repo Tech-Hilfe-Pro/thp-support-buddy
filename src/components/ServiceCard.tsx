@@ -40,7 +40,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
             <span>Typisch: {formatDuration(service.zeitMin)}</span>
           </div>
           <div className="text-right">
-            <div className="text-xl font-bold text-blue-600">
+            <div className="text-xl font-bold text-thp-primary">
               ab {service.preisAb}€
             </div>
           </div>
