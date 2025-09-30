@@ -77,28 +77,45 @@
   font-variant-numeric: tabular-nums; 
 }
 
-/* Tech Hilfe Pro Design System */
+/* Tech Hilfe Pro Design System - Color #3BA9FF */
 :root {
   --background: 0 0% 100%;
-  --foreground: 218 32% 5%;
+  --foreground: 222 47% 11%;
   --card: 0 0% 100%;
-  --card-foreground: 218 32% 5%;
+  --card-foreground: 222 47% 11%;
   --popover: 0 0% 100%;
-  --popover-foreground: 218 32% 5%;
+  --popover-foreground: 222 47% 11%;
+  
+  /* Primary: #3BA9FF → HSL(205 100% 63%) */
   --primary: 205 100% 63%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 220 13% 91%;
-  --secondary-foreground: 218 32% 5%;
-  --muted: 220 13% 91%;
+  --primary-foreground: 0 0% 100%;
+  
+  /* CTA Orange: #F97316 → HSL(24 95% 53%) */
+  --cta: 24 95% 53%;
+  --cta-foreground: 0 0% 100%;
+  
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 40% 96%;
   --muted-foreground: 215 16% 47%;
-  --accent: 220 13% 91%;
-  --accent-foreground: 218 32% 5%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border: 220 13% 91%;
-  --input: 220 13% 91%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
   --ring: 205 100% 63%;
   --radius: 0.75rem;
+  
+  /* THP Design Tokens */
+  --thp-primary: 205 100% 63%;       /* #3BA9FF */
+  --thp-primary-ink: 210 65% 17%;    /* #0B2A45 - dark text */
+  --thp-cta: 24 95% 53%;             /* #F97316 - orange CTA */
+  --thp-text: 220 9% 10%;            /* #111827 - body text */
+  --thp-bg: 218 13% 95%;             /* #F3F4F6 - light bg */
+  --thp-white: 0 0% 100%;            /* #FFFFFF */
+  --thp-hover: 214 86% 92%;          /* #DBEAFE - hover state */
+  
   --sidebar-background: 0 0% 98%;
   --sidebar-foreground: 240 5.3% 26.1%;
   --sidebar-primary: 240 5.9% 10%;
@@ -108,8 +125,8 @@
   --sidebar-border: 220 13% 91%;
   --sidebar-ring: 205 100% 63%;
 
-  /* Clean hero background with new primary */
-  --thp-hero: radial-gradient(1200px 420px at 50% -10%, hsl(205 100% 63% / 0.08), transparent 60%);
+  /* Hero gradient with new primary */
+  --thp-hero: linear-gradient(135deg, hsl(205 100% 63% / 0.95), hsl(205 100% 53% / 0.85));
 }
 
 .dark {

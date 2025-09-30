@@ -46,12 +46,13 @@ export default function Header() {
           <div className="md:hidden border-t bg-white">
             <div className="mx-auto max-w-7xl px-3 py-3 flex flex-col gap-2">
               <NavItem to="/">Startseite</NavItem>
-              <NavItem to="/leistungen">Leistungen</NavItem>
+              <NavItem to="/leistungen">Leistungen (Privat)</NavItem>
+              <NavItem to="/kmu">KMU Managed Services</NavItem>
               <NavItem to="/pakete-preise">Pakete & Preise</NavItem>
               <NavItem to="/abo">Mitglied werden</NavItem>
               <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
-              <a href="/termin" className="rounded-xl bg-blue-600 px-4 py-2 text-white text-center">Jetzt Termin buchen</a>
+              <a href="/termin" className="rounded-xl bg-primary px-4 py-2 text-white text-center hover:bg-primary/90 transition-colors">Jetzt Termin buchen</a>
             </div>
           </div>
         )}
@@ -83,7 +84,8 @@ export default function Header() {
             
             <nav className="p-4 flex flex-col gap-1" aria-label="Hauptnavigation">
               <NavItem to="/">Startseite</NavItem>
-              <NavItem to="/leistungen">Leistungen</NavItem>
+              <NavItem to="/leistungen">Leistungen (Privat)</NavItem>
+              <NavItem to="/kmu">KMU Managed Services</NavItem>
               <NavItem to="/pakete-preise">Pakete & Preise</NavItem>
               <NavItem to="/abo">Mitglied werden</NavItem>
               <NavItem to="/ueber-uns">Über uns</NavItem>

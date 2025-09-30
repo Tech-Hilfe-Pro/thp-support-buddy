@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import PriceTimeCalculator from "@/components/PriceTimeCalculator";
+import PriceCalculatorNew from "@/components/PriceCalculatorNew";
 import SEO from "@/components/SEO";
 import VatNotice from "@/components/VatNotice";
 import { Chip } from "@/components/Chip";
@@ -33,9 +33,10 @@ export default function PaketePreisePage() {
           </section>
 
           <section id="rechner">
-            <h2 className="text-2xl font-semibold mb-4">Preis- & Zeit-Rechner</h2>
-            <PriceTimeCalculator />
-            <VatNotice />
+            <PriceCalculatorNew />
+            <div className="mt-4">
+              <VatNotice />
+            </div>
           </section>
 
           <section id="vergleich" className="space-y-6">

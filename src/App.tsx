@@ -14,6 +14,8 @@ import CookieBanner from "./components/CookieBanner";
 import StickyCTA from "./components/StickyCTA";
 import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
+import LeistungenNeu from "./pages/LeistungenNeu";
+import KMU from "./pages/KMU";
 import PaketePreise from "./pages/PaketePreise";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -86,7 +88,9 @@ const App = () => {
                 <Suspense fallback={<div className="p-8">Laden…</div>}>
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/leistungen" element={<Leistungen />} />
+                    <Route path="/leistungen" element={<LeistungenNeu />} />
+                    <Route path="/leistungen-alt" element={<Leistungen />} />
+                    <Route path="/kmu" element={<KMU />} />
                     <Route path="/pakete-preise" element={<PaketePreise />} />
                     <Route path="/termin" element={<Termin />} />
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
