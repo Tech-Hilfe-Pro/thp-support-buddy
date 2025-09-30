@@ -1,13 +1,17 @@
 import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import { ArrowLeft, Wifi, MapPin } from "lucide-react";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { getServiceBySlug } from "@/data/servicesData";
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const service = slug ? getServiceBySlug(slug) : null;
+  const [plz, setPlz] = useState("");
 
   if (!service) {
     return (
@@ -15,7 +19,7 @@ export default function ServiceDetail() {
         <SEO 
           title="Service nicht gefunden | Tech Hilfe Pro"
           description="Der gesuchte Service wurde nicht gefunden."
-          path={`/service/${slug}`}
+          path={`/leistungen/${slug}`}
         />
         <h1 className="text-3xl font-bold mb-4">Service nicht gefunden</h1>
         <p className="text-muted-foreground mb-8">
@@ -33,7 +37,7 @@ export default function ServiceDetail() {
       <SEO 
         title={`${service.nameDe} | Tech Hilfe Pro`}
         description={service.descriptionShort}
-        path={`/service/${service.slug}`}
+        path={`/leistungen/${service.slug}`}
       />
 
       <Link 
@@ -75,12 +79,41 @@ export default function ServiceDetail() {
           </p>
         </div>
 
+        <div className="bg-muted/30 p-6 rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">Preis anfragen</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Geben Sie Ihre PLZ ein, um einen genauen Preis für diesen Service zu erhalten.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex-1">
+              <Label htmlFor="plz" className="sr-only">Postleitzahl</Label>
+              <Input
+                id="plz"
+                type="text"
+                placeholder="PLZ eingeben..."
+                value={plz}
+                onChange={(e) => setPlz(e.target.value.replace(/\D/g, '').slice(0, 5))}
+                maxLength={5}
+              />
+            </div>
+            <Button 
+              asChild 
+              disabled={plz.length !== 5}
+              className="sm:w-auto"
+            >
+              <Link to={`/preise#rechner?service=${service.slug}&plz=${plz}`}>
+                Preis berechnen
+              </Link>
+            </Button>
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4">
           <Button asChild size="lg" className="flex-1">
             <Link to="/kontakt">Jetzt Kontakt aufnehmen</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="flex-1">
-            <Link to="/preise">Preise ansehen</Link>
+            <Link to="/preise">Alle Preise ansehen</Link>
           </Button>
         </div>
 

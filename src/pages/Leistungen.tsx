@@ -64,9 +64,14 @@ export default function Leistungen() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-muted-foreground mb-4">{srv.descriptionShort}</p>
-                  <Button asChild size="sm">
-                    <Link to={`/service/${srv.slug}`}>Details ansehen</Link>
-                  </Button>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild size="sm">
+                      <Link to={`/leistungen/${srv.slug}`}>Mehr erfahren</Link>
+                    </Button>
+                    <Button asChild size="sm" variant="outline">
+                      <Link to={`/preise#rechner?service=${srv.slug}`}>Preis anfragen</Link>
+                    </Button>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             ))}

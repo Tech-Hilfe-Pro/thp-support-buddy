@@ -88,7 +88,8 @@ const App = () => {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/leistungen" element={<Leistungen />} />
-                    <Route path="/service/:slug" element={<ServiceDetail />} />
+                    <Route path="/leistungen/:slug" element={<ServiceDetail />} />
+                    <Route path="/service/:slug" element={<ServiceDetail />} /> {/* Legacy redirect */}
                     <Route path="/kmu" element={<KMU />} />
                     <Route path="/preise" element={<PaketePreise />} />
                     <Route path="/pakete-preise" element={<PaketePreise />} /> {/* Legacy redirect */}
