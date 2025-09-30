@@ -11,6 +11,7 @@ import SkipLink from "./components/SkipLink";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
+import CookieSettings from "./components/CookieSettings";
 import StickyCTA from "./components/StickyCTA";
 import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
@@ -81,6 +82,7 @@ const App = () => {
             </main>
             <Footer />
             <CookieBanner />
+            <CookieSettings />
             <StickyCTA />
           </div>
           <RouteTracker />
