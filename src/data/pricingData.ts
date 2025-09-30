@@ -18,17 +18,26 @@ export interface KMUPlan {
   features: string[];
 }
 
-export const PRIVAT_PLANS: PrivatPlan[] = [
+export interface PrivatPlanExtended extends PrivatPlan {
+  claim: string;
+  badges: string[];
+}
+
+export const PRIVAT_PLANS: PrivatPlanExtended[] = [
   {
     id: 'start',
     name: 'Haus-IT Start',
     preis: 9.90,
     rabattVorOrt: 0.15,
+    claim: 'Für Haushalte, die Sicherheit und Priorität beim IT-Support möchten.',
+    badges: ['Priorität', '–15% Vor-Ort', 'WhatsApp'],
     features: [
-      'Monatlich kündbar',
-      '–15% auf Vor-Ort-Einsätze',
-      'Remote-Support',
-      'Telefonische Beratung'
+      '–15% Vor-Ort-Rabatt',
+      'Termin-Priorität (Antwort ≤ 48h)',
+      'WhatsApp-Direktkanal',
+      'Update-Reminder & Schritt-für-Schritt-Guides',
+      '1× jährlicher Remote-Gesundheitscheck',
+      'Preisgarantie 12 Monate'
     ]
   },
   {
@@ -36,13 +45,15 @@ export const PRIVAT_PLANS: PrivatPlan[] = [
     name: 'Haus-IT Plus',
     preis: 19.90,
     rabattVorOrt: 0.25,
+    claim: 'Premium-Vorteile für Familien und Power-User mit schnellerer Reaktion.',
+    badges: ['Priority', '–25% Vor-Ort', 'WhatsApp-Priority'],
     features: [
-      'Monatlich kündbar',
-      '–25% auf Vor-Ort-Einsätze',
-      'Remote-Support',
-      'Telefonische Beratung',
-      'Quartalscheck',
-      'Backup-Beratung'
+      '–25% Vor-Ort-Rabatt',
+      'Schnellere Reaktion (Antwort ≤ 4h)',
+      'Same/Next-Business-Day (Best-Effort)',
+      '2× jährlicher Sicherheits-Check (remote)',
+      'Backup-Plan-Setup (einmalig)',
+      'WhatsApp-Priority'
     ]
   }
 ];
