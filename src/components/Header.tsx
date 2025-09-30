@@ -41,19 +41,17 @@ export default function Header() {
           <button className="ml-auto md:hidden rounded-lg border px-3 py-2" onClick={()=>setOpen(v=>!v)} aria-expanded={open}>Menü</button>
         </div>
 
-        {/* Mobile menu */}
+          {/* Mobile menu */}
         {open && (
           <div className="md:hidden border-t bg-white">
             <div className="mx-auto max-w-7xl px-3 py-3 flex flex-col gap-2">
-              <NavItem to="/">Startseite</NavItem>
-              <NavItem to="/leistungen">Leistungen (Privat)</NavItem>
-              <NavItem to="/kmu">KMU Managed Services</NavItem>
+              <NavItem to="/leistungen">Leistungen</NavItem>
+              <NavItem to="/kmu">KMU</NavItem>
               <NavItem to="/preise">Preise</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
-              <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a href="https://wa.me/4922198652990" target="_blank" rel="noopener noreferrer" className="px-3 py-2 text-sm text-muted-foreground hover:text-primary">WhatsApp</a>
-              <a href="/termin" className="rounded-xl bg-primary px-4 py-2 text-white text-center hover:bg-primary/90 transition-colors">Jetzt Kontakt aufnehmen</a>
+              <a href="/termin" className="rounded-xl bg-thp-cta px-4 py-2 text-white text-center hover:bg-thp-cta/90 transition-colors">Jetzt Kontakt aufnehmen</a>
             </div>
           </div>
         )}
@@ -84,12 +82,10 @@ export default function Header() {
             </div>
             
             <nav className="p-4 flex flex-col gap-1" aria-label="Hauptnavigation">
-              <NavItem to="/">Startseite</NavItem>
-              <NavItem to="/leistungen">Leistungen (Privat)</NavItem>
-              <NavItem to="/kmu">KMU Managed Services</NavItem>
+              <NavItem to="/leistungen">Leistungen</NavItem>
+              <NavItem to="/kmu">KMU</NavItem>
               <NavItem to="/preise">Preise</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
-              <NavItem to="/ueber-uns">Über uns</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a 
                 href="https://wa.me/4922198652990" 
