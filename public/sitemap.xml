@@ -4,42 +4,42 @@
   
   <!-- Main Pages -->
   <url>
-    <loc>https://www.techhilfepro.de/</loc>
+    <loc>https://techhilfepro.de/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/leistungen</loc>
+    <loc>https://techhilfepro.de/leistungen</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/preise</loc>
+    <loc>https://techhilfepro.de/preise</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/kmu</loc>
+    <loc>https://techhilfepro.de/kmu</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/faq</loc>
+    <loc>https://techhilfepro.de/faq</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/kontakt</loc>
+    <loc>https://techhilfepro.de/kontakt</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -47,66 +47,66 @@
   
   <!-- Service Detail Pages -->
   <url>
-    <loc>https://www.techhilfepro.de/leistungen/computer</loc>
+    <loc>https://techhilfepro.de/leistungen/computer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/leistungen/heimnetzwerk-wlan</loc>
+    <loc>https://techhilfepro.de/leistungen/heimnetzwerk-wlan</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/leistungen/drucker-kopierer-scanner</loc>
+    <loc>https://techhilfepro.de/leistungen/drucker-kopierer-scanner</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/leistungen/tv-internet-streaming</loc>
+    <loc>https://techhilfepro.de/leistungen/tv-internet-streaming</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/leistungen/smarthome-assistenten</loc>
+    <loc>https://techhilfepro.de/leistungen/smarthome-assistenten</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <!-- Legal Pages -->
   <url>
-    <loc>https://www.techhilfepro.de/recht/impressum</loc>
+    <loc>https://techhilfepro.de/recht/impressum</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/recht/datenschutz</loc>
+    <loc>https://techhilfepro.de/recht/datenschutz</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/recht/agb</loc>
+    <loc>https://techhilfepro.de/recht/agb</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/recht/widerruf</loc>
+    <loc>https://techhilfepro.de/recht/widerruf</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://www.techhilfepro.de/recht/cookies</loc>
+    <loc>https://techhilfepro.de/recht/cookies</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

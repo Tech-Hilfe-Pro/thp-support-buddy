@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { COMPANY } from "@/data/company";
 
-const SITE_URL = import.meta.env.SITE_URL || import.meta.env.VITE_SITE_URL || "https://www.techhilfepro.de";
+const SITE_URL = import.meta.env.SITE_URL || import.meta.env.VITE_SITE_URL || "https://techhilfepro.de";
 
 type Props = {
   title: string; 
@@ -25,7 +25,7 @@ export default function SEO({ title, description, path, robots, ogImage="/og/def
     "name": COMPANY.brand,
     "image": `${base}/brand/logo.png`,
     "url": base,
-    "telephone": COMPANY.telE164,
+    "telephone": COMPANY.telDisplay,
     "email": COMPANY.email,
     "address": {
       "@type": "PostalAddress",

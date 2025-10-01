@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.techhilfepro.de/sitemap.xml
+Sitemap: https://techhilfepro.de/sitemap.xml
 
 # Crawl-delay for courtesy
 Crawl-delay: 1

@@ -50,7 +50,7 @@ export default function Header() {
               <NavItem to="/preise">Preise</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
-              <a href="https://wa.me/4922198652990" target="_blank" rel="noopener noreferrer" className="px-3 py-2 text-sm text-muted-foreground hover:text-primary">WhatsApp</a>
+              <a href="https://wa.me/4915565029989" target="_blank" rel="noopener noreferrer" className="px-3 py-2 text-sm text-muted-foreground hover:text-primary">WhatsApp</a>
               <a href="/termin" className="rounded-xl bg-thp-cta px-4 py-2 text-white text-center hover:bg-thp-cta/90 transition-colors">Jetzt Kontakt aufnehmen</a>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Header() {
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a 
-                href="https://wa.me/4922198652990" 
+                href="https://wa.me/4915565029989" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-black block transition-colors"

@@ -111,9 +111,9 @@ const TerminBestaetigt = () => {
             <div className="space-y-4">
               <h3 className="font-semibold">Erreichbarkeit</h3>
               <div className="text-sm space-y-1">
-                <p><strong>Telefon:</strong> +49 221 123 456 7</p>
-                <p><strong>E-Mail:</strong> info@techhilfe-pro.de</p>
-                <p><strong>Notfall-Hotline:</strong> +49 221 987 654 3</p>
+                <p><strong>Telefon:</strong> <a href="tel:+4915565029989" className="hover:underline">+49 15565029989</a></p>
+                <p><strong>E-Mail:</strong> <a href="mailto:info@techhilfepro.de" className="hover:underline">info@techhilfepro.de</a></p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/4915565029989" target="_blank" rel="noopener noreferrer" className="hover:underline">+49 15565029989</a></p>
               </div>
             </div>
 
@@ -128,8 +128,8 @@ const TerminBestaetigt = () => {
         <div className="text-center mt-8">
           <p className="text-sm text-muted-foreground">
             Bei Fragen oder Änderungen kontaktieren Sie uns gerne unter{" "}
-            <a href="tel:+492211234567" className="text-primary hover:underline">
-              +49 221 123 456 7
+            <a href="tel:+4915565029989" className="text-primary hover:underline">
+              +49 15565029989
             </a>
           </p>
         </div>

@@ -4,10 +4,10 @@ export const COMPANY = {
   street: "Büro in Köln (virtuell)",
   postalCode: "50667",
   city: "Köln",
-  email: "info@techhilfe-pro.de",
-  telE164: "+4922198652990",
-  telDisplay: "+49 221 98652990",
-  whatsappUrl: "https://wa.me/4922198652990",
+  email: "info@techhilfepro.de",
+  telE164: "+4915565029989",
+  telDisplay: "+49 15565029989",
+  whatsappUrl: "https://wa.me/4915565029989",
   ustId: undefined as string | undefined
 };
 

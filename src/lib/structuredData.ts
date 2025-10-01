@@ -1,7 +1,7 @@
 import { COMPANY } from "@/data/company";
 
 export function buildOrganizationJsonLd() {
-  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://www.techhilfepro.de";
+  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://techhilfepro.de";
   
   return {
     "@context": "https://schema.org",
@@ -10,7 +10,7 @@ export function buildOrganizationJsonLd() {
     "url": siteUrl,
     "logo": `${siteUrl}/brand/logo.svg`,
     "email": COMPANY.email,
-    "telephone": COMPANY.telE164,
+    "telephone": COMPANY.telDisplay,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": COMPANY.street,
@@ -34,7 +34,7 @@ export function buildOrganizationJsonLd() {
 }
 
 export function buildLocalBusinessJsonLd() {
-  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://www.techhilfepro.de";
+  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://techhilfepro.de";
   
   return {
     "@context": "https://schema.org",
@@ -43,7 +43,7 @@ export function buildLocalBusinessJsonLd() {
     "name": COMPANY.brand,
     "url": siteUrl,
     "image": `${siteUrl}/og/default.jpg`,
-    "telephone": COMPANY.telE164,
+    "telephone": COMPANY.telDisplay,
     "email": COMPANY.email,
     "address": {
       "@type": "PostalAddress",

@@ -325,7 +325,7 @@ const Beleg = () => {
 
                 <div className="text-center text-xs text-gray-600 mt-6">
                   <p>Vielen Dank für Ihr Vertrauen!</p>
-                  <p>info@techhilfe-pro.de | +49 221 123 456 7</p>
+                  <p>info@techhilfepro.de | +49 15565029989</p>
                 </div>
               </div>
             </div>

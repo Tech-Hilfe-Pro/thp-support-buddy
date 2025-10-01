@@ -25,7 +25,7 @@ const Widerruf = () => {
               </p>
               <p>
                 Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (Tech Hilfe Pro, 
-                E-Mail: info@techhilfe-pro.de, Telefon: +49 221 98652990) 
+                E-Mail: <a href="mailto:info@techhilfepro.de" className="underline hover:no-underline">info@techhilfepro.de</a>, Telefon: <a href="tel:+4915565029989" className="underline hover:no-underline">+49 15565029989</a>) 
                 mittels einer eindeutigen Erklärung (z.B. E-Mail oder Brief) 
                 über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.
               </p>
@@ -89,7 +89,7 @@ const Widerruf = () => {
                 Formular aus und senden Sie es zurück.)
               </p>
               <div className="space-y-2">
-                <p>An: Tech Hilfe Pro, E-Mail: info@techhilfe-pro.de</p>
+                <p>An: Tech Hilfe Pro, E-Mail: <a href="mailto:info@techhilfepro.de" className="underline hover:no-underline">info@techhilfepro.de</a></p>
                 <p>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung (*)</p>
                 <p>Bestellt am (*)/erhalten am (*)</p>
                 <p>Name des/der Verbraucher(s)</p>

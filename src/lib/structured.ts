@@ -27,7 +27,7 @@ export function localBusiness(params: {
     name: params.name || SITE_NAME,
     url: params.url || SITE_URL,
     image: `${SITE_URL}/og/default.jpg`,
-    telephone: params.telephone || "+49 221 98652990",
+    telephone: params.telephone || "+49 15565029989",
     address: {
       "@type": "PostalAddress",
       streetAddress: params.address?.streetAddress || "Büro in Köln (virtuell)",
