@@ -22,20 +22,25 @@ export default function ServiceDrawer({ service, isOpen, onClose }: ServiceDrawe
 
   useEffect(() => {
     if (isOpen) {
-      // Focus trap: foco al título al abrir
-      titleRef.current?.focus();
-      
-      // Bloquear scroll del body
-      document.body.classList.add("menu-open");
-      
-      // Aplicar inert al resto de la página
-      const main = document.querySelector("main");
-      if (main) main.setAttribute("inert", "true");
+      // Defer focus and DOM updates to avoid forced reflow
+      requestAnimationFrame(() => {
+        // Focus trap: foco al título al abrir
+        titleRef.current?.focus();
+        
+        // Bloquear scroll del body
+        document.body.classList.add("menu-open");
+        
+        // Aplicar inert al resto de la página
+        const main = document.querySelector("main");
+        if (main) main.setAttribute("inert", "true");
+      });
     } else {
-      // Restaurar al cerrar
-      document.body.classList.remove("menu-open");
-      const main = document.querySelector("main");
-      if (main) main.removeAttribute("inert");
+      // Restaurar al cerrar (también defer para evitar reflow)
+      requestAnimationFrame(() => {
+        document.body.classList.remove("menu-open");
+        const main = document.querySelector("main");
+        if (main) main.removeAttribute("inert");
+      });
     }
 
     return () => {
