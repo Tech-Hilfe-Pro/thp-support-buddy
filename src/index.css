@@ -267,33 +267,15 @@
   pointer-events: none;
 }
 
-.hero-scrim::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 96px;
-  background: linear-gradient(180deg, rgba(59,169,255,0) 0%, rgba(255,255,255,1) 100%);
-  pointer-events: none;
-}
 
-/* Accessible pill for CTA-colored text on saturated backgrounds */
-.a11y-pill {
-  display: inline-block;
-  color: #f97316;
-  background: rgba(255, 255, 255, 0.92);
-  -webkit-backdrop-filter: blur(6px) saturate(120%);
-  backdrop-filter: blur(6px) saturate(120%);
-  border-radius: 9999px;
-  padding: 0.25rem 0.65rem;
+/* Accessible underline accent for hero phrases */
+.hero-accent {
+  color: #fff;
+  text-decoration-line: underline;
+  text-decoration-color: #f97316;
+  text-decoration-thickness: 0.28em;
+  text-underline-offset: 0.18em;
   font-weight: 800;
-}
-
-@supports not (backdrop-filter: blur(2px)) {
-  .a11y-pill {
-    background: #ffffff;
-  }
 }
 
 /* Text shadow for hero titles */
@@ -327,11 +309,18 @@
 }
 
 .hero-phrase.entering {
-  animation: hero-in 350ms ease-out both;
+  animation: hero-in 340ms ease-out both;
 }
 
 .hero-phrase.leaving {
   animation: hero-out 220ms ease-in both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-phrase.entering,
+  .hero-phrase.leaving {
+    animation: none !important;
+  }
 }
 
 /* CTA buttons */
@@ -344,6 +333,12 @@
 
 .btn-cta:hover {
   filter: brightness(1.05);
+}
+
+.btn-cta:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
 .btn-ghost {

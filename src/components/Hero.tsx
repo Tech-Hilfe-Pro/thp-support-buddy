@@ -71,13 +71,13 @@ export default function Hero() {
         </h1>
         <div className="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
           {reduced ? (
-            <span className="a11y-pill inline-flex whitespace-nowrap font-extrabold">
+            <span className="hero-accent inline-flex whitespace-nowrap font-extrabold text-white">
               {words[0]}
             </span>
           ) : (
             <span 
               key={currentIndex}
-              className={`hero-phrase a11y-pill inline-flex whitespace-nowrap font-extrabold ${
+              className={`hero-phrase hero-accent inline-flex whitespace-nowrap font-extrabold text-white ${
                 isVisible ? 'entering' : 'leaving'
               }`}
             >
