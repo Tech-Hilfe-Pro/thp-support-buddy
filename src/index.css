@@ -272,6 +272,18 @@
 :root { --header-h: 64px; }
 [id] { scroll-margin-top: var(--header-h); }
 
+/* Accessible focus for internal anchor links */
+.link-anchor:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Target scroll margin for smooth navigation */
+:target {
+  scroll-margin-top: 96px;
+}
+
 /* Scrollbar utilities */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

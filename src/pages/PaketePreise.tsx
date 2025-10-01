@@ -22,10 +22,18 @@ export default function PaketePreisePage() {
             Wählen Sie das passende Paket für Ihre Bedürfnisse. 
             Alle Pakete sind monatlich kündbar – keine versteckten Kosten.
           </p>
+          <div className="mt-4 flex gap-3 justify-center flex-wrap text-sm">
+            <a href="#pakete" className="link-anchor text-primary hover:underline">Zu Paketen</a>
+            <span className="text-muted-foreground">·</span>
+            <a href="#rechner" className="link-anchor text-primary hover:underline">Zum Rechner</a>
+          </div>
         </header>
 
         {/* Pricing Component (Tabs: Privat / KMU) */}
-        <Pricing />
+        <section id="pakete" className="scroll-mt-24">
+          <h2 className="sr-only">Unsere Pakete</h2>
+          <Pricing />
+        </section>
 
         {/* Preis-Rechner */}
         <section id="rechner" className="mt-16 scroll-mt-24">
