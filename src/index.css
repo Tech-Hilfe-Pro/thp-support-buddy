@@ -366,11 +366,31 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* Accessibility utilities */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /* Focus styles */
 :focus-visible { 
   outline: 2px solid hsl(var(--thp-primary)); 
   outline-offset: 2px; 
   border-radius: 8px; 
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {
