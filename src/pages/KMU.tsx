@@ -30,13 +30,15 @@ export default function KMUPage() {
       
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <header className="mb-12 text-center">
-          <Badge className="mb-4 bg-primary text-primary-foreground">Für Unternehmen</Badge>
           <h1 className="text-4xl font-bold text-foreground mb-4">
-            Managed IT-Services für KMU
+            Transparente Preise ohne Überraschungen
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
             Planbare IT-Kosten, proaktive Überwachung und schnelle Hilfe bei Problemen. 
             Wählen Sie das passende Paket für Ihr Unternehmen.
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Für kleine & mittlere Unternehmen – planbare IT-Kosten.
           </p>
         </header>
 
@@ -57,7 +59,20 @@ export default function KMUPage() {
             return (
               <Card 
                 key={plan.id} 
-                className={`relative flex flex-col ${isPopular ? 'border-2 border-primary shadow-lg' : 'border border-border'}`}
+                className={`relative flex flex-col rounded-2xl border transition-all duration-200 ${
+                  isPopular 
+                    ? 'border-[hsl(var(--thp-primary))] ring-2 ring-[hsl(var(--thp-primary))]' 
+                    : 'border-[var(--thp-card-border)]'
+                }`}
+                style={{
+                  boxShadow: 'var(--thp-shadow-sm)',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isPopular) e.currentTarget.style.boxShadow = 'var(--thp-shadow-md)';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isPopular) e.currentTarget.style.boxShadow = 'var(--thp-shadow-sm)';
+                }}
               >
                 {isPopular && (
                   <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[hsl(var(--thp-cta))] text-white">
@@ -78,12 +93,12 @@ export default function KMUPage() {
                     <div className="text-sm text-muted-foreground">
                       pro Endpoint/Monat
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1">
+                    <Badge variant="outline" className="w-fit mt-2 text-xs">
                       Mindestumsatz: {plan.minMonthly} €/Monat
-                    </div>
+                    </Badge>
                   </div>
                   
-                  <ul className="space-y-2 text-sm flex-1">
+                  <ul className="space-y-2 text-sm flex-1" style={{ lineHeight: '1.5' }}>
                     {plan.bullets.map((bullet, bidx) => (
                       <li key={bidx} className="flex items-start gap-2">
                         <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />

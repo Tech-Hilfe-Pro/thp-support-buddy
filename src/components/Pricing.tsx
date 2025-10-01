@@ -47,50 +47,91 @@ export default function Pricing() {
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
             {mode === 'privat' 
               ? 'Für Zuhause und Haushalte – schneller IT-Support.'
-              : 'KMU = kleine & mittlere Unternehmen (ca. 5–30 Mitarbeitende).'
+              : 'Für kleine & mittlere Unternehmen – planbare IT-Kosten.'
             }
           </p>
         </div>
 
         {mode === 'privat' ? (
           <>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {PRIVAT_PLANS.map((plan) => (
-                <Card key={plan.id} className="relative flex flex-col">
-                  <CardHeader>
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {plan.badges.map((badge, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-xs">
-                          {badge}
-                        </Badge>
-                      ))}
-                    </div>
-                    <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                    <CardDescription className="text-sm mt-2">
-                      {plan.claim}
-                    </CardDescription>
-                    <div className="mt-4">
-                      <span className="text-4xl font-bold text-foreground">
-                        {plan.monthly.toFixed(2).replace('.', ',')} €
-                      </span>
-                      <span className="text-muted-foreground ml-2">/Monat</span>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <ul className="space-y-3 mb-6 flex-1">
-                      {plan.bullets.map((bullet, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                          <span className="text-sm">{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button asChild className="w-full mt-auto">
-                      <Link to="/kontakt">Jetzt wählen</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+            {/* Badges de descuentos */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              <Badge variant="outline" className="text-sm">
+                –10% bei Vorauszahlung (12 Monate)
+              </Badge>
+              <Badge variant="outline" className="text-sm">
+                –25% Vor-Ort-Rabatt mit aktivem Abo
+              </Badge>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+              {PRIVAT_PLANS.map((plan, idx) => {
+                const isPopular = idx === 1;
+                return (
+                  <Card 
+                    key={plan.id} 
+                    className={`relative flex flex-col rounded-2xl border transition-all duration-200 ${
+                      isPopular 
+                        ? 'border-[hsl(var(--thp-primary))] ring-2 ring-[hsl(var(--thp-primary))]' 
+                        : 'border-[var(--thp-card-border)]'
+                    }`}
+                    style={{
+                      boxShadow: 'var(--thp-shadow-sm)',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isPopular) e.currentTarget.style.boxShadow = 'var(--thp-shadow-md)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isPopular) e.currentTarget.style.boxShadow = 'var(--thp-shadow-sm)';
+                    }}
+                  >
+                    {isPopular && (
+                      <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[hsl(var(--thp-cta))] text-white">
+                        Beliebt
+                      </Badge>
+                    )}
+                    <CardHeader>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {plan.badges.map((badge, bdgIdx) => (
+                          <Badge key={bdgIdx} variant="secondary" className="text-xs">
+                            {badge}
+                          </Badge>
+                        ))}
+                      </div>
+                      <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                      <CardDescription className="text-sm mt-2">
+                        {plan.claim}
+                      </CardDescription>
+                      <div className="mt-4">
+                        <span className="text-4xl font-bold text-foreground">
+                          {plan.monthly.toFixed(2).replace('.', ',')} €
+                        </span>
+                        <span className="text-muted-foreground ml-2">/Monat</span>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="flex-1 flex flex-col">
+                      <ul className="space-y-3 mb-6 flex-1" style={{ lineHeight: '1.5' }}>
+                        {plan.bullets.map((bullet, bidx) => (
+                          <li key={bidx} className="flex items-start gap-2">
+                            <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                            <span className="text-sm">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button 
+                        asChild 
+                        className={`w-full mt-auto ${
+                          isPopular 
+                            ? 'bg-[hsl(var(--thp-cta))] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2' 
+                            : 'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
+                        }`}
+                      >
+                        <Link to="/kontakt">Jetzt wählen</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
 
             {/* Savings Examples */}
@@ -174,51 +215,69 @@ export default function Pricing() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 items-stretch">
-              {KMU_PLANS.map((plan) => (
-                <Card key={plan.id} className={`flex flex-col ${plan.id === 'kmu-standard' ? 'border-2 border-primary shadow-lg' : ''}`}>
-                  {plan.id === 'kmu-standard' && (
-                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[hsl(var(--thp-cta))] text-white">
-                      Beliebt
-                    </Badge>
-                  )}
-                  <CardHeader>
-                    <CardTitle className="text-xl">{plan.name}</CardTitle>
-                    <CardDescription className="text-xs uppercase tracking-wide text-muted-foreground">
-                      {plan.subtitle}
-                    </CardDescription>
-                    <div className="mt-3">
-                      <span className="text-3xl font-bold text-foreground">
-                        {plan.pricePerEndpoint.toFixed(2)} €
-                      </span>
-                      <span className="text-sm text-muted-foreground">/Endpoint/Monat</span>
-                    </div>
-                    <Badge variant="outline" className="w-fit mt-2 text-xs">
-                      Mindestumsatz: {plan.minMonthly} €/Monat
-                    </Badge>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <ul className="space-y-2 mb-6 flex-1">
-                      {plan.bullets.map((bullet, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                          <span className="text-sm">{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button 
-                      asChild 
-                      className={`w-full mt-auto ${
-                        plan.id === 'kmu-standard' 
-                          ? 'bg-[hsl(var(--thp-cta))] hover:opacity-90' 
-                          : ''
-                      }`}
-                      variant={plan.id === 'kmu-standard' ? 'default' : 'outline'}
-                    >
-                      <Link to="/kmu">Mehr erfahren</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+              {KMU_PLANS.map((plan) => {
+                const isPopular = plan.id === 'kmu-standard';
+                return (
+                  <Card 
+                    key={plan.id} 
+                    className={`relative flex flex-col rounded-2xl border transition-all duration-200 ${
+                      isPopular 
+                        ? 'border-[hsl(var(--thp-primary))] ring-2 ring-[hsl(var(--thp-primary))]' 
+                        : 'border-[var(--thp-card-border)]'
+                    }`}
+                    style={{
+                      boxShadow: 'var(--thp-shadow-sm)',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isPopular) e.currentTarget.style.boxShadow = 'var(--thp-shadow-md)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isPopular) e.currentTarget.style.boxShadow = 'var(--thp-shadow-sm)';
+                    }}
+                  >
+                    {isPopular && (
+                      <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[hsl(var(--thp-cta))] text-white">
+                        Beliebt
+                      </Badge>
+                    )}
+                    <CardHeader>
+                      <CardTitle className="text-xl">{plan.name}</CardTitle>
+                      <CardDescription className="text-xs uppercase tracking-wide text-muted-foreground">
+                        {plan.subtitle}
+                      </CardDescription>
+                      <div className="mt-3">
+                        <span className="text-3xl font-bold text-foreground">
+                          {plan.pricePerEndpoint.toFixed(2)} €
+                        </span>
+                        <span className="text-sm text-muted-foreground">/Endpoint/Monat</span>
+                      </div>
+                      <Badge variant="outline" className="w-fit mt-2 text-xs">
+                        Mindestumsatz: {plan.minMonthly} €/Monat
+                      </Badge>
+                    </CardHeader>
+                    <CardContent className="flex-1 flex flex-col">
+                      <ul className="space-y-2 mb-6 flex-1" style={{ lineHeight: '1.5' }}>
+                        {plan.bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                            <span className="text-sm">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button 
+                        asChild 
+                        className={`w-full mt-auto ${
+                          isPopular 
+                            ? 'bg-[hsl(var(--thp-cta))] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2' 
+                            : 'focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
+                        }`}
+                      >
+                        <Link to="/kmu">Mehr erfahren</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </>
         )}

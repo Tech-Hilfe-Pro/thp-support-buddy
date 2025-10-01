@@ -17,9 +17,9 @@ export default function PaketePreisePage() {
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {/* Intro */}
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Preise & Pakete</h1>
+          <h1 className="text-4xl font-bold mb-4">Transparente Preise ohne Überraschungen</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Transparente Preise für Privat & KMU. Wählen Sie zwischen monatlichen Abos mit Rabatten oder On-Demand-Support. 
+            Wählen Sie das passende Paket für Ihre Bedürfnisse. 
             Alle Pakete sind monatlich kündbar – keine versteckten Kosten.
           </p>
         </header>

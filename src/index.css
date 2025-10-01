@@ -98,6 +98,11 @@
   
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
+  
+  /* Card borders and shadows */
+  --thp-card-border: rgba(229, 231, 235, 0.8);
+  --thp-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.08);
+  --thp-shadow-md: 0 2px 8px rgba(16, 24, 40, 0.10), 0 12px 28px rgba(16, 24, 40, 0.10);
   --muted: 210 40% 96%;
   --muted-foreground: 215 16% 47%;
   --accent: 210 40% 96%;
