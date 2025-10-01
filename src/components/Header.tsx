@@ -1,6 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useScrollDir } from "@/hooks/useScrollDir";
+import LogoOrangen from "@/assets/logo-orangen.png";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -193,9 +194,9 @@ export default function Header() {
             className="flex items-center gap-2 shrink-0 whitespace-nowrap"
             aria-label="Tech Hilfe Pro"
           >
-            <img src="/brand/logo-32.webp" alt="Logo" width="24" height="24" className="w-6 h-6" />
-            <span className="text-lg font-semibold tracking-tight">
-              Tech <span className="text-thp-primary">Hilfe</span> Pro
+            <img src={LogoOrangen} alt="Tech Hilfe Pro" width="24" height="24" className="w-6 h-6" />
+            <span className="site-title text-lg font-semibold tracking-tight">
+              Tech <span className="site-title__highlight">HILFE</span> Pro
             </span>
           </Link>
 

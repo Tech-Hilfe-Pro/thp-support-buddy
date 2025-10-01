@@ -79,6 +79,18 @@
   font-variant-numeric: tabular-nums; 
 }
 
+/* Site Title - Header Branding */
+.site-title {
+  font-family: inherit;
+  font-weight: 700;
+}
+
+.site-title__highlight {
+  color: rgba(249, 115, 22, 0.90);
+  font-weight: 800;
+  -webkit-font-smoothing: antialiased;
+}
+
 /* Tech Hilfe Pro Design System - Color #3BA9FF */
 :root {
   --background: 0 0% 100%;
@@ -95,6 +107,7 @@
   /* CTA Orange: #F97316 → HSL(24 95% 53%) */
   --cta: 24 95% 53%;
   --cta-foreground: 0 0% 100%;
+  --thp-cta: 249 115 22; /* RGB base para #f97316 */
   
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
