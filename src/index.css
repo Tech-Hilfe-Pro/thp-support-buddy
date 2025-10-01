@@ -283,33 +283,65 @@
   text-shadow: 0 2px 8px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.25);
 }
 
-/* Hero phrase animations */
+/* Hero rotator - contenedor con altura fija para evitar CLS */
+.hero-rotator {
+  position: relative;
+  min-height: 3.2em;
+  display: block;
+}
+
+/* Hero phrase - apilado absoluto sin reflow */
+.hero-phrase {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  backface-visibility: hidden;
+  contain: paint;
+}
+
+.hero-phrase.hidden {
+  visibility: hidden;
+}
+
+/* will-change solo durante animación (se elimina en animationend) */
+.hero-phrase.willchange {
+  will-change: transform, opacity, filter;
+}
+
+/* Hero phrase animations - transform+opacity; blur breve al inicio */
 @keyframes hero-in {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(14px);
-    filter: blur(6px);
+    transform: translate3d(0, 14px, 0);
+    filter: blur(3px);
   }
-  to {
+  40% {
+    filter: blur(1px);
+  }
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
     filter: blur(0);
   }
 }
 
 @keyframes hero-out {
-  from {
+  0% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
-  to {
+  100% {
     opacity: 0;
-    transform: translateY(-6px);
+    transform: translate3d(0, -6px, 0);
   }
 }
 
 .hero-phrase.entering {
-  animation: hero-in 340ms ease-out both;
+  animation: hero-in 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .hero-phrase.leaving {
@@ -317,6 +349,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-phrase {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
   .hero-phrase.entering,
   .hero-phrase.leaving {
     animation: none !important;

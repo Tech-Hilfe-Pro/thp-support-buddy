@@ -15,7 +15,7 @@ export default function Hero() {
   ];
   
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
+  const [prevIndex, setPrevIndex] = useState(-1);
   const [reduced, setReduced] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
@@ -46,20 +46,15 @@ export default function Hero() {
   useEffect(() => {
     if (reduced || isPaused) return; // No animation for reduced motion or when paused
     
-    const duration = 3600; // 3.6s total cycle
-    const fadeOutDuration = 220; // 220ms exit
+    const duration = 3400; // 3.4s total cycle
     
     const interval = setInterval(() => {
-      setIsVisible(false);
-      
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % words.length);
-        setIsVisible(true);
-      }, fadeOutDuration);
+      setPrevIndex(currentIndex);
+      setCurrentIndex((prev) => (prev + 1) % words.length);
     }, duration);
 
     return () => clearInterval(interval);
-  }, [words.length, reduced, isPaused]);
+  }, [words.length, reduced, isPaused, currentIndex]);
 
   return (
     <section ref={heroRef} id="hero" className="hero-scrim relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden min-h-[64vh] md:min-h-[70vh] lg:min-h-[72vh] flex items-center">
@@ -69,22 +64,28 @@ export default function Hero() {
         <h1 className="text-3xl md:text-5xl font-extrabold text-white text-shadow-lg">
           Schneller IT-Support für Zuhause & Unternehmen
         </h1>
-        <div className="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
+        <span 
+          className="hero-rotator text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3" 
+          aria-live="polite"
+        >
           {reduced ? (
-            <span className="hero-accent inline-flex whitespace-nowrap font-extrabold text-white">
+            <span className="hero-phrase hero-accent inline-flex whitespace-nowrap font-extrabold text-white" style={{ position: 'relative', opacity: 1, transform: 'none' }}>
               {words[0]}
             </span>
           ) : (
-            <span 
-              key={currentIndex}
-              className={`hero-phrase hero-accent inline-flex whitespace-nowrap font-extrabold text-white ${
-                isVisible ? 'entering' : 'leaving'
-              }`}
-            >
-              {words[currentIndex]}
-            </span>
+            words.map((word, i) => (
+              <span
+                key={i}
+                className={`hero-phrase hero-accent inline-flex whitespace-nowrap font-extrabold text-white ${
+                  i === currentIndex ? 'entering willchange' : i === prevIndex ? 'leaving willchange' : 'hidden'
+                }`}
+                onAnimationEnd={(e) => e.currentTarget.classList.remove('willchange')}
+              >
+                {word}
+              </span>
+            ))
           )}
-        </div>
+        </span>
         <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto text-shadow-lg">
           Wir lösen Ihre Technikprobleme – <strong>REMOTE</strong> oder vor Ort in Köln, Neuss & Umgebung.
         </p>
