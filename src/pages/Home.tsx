@@ -5,7 +5,6 @@ import BusinessGlossary from "@/components/BusinessGlossary";
 import FinalCTA from "@/components/FinalCTA";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
-import WhatsAppFab from "@/components/WhatsAppFab";
 import { buildOrganizationJsonLd } from "@/lib/structuredData";
 import { COPY } from "@/data/copy";
 import { Zap, ShieldCheck, MapPin } from "lucide-react";
@@ -102,8 +101,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <WhatsAppFab />
 
       <FinalCTA />
     </>

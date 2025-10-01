@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import StickyReentryHeader from "./components/StickyReentryHeader";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 import Home from "./pages/Home";
 import Leistungen from "./pages/Leistungen";
 import ServiceDetail from "./pages/ServiceDetail";
@@ -120,6 +121,7 @@ const App = () => {
             </main>
             <Footer />
             <CookieBanner />
+            <WhatsAppFloat />
           </div>
           <RouteTracker />
           <RouteFocus />
