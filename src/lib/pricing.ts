@@ -61,6 +61,8 @@ export type CalcInput = {
   subscription: boolean;
   devices?: number;
   onsiteMinutes: number;
+  travelKm?: number;      // Distancia real desde ORS (opcional)
+  travelMinutes?: number; // Tiempo real desde ORS (opcional)
 };
 
 export function calculateOnsiteTotal(input: CalcInput) {
@@ -70,11 +72,18 @@ export function calculateOnsiteTotal(input: CalcInput) {
   }
   const { laborGross, discount, laborNet } = calcLaborCost(input.onsiteMinutes, input.urgency, input.subscription);
   const total = round2(laborNet + trFee);
+  
+  // Si hay datos de ORS, incluir en el retorno
+  const travelInfo = input.travelKm && input.travelMinutes 
+    ? { travelKm: input.travelKm, travelMinutes: input.travelMinutes }
+    : undefined;
+  
   return {
     inArea: true,
     breakdown: { arbeitszeitBrutto: laborGross, rabattAbo: discount, arbeitszeitNetto: laborNet, anfahrt: trFee },
     total,
-    zeitfenster: estimateWindow(input.onsiteMinutes)
+    zeitfenster: estimateWindow(input.onsiteMinutes),
+    ...(travelInfo && { travelInfo })
   };
 }
 

@@ -11,6 +11,8 @@ import { SERVICES } from "@/data/services";
 import { calculateOnsiteTotal, CalcInput, Urgency } from "@/lib/pricing";
 import { saveQuoteToStorage, Quote } from "@/lib/quote";
 import { formatEUR } from "@/lib/format";
+import { getTravelMatrix } from "@/lib/distance";
+import { getCoordinates } from "@/data/plz-centroids";
 
 const PriceTimeCalculator = () => {
   const navigate = useNavigate();
@@ -20,13 +22,14 @@ const PriceTimeCalculator = () => {
   const [subscription, setSubscription] = useState<boolean>(false);
   const [result, setResult] = useState<any>(null);
   const [errors, setErrors] = useState<{ service?: string; plz?: string }>({});
+  const [calculating, setCalculating] = useState<boolean>(false);
 
   // Track calculator opened
   useEffect(() => {
     track("calculator_opened");
   }, []);
 
-  const handleCalculate = () => {
+  const handleCalculate = async () => {
     const newErrors: { service?: string; plz?: string } = {};
     
     if (!serviceId) {
@@ -44,31 +47,52 @@ const PriceTimeCalculator = () => {
     }
     
     setErrors({});
+    setCalculating(true);
     
-    const service = SERVICES.find(s => s.id === serviceId);
-    const onsiteMinutes = service?.zeitMin || 60;
-    
-    const input: CalcInput = {
-      serviceId,
-      plz,
-      urgency,
-      subscription,
-      onsiteMinutes
-    };
-    
-    const calculation = calculateOnsiteTotal(input);
-    setResult(calculation);
-    
-    if (calculation.inArea) {
-      // Track successful calculation result
-      track("calculator_result_shown", {
+    try {
+      const service = SERVICES.find(s => s.id === serviceId);
+      const onsiteMinutes = service?.zeitMin || 60;
+      
+      // Intentar obtener coordenadas y matriz de viaje ORS
+      const coords = getCoordinates(plz);
+      let travelData: { travelKm?: number; travelMinutes?: number } = {};
+      
+      if (coords) {
+        const matrix = await getTravelMatrix(coords);
+        if (matrix) {
+          travelData = {
+            travelKm: matrix.distanceKm,
+            travelMinutes: matrix.durationMin
+          };
+        }
+      }
+      
+      const input: CalcInput = {
         serviceId,
-        plzArea: "unknown", // Note: zone info not available in current calculation result
-        subscription,
+        plz,
         urgency,
-        minutes: onsiteMinutes,
-        totalBucket: bucketAmount(calculation.total * 100)
-      });
+        subscription,
+        onsiteMinutes,
+        ...travelData
+      };
+      
+      const calculation = calculateOnsiteTotal(input);
+      setResult(calculation);
+      
+      if (calculation.inArea) {
+        // Track successful calculation result
+        track("calculator_result_shown", {
+          serviceId,
+          plzArea: "unknown",
+          subscription,
+          urgency,
+          minutes: onsiteMinutes,
+          totalBucket: bucketAmount(calculation.total * 100),
+          hasOrsData: !!travelData.travelKm
+        });
+      }
+    } finally {
+      setCalculating(false);
     }
   };
 
@@ -178,8 +202,8 @@ const PriceTimeCalculator = () => {
           </div>
 
           {/* Calculate Button */}
-          <Button onClick={handleCalculate} className="w-full" size="lg">
-            Preis berechnen
+          <Button onClick={handleCalculate} className="w-full" size="lg" disabled={calculating}>
+            {calculating ? "Berechne..." : "Preis berechnen"}
           </Button>
         </CardContent>
       </Card>
@@ -229,6 +253,11 @@ const PriceTimeCalculator = () => {
                     <p className="text-sm">
                       <strong>Geschätztes Zeitfenster:</strong> {result.zeitfenster}
                     </p>
+                    {result.travelInfo && (
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Entfernung: {result.travelInfo.travelKm} km · Anfahrt: ~{result.travelInfo.travelMinutes} Min
+                      </p>
+                    )}
                   </div>
 
                   {/* Action Buttons */}

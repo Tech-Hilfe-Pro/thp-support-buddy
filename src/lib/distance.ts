@@ -1,22 +1,39 @@
 /**
- * Stub para ORS (OpenRouteService) - distancias y tiempos de viaje
- * Por ahora devuelve null; listo para integración futura
+ * Cliente ORS Matrix - Proxy a través de Cloudflare Pages Function
+ * Calcula distancia (km) y duración (min) desde base THP hasta destino
  */
 
 export interface TravelMatrix {
-  distance: number; // km
-  duration: number; // minutos
+  distanceKm: number;
+  durationMin: number;
 }
 
 /**
- * Calcula distancia y tiempo desde base hasta PLZ destino
- * @param plz PLZ del cliente (5 dígitos)
- * @returns {TravelMatrix | null} null si no disponible o fuera de zona
+ * Llama al proxy ORS Matrix para obtener distancia y tiempo de viaje
+ * @param dest Coordenadas destino [lon, lat]
+ * @param profile Perfil de ruta (default: "driving-car")
+ * @returns {TravelMatrix | null} null si falla o no disponible
  */
-export async function getTravelMatrix(plz: string): Promise<TravelMatrix | null> {
-  // TODO: integrar con ORS API cuando esté disponible
-  // const response = await fetch(`https://api.openrouteservice.org/...`)
-  // return { distance: ..., duration: ... }
-  
-  return null;
+export async function getTravelMatrix(
+  dest: [number, number],
+  profile: string = 'driving-car'
+): Promise<TravelMatrix | null> {
+  try {
+    const response = await fetch('/api/ors-matrix', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dest, profile }),
+    });
+
+    if (!response.ok) {
+      console.warn('ORS Matrix proxy error:', response.status);
+      return null;
+    }
+
+    const data = await response.json();
+    return data as TravelMatrix;
+  } catch (error) {
+    console.warn('ORS Matrix call failed:', error);
+    return null;
+  }
 }
