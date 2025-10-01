@@ -23,6 +23,7 @@ const PriceTimeCalculator = () => {
   const [result, setResult] = useState<any>(null);
   const [errors, setErrors] = useState<{ service?: string; plz?: string }>({});
   const [calculating, setCalculating] = useState<boolean>(false);
+  const [dataSource, setDataSource] = useState<"ors" | "estimate" | null>(null);
 
   // Track calculator opened
   useEffect(() => {
@@ -56,16 +57,25 @@ const PriceTimeCalculator = () => {
       // Intentar obtener coordenadas y matriz de viaje ORS
       const coords = getCoordinates(plz);
       let travelData: { travelKm?: number; travelMinutes?: number } = {};
+      let source: "ors" | "estimate" = "estimate";
       
       if (coords) {
-        const matrix = await getTravelMatrix(coords);
-        if (matrix) {
-          travelData = {
-            travelKm: matrix.distanceKm,
-            travelMinutes: matrix.durationMin
-          };
+        try {
+          const matrix = await getTravelMatrix(coords);
+          if (matrix) {
+            travelData = {
+              travelKm: matrix.distanceKm,
+              travelMinutes: matrix.durationMin
+            };
+            source = "ors";
+          }
+        } catch (error) {
+          // Fallback silencioso: continuar sin datos ORS
+          console.warn("ORS Matrix no disponible, usando estimación local:", error);
         }
       }
+      
+      setDataSource(source);
       
       const input: CalcInput = {
         serviceId,
@@ -248,14 +258,19 @@ const PriceTimeCalculator = () => {
                     </div>
                   </div>
 
-                  {/* Time Window */}
-                  <div className="bg-muted/50 p-3 rounded-lg">
+                   {/* Time Window */}
+                  <div className="bg-muted/50 p-3 rounded-lg space-y-1">
                     <p className="text-sm">
                       <strong>Geschätztes Zeitfenster:</strong> {result.zeitfenster}
                     </p>
                     {result.travelInfo && (
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-muted-foreground">
                         Entfernung: {result.travelInfo.travelKm} km · Anfahrt: ~{result.travelInfo.travelMinutes} Min
+                      </p>
+                    )}
+                    {dataSource && (
+                      <p className="text-xs font-medium" style={{ color: dataSource === "ors" ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))" }}>
+                        {dataSource === "ors" ? "✓ Live-Routendaten (ORS)" : "⚠ Schätzung (ORS nicht verfügbar)"}
                       </p>
                     )}
                   </div>
