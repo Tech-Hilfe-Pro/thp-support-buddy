@@ -412,6 +412,33 @@ body.menu-open {
   width: 100%;
 }
 
+/* Drawer backdrop */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45);
+}
+
+/* Menu focus-visible styles */
+.menu a:focus-visible,
+.menu button:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Menu items minimum touch target */
+.menu a,
+.menu button {
+  min-height: 44px;
+}
+
+/* Inert state visual hint */
+[inert] {
+  cursor: default;
+  user-select: none;
+}
+
 /* Minimum touch target size (24×24 CSS px) */
 button, a, [role="button"], [role="tab"] {
   min-width: 24px;
