@@ -107,7 +107,7 @@ export default function ServiceDrawer({ service, isOpen, onClose }: ServiceDrawe
             size="icon"
             onClick={onClose}
             aria-label="Drawer schließen"
-            className="shrink-0"
+            className="shrink-0 min-w-[44px] min-h-[44px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
           >
             <X className="w-5 h-5" />
           </Button>
@@ -176,12 +176,12 @@ export default function ServiceDrawer({ service, isOpen, onClose }: ServiceDrawe
         {/* Footer fijo con CTAs */}
         <footer className="border-t p-6 bg-background sticky bottom-0">
           <div className="grid grid-cols-2 gap-3">
-            <Button asChild variant="outline" size="lg">
+            <Button asChild variant="outline" size="lg" className="min-h-[48px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
               <Link to={`/preise#rechner?service=${service.slug}`}>
                 Preis berechnen
               </Link>
             </Button>
-            <Button asChild size="lg" className="bg-cta hover:bg-cta/90 text-cta-foreground">
+            <Button asChild size="lg" className="bg-cta hover:bg-cta/90 text-cta-foreground min-h-[48px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
               <Link to="/termin">
                 Termin buchen
               </Link>

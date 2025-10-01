@@ -6,7 +6,7 @@ import type { Service } from "@/data/services";
 interface ServiceCardProps {
   service: Service;
   highlighted?: boolean;
-  onDetails: () => void;
+  onDetails: (trigger: HTMLButtonElement) => void;
 }
 
 export default function ServiceCard({ service, highlighted = false, onDetails }: ServiceCardProps) {
@@ -64,7 +64,7 @@ export default function ServiceCard({ service, highlighted = false, onDetails }:
         {/* CTAs */}
         <div className="mt-auto pt-4 space-y-2">
           <div className="grid grid-cols-2 gap-2">
-            <Button asChild size="sm" variant="outline">
+            <Button asChild size="sm" variant="outline" className="min-h-[44px]">
               <Link
                 to={`/preise#rechner?service=${service.slug}`}
                 aria-label={`Preis berechnen für ${service.title}`}
@@ -72,7 +72,7 @@ export default function ServiceCard({ service, highlighted = false, onDetails }:
                 Preis in 60s
               </Link>
             </Button>
-            <Button asChild size="sm" className="bg-cta hover:bg-cta/90 text-cta-foreground">
+            <Button asChild size="sm" className="bg-cta hover:bg-cta/90 text-cta-foreground min-h-[44px]">
               <Link
                 to="/termin"
                 aria-label={`Termin buchen für ${service.title}`}
@@ -84,8 +84,8 @@ export default function ServiceCard({ service, highlighted = false, onDetails }:
           <Button
             variant="ghost"
             size="sm"
-            onClick={onDetails}
-            className="w-full text-primary hover:text-primary/80"
+            onClick={(e) => onDetails(e.currentTarget)}
+            className="w-full text-primary hover:text-primary/80 min-h-[44px]"
             aria-label={`Details anzeigen für ${service.title}`}
           >
             Details & FAQ →

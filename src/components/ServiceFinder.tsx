@@ -24,6 +24,7 @@ export default function ServiceFinder({ wizardState }: ServiceFinderProps) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [recommendedSlugs, setRecommendedSlugs] = useState<string[]>([]);
+  const [drawerTrigger, setDrawerTrigger] = useState<HTMLButtonElement | null>(null);
   
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -46,14 +47,20 @@ export default function ServiceFinder({ wizardState }: ServiceFinderProps) {
     }
   }, [wizardState]);
 
-  const handleOpenDetails = (service: Service) => {
+  const handleOpenDetails = (service: Service, trigger: HTMLButtonElement) => {
     setSelectedService(service);
+    setDrawerTrigger(trigger);
     setDrawerOpen(true);
   };
 
   const handleCloseDrawer = () => {
     setDrawerOpen(false);
-    setTimeout(() => setSelectedService(null), 300);
+    setTimeout(() => {
+      setSelectedService(null);
+      // Retornar foco al trigger
+      drawerTrigger?.focus();
+      setDrawerTrigger(null);
+    }, 300);
   };
 
   // Keyboard navigation para tabs
@@ -112,8 +119,8 @@ export default function ServiceFinder({ wizardState }: ServiceFinderProps) {
                 onClick={() => setActiveFilter(tab.id)}
                 onKeyDown={(e) => handleTabKeyDown(e, idx)}
                 className={`
-                  px-4 py-2 rounded-full text-sm font-medium transition-colors
-                  focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary
+                  px-4 py-2 rounded-full text-sm font-medium transition-colors min-h-[44px] min-w-[44px]
+                  focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2
                   ${
                     isActive
                       ? "bg-primary text-primary-foreground shadow-sm"
@@ -143,7 +150,7 @@ export default function ServiceFinder({ wizardState }: ServiceFinderProps) {
                     key={srv.id}
                     service={srv}
                     highlighted={isHighlighted}
-                    onDetails={() => handleOpenDetails(srv)}
+                    onDetails={(trigger) => handleOpenDetails(srv, trigger)}
                   />
                 );
               })}

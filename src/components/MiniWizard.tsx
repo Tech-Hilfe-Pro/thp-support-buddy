@@ -65,7 +65,7 @@ export default function MiniWizard({ onComplete }: MiniWizardProps) {
                   variant="outline"
                   size="lg"
                   onClick={() => handleDevice(id)}
-                  className="h-auto py-4 flex flex-col gap-2 min-h-[96px]"
+                  className="h-auto py-4 flex flex-col gap-2 min-h-[96px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
                   aria-label={`Gerät auswählen: ${label}`}
                 >
                   <Icon className="w-6 h-6" aria-hidden="true" />
@@ -87,7 +87,7 @@ export default function MiniWizard({ onComplete }: MiniWizardProps) {
                   variant="outline"
                   size="lg"
                   onClick={() => handleType(id)}
-                  className="h-auto py-6 text-base font-semibold"
+                  className="h-auto py-6 text-base font-semibold min-h-[64px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
                   aria-label={`Service-Typ auswählen: ${label}`}
                 >
                   {label}
@@ -116,7 +116,7 @@ export default function MiniWizard({ onComplete }: MiniWizardProps) {
                   variant={id === "heute" ? "default" : "outline"}
                   size="lg"
                   onClick={() => handleUrgency(id)}
-                  className="h-auto py-4"
+                  className="h-auto py-4 min-h-[56px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
                   aria-label={`Dringlichkeit auswählen: ${label}`}
                 >
                   {label}
