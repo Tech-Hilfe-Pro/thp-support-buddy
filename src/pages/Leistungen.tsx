@@ -1,21 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
-import { Wifi, MapPin } from "lucide-react";
-import { SERVICES_DATA } from "@/data/servicesData";
+import MiniWizard from "@/components/MiniWizard";
+import ServiceFinder from "@/components/ServiceFinder";
+import type { WizardState } from "@/lib/filters";
 
 export default function Leistungen() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [wizardState, setWizardState] = useState<WizardState | undefined>(undefined);
 
-  const filtered = SERVICES_DATA.filter(s => {
-    if (!searchTerm.trim()) return true;
-    const lwr = searchTerm.toLowerCase();
-    return s.nameDe.toLowerCase().includes(lwr) || s.descriptionShort.toLowerCase().includes(lwr);
-  });
+  const handleWizardComplete = (state: WizardState) => {
+    setWizardState(state);
+  };
 
   return (
     <>
@@ -29,72 +25,20 @@ export default function Leistungen() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">Unsere Leistungen</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Von Computer-Reparatur bis Smart-Home – wir sind für Sie da.
+            Von Computer-Reparatur bis Smart-Home – finden Sie schnell den passenden Service.
           </p>
         </div>
 
-        <div className="mb-8 max-w-md mx-auto">
-          <Input
-            type="search"
-            placeholder="Service suchen..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            aria-label="Nach Services suchen"
-          />
-          {searchTerm && (
-            <p className="text-sm text-muted-foreground mt-2 text-center">
-              {filtered.length} {filtered.length === 1 ? 'Ergebnis' : 'Ergebnisse'} gefunden
-            </p>
-          )}
-        </div>
+        {/* Mini-Wizard */}
+        <MiniWizard onComplete={handleWizardComplete} />
 
-        {filtered.length > 0 ? (
-          <Accordion type="multiple" className="max-w-4xl mx-auto mb-12">
-            {filtered.map((srv) => (
-              <AccordionItem key={srv.id} value={srv.id}>
-                <AccordionTrigger className="text-left hover:no-underline">
-                  <div className="flex items-center justify-between w-full pr-4">
-                    <span className="font-semibold">{srv.nameDe}</span>
-                    {srv.remoteAvailable ? (
-                      <Badge variant="secondary" className="gap-1">
-                        <Wifi className="w-3 h-3" />
-                        Remote
-                      </Badge>
-                    ) : (
-                      <Badge variant="outline" className="gap-1">
-                        <MapPin className="w-3 h-3" />
-                        Vor-Ort
-                      </Badge>
-                    )}
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-muted-foreground mb-4">{srv.descriptionShort}</p>
-                  <div className="flex flex-wrap gap-3">
-                    <Button asChild size="sm">
-                      <Link to={`/leistungen/${srv.slug}`}>Mehr erfahren</Link>
-                    </Button>
-                    <Button asChild size="sm" variant="outline">
-                      <Link to={`/preise#rechner?service=${srv.slug}`}>Preis anfragen</Link>
-                    </Button>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4">Keine Services gefunden.</p>
-            <Button variant="outline" onClick={() => setSearchTerm("")}>
-              Filter zurücksetzen
-            </Button>
-          </div>
-        )}
+        {/* Service Finder */}
+        <ServiceFinder wizardState={wizardState} />
 
         <div className="text-center mt-16">
           <h2 className="text-2xl font-semibold mb-4">Bereit anzufangen?</h2>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-cta hover:bg-cta/90 text-cta-foreground">
               <Link to="/preise">Preise ansehen</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
