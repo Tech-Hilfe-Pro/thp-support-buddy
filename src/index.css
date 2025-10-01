@@ -252,6 +252,22 @@
   }
 }
 
+/* Accessible pill for CTA-colored text on saturated backgrounds */
+.a11y-pill {
+  color: hsl(var(--thp-cta));
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px) saturate(120%);
+  border-radius: 9999px;
+  padding-inline: 0.5rem;
+  line-height: 1.1;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .a11y-pill {
+    background: #ffffff;
+  }
+}
+
 /* Header height and anchor offset */
 :root { --header-h: 64px; }
 [id] { scroll-margin-top: var(--header-h); }

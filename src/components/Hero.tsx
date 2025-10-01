@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function Hero() {
@@ -17,6 +17,8 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [reduced, setReduced] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -26,8 +28,23 @@ export default function Hero() {
     return () => mq.removeEventListener?.("change", h);
   }, []);
 
+  // IntersectionObserver to pause animation when out of viewport
   useEffect(() => {
-    if (reduced) return; // No animation for reduced motion
+    if (!heroRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsPaused(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (reduced || isPaused) return; // No animation for reduced motion or when paused
     
     const duration = 3600; // 3.6s total cycle
     const fadeOutDuration = 220; // 220ms exit
@@ -42,10 +59,10 @@ export default function Hero() {
     }, duration);
 
     return () => clearInterval(interval);
-  }, [words.length, reduced]);
+  }, [words.length, reduced, isPaused]);
 
   return (
-    <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,100%,58%)] to-[hsl(205,90%,53%)] overflow-hidden min-h-[64vh] md:min-h-[70vh] lg:min-h-[72vh] flex items-center">
+    <section ref={heroRef} id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,100%,58%)] to-[hsl(205,90%,53%)] overflow-hidden min-h-[64vh] md:min-h-[70vh] lg:min-h-[72vh] flex items-center">
       <div id="scroll-sentinel" className="absolute top-0 left-0 w-full h-1" aria-hidden="true" />
 
       <div className="mx-auto max-w-5xl px-4 text-center relative z-10 w-full" data-testid="hero-rotator">
@@ -54,13 +71,13 @@ export default function Hero() {
         </h1>
         <div className="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
           {reduced ? (
-            <span className="inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-extrabold">
+            <span className="a11y-pill inline-flex whitespace-nowrap font-extrabold">
               {words[0]}
             </span>
           ) : (
             <span 
               key={currentIndex}
-              className={`inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-extrabold ${
+              className={`a11y-pill inline-flex whitespace-nowrap font-extrabold ${
                 isVisible 
                   ? 'animate-hero-slide-in' 
                   : 'opacity-0 translate-y-[-6px] transition-all duration-[220ms]'
