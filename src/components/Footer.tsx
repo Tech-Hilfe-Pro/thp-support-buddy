@@ -73,18 +73,18 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-foreground">Rechtliches</h3>
             <nav className="space-y-2">
-              <Link
-                to="/recht/impressum"
+              <a
+                href="/impressum"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
               >
                 Impressum
-              </Link>
-              <Link
-                to="/recht/datenschutz"
+              </a>
+              <a
+                href="/datenschutz"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
               >
                 Datenschutz
-              </Link>
+              </a>
               <Link
                 to="/recht/agb"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
