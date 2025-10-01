@@ -159,6 +159,55 @@ const AGB = () => {
               </p>
             </div>
           </section>
+          
+          <section id="widerruf">
+            <h2 className="text-2xl font-semibold text-foreground mb-4">§ 10 Widerrufsbelehrung für Verbraucher</h2>
+            <div className="text-muted-foreground space-y-4">
+              <h3 className="font-semibold text-foreground">Widerrufsrecht</h3>
+              <p>
+                Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. 
+                Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.
+              </p>
+              <p>
+                Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (Tech Hilfe Pro, E-Mail: info@techhilfepro.de, 
+                Telefon: +49 15565029989) mittels einer eindeutigen Erklärung (z.B. E-Mail oder Brief) über Ihren 
+                Entschluss, diesen Vertrag zu widerrufen, informieren.
+              </p>
+              
+              <h3 className="font-semibold text-foreground">Widerrufsfolgen</h3>
+              <p>
+                Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, 
+                unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung 
+                über Ihren Widerruf dieses Vertrags bei uns eingegangen ist.
+              </p>
+              
+              <h3 className="font-semibold text-foreground">Vorzeitige Leistungserbringung</h3>
+              <p>
+                Haben Sie verlangt, dass die Dienstleistungen während der Widerrufsfrist beginnen sollen, so haben 
+                Sie uns einen angemessenen Betrag zu zahlen, der dem Anteil der bis zu dem Zeitpunkt, zu dem Sie uns 
+                von der Ausübung des Widerrufsrechts hinsichtlich dieses Vertrags unterrichten, bereits erbrachten 
+                Dienstleistungen entspricht.
+              </p>
+              
+              <h3 className="font-semibold text-foreground">Ausschluss & Erlöschen des Widerrufsrechts</h3>
+              <p>
+                Das Widerrufsrecht erlischt bei Verträgen zur Erbringung von Dienstleistungen, wenn der Unternehmer 
+                die Dienstleistung vollständig erbracht hat und mit der Ausführung erst begonnen hat, nachdem Sie 
+                dazu Ihre ausdrückliche Zustimmung gegeben und gleichzeitig Ihre Kenntnis davon bestätigt haben, 
+                dass Sie Ihr Widerrufsrecht bei vollständiger Vertragserfüllung verlieren.
+              </p>
+              <p>
+                Bei Notfällen und ausdrücklich gewünschten Eilleistungen, bei denen die Dienstleistung sofort 
+                erbracht wird, entfällt das Widerrufsrecht für die bereits erbrachten Leistungen nach Ihrer 
+                ausdrücklichen Zustimmung.
+              </p>
+              
+              <p className="mt-4">
+                <strong>Hinweis:</strong> Weitere Details finden Sie in unserer separaten{" "}
+                <Link to="/recht/widerruf" className="text-primary underline">Widerrufsbelehrung</Link>.
+              </p>
+            </div>
+          </section>
         </div>
       </div>
     </>
