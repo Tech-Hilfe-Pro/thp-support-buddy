@@ -38,6 +38,7 @@ const Datenschutz = lazy(() => import("./pages/recht/Datenschutz"));
 const AGB = lazy(() => import("./pages/recht/AGB"));
 const Widerruf = lazy(() => import("./pages/recht/Widerruf"));
 const Cookies = lazy(() => import("./pages/recht/Cookies"));
+const Roadmap = lazy(() => import("./pages/Roadmap"));
 const Error500 = lazy(() => import("./pages/Error500"));
 
 const queryClient = new QueryClient();
@@ -113,6 +114,7 @@ const App = () => {
                     <Route path="/recht/agb" element={<AGB />} />
                     <Route path="/recht/widerruf" element={<Widerruf />} />
                     <Route path="/recht/cookies" element={<Suspense fallback={<div className="p-8">Laden…</div>}><Cookies /></Suspense>} />
+                    <Route path="/roadmap" element={<Roadmap />} />
                     <Route path="/error" element={<Error500 />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
