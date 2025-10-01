@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   const words = [
-    "PC Reparatur",
-    "Netzwerk Aufbau",
-    "KMU Digitalisierung"
+    "PC-Reparatur",
+    "Netzwerk-Setup",
+    "KMU-Digitalisierung"
   ];
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,9 +21,10 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    // Slower rotation for reduced motion, but still visible content change
-    const duration = reduced ? 6000 : 3800;
-    const fadeDuration = reduced ? 150 : 300;
+    if (reduced) return; // No animation for reduced motion
+    
+    const duration = 3800;
+    const fadeOutDuration = 250;
     
     const interval = setInterval(() => {
       setIsVisible(false);
@@ -31,7 +32,7 @@ export default function Hero() {
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % words.length);
         setIsVisible(true);
-      }, fadeDuration);
+      }, fadeOutDuration);
     }, duration);
 
     return () => clearInterval(interval);
@@ -41,21 +42,30 @@ export default function Hero() {
     <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,100%,58%)] to-[hsl(205,90%,53%)] overflow-hidden min-h-[64vh] md:min-h-[70vh] lg:min-h-[72vh] flex items-center">
       <div id="scroll-sentinel" className="absolute top-0 left-0 w-full h-1" aria-hidden="true" />
 
-      <div className="mx-auto max-w-6xl px-4 text-center relative z-10 w-full">
+      <div className="mx-auto max-w-5xl px-4 text-center relative z-10 w-full" data-testid="hero-rotator">
         <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
           Schneller IT-Support für Zuhause & Unternehmen
         </h1>
-        <div className="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
-          <span 
-            key={currentIndex}
-            className={`inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] transition-all duration-300 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-2'
-            }`}
-          >
-            {words[currentIndex]}
-          </span>
+        <div className="text-2xl md:text-4xl lg:text-5xl font-bold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
+          {reduced ? (
+            <span className="inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-semibold">
+              {words[0]}
+            </span>
+          ) : (
+            <span 
+              key={currentIndex}
+              className={`inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-semibold transition-all ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0 blur-0 duration-[350ms]' 
+                  : 'opacity-0 translate-y-[-6px] duration-[220ms]'
+              }`}
+              style={{
+                animation: isVisible ? 'hero-slide-in 350ms ease-out' : 'none'
+              }}
+            >
+              {words[currentIndex]}
+            </span>
+          )}
         </div>
         <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">
           Wir lösen Ihre Technikprobleme – <strong>REMOTE</strong> oder vor Ort in Köln, Neuss & Umgebung.
