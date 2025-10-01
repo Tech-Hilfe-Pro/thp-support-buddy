@@ -62,11 +62,11 @@ export default function Hero() {
   }, [words.length, reduced, isPaused]);
 
   return (
-    <section ref={heroRef} id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,100%,58%)] to-[hsl(205,90%,53%)] overflow-hidden min-h-[64vh] md:min-h-[70vh] lg:min-h-[72vh] flex items-center">
+    <section ref={heroRef} id="hero" className="hero-scrim relative pt-16 md:pt-20 pb-16 md:pb-20 overflow-hidden min-h-[64vh] md:min-h-[70vh] lg:min-h-[72vh] flex items-center">
       <div id="scroll-sentinel" className="absolute top-0 left-0 w-full h-1" aria-hidden="true" />
 
       <div className="mx-auto max-w-5xl px-4 text-center relative z-10 w-full" data-testid="hero-rotator">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-white text-shadow-lg">
           Schneller IT-Support für Zuhause & Unternehmen
         </h1>
         <div className="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
@@ -77,29 +77,27 @@ export default function Hero() {
           ) : (
             <span 
               key={currentIndex}
-              className={`a11y-pill inline-flex whitespace-nowrap font-extrabold ${
-                isVisible 
-                  ? 'animate-hero-slide-in' 
-                  : 'opacity-0 translate-y-[-6px] transition-all duration-[220ms]'
+              className={`hero-phrase a11y-pill inline-flex whitespace-nowrap font-extrabold ${
+                isVisible ? 'entering' : 'leaving'
               }`}
             >
               {words[currentIndex]}
             </span>
           )}
         </div>
-        <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">
+        <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto text-shadow-lg">
           Wir lösen Ihre Technikprobleme – <strong>REMOTE</strong> oder vor Ort in Köln, Neuss & Umgebung.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link 
             to="/preise#rechner" 
-            className="rounded-xl bg-[hsl(var(--thp-cta))] px-6 py-3.5 text-white font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--thp-primary))]"
+            className="btn-cta rounded-xl px-6 py-3.5 transition-all hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
           >
             Preis in 60 Sekunden
           </Link>
           <Link 
             to="/termin" 
-            className="rounded-xl bg-white/95 backdrop-blur px-6 py-3.5 font-semibold text-[hsl(var(--thp-primary))] hover:bg-white transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+            className="btn-ghost rounded-xl px-6 py-3.5 font-semibold hover:bg-white transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
           >
             Jetzt Termin buchen
           </Link>

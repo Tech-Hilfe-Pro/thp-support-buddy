@@ -252,20 +252,103 @@
   }
 }
 
-/* Accessible pill for CTA-colored text on saturated backgrounds */
-.a11y-pill {
-  color: hsl(var(--thp-cta));
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px) saturate(120%);
-  border-radius: 9999px;
-  padding-inline: 0.5rem;
-  line-height: 1.1;
+/* Hero scrim and fade-out to next section */
+.hero-scrim {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, #2ea3ff 0%, #3BA9FF 60%, #3BA9FF 100%);
 }
 
-@supports not (backdrop-filter: blur(1px)) {
+.hero-scrim::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.08) 30%, rgba(0,0,0,0) 60%);
+  pointer-events: none;
+}
+
+.hero-scrim::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 96px;
+  background: linear-gradient(180deg, rgba(59,169,255,0) 0%, rgba(255,255,255,1) 100%);
+  pointer-events: none;
+}
+
+/* Accessible pill for CTA-colored text on saturated backgrounds */
+.a11y-pill {
+  display: inline-block;
+  color: #f97316;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(6px) saturate(120%);
+  border-radius: 9999px;
+  padding: 0.25rem 0.65rem;
+  font-weight: 800;
+}
+
+@supports not (backdrop-filter: blur(2px)) {
   .a11y-pill {
     background: #ffffff;
   }
+}
+
+/* Text shadow for hero titles */
+.text-shadow-lg {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.25);
+}
+
+/* Hero phrase animations */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.hero-phrase.entering {
+  animation: hero-in 350ms ease-out both;
+}
+
+.hero-phrase.leaving {
+  animation: hero-out 220ms ease-in both;
+}
+
+/* CTA buttons */
+.btn-cta {
+  background: #f97316;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(249,115,22,0.25), 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.btn-cta:hover {
+  filter: brightness(1.05);
+}
+
+.btn-ghost {
+  background: rgba(255,255,255,0.9);
+  color: #1f2937;
 }
 
 /* Header height and anchor offset */
