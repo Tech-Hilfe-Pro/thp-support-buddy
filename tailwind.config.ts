@@ -105,6 +105,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "hero-slide-in": "hero-slide-in 350ms ease-out forwards",
       },
     },
   },

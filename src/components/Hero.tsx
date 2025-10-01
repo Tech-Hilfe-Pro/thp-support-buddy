@@ -5,7 +5,13 @@ export default function Hero() {
   const words = [
     "PC-Reparatur",
     "Netzwerk-Setup",
-    "KMU-Digitalisierung"
+    "KMU-Digitalisierung",
+    "WLAN-Optimierung",
+    "Drucker-Einrichtung",
+    "Fernwartung-Support",
+    "Windows-11-Upgrade",
+    "M365-Backup",
+    "NIS-2-Gap-Check"
   ];
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,8 +29,8 @@ export default function Hero() {
   useEffect(() => {
     if (reduced) return; // No animation for reduced motion
     
-    const duration = 3800;
-    const fadeOutDuration = 250;
+    const duration = 3600; // 3.6s total cycle
+    const fadeOutDuration = 220; // 220ms exit
     
     const interval = setInterval(() => {
       setIsVisible(false);
@@ -46,22 +52,19 @@ export default function Hero() {
         <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
           Schneller IT-Support für Zuhause & Unternehmen
         </h1>
-        <div className="text-2xl md:text-4xl lg:text-5xl font-bold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
+        <div className="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
           {reduced ? (
-            <span className="inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-semibold">
+            <span className="inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-extrabold">
               {words[0]}
             </span>
           ) : (
             <span 
               key={currentIndex}
-              className={`inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-semibold transition-all ${
+              className={`inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] font-extrabold ${
                 isVisible 
-                  ? 'opacity-100 translate-y-0 blur-0 duration-[350ms]' 
-                  : 'opacity-0 translate-y-[-6px] duration-[220ms]'
+                  ? 'animate-hero-slide-in' 
+                  : 'opacity-0 translate-y-[-6px] transition-all duration-[220ms]'
               }`}
-              style={{
-                animation: isVisible ? 'hero-slide-in 350ms ease-out' : 'none'
-              }}
             >
               {words[currentIndex]}
             </span>
