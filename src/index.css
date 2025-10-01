@@ -400,6 +400,11 @@
   scroll-margin-top: 96px;
 }
 
+/* Prevent focus from being hidden by sticky header */
+:focus-visible {
+  scroll-margin-top: 96px;
+}
+
 /* Scrollbar utilities */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -448,6 +453,52 @@ body.menu-open {
   overflow: hidden;
   position: fixed;
   width: 100%;
+}
+
+/* Floating header with glass effect */
+.header-glass {
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  backdrop-filter: blur(8px) saturate(130%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not ((backdrop-filter: blur(1px))) {
+  .header-glass {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* Auto-hide / show: slide out of viewport vertically */
+.header-glass[data-hidden="true"] {
+  transform: translateY(-100%);
+  opacity: 0.98;
+}
+
+.header-glass[data-visible="true"] {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Skip link visible on focus (WCAG bypass blocks) */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: #111827;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  left: 0.75rem;
+  top: 0.75rem;
 }
 
 /* Drawer backdrop */

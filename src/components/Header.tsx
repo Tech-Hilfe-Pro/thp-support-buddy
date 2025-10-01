@@ -1,10 +1,12 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { useScrollDir } from "@/hooks/useScrollDir";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const loc = useLocation();
+  const { dir, atTop } = useScrollDir({ threshold: 8, idleDelay: 120 });
   
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const desktopMenuRef = useRef<HTMLDivElement>(null);
@@ -169,9 +171,22 @@ export default function Header() {
     </NavLink>
   );
 
+  const menuOpen = open || sidebarOpen;
+  const isVisible = dir === "up" || atTop || menuOpen;
+  const isHidden = dir === "down" && !atTop && !menuOpen;
+
   return (
     <>
-      <header className="sticky top-0 z-40 backdrop-blur bg-white/75 border-b">
+      {/* Skip to content link for accessibility */}
+      <a className="skip-link" href="#main">
+        Zum Inhalt springen
+      </a>
+
+      <header 
+        className="fixed top-0 left-0 right-0 z-50 header-glass"
+        data-visible={isVisible}
+        data-hidden={isHidden}
+      >
         <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center gap-3">
           <Link
             to="/"
