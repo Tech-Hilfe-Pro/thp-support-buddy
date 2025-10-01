@@ -69,14 +69,14 @@ export default function Hero() {
           aria-live="polite"
         >
           {reduced ? (
-            <span className="hero-phrase hero-accent inline-flex whitespace-nowrap font-extrabold text-white" style={{ position: 'relative', opacity: 1, transform: 'none' }}>
+            <span className="hero-phrase hero-accent whitespace-nowrap font-extrabold text-white" style={{ position: 'relative', opacity: 1, transform: 'none' }}>
               {words[0]}
             </span>
           ) : (
             words.map((word, i) => (
               <span
                 key={i}
-                className={`hero-phrase hero-accent inline-flex whitespace-nowrap font-extrabold text-white ${
+                className={`hero-phrase hero-accent whitespace-nowrap font-extrabold text-white ${
                   i === currentIndex ? 'entering willchange' : i === prevIndex ? 'leaving willchange' : 'hidden'
                 }`}
                 onAnimationEnd={(e) => e.currentTarget.classList.remove('willchange')}
