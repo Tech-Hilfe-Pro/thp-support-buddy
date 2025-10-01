@@ -19,9 +19,8 @@ const Footer = () => {
                     <img src="/logo.png" alt="Logo" className="w-5 h-5" />
                     <span>Tech <span className="text-[hsl(var(--thp-primary))]">Hilfe</span> Pro</span>
                   </div>
-                  <p>Büro in Köln (virtuell)</p>
-                  <p>Remote-Arbeiten möglich</p>
-                  <p className="mt-1">Vor-Ort-Service: Köln, Neuss & Umgebung (40 km)</p>
+                  <p>Büro in Köln (HO).</p>
+                  <p>Remote & Vor-Ort-Service.</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -141,14 +140,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Unified Fine Print */}
-        <div className="mt-8 pt-6 border-t">
-          <p className="text-xs text-muted-foreground text-center leading-relaxed">
-            {COPY.fineprint.onsiteMinimum} {COPY.fineprint.subscriberDiscount} {COPY.fineprint.travelZone} {COPY.fineprint.taxNote}
-          </p>
-        </div>
-
-        <div className="mt-4 pt-4 border-t text-center">
+        <div className="mt-8 pt-6 border-t text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Tech Hilfe Pro. Alle Rechte vorbehalten.
           </p>

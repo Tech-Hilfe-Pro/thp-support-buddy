@@ -43,6 +43,13 @@ export default function Pricing() {
               KMU
             </button>
           </div>
+          
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
+            {mode === 'privat' 
+              ? 'Für Zuhause und Haushalte – schneller IT-Support.'
+              : 'KMU = kleine & mittlere Unternehmen (ca. 5–30 Mitarbeitende).'
+            }
+          </p>
         </div>
 
         {mode === 'privat' ? (

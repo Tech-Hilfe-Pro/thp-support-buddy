@@ -9,6 +9,7 @@ import RouteTracker from "./components/RouteTracker";
 import RouteFocus from "./components/RouteFocus";
 import SkipLink from "./components/SkipLink";
 import Header from "./components/Header";
+import StickyReentryHeader from "./components/StickyReentryHeader";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
 import Home from "./pages/Home";
@@ -83,6 +84,7 @@ const App = () => {
           <SkipLink />
           <div className="min-h-screen flex flex-col" lang="de-DE">
             <Header />
+            <StickyReentryHeader />
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>
                 <Suspense fallback={<div className="p-8">Laden…</div>}>

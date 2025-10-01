@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   const words = [
-    "PC-Reparatur vor Ort",
-    "Netzwerk-Setup",
-    "Digitalisierung für KMU"
+    "PC Reparatur",
+    "Netzwerk Aufbau",
+    "KMU Digitalisierung"
   ];
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,8 +22,8 @@ export default function Hero() {
 
   useEffect(() => {
     // Slower rotation for reduced motion, but still visible content change
-    const duration = reduced ? 6000 : 3500;
-    const fadeDuration = reduced ? 200 : 300;
+    const duration = reduced ? 6000 : 3800;
+    const fadeDuration = reduced ? 150 : 300;
     
     const interval = setInterval(() => {
       setIsVisible(false);
@@ -38,23 +38,27 @@ export default function Hero() {
   }, [words.length, reduced]);
 
   return (
-    <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,100%,58%)] to-[hsl(205,90%,53%)] overflow-hidden">
+    <section id="hero" className="relative pt-16 md:pt-20 pb-16 md:pb-20 bg-gradient-to-br from-[hsl(205,100%,63%)] via-[hsl(205,100%,58%)] to-[hsl(205,90%,53%)] overflow-hidden min-h-[64vh] md:min-h-[70vh] lg:min-h-[72vh] flex items-center">
+      <div id="scroll-sentinel" className="absolute top-0 left-0 w-full h-1" aria-hidden="true" />
 
-      <div className="mx-auto max-w-5xl px-4 text-center relative z-10">
+      <div className="mx-auto max-w-6xl px-4 text-center relative z-10 w-full">
         <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
           Schneller IT-Support für Zuhause & Unternehmen
         </h1>
-        <div className="text-3xl md:text-5xl font-extrabold mt-2 text-white/95 min-h-[1.2em] flex items-center justify-center overflow-hidden">
+        <div className="text-2xl md:text-4xl lg:text-5xl font-extrabold mt-3 min-h-[1.5em] flex items-center justify-center overflow-hidden">
           <span 
             key={currentIndex}
-            className={`transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'} max-w-full px-2`}
-            style={{ textAlign: 'center' }}
+            className={`inline-flex whitespace-nowrap text-[hsl(var(--thp-cta))] transition-all duration-300 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-2'
+            }`}
           >
             {words[currentIndex]}
           </span>
         </div>
         <p className="mt-6 text-lg text-white/90 max-w-2xl mx-auto">
-          Wir lösen Ihre Technikprobleme – remote oder vor Ort in Köln, Neuss & Umgebung.
+          Wir lösen Ihre Technikprobleme – <strong>REMOTE</strong> oder vor Ort in Köln, Neuss & Umgebung.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link 
