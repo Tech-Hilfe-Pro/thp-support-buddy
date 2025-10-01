@@ -20,7 +20,7 @@ export default function Header() {
           className="flex items-center gap-2 shrink-0 whitespace-nowrap"
           aria-label="Tech Hilfe Pro"
         >
-          <img src="/logo.png" alt="Logo" className="w-6 h-6" />
+          <img src="/brand/logo-32.webp" alt="Logo" width="24" height="24" className="w-6 h-6" />
           <span className="text-lg font-semibold tracking-tight">
             Tech <span className="text-thp-primary">Hilfe</span> Pro
           </span>
