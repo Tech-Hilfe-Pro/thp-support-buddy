@@ -297,6 +297,17 @@
   }
 }
 
+/* === PWA Install Button === */
+.btn-install svg {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-install {
+    transition: none;
+  }
+}
+
 @media (max-width: 390px) {
   .whatsapp-fab {
     width: 58px;

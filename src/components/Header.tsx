@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useScrollDir } from "@/hooks/useScrollDir";
 import LogoOrangen from "@/assets/logo-orangen.png";
+import { InstallPWAIcon } from "@/components/icons/InstallPWA";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -200,10 +201,25 @@ export default function Header() {
             </span>
           </Link>
 
+          {/* PWA Install button - Desktop & Mobile */}
+          <button
+            className="btn-install hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium bg-thp-cta/90 text-white hover:bg-thp-cta transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-thp-cta focus-visible:ring-offset-2 ml-auto"
+            onClick={() => {
+              // PWA install logic will be handled by a prompt event
+              console.log('PWA install requested');
+            }}
+            aria-label="App installieren"
+          >
+            <span className="inline-flex h-5 w-5 items-center justify-center text-lg">
+              <InstallPWAIcon />
+            </span>
+            <span className="hidden lg:inline">App installieren</span>
+          </button>
+
           {/* Desktop: Menu burger button */}
           <button
             ref={desktopTriggerRef}
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors ml-auto"
+            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors ml-0 md:ml-2"
             onClick={() => setSidebarOpen(true)}
             aria-label="Menü öffnen"
             aria-expanded={sidebarOpen}
