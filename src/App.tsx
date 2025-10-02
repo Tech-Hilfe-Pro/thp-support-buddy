@@ -14,13 +14,15 @@ import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import Home from "./pages/Home";
-import Leistungen from "./pages/Leistungen";
-import ServiceDetail from "./pages/ServiceDetail";
-import KMU from "./pages/KMU";
-import PaketePreise from "./pages/PaketePreise";
-import FAQ from "./pages/FAQ";
-import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
+
+// Lazy load all non-critical routes
+const Leistungen = lazy(() => import("./pages/Leistungen"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const KMU = lazy(() => import("./pages/KMU"));
+const PaketePreise = lazy(() => import("./pages/PaketePreise"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Lazy load heavy routes
 const Termin = lazy(() => import("./pages/Termin"));
@@ -89,7 +91,15 @@ const App = () => {
             <StickyReentryHeader />
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>
-                <Suspense fallback={<div className="p-8">Laden…</div>}>
+                <Suspense fallback={
+                  <div className="flex items-center justify-center min-h-[60vh]">
+                    <div className="text-center">
+                      <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+                        <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Laden…</span>
+                      </div>
+                    </div>
+                  </div>
+                }>
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/leistungen" element={<Leistungen />} />
