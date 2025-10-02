@@ -91,7 +91,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* Tech Hilfe Pro Design System - Color #3BA9FF */
+/* Tech Hilfe Pro Design System - WCAG AA Compliant Colors */
 :root {
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
@@ -100,14 +100,14 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222 47% 11%;
   
-  /* Primary: #3BA9FF → HSL(205 100% 63%) */
-  --primary: 205 100% 63%;
+  /* Primary: Darker blue for 4.5:1 contrast with white text */
+  --primary: 205 100% 40%;
   --primary-foreground: 0 0% 100%;
   
-  /* CTA Orange: #F97316 → HSL(24 95% 53%) */
-  --cta: 24 95% 53%;
+  /* CTA Orange: Darker for 4.5:1 contrast with white text */
+  --cta: 24 88% 40%;
   --cta-foreground: 0 0% 100%;
-  --thp-cta: 249 115 22; /* RGB base para #f97316 */
+  --thp-cta: 24 88% 40%;
   
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
@@ -117,20 +117,20 @@
   --thp-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.08);
   --thp-shadow-md: 0 2px 8px rgba(16, 24, 40, 0.10), 0 12px 28px rgba(16, 24, 40, 0.10);
   --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted-foreground: 215 20% 36%;
   --accent: 210 40% 96%;
   --accent-foreground: 222 47% 11%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
   --border: 214 32% 91%;
   --input: 214 32% 91%;
-  --ring: 205 100% 63%;
+  --ring: 205 100% 40%;
   --radius: 0.75rem;
   
-  /* THP Design Tokens */
-  --thp-primary: 205 100% 63%;       /* #3BA9FF */
+  /* THP Design Tokens - WCAG Compliant */
+  --thp-primary: 205 100% 40%;       /* Darker blue for accessibility */
   --thp-primary-ink: 210 65% 17%;    /* #0B2A45 - dark text */
-  --thp-cta: 24 95% 53%;             /* #F97316 - orange CTA */
+  --thp-cta: 24 88% 40%;             /* Darker orange for accessibility */
   --thp-text: 220 9% 10%;            /* #111827 - body text */
   --thp-bg: 218 13% 95%;             /* #F3F4F6 - light bg */
   --thp-white: 0 0% 100%;            /* #FFFFFF */
@@ -143,10 +143,10 @@
   --sidebar-accent: 240 4.8% 95.9%;
   --sidebar-accent-foreground: 240 5.9% 10%;
   --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 205 100% 63%;
+  --sidebar-ring: 205 100% 40%;
 
-  /* Hero gradient with new primary */
-  --thp-hero: linear-gradient(135deg, hsl(205 100% 63% / 0.95), hsl(205 100% 53% / 0.85));
+  /* Hero gradient with accessible primary */
+  --thp-hero: linear-gradient(135deg, hsl(205 100% 45% / 0.95), hsl(205 100% 38% / 0.90));
 }
 
 .dark {
@@ -364,11 +364,11 @@
   }
 }
 
-/* Hero scrim and fade-out to next section */
+/* Hero scrim and fade-out to next section - WCAG compliant */
 .hero-scrim {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(180deg, #2ea3ff 0%, #3BA9FF 60%, #3BA9FF 100%);
+  background: linear-gradient(180deg, hsl(205 100% 42%) 0%, hsl(205 100% 40%) 60%, hsl(205 100% 40%) 100%);
 }
 
 .hero-scrim::before {
@@ -380,11 +380,11 @@
 }
 
 
-/* Accessible underline accent for hero phrases */
+/* Accessible underline accent for hero phrases - WCAG compliant */
 .hero-accent {
   color: #fff;
   text-decoration-line: underline;
-  text-decoration-color: #f97316;
+  text-decoration-color: hsl(24 88% 55%);
   text-decoration-thickness: 0.28em;
   text-underline-offset: 0.18em;
   font-weight: 800;
@@ -473,16 +473,16 @@
   }
 }
 
-/* CTA buttons */
+/* CTA buttons - WCAG compliant */
 .btn-cta {
-  background: #f97316;
+  background: hsl(24 88% 40%);
   color: #fff;
   font-weight: 700;
-  box-shadow: 0 6px 16px rgba(249,115,22,0.25), 0 2px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(204, 71, 4, 0.25), 0 2px 4px rgba(0,0,0,0.06);
 }
 
 .btn-cta:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.08);
 }
 
 .btn-cta:focus-visible {
@@ -646,9 +646,9 @@ button, a, [role="button"], [role="tab"] {
   min-height: 24px;
 }
 
-/* Footer color palette */
+/* Footer color palette - WCAG AA Compliant */
 :root {
-  --thp-orange: #f97316;
+  --thp-orange: hsl(24 88% 40%);
   --thp-footer-gray: #64748b;
 }
 
