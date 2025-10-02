@@ -74,7 +74,7 @@ export default function StickyReentryHeader() {
     >
       <div className="container mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2 min-w-0 flex-shrink">
-          <img src="/brand/logo-32.webp" alt="Tech Hilfe Pro" width="32" height="32" className="w-8 h-8 flex-shrink-0" />
+          <img src="/brand/logo-32.webp" alt="" width="32" height="32" className="w-8 h-8 flex-shrink-0" />
           <span className="font-semibold text-sm hidden sm:inline">
             Tech <span className="text-[hsl(var(--thp-primary))]">Hilfe</span> Pro
           </span>
