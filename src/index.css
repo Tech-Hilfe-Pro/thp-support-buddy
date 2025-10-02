@@ -646,58 +646,68 @@ button, a, [role="button"], [role="tab"] {
   min-height: 24px;
 }
 
-/* Footer unified orange styles */
+/* Footer color palette */
 :root {
   --thp-orange: #f97316;
+  --thp-footer-gray: #64748b;
 }
 
-.footer-nav a svg,
-.footer-social a svg {
-  stroke: currentColor;
-  fill: currentColor;
-}
-
+/* Footer links - neutral gray by default */
 .footer-nav a,
 .footer-social a {
-  color: var(--thp-orange);
-  outline-offset: 2px;
+  color: var(--thp-footer-gray);
+  text-decoration: underline;
   text-underline-offset: 2px;
-  text-decoration: none;
+  outline-offset: 2px;
   display: block;
   transition: filter 0.2s ease;
 }
 
+/* Footer icons inherit color */
+.footer-nav a svg,
+.footer-social a svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* Footer accent CTAs - orange */
+.footer-accent a {
+  color: var(--thp-orange);
+  text-decoration-thickness: 2px;
+}
+
+/* Focus visible - uses current color */
 .footer-nav a:focus-visible,
 .footer-social a:focus-visible {
-  outline: 2px solid var(--thp-orange);
+  outline: 2px solid currentColor;
   border-radius: 4px;
 }
 
+/* Hover state */
 .footer-nav a:hover,
 .footer-social a:hover {
   filter: brightness(0.9);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .footer-nav a,
-  .footer-social a {
-    transition: none;
-  }
-}
-
-/* Footer icon styles - orange with accessible focus/hover */
+/* Footer icon styles - neutral by default */
 .footer-icon {
-  color: var(--thp-orange);
+  color: var(--thp-footer-gray);
   transition: all 0.2s ease;
 }
 
 .footer-icon:hover,
 .footer-icon:focus-visible {
-  color: #ea580c;
-  filter: brightness(1.1);
+  filter: brightness(0.9);
+}
+
+/* Footer overlay prevention */
+.footer-overlay-blocker {
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .footer-nav a,
+  .footer-social a,
   .footer-icon {
     transition: none;
   }

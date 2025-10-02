@@ -54,12 +54,12 @@ const Footer = () => {
                   <p>Sa: 10:00 - 16:00 Uhr</p>
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 footer-accent">
                 <a
                   href={CONTACT.WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                  className="inline-flex items-center gap-2 text-sm hover:underline"
                   aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -120,20 +120,18 @@ const Footer = () => {
                     Kontakt
                   </Link>
                 </li>
+                <li className="footer-accent">
+                  <a
+                    href={CONTACT.WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
+                  >
+                    {CONTACT.WHATSAPP_LABEL}
+                  </a>
+                </li>
               </ul>
             </nav>
-            <ul className="footer-social mt-4 space-y-2">
-              <li>
-                <a
-                  href={CONTACT.WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
-                >
-                  {CONTACT.WHATSAPP_LABEL}
-                </a>
-              </li>
-            </ul>
             <div className="mt-4 pt-4 border-t">
               <p className="text-xs text-muted-foreground">
                 Kleinunternehmer i.S.d. § 19 UStG<br />
