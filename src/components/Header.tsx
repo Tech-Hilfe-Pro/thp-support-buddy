@@ -193,7 +193,7 @@ export default function Header() {
             to="/"
             className="flex items-center gap-2 shrink-0 whitespace-nowrap ml-auto md:ml-0"
           >
-            <img src="/brand/logo-32.webp" alt="" width="24" height="24" className="w-6 h-6" />
+            <img src="/brand/logo.svg" alt="" width="24" height="24" className="w-6 h-6" />
             <span className="site-title text-lg font-semibold tracking-tight">
               Tech <span className="brand-hilfe">hilfe</span> Pro
             </span>
