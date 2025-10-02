@@ -21,14 +21,19 @@ export default function StickyReentryHeader() {
         const entry = entries[0];
         
         // Show header when sentinel is not visible (scrolled past 600px area)
-        if (!entry.isIntersecting && window.scrollY > 600) {
-          setIsVisible(true);
-          
-          // Auto-hide after 4 seconds
-          const timer = setTimeout(() => {
-            setIsVisible(false);
-          }, 4000);
-          setAutoHideTimer(timer);
+        // Use requestAnimationFrame to batch scroll reads and prevent forced reflow
+        if (!entry.isIntersecting) {
+          requestAnimationFrame(() => {
+            if (window.scrollY > 600) {
+              setIsVisible(true);
+              
+              // Auto-hide after 4 seconds
+              const timer = setTimeout(() => {
+                setIsVisible(false);
+              }, 4000);
+              setAutoHideTimer(timer);
+            }
+          });
         } else {
           setIsVisible(false);
           if (autoHideTimer) {
