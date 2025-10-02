@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { COMPANY } from "@/data/company";
+import { CONTACT } from "@/lib/constants";
 
 const Datenschutz = () => {
   return (
@@ -19,10 +20,11 @@ const Datenschutz = () => {
             <div className="text-muted-foreground space-y-2">
               <p className="font-semibold">{COMPANY.brand}</p>
               <p>Inhaber: {COMPANY.owner}</p>
+              {/* TODO-LEGAL: Vor Veröffentlichung vollständige postalische Anschrift einfügen. Pflicht nach DSGVO Art. 13. */}
               <p>Anschrift: Schirmerstraße 7, 50823 Köln</p>
-              <p>Telefon: <a href={`tel:${COMPANY.telE164}`} className="hover:text-primary transition-colors">{COMPANY.telDisplay}</a></p>
-              <p>E-Mail: <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">{COMPANY.email}</a></p>
-              <p>Web: <a href="https://techhilfepro.de" className="hover:text-primary transition-colors">https://techhilfepro.de</a></p>
+              <p>Telefon: <a href={CONTACT.PHONE_TEL} className="hover:text-primary transition-colors">{CONTACT.PHONE_DISPLAY}</a></p>
+              <p>E-Mail: <a href={CONTACT.EMAIL} className="hover:text-primary transition-colors">{CONTACT.EMAIL_DISPLAY}</a></p>
+              <p>Web: <a href={CONTACT.DOMAIN} className="hover:text-primary transition-colors">{CONTACT.DOMAIN}</a></p>
             </div>
           </section>
 

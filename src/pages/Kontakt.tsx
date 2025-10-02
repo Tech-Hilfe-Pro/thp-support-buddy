@@ -2,6 +2,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import SEO from "@/components/SEO";
 import { buildLocalBusinessJsonLd } from "@/lib/structuredData";
 import { COMPANY, ADDRESS_LINE } from "@/data/company";
+import { CONTACT } from "@/lib/constants";
 
 const Kontakt = () => {
   const businessLd = buildLocalBusinessJsonLd();
@@ -52,8 +53,8 @@ const Kontakt = () => {
                   <div>
                     <h3 className="font-semibold text-foreground">Telefon</h3>
                     <p className="text-muted-foreground">
-                      <a href={`tel:${COMPANY.telE164}`} className="hover:text-primary transition-colors">
-                        {COMPANY.telDisplay}
+                      <a href={CONTACT.PHONE_TEL} className="hover:text-primary transition-colors">
+                        {CONTACT.PHONE_DISPLAY}
                       </a>
                     </p>
                   </div>
@@ -64,8 +65,8 @@ const Kontakt = () => {
                   <div>
                     <h3 className="font-semibold text-foreground">E-Mail</h3>
                     <p className="text-muted-foreground">
-                      <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">
-                        {COMPANY.email}
+                      <a href={CONTACT.EMAIL} className="hover:text-primary transition-colors">
+                        {CONTACT.EMAIL_DISPLAY}
                       </a>
                     </p>
                   </div>
@@ -81,12 +82,13 @@ const Kontakt = () => {
                     <h3 className="font-semibold text-foreground">WhatsApp</h3>
                     <p className="text-muted-foreground">
                       <a 
-                        href={COMPANY.whatsappUrl} 
+                        href={CONTACT.WHATSAPP_URL}
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="hover:text-primary transition-colors"
+                        aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
                       >
-                        {COMPANY.telDisplay}
+                        {CONTACT.WHATSAPP_LABEL}
                       </a>
                     </p>
                   </div>

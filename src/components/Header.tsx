@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useScrollDir } from "@/hooks/useScrollDir";
 import LogoOrangen from "@/assets/logo-orangen.png";
 import { InstallPWAIcon } from "@/components/icons/InstallPWA";
+import { CONTACT } from "@/lib/constants";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -259,12 +260,13 @@ export default function Header() {
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a
-                href="https://wa.me/4915565029989"
+                href={CONTACT.WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 text-sm text-muted-foreground hover:text-primary min-h-[44px] flex items-center rounded-lg"
+                aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
               >
-                WhatsApp
+                {CONTACT.WHATSAPP_LABEL}
               </a>
               <a
                 href="/termin"
@@ -315,12 +317,13 @@ export default function Header() {
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a
-                href="https://wa.me/4915565029989"
+                href={CONTACT.WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-black block transition-colors min-h-[44px] flex items-center"
+                aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
               >
-                WhatsApp
+                {CONTACT.WHATSAPP_LABEL}
               </a>
 
               <div className="mt-4 pt-4 border-t">
@@ -358,14 +361,16 @@ export default function Header() {
                 <div className="flex gap-2">
                   <a
                     aria-label="Anrufen"
-                    href="tel:+4915565029989"
+                    href={CONTACT.PHONE_TEL}
                     className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
                   >
                     📞
                   </a>
                   <a
-                    aria-label="WhatsApp"
-                    href="https://wa.me/4915565029989"
+                    aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
+                    href={CONTACT.WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
                   >
                     🟢

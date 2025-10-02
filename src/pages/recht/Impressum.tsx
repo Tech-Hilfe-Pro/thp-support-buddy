@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { COMPANY } from "@/data/company";
+import { CONTACT } from "@/lib/constants";
 
 const Impressum = () => {
   return (
@@ -19,11 +20,12 @@ const Impressum = () => {
             <div className="text-muted-foreground space-y-2">
               <p className="font-semibold">{COMPANY.brand}</p>
               <p>Inhaber: {COMPANY.owner}</p>
+              {/* TODO-LEGAL: Vor Veröffentlichung vollständige postalische Anschrift einfügen (Schirmerstraße 7, 50823 Köln). Pflicht nach §5 DDG. */}
               <p>Anschrift: Schirmerstraße 7, 50823 Köln</p>
-              <p>Telefon: <a href={`tel:${COMPANY.telE164}`} className="hover:text-primary transition-colors">{COMPANY.telDisplay}</a></p>
-              <p>E-Mail: <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">{COMPANY.email}</a></p>
-              <p>Web: <a href="https://techhilfepro.de" className="hover:text-primary transition-colors">https://techhilfepro.de</a></p>
-              <p>WhatsApp: <a href={COMPANY.whatsappUrl} className="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">{COMPANY.whatsappUrl}</a></p>
+              <p>Telefon: <a href={CONTACT.PHONE_TEL} className="hover:text-primary transition-colors">{CONTACT.PHONE_DISPLAY}</a></p>
+              <p>E-Mail: <a href={CONTACT.EMAIL} className="hover:text-primary transition-colors">{CONTACT.EMAIL_DISPLAY}</a></p>
+              <p>Web: <a href={CONTACT.DOMAIN} className="hover:text-primary transition-colors">{CONTACT.DOMAIN}</a></p>
+              <p>WhatsApp: <a href={CONTACT.WHATSAPP_URL} className="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer" aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro">{CONTACT.WHATSAPP_LABEL}</a></p>
             </div>
           </section>
           
@@ -46,6 +48,7 @@ const Impressum = () => {
             <h2 className="text-2xl font-semibold text-foreground mb-4">Verantwortlich für Inhalte i.S.d. § 18 Abs. 2 MStV</h2>
             <div className="text-muted-foreground space-y-2">
               <p>{COMPANY.owner}</p>
+              {/* TODO-LEGAL: Vor Veröffentlichung vollständige postalische Anschrift einfügen. Pflicht nach §18 Abs. 2 MStV. */}
               <p>Schirmerstraße 7, 50823 Köln</p>
             </div>
           </section>
