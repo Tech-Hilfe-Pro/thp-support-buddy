@@ -16,11 +16,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Preload critical font file directly to break the chain -->
-    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2" crossorigin>
-    
-    <!-- Load Google Fonts CSS with high priority -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..900;1,14..32,400..900&display=swap">
+    <!-- Load Google Fonts CSS with font-display swap for immediate text render -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..900;1,14..32,400..900&display=swap" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..900;1,14..32,400..900&display=swap"></noscript>
     
     <link rel="preload" as="image" href="/og/default.jpg" fetchpriority="high">
     <title>Tech Hilfe Pro</title>
@@ -64,7 +62,7 @@
       
       body {
         margin: 0;
-        font-family: 'Inter var', ui-sans-serif, system-ui, sans-serif;
+        font-family: 'Inter var', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         background-color: hsl(var(--background));
@@ -88,10 +86,11 @@
         border-bottom: 1px solid hsl(var(--border));
       }
       
-      /* Hero critical styles */
+      /* Hero critical styles - Optimized for LCP */
       .hero-scrim {
         background: linear-gradient(135deg, hsl(210 95% 35%) 0%, hsl(210 90% 50%) 100%);
         position: relative;
+        contain: layout style paint;
       }
       
       .text-white {
@@ -100,6 +99,12 @@
       
       .text-shadow-lg {
         text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* Ensure H1 renders immediately with system font fallback */
+      h1 {
+        font-family: 'Inter var', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 800;
       }
       
       /* Button critical styles */
@@ -168,6 +173,6 @@
       </section>
     </noscript>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" fetchpriority="high"></script>
   </body>
 </html>
