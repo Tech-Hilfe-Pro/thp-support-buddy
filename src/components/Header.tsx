@@ -197,7 +197,7 @@ export default function Header() {
           >
             <img src={LogoOrangen} alt="Tech Hilfe Pro" width="24" height="24" className="w-6 h-6" />
             <span className="site-title text-lg font-semibold tracking-tight">
-              Tech <span className="site-title__highlight lowercase">hilfe</span> Pro
+              Tech <span className="brand-hilfe">hilfe</span> Pro
             </span>
           </Link>
 

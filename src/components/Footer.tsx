@@ -12,20 +12,20 @@ const Footer = () => {
           {/* Kontakt */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-foreground">Kontakt</h3>
-            <div className="space-y-3 text-sm text-muted-foreground">
+            <div className="footer-icons space-y-3 text-sm text-muted-foreground">
               <div className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 mt-0.5 footer-icon" />
+                <MapPin className="h-4 w-4 mt-0.5" aria-hidden="true" />
                 <div>
                   <div className="flex items-center gap-2 font-medium">
                     <img src="/brand/logo-32.webp" alt="Logo" width="20" height="20" className="w-5 h-5" />
-                    <span>Tech <span className="text-[hsl(var(--thp-primary))]">hilfe</span> Pro</span>
+                    <span>Tech <span className="brand-hilfe">hilfe</span> Pro</span>
                   </div>
                   <p>Büro in Köln (virtuell).</p>
                   <p>Remote & vor Ort.</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 footer-icon" />
+                <Phone className="h-4 w-4" aria-hidden="true" />
                 <div>
                   <a 
                     href={`tel:${COMPANY.telE164}`}
@@ -36,7 +36,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 footer-icon" />
+                <Mail className="h-4 w-4" aria-hidden="true" />
                 <div>
                   <a 
                     href={`mailto:${COMPANY.email}`}
@@ -47,7 +47,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Clock className="h-4 w-4 footer-icon" />
+                <Clock className="h-4 w-4" aria-hidden="true" />
                 <div>
                   <p className="font-medium">Öffnungszeiten</p>
                   <p>Mo-Fr: 9:00 - 18:00 Uhr</p>

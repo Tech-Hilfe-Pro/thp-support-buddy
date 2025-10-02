@@ -712,3 +712,23 @@ button, a, [role="button"], [role="tab"] {
     transition: none;
   }
 }
+
+/* === Brand Orange - Iconos footer + "hilfe" ===================================== */
+/* Solo iconos del footer en naranja (SVG hereda currentColor) */
+footer .footer-icons svg {
+  color: var(--thp-orange);
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* La palabra 'hilfe' en naranja y en minúscula allí donde se use como marca */
+.brand-hilfe {
+  color: var(--thp-orange);
+  text-transform: lowercase;
+}
+
+/* Accesibilidad: focus visible sobre iconos/enlaces del footer */
+footer .footer-icons a:focus-visible {
+  outline: 2px solid var(--thp-orange);
+  outline-offset: 2px;
+}
