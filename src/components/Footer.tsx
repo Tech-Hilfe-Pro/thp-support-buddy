@@ -19,7 +19,7 @@ const Footer = () => {
                   <div>
                     <div className="flex items-center gap-2 font-medium">
                       <img src="/brand/logo-32.webp" alt="Logo" width="20" height="20" className="w-5 h-5" />
-                      <span>Tech <span className="brand-hilfe">hilfe</span> Pro</span>
+                      <span>Tech <span className="text-[color:var(--thp-orange)]">Hilfe</span> Pro</span>
                     </div>
                     <p>Büro in Köln (virtuell).</p>
                     <p>Remote & vor Ort.</p>

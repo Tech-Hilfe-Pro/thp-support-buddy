@@ -188,21 +188,22 @@ export default function Header() {
         data-visible={isVisible}
         data-hidden={isHidden}
       >
-        <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center gap-3">
+        <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center justify-between gap-3">
           <Link
             to="/"
-            className="flex items-center gap-2 shrink-0 whitespace-nowrap ml-auto md:ml-0"
+            className="flex items-center gap-2 shrink-0 whitespace-nowrap"
+            aria-label="Tech Hilfe Pro"
           >
             <img src="/brand/logo.svg" alt="" width="24" height="24" className="w-6 h-6" />
             <span className="site-title text-lg font-semibold tracking-tight">
-              Tech <span className="brand-hilfe">hilfe</span> Pro
+              Tech <span className="text-[color:var(--thp-orange)]">Hilfe</span> Pro
             </span>
           </Link>
 
           {/* Desktop: Menu burger button */}
           <button
             ref={desktopTriggerRef}
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors ml-auto"
+            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors"
             onClick={() => setSidebarOpen(true)}
             aria-label="Menü öffnen"
             aria-expanded={sidebarOpen}
@@ -216,7 +217,7 @@ export default function Header() {
           {/* Mobile: Menu button */}
           <button
             ref={mobileTriggerRef}
-            className="ml-auto md:hidden rounded-lg border px-3 py-2 min-h-[44px]"
+            className="md:hidden rounded-lg border px-3 py-2 min-h-[44px]"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"

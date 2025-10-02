@@ -103,6 +103,9 @@
   --cta-foreground: 0 0% 100%;
   --thp-cta: 24 88% 40%;
   
+  /* Brand Orange: Vibrant orange for text highlights */
+  --thp-orange: #F97316;
+  
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
   
