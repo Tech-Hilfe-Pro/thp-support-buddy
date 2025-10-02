@@ -193,7 +193,7 @@ export default function Header() {
           <Link
             to="/"
             className="flex items-center gap-2 shrink-0 whitespace-nowrap ml-auto md:ml-0"
-            aria-label="Tech Hilfe Pro"
+            aria-label="Tech hilfe Pro"
           >
             <img src={LogoOrangen} alt="Tech Hilfe Pro" width="24" height="24" className="w-6 h-6" />
             <span className="site-title text-lg font-semibold tracking-tight">
@@ -248,7 +248,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 text-sm text-muted-foreground hover:text-primary min-h-[44px] flex items-center rounded-lg"
-                aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
+                aria-label="WhatsApp schreiben"
               >
                 {CONTACT.WHATSAPP_LABEL}
               </a>
@@ -305,7 +305,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-black block transition-colors min-h-[44px] flex items-center"
-                aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
+                aria-label="WhatsApp schreiben"
               >
                 {CONTACT.WHATSAPP_LABEL}
               </a>
@@ -351,7 +351,7 @@ export default function Header() {
                     📞
                   </a>
                   <a
-                    aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
+                    aria-label="WhatsApp schreiben"
                     href={CONTACT.WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"

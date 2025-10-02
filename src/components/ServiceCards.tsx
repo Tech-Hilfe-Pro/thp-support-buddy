@@ -61,7 +61,6 @@ const ServiceCard = ({ service, isVisible }: { service: ServiceCardData; isVisib
       <Link 
         to={`/leistungen/${service.slug}`} 
         className="block h-full"
-        aria-label={`${service.title} - Mehr erfahren`}
       >
         <div className="aspect-[3/2] overflow-hidden bg-muted">
           {isVisible && (
