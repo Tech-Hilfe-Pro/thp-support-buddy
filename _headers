@@ -5,11 +5,41 @@
   Referrer-Policy: no-referrer
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
+# JavaScript and CSS bundles with content hash - immutable cache
+/assets/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static images and fonts - long cache
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
 /build/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Brand assets (logos, icons) - long cache
+/brand/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Social media images
+/og/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Root level static files
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Service worker - no cache
 /sw.js
   Cache-Control: no-cache
