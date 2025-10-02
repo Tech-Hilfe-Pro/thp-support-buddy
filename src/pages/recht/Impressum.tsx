@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { COMPANY } from "@/data/company";
-import { CONTACT } from "@/lib/constants";
 
 const Impressum = () => {
   return (
@@ -18,38 +17,44 @@ const Impressum = () => {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">Angaben gemäß § 5 DDG</h2>
             <div className="text-muted-foreground space-y-2">
-              <p className="font-semibold">{COMPANY.brand}</p>
-              <p>Inhaber: {COMPANY.owner}</p>
-              {/* TODO-LEGAL: Vor Veröffentlichung vollständige postalische Anschrift einfügen (Schirmerstraße 7, 50823 Köln). Pflicht nach §5 DDG. */}
-              <p>Anschrift: Schirmerstraße 7, 50823 Köln</p>
-              <p>Telefon: <a href={CONTACT.PHONE_TEL} className="hover:text-primary transition-colors">{CONTACT.PHONE_DISPLAY}</a></p>
-              <p>E-Mail: <a href={CONTACT.EMAIL} className="hover:text-primary transition-colors">{CONTACT.EMAIL_DISPLAY}</a></p>
-              <p>Web: <a href={CONTACT.DOMAIN} className="hover:text-primary transition-colors">{CONTACT.DOMAIN}</a></p>
-              <p>WhatsApp: <a href={CONTACT.WHATSAPP_URL} className="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer" aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro">{CONTACT.WHATSAPP_LABEL}</a></p>
+              <p>{COMPANY.brand}</p>
+              <p>{COMPANY.owner}</p>
+              <p>{COMPANY.street}</p>
+              <p>{COMPANY.postalCode} {COMPANY.city}</p>
             </div>
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Anbieterkennzeichnung</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">Kontakt</h2>
+            <div className="text-muted-foreground space-y-2">
+              <p>Telefon: <a href={`tel:${COMPANY.telE164}`} className="hover:text-primary transition-colors">{COMPANY.telDisplay}</a></p>
+              <p>E-Mail: <a href={`mailto:${COMPANY.email}`} className="hover:text-primary transition-colors">{COMPANY.email}</a></p>
+            </div>
+          </section>
+          
+          {COMPANY.ustId && (
+            <section>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Umsatzsteuer-ID</h2>
+              <p className="text-muted-foreground">
+                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: {COMPANY.ustId}
+              </p>
+            </section>
+          )}
+          
+          <section>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">Kleinunternehmerregelung</h2>
             <p className="text-muted-foreground">
-              Wir erbringen geschäftsmäßig digitale Dienste im Bereich IT-Support (Remote & vor Ort). 
-              Sitz und ladungsfähige Anschrift siehe oben.
+              Als Kleinunternehmer im Sinne von § 19 Abs. 1 Umsatzsteuergesetz wird 
+              keine Umsatzsteuer berechnet.
             </p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Umsatzsteuerstatus</h2>
-            <p className="text-muted-foreground">
-              Umsatzsteuerbefreit nach § 19 UStG (Kleinunternehmerregelung), keine Ausweisung der MwSt.
-            </p>
-          </section>
-          
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Verantwortlich für Inhalte i.S.d. § 18 Abs. 2 MStV</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h2>
             <div className="text-muted-foreground space-y-2">
               <p>{COMPANY.owner}</p>
-              {/* TODO-LEGAL: Vor Veröffentlichung vollständige postalische Anschrift einfügen. Pflicht nach §18 Abs. 2 MStV. */}
-              <p>Schirmerstraße 7, 50823 Köln</p>
+              <p>{COMPANY.street}</p>
+              <p>{COMPANY.postalCode} {COMPANY.city}</p>
             </div>
           </section>
           
@@ -59,28 +64,24 @@ const Impressum = () => {
               <div>
                 <h3 className="font-semibold text-foreground">Haftung für Inhalte</h3>
                 <p>
-                  Inhalte mit Sorgfalt erstellt; keine Gewähr für Richtigkeit, Vollständigkeit und Aktualität.
+                  Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf 
+                  diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG 
+                  sind wir als Diensteanbieter jedoch nicht unter der Verpflichtung, übermittelte 
+                  oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu 
+                  forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
                 </p>
               </div>
               
               <div>
                 <h3 className="font-semibold text-foreground">Haftung für Links</h3>
                 <p>
-                  Externe Inhalte liegen in der Verantwortung der jeweiligen Anbieter.
+                  Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte 
+                  wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch 
+                  keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der 
+                  jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
                 </p>
               </div>
             </div>
-          </section>
-          
-          <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-4">Verbraucherstreitbeilegung</h2>
-            <p className="text-muted-foreground">
-              Gemäß § 36 VSBG: Keine Verpflichtung und keine Bereitschaft zur Teilnahme an 
-              Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle.
-            </p>
-            <p className="text-muted-foreground mt-2">
-              <em>Hinweis:</em> Die EU-ODR-Plattform wurde eingestellt; kein Link vorhanden.
-            </p>
           </section>
         </div>
       </div>

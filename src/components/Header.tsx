@@ -1,7 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useScrollDir } from "@/hooks/useScrollDir";
-import { CONTACT } from "@/lib/constants";
+import LogoOrangen from "@/assets/logo-orangen.png";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -188,22 +188,22 @@ export default function Header() {
         data-visible={isVisible}
         data-hidden={isHidden}
       >
-        <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center justify-between gap-3">
+        <div className="mx-auto max-w-7xl px-3 lg:px-6 h-14 flex items-center gap-3">
           <Link
             to="/"
             className="flex items-center gap-2 shrink-0 whitespace-nowrap"
             aria-label="Tech Hilfe Pro"
           >
-            <img src="/brand/logo.svg" alt="" width="24" height="24" className="w-6 h-6" />
+            <img src={LogoOrangen} alt="Tech Hilfe Pro" width="24" height="24" className="w-6 h-6" />
             <span className="site-title text-lg font-semibold tracking-tight">
-              Tech <span className="text-[color:var(--thp-orange)]">Hilfe</span> Pro
+              Tech <span className="site-title__highlight">HILFE</span> Pro
             </span>
           </Link>
 
           {/* Desktop: Menu burger button */}
           <button
             ref={desktopTriggerRef}
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors"
+            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors ml-auto"
             onClick={() => setSidebarOpen(true)}
             aria-label="Menü öffnen"
             aria-expanded={sidebarOpen}
@@ -217,7 +217,7 @@ export default function Header() {
           {/* Mobile: Menu button */}
           <button
             ref={mobileTriggerRef}
-            className="md:hidden rounded-lg border px-3 py-2 min-h-[44px]"
+            className="ml-auto md:hidden rounded-lg border px-3 py-2 min-h-[44px]"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -243,12 +243,12 @@ export default function Header() {
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a
-                href={CONTACT.WHATSAPP_URL}
+                href="https://wa.me/4915565029989"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 text-sm text-muted-foreground hover:text-primary min-h-[44px] flex items-center rounded-lg"
               >
-                {CONTACT.WHATSAPP_LABEL}
+                WhatsApp
               </a>
               <a
                 href="/termin"
@@ -299,12 +299,12 @@ export default function Header() {
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a
-                href={CONTACT.WHATSAPP_URL}
+                href="https://wa.me/4915565029989"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-black block transition-colors min-h-[44px] flex items-center"
               >
-                {CONTACT.WHATSAPP_LABEL}
+                WhatsApp
               </a>
 
               <div className="mt-4 pt-4 border-t">
@@ -342,16 +342,14 @@ export default function Header() {
                 <div className="flex gap-2">
                   <a
                     aria-label="Anrufen"
-                    href={CONTACT.PHONE_TEL}
+                    href="tel:+4915565029989"
                     className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
                   >
                     📞
                   </a>
                   <a
-                    aria-label="WhatsApp schreiben"
-                    href={CONTACT.WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    href="https://wa.me/4915565029989"
                     className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
                   >
                     🟢

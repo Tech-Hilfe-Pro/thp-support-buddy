@@ -1,11 +1,11 @@
-import { CONTACT } from "@/lib/constants";
+const WA_URL = "https://wa.me/4915565029989";
 
 export default function WhatsAppFloat() {
   return (
     <a
-      href={CONTACT.WHATSAPP_URL}
+      href={WA_URL}
       className="whatsapp-fab"
-      aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
+      aria-label="WhatsApp öffnen"
       target="_blank"
       rel="noopener"
     >

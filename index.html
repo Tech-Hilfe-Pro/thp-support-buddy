@@ -2,15 +2,9 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    
-    <!-- Early preconnect to reduce font loading chain -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="mask-icon" href="/favicon.svg" color="#f97316">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand/favicon-16.png">
+    <link rel="apple-touch-icon" href="/brand/app-icon-512.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#3BA9FF">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,18 +12,14 @@
     <meta name="apple-mobile-web-app-title" content="Tech Hilfe Pro">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-    <!-- Async load Google Fonts to prevent render blocking -->
-    <script>
-      (function() {
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap';
-        document.head.appendChild(link);
-      })();
-    </script>
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
+    <!-- Preconnect to Google Fonts to reduce network chain -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
+    <!-- Load Google Fonts early -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
     
+    <link rel="preload" as="image" href="/og/default.jpg" fetchpriority="high">
     <title>Tech Hilfe Pro</title>
     <meta name="description" content="IT-Support für Privat & KMU in Köln, Neuss & Umgebung" />
     <meta name="author" content="Tech Hilfe Pro" />
@@ -46,10 +36,10 @@
     
     <!-- Critical CSS to prevent render blocking -->
     <style>
-      /* Critical CSS for initial render - WCAG AA Compliant */
+      /* Critical CSS for initial render */
       :root {
-        --thp-primary: 205 100% 40%;
-        --thp-cta: 24 88% 40%;
+        --thp-primary: 210 100% 62%;
+        --thp-cta: 17 88% 54%;
         --background: 0 0% 100%;
         --foreground: 222.2 84% 4.9%;
         --border: 214.3 31.8% 91.4%;
@@ -71,7 +61,7 @@
       
       body {
         margin: 0;
-        font-family: 'Inter var', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Inter var', ui-sans-serif, system-ui, sans-serif;
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         background-color: hsl(var(--background));
@@ -95,11 +85,10 @@
         border-bottom: 1px solid hsl(var(--border));
       }
       
-      /* Hero critical styles - Optimized for LCP */
+      /* Hero critical styles */
       .hero-scrim {
         background: linear-gradient(135deg, hsl(210 95% 35%) 0%, hsl(210 90% 50%) 100%);
         position: relative;
-        contain: layout style paint;
       }
       
       .text-white {
@@ -108,12 +97,6 @@
       
       .text-shadow-lg {
         text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      }
-      
-      /* Ensure H1 renders immediately with system font fallback */
-      h1 {
-        font-family: 'Inter var', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-        font-weight: 800;
       }
       
       /* Button critical styles */
@@ -152,36 +135,34 @@
 
   <body>
     <noscript>
-      <section style="padding:1rem;max-width:720px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;line-height:1.6;color:#111827;">
-        <h1 style="font-size:2rem;font-weight:700;margin-bottom:1rem;color:#0f172a;">Tech Hilfe Pro – IT-Service in Köln & Neuss</h1>
-        <p style="margin-bottom:1rem;">REMOTE & vor Ort. Zuverlässige Hilfe für Privat & KMU.</p>
-        <ul style="margin:1.5rem 0;padding-left:1.5rem;list-style:disc;">
-          <li style="margin-bottom:0.5rem;">PC-Reparatur & Einrichtung</li>
-          <li style="margin-bottom:0.5rem;">Netzwerk & WLAN</li>
-          <li style="margin-bottom:0.5rem;">Backup & grundlegende IT-Sicherheit</li>
-        </ul>
-        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:0.5rem;padding:1.25rem;margin:1.5rem 0;">
-          <h2 style="font-size:1.125rem;font-weight:600;margin-bottom:0.75rem;">Kontakt</h2>
-          <p style="margin-bottom:0.5rem;">
-            <a href="mailto:info@techhilfepro.de" style="color:#3ba9ff;text-decoration:underline;min-height:44px;display:inline-block;">info@techhilfepro.de</a>
-          </p>
-          <p style="margin-bottom:0.5rem;">
-            <a href="tel:+4915565029989" style="color:#3ba9ff;text-decoration:underline;min-height:44px;display:inline-block;">+49 15565029989</a>
-          </p>
-          <p>
-            <a href="https://wa.me/4915565029989" style="color:#3ba9ff;text-decoration:underline;min-height:44px;display:inline-block;" target="_blank" rel="noopener noreferrer">WhatsApp schreiben</a>
-          </p>
-        </div>
-        <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid #e5e7eb;font-size:0.875rem;">
-          <a href="/impressum" style="color:#3ba9ff;text-decoration:underline;margin-right:1rem;">Impressum</a>
-          <a href="/datenschutz" style="color:#3ba9ff;text-decoration:underline;">Datenschutz</a>
-        </div>
-        <p style="margin-top:1.5rem;padding:1rem;background:#fef3c7;border:1px solid #fbbf24;border-radius:0.5rem;font-size:0.875rem;">
-          <strong>Hinweis:</strong> Diese Website benötigt JavaScript. Bitte aktivieren Sie JavaScript in Ihren Browser-Einstellungen.
+      <div style="max-width: 800px; margin: 3rem auto; padding: 2rem 1rem; font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #111827;">
+        <h1 style="font-size: 1.875rem; font-weight: 800; margin-bottom: 1.5rem; color: #0f172a;">
+          Wir lösen Ihre Technikprobleme — REMOTE & vor Ort
+        </h1>
+        <p style="margin-bottom: 1rem; font-size: 1rem;">
+          Tech Hilfe Pro bietet schnellen IT-Support für Privatkunden und Unternehmen in Köln, Neuss & Umgebung.
         </p>
-      </section>
+        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+          <li style="margin-bottom: 0.5rem;"><strong>Fehlerdiagnose remote</strong> – Schnelle Hilfe ohne Anfahrt</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Windows/macOS Betreuung</strong> – Einrichtung, Updates, Schulung</li>
+          <li style="margin-bottom: 0.5rem;"><strong>KMU Endpoint-Management</strong> – Monitoring, Patching, Security</li>
+        </ul>
+        <div style="background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; margin: 1.5rem 0;">
+          <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Kontakt</h2>
+          <p style="margin-bottom: 0.5rem;"><strong>Telefon:</strong> <a href="tel:+4915565029989" style="color: #3ba9ff; text-decoration: underline;">+49 155 65029989</a></p>
+          <p style="margin-bottom: 0.5rem;"><strong>E-Mail:</strong> <a href="mailto:info@techhilfepro.de" style="color: #3ba9ff; text-decoration: underline;">info@techhilfepro.de</a></p>
+          <p style="margin-bottom: 0.5rem;"><strong>WhatsApp:</strong> <a href="https://wa.me/4915565029989" style="color: #3ba9ff; text-decoration: underline;">Nachricht senden</a></p>
+        </div>
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; font-size: 0.875rem;">
+          <a href="/impressum" style="color: #3ba9ff; text-decoration: underline; margin-right: 1rem;">Impressum</a>
+          <a href="/datenschutz" style="color: #3ba9ff; text-decoration: underline;">Datenschutz</a>
+        </div>
+        <p style="margin-top: 1.5rem; padding: 1rem; background: #fef3c7; border: 1px solid #fbbf24; border-radius: 0.5rem; font-size: 0.875rem;">
+          <strong>Hinweis:</strong> Diese Website benötigt JavaScript für die volle Funktionalität. Bitte aktivieren Sie JavaScript in Ihren Browser-Einstellungen.
+        </p>
+      </div>
     </noscript>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx" fetchpriority="high"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

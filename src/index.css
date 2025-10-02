@@ -4,8 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Inter Variable font loaded via Google Fonts in index.html */
-/* Fallback system font stack for optimal performance */
+/* Inter Variable – lokale Einbindung, fallback system-ui */
+@font-face{
+  font-family:"Inter var";
+  src:url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap") format("woff2-variations");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
+}
 
 /* Fokus sichtbar */
 :focus-visible { 
@@ -85,7 +91,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* Tech Hilfe Pro Design System - WCAG AA Compliant Colors */
+/* Tech Hilfe Pro Design System - Color #3BA9FF */
 :root {
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
@@ -94,17 +100,14 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222 47% 11%;
   
-  /* Primary: Darker blue for 4.5:1 contrast with white text */
-  --primary: 205 100% 40%;
+  /* Primary: #3BA9FF → HSL(205 100% 63%) */
+  --primary: 205 100% 63%;
   --primary-foreground: 0 0% 100%;
   
-  /* CTA Orange: Darker for 4.5:1 contrast with white text */
-  --cta: 24 88% 40%;
+  /* CTA Orange: #F97316 → HSL(24 95% 53%) */
+  --cta: 24 95% 53%;
   --cta-foreground: 0 0% 100%;
-  --thp-cta: 24 88% 40%;
-  
-  /* Brand Orange: Vibrant orange for text highlights */
-  --thp-orange: #F97316;
+  --thp-cta: 249 115 22; /* RGB base para #f97316 */
   
   --secondary: 210 40% 96%;
   --secondary-foreground: 222 47% 11%;
@@ -114,20 +117,20 @@
   --thp-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.08);
   --thp-shadow-md: 0 2px 8px rgba(16, 24, 40, 0.10), 0 12px 28px rgba(16, 24, 40, 0.10);
   --muted: 210 40% 96%;
-  --muted-foreground: 215 20% 36%;
+  --muted-foreground: 215 16% 47%;
   --accent: 210 40% 96%;
   --accent-foreground: 222 47% 11%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
   --border: 214 32% 91%;
   --input: 214 32% 91%;
-  --ring: 205 100% 40%;
+  --ring: 205 100% 63%;
   --radius: 0.75rem;
   
-  /* THP Design Tokens - WCAG Compliant */
-  --thp-primary: 205 100% 40%;       /* Darker blue for accessibility */
+  /* THP Design Tokens */
+  --thp-primary: 205 100% 63%;       /* #3BA9FF */
   --thp-primary-ink: 210 65% 17%;    /* #0B2A45 - dark text */
-  --thp-cta: 24 88% 40%;             /* Darker orange for accessibility */
+  --thp-cta: 24 95% 53%;             /* #F97316 - orange CTA */
   --thp-text: 220 9% 10%;            /* #111827 - body text */
   --thp-bg: 218 13% 95%;             /* #F3F4F6 - light bg */
   --thp-white: 0 0% 100%;            /* #FFFFFF */
@@ -140,10 +143,10 @@
   --sidebar-accent: 240 4.8% 95.9%;
   --sidebar-accent-foreground: 240 5.9% 10%;
   --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 205 100% 40%;
+  --sidebar-ring: 205 100% 63%;
 
-  /* Hero gradient with accessible primary */
-  --thp-hero: linear-gradient(135deg, hsl(205 100% 45% / 0.95), hsl(205 100% 38% / 0.90));
+  /* Hero gradient with new primary */
+  --thp-hero: linear-gradient(135deg, hsl(205 100% 63% / 0.95), hsl(205 100% 53% / 0.85));
 }
 
 .dark {
@@ -294,17 +297,6 @@
   }
 }
 
-/* === PWA Install Button === */
-.btn-install svg {
-  display: block;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn-install {
-    transition: none;
-  }
-}
-
 @media (max-width: 390px) {
   .whatsapp-fab {
     width: 58px;
@@ -361,11 +353,11 @@
   }
 }
 
-/* Hero scrim and fade-out to next section - WCAG compliant */
+/* Hero scrim and fade-out to next section */
 .hero-scrim {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(180deg, hsl(205 100% 42%) 0%, hsl(205 100% 40%) 60%, hsl(205 100% 40%) 100%);
+  background: linear-gradient(180deg, #2ea3ff 0%, #3BA9FF 60%, #3BA9FF 100%);
 }
 
 .hero-scrim::before {
@@ -377,11 +369,11 @@
 }
 
 
-/* Accessible underline accent for hero phrases - WCAG compliant */
+/* Accessible underline accent for hero phrases */
 .hero-accent {
   color: #fff;
   text-decoration-line: underline;
-  text-decoration-color: hsl(24 88% 55%);
+  text-decoration-color: #f97316;
   text-decoration-thickness: 0.28em;
   text-underline-offset: 0.18em;
   font-weight: 800;
@@ -470,16 +462,16 @@
   }
 }
 
-/* CTA buttons - WCAG compliant */
+/* CTA buttons */
 .btn-cta {
-  background: hsl(24 88% 40%);
+  background: #f97316;
   color: #fff;
   font-weight: 700;
-  box-shadow: 0 6px 16px rgba(204, 71, 4, 0.25), 0 2px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(249,115,22,0.25), 0 2px 4px rgba(0,0,0,0.06);
 }
 
 .btn-cta:hover {
-  filter: brightness(1.08);
+  filter: brightness(1.05);
 }
 
 .btn-cta:focus-visible {
@@ -641,136 +633,4 @@ body.menu-open {
 button, a, [role="button"], [role="tab"] {
   min-width: 24px;
   min-height: 24px;
-}
-
-/* Footer color palette - WCAG AA Compliant */
-:root {
-  --thp-orange: hsl(24 88% 40%);
-  --thp-footer-gray: #64748b;
-}
-
-/* Footer links - neutral gray by default */
-.footer-nav a,
-.footer-social a {
-  color: var(--thp-footer-gray);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  outline-offset: 2px;
-  display: block;
-  transition: filter 0.2s ease;
-}
-
-/* Footer icons inherit color */
-.footer-nav a svg,
-.footer-social a svg {
-  fill: currentColor;
-  stroke: currentColor;
-}
-
-/* Footer accent CTAs - orange */
-.footer-accent a {
-  color: var(--thp-orange);
-  text-decoration-thickness: 2px;
-}
-
-/* Focus visible - uses current color */
-.footer-nav a:focus-visible,
-.footer-social a:focus-visible {
-  outline: 2px solid currentColor;
-  border-radius: 4px;
-}
-
-/* Hover state */
-.footer-nav a:hover,
-.footer-social a:hover {
-  filter: brightness(0.9);
-}
-
-/* Footer icon styles - neutral by default */
-.footer-icon {
-  color: var(--thp-footer-gray);
-  transition: all 0.2s ease;
-}
-
-.footer-icon:hover,
-.footer-icon:focus-visible {
-  filter: brightness(0.9);
-}
-
-/* Footer overlay prevention */
-.footer-overlay-blocker {
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .footer-nav a,
-  .footer-social a,
-  .footer-icon {
-    transition: none;
-  }
-}
-
-/* === Brand Orange - Iconos footer + "hilfe" ===================================== */
-/* Solo iconos del footer en naranja (SVG hereda currentColor) */
-footer .footer-icons svg {
-  color: var(--thp-orange);
-  fill: currentColor;
-  stroke: currentColor;
-}
-
-/* La palabra 'hilfe' en naranja y en minúscula allí donde se use como marca */
-.brand-hilfe {
-  color: var(--thp-orange);
-  text-transform: lowercase;
-}
-
-/* Accesibilidad: focus visible sobre iconos/enlaces del footer */
-footer .footer-icons a:focus-visible {
-  outline: 2px solid var(--thp-orange);
-  outline-offset: 2px;
-}
-
-/* === Kontakt Icons - naranja con touch targets accesibles === */
-footer .kontakt-icons a {
-  /* Área táctil mínima WCAG 2.2 (24x24 CSS px) */
-  min-inline-size: 24px; 
-  min-block-size: 24px;
-  padding: 6px 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  outline-offset: 2px;
-  transition: filter 0.2s ease;
-}
-
-footer .kontakt-icons a:focus-visible {
-  outline: 2px solid var(--thp-orange);
-}
-
-/* Naranja SOLO para SVG (hereda con currentColor) */
-footer .kontakt-icons a svg {
-  color: var(--thp-orange);
-  fill: currentColor;
-  stroke: currentColor;
-  inline-size: 24px;
-  block-size: 24px;
-  flex-shrink: 0;
-}
-
-/* Texto permanece gris del tema; NO pintar naranja */
-footer .kontakt-icons a span,
-footer .kontakt-icons a .label {
-  color: inherit;
-}
-
-/* Hover suave sin romper contraste */
-footer .kontakt-icons a:hover svg {
-  filter: brightness(0.92);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  footer .kontakt-icons a {
-    transition: none;
-  }
 }

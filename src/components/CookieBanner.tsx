@@ -110,7 +110,7 @@ const CookieBanner = () => {
               Mehr Informationen finden Sie in unserer{" "}
               <a 
                 href="/recht/datenschutz" 
-                className="text-primary underline hover:underline focus:underline focus:outline-none"
+                className="text-primary hover:underline focus:underline focus:outline-none"
                 target="_blank"
                 rel="noopener noreferrer"
               >
