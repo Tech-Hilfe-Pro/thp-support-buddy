@@ -74,66 +74,66 @@ const Footer = () => {
           {/* Rechtliches */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-foreground">Rechtliches</h3>
-            <nav className="space-y-2" aria-label="Rechtliches">
-              <Link
-                to="/recht/impressum"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                Impressum
-              </Link>
-              <Link
-                to="/recht/datenschutz"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                Datenschutz
-              </Link>
-              <Link
-                to="/recht/agb"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                AGB
-              </Link>
-              <Link
-                to="/recht/widerruf"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                Widerruf
-              </Link>
-              <Link
-                to="/recht/cookies"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                Cookie-Richtlinie
-              </Link>
+            <nav aria-label="Rechtliches">
+              <ul className="footer-nav space-y-2">
+                <li>
+                  <Link to="/recht/impressum">
+                    Impressum
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/recht/datenschutz">
+                    Datenschutz
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/recht/agb">
+                    AGB
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/recht/widerruf">
+                    Widerruf
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/recht/cookies">
+                    Cookie-Richtlinie
+                  </Link>
+                </li>
+              </ul>
             </nav>
           </div>
 
           {/* Hilfe & Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-foreground">Hilfe & Support</h3>
-            <nav className="space-y-2">
-              <Link
-                to="/faq"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                FAQ - Häufige Fragen
-              </Link>
-              <Link
-                to="/kontakt"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
-              >
-                Kontakt
-              </Link>
-              <a
-                href={CONTACT.WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
-              >
-                {CONTACT.WHATSAPP_LABEL}
-              </a>
+            <nav aria-label="Hilfe und Support">
+              <ul className="footer-nav space-y-2">
+                <li>
+                  <Link to="/faq">
+                    FAQ - Häufige Fragen
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/kontakt">
+                    Kontakt
+                  </Link>
+                </li>
+              </ul>
             </nav>
+            <ul className="footer-social mt-4 space-y-2">
+              <li>
+                <a
+                  href={CONTACT.WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Per WhatsApp kontaktieren – Tech Hilfe Pro"
+                >
+                  {CONTACT.WHATSAPP_LABEL}
+                </a>
+              </li>
+            </ul>
             <div className="mt-4 pt-4 border-t">
               <p className="text-xs text-muted-foreground">
                 Kleinunternehmer i.S.d. § 19 UStG<br />

@@ -646,9 +646,48 @@ button, a, [role="button"], [role="tab"] {
   min-height: 24px;
 }
 
+/* Footer unified orange styles */
+:root {
+  --thp-orange: #f97316;
+}
+
+.footer-nav a svg,
+.footer-social a svg {
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.footer-nav a,
+.footer-social a {
+  color: var(--thp-orange);
+  outline-offset: 2px;
+  text-underline-offset: 2px;
+  text-decoration: none;
+  display: block;
+  transition: filter 0.2s ease;
+}
+
+.footer-nav a:focus-visible,
+.footer-social a:focus-visible {
+  outline: 2px solid var(--thp-orange);
+  border-radius: 4px;
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+  filter: brightness(0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-nav a,
+  .footer-social a {
+    transition: none;
+  }
+}
+
 /* Footer icon styles - orange with accessible focus/hover */
 .footer-icon {
-  color: #f97316;
+  color: var(--thp-orange);
   transition: all 0.2s ease;
 }
 
