@@ -41,17 +41,41 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: true,
       rollupOptions: {
         output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-            'ui-components': [
-              '@radix-ui/react-accordion',
-              '@radix-ui/react-dialog',
-              '@radix-ui/react-dropdown-menu',
-              '@radix-ui/react-popover',
-              '@radix-ui/react-select',
-              '@radix-ui/react-tabs',
-              '@radix-ui/react-toast',
-            ],
+          manualChunks: (id) => {
+            // React core - always needed
+            if (id.includes('node_modules/react/') || 
+                id.includes('node_modules/react-dom/') || 
+                id.includes('node_modules/react-router-dom/') ||
+                id.includes('node_modules/scheduler/')) {
+              return 'react-vendor';
+            }
+            
+            // Radix UI components - only loaded when needed
+            if (id.includes('@radix-ui/')) {
+              return 'ui-radix';
+            }
+            
+            // Stripe - only for checkout pages
+            if (id.includes('@stripe/') || id.includes('node_modules/stripe/')) {
+              return 'stripe-vendor';
+            }
+            
+            // Form libraries - only for pages with forms
+            if (id.includes('react-hook-form') || 
+                id.includes('@hookform/') || 
+                id.includes('zod')) {
+              return 'form-vendor';
+            }
+            
+            // Charts - only for analytics/dashboard
+            if (id.includes('recharts') || id.includes('d3-')) {
+              return 'charts-vendor';
+            }
+            
+            // Other vendors
+            if (id.includes('node_modules/')) {
+              return 'vendor';
+            }
           },
         },
       },
