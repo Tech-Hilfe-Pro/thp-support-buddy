@@ -14,13 +14,15 @@ import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import Home from "./pages/Home";
-import Leistungen from "./pages/Leistungen";
-import ServiceDetail from "./pages/ServiceDetail";
-import KMU from "./pages/KMU";
-import PaketePreise from "./pages/PaketePreise";
-import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
+
+// Lazy load all other routes to reduce initial bundle
+const Leistungen = lazy(() => import("./pages/Leistungen"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const KMU = lazy(() => import("./pages/KMU"));
+const PaketePreise = lazy(() => import("./pages/PaketePreise"));
+const FAQ = lazy(() => import("./pages/FAQ"));
 
 // Lazy load heavy routes
 const Termin = lazy(() => import("./pages/Termin"));
