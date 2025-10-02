@@ -4,14 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Inter Variable – lokale Einbindung, fallback system-ui */
-@font-face{
-  font-family:"Inter var";
-  src:url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap") format("woff2-variations");
-  font-weight:100 900;
-  font-style:normal;
-  font-display:swap;
-}
+/* Inter Variable font loaded via Google Fonts in index.html */
+/* Fallback system font stack for optimal performance */
 
 /* Fokus sichtbar */
 :focus-visible { 
