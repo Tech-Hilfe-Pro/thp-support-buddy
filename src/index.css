@@ -732,3 +732,48 @@ footer .footer-icons a:focus-visible {
   outline: 2px solid var(--thp-orange);
   outline-offset: 2px;
 }
+
+/* === Kontakt Icons - naranja con touch targets accesibles === */
+footer .kontakt-icons a {
+  /* Área táctil mínima WCAG 2.2 (24x24 CSS px) */
+  min-inline-size: 24px; 
+  min-block-size: 24px;
+  padding: 6px 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  outline-offset: 2px;
+  transition: filter 0.2s ease;
+}
+
+footer .kontakt-icons a:focus-visible {
+  outline: 2px solid var(--thp-orange);
+}
+
+/* Naranja SOLO para SVG (hereda con currentColor) */
+footer .kontakt-icons a svg {
+  color: var(--thp-orange);
+  fill: currentColor;
+  stroke: currentColor;
+  inline-size: 24px;
+  block-size: 24px;
+  flex-shrink: 0;
+}
+
+/* Texto permanece gris del tema; NO pintar naranja */
+footer .kontakt-icons a span,
+footer .kontakt-icons a .label {
+  color: inherit;
+}
+
+/* Hover suave sin romper contraste */
+footer .kontakt-icons a:hover svg {
+  filter: brightness(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  footer .kontakt-icons a {
+    transition: none;
+  }
+}
