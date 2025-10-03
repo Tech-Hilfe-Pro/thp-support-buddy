@@ -42,6 +42,10 @@ const Widerruf = lazy(() => import("./pages/recht/Widerruf"));
 const Cookies = lazy(() => import("./pages/recht/Cookies"));
 const Error500 = lazy(() => import("./pages/Error500"));
 
+// NIS2 pages
+const NIS2Koeln = lazy(() => import("./pages/nis2/Koeln"));
+const NIS2QuickCheck = lazy(() => import("./pages/thanks/NIS2QuickCheck"));
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -115,6 +119,8 @@ const App = () => {
                     <Route path="/recht/agb" element={<AGB />} />
                     <Route path="/recht/widerruf" element={<Widerruf />} />
                     <Route path="/recht/cookies" element={<Suspense fallback={<div className="p-8">Laden…</div>}><Cookies /></Suspense>} />
+                    <Route path="/nis2-koeln" element={<NIS2Koeln />} />
+                    <Route path="/thanks/nis2-quickcheck" element={<NIS2QuickCheck />} />
                     <Route path="/error" element={<Error500 />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>

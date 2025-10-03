@@ -634,3 +634,26 @@ button, a, [role="button"], [role="tab"] {
   min-width: 24px;
   min-height: 24px;
 }
+
+/* Enhanced focus styles for forms and interactive elements */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Reduced motion for forms and transitions */
+@media (prefers-reduced-motion: reduce) {
+  form *,
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

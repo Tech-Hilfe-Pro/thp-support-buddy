@@ -240,6 +240,7 @@ export default function Header() {
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/kmu">KMU</NavItem>
               <NavItem to="/preise">Preise</NavItem>
+              <NavItem to="/nis2-koeln">NIS2</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a
@@ -296,6 +297,7 @@ export default function Header() {
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/kmu">KMU</NavItem>
               <NavItem to="/preise">Preise</NavItem>
+              <NavItem to="/nis2-koeln">NIS2</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a
