@@ -37,19 +37,8 @@ export default function PreisePage() {
           </div>
         </header>
 
-        {/* Service-Level Component (nur KMU) */}
-        <section id="kmu" className="anchor-offset scroll-mt-24">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">Service-Level für KMU</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Wählen Sie den passenden Service-Level für Ihr Unternehmen mit klaren SLAs.
-            </p>
-          </div>
-          <Pricing showHeading={false} />
-        </section>
-
-        {/* Privat Abo (optional) */}
-        <section id="privat-abo" className="anchor-offset mt-16 scroll-mt-24">
+        {/* Privat Abo (optional) - MOVIDO ANTES DEL CALCULADOR */}
+        <section id="privat-abo" className="anchor-offset scroll-mt-24 mb-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">Privat Abo (optional)</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -70,7 +59,7 @@ export default function PreisePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 mb-6">
                     {plan.bullets.map((bullet, idx) => (
                       <li key={idx} className="flex gap-2 text-sm">
                         <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
@@ -78,20 +67,33 @@ export default function PreisePage() {
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Button asChild size="default">
+                      <Link to={`/termin?source=privat-abo&plan=${plan.id}`}>Termin anfragen</Link>
+                    </Button>
+                    <Button asChild size="default" variant="outline">
+                      <a href="https://wa.me/4915565029989" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <p className="text-sm text-muted-foreground text-center max-w-3xl mx-auto mb-6">
+          <p className="text-sm text-muted-foreground text-center max-w-3xl mx-auto">
             Für Haushalte/Home-Office – kein Konkurrenzangebot zu Elektronikketten; Fokus auf Prävention & Remote-First.
           </p>
+        </section>
 
-          <div className="text-center">
-            <Button asChild size="lg" variant="outline">
-              <Link to="/termin">Termin anfragen</Link>
-            </Button>
+        {/* Service-Level Component (nur KMU) */}
+        <section id="kmu" className="anchor-offset scroll-mt-24 mt-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">Service-Level für KMU</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Wählen Sie den passenden Service-Level für Ihr Unternehmen mit klaren SLAs.
+            </p>
           </div>
+          <Pricing showHeading={false} />
         </section>
 
 
