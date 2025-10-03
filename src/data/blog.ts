@@ -9,6 +9,105 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: "email-domain-schutz-spf-dkim-dmarc-kmu",
+    title: "E-Mail-Domänenschutz für KMU: SPF, DKIM und DMARC in 60 Minuten",
+    date: "2025-10-04",
+    tag: "Cyber",
+    excerpt: "Schützen Sie Ihre Absender-Domain vor Spoofing: SPF korrekt setzen, DKIM signieren und DMARC schrittweise von p=none zu p=quarantine/reject – mit Reporting.",
+    content: `
+<h2>Warum das wichtig ist</h2>
+<p>SPF, DKIM und DMARC verhindern, dass Angreifer Ihre Domäne fälschen. So sinkt das Risiko von Phishing, Markenmissbrauch und Zustellproblemen.</p>
+
+<h2>Was ist was?</h2>
+<ul>
+  <li><strong>SPF</strong>: Welche Server dürfen für Ihre Domäne senden.</li>
+  <li><strong>DKIM</strong>: Kryptografische Signatur Ihrer E-Mails.</li>
+  <li><strong>DMARC</strong>: Richtlinie und Reporting (Ausrichtung von SPF/DKIM mit dem From:-Header).</li>
+</ul>
+
+<h2>60-Minuten-Plan</h2>
+<ol>
+  <li>SPF-Record prüfen/setzen (<code>v=spf1 include:... -all</code>), keine Duplikate.</li>
+  <li>DKIM aktivieren (Selector, 2048 Bit, Rotation planen).</li>
+  <li>DMARC mit <code>p=none</code> starten und <code>rua=</code> Reporting einrichten.</li>
+  <li>Berichte 2–4 Wochen auswerten, Inkonsistenzen beheben.</li>
+  <li>Auf <code>p=quarantine</code> und später <code>p=reject</code> anheben.</li>
+</ol>
+
+<h2>Häufige Fehler</h2>
+<ul>
+  <li>Mehrere SPF-Records (ungültig). Stattdessen Eintrag konsolidieren.</li>
+  <li>DKIM-Key zu kurz; fehlende Rotation.</li>
+  <li>DMARC ohne Reporting – fliegen blind.</li>
+</ul>
+
+<h2>Quellen</h2>
+<ul>
+  <li><a href="https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Onlinekommunikation/E-Mail-Sicherheit/technischer-Hintergrund-E-Mail-Sicherheit/technischer-Hintergrund-E-Mail-Sicherheit_node.html" target="_blank" rel="noopener">BSI: Technischer Hintergrund E-Mail-Sicherheit</a></li>
+  <li><a href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/TechGuidelines/TR03182/BSI-TR-03182.pdf" target="_blank" rel="noopener">BSI TR-03182: E-Mail Authentication</a></li>
+  <li><a href="https://dmarc.org/overview/" target="_blank" rel="noopener">DMARC.org: Overview</a></li>
+  <li><a href="https://dmarc.org/resources/specification/" target="_blank" rel="noopener">DMARC: Spezifikationen</a></li>
+</ul>
+
+<p><strong>CTA:</strong> DMARC-Quick-Check + Einrichtungspaket anfragen.</p>
+    `
+  },
+  {
+    slug: "passkeys-fido2-webauthn-fuer-kmu",
+    title: "Passkeys & FIDO2 für KMU: Phishing-resistente Anmeldung verständlich erklärt",
+    date: "2025-10-04",
+    tag: "Cyber",
+    excerpt: "Warum Passkeys heute die benutzerfreundlichste, phishing-resistente MFA sind – und wie Sie sie in drei Schritten einführen.",
+    content: `
+<h2>Was sind Passkeys?</h2>
+<p>Passkeys nutzen <strong>kryptografische Schlüsselpaare</strong> statt Passwörter. Der private Schlüssel bleibt beim Nutzer, der öffentliche liegt beim Dienst. Phishing-Angriffe durch Weitergabe von Codes werden damit erheblich erschwert.</p>
+
+<h2>Best Practices für KMU</h2>
+<ol>
+  <li><strong>Pilot</strong> mit Admins und IT-affinen Nutzergruppen (Security Keys + Plattform-Passkeys).</li>
+  <li><strong>Rollout</strong> auf kritische Anwendungen (VPN, E-Mail, Portale), SMS/Voice-OTP vermeiden.</li>
+  <li><strong>Recovery</strong>: Backup-Keys, Wiederherstellungsprozess, Fallbacks mit Risikoabwägung.</li>
+</ol>
+
+<h2>Technische Referenzen</h2>
+<ul>
+  <li><a href="https://www.w3.org/TR/webauthn-3/" target="_blank" rel="noopener">W3C WebAuthn Level 3</a></li>
+  <li><a href="https://csrc.nist.gov/pubs/sp/800/63/b/upd2/final" target="_blank" rel="noopener">NIST SP 800-63B (Authentifizierung)</a></li>
+  <li><a href="https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf" target="_blank" rel="noopener">CISA: Phishing-resistente MFA</a></li>
+  <li><a href="https://www.enisa.europa.eu/sites/default/files/publications/Joint%20Publication%20-%20Enhanced%20Resilience_v.1.0-FINAL.pdf" target="_blank" rel="noopener">ENISA/CERT-EU: Resilienz – MFA ohne SMS/Voice</a></li>
+</ul>
+
+<p><strong>CTA:</strong> Passkey-Pilot starten (Admin & Führung), danach Rollout-Plan buchen.</p>
+    `
+  },
+  {
+    slug: "sicheres-heimnetz-remote-work",
+    title: "Sicheres Heimnetz für Remote-Work: Router, WLAN und IoT in 30 Minuten",
+    date: "2025-10-04",
+    tag: "Cyber",
+    excerpt: "WPA3 aktivieren, Gäste-WLAN trennen, Router aktuell halten und IoT isolieren. So wird das Heimnetz robust – ohne Fachchinesisch.",
+    content: `
+<h2>Die schnelle Checkliste</h2>
+<ul>
+  <li><strong>Router-Updates</strong> einschalten und regelmäßig einspielen.</li>
+  <li><strong>Admin-Passwort</strong> lang & einzigartig; Fernzugriff nur bei Bedarf.</li>
+  <li><strong>WPA3</strong> aktivieren, <strong>WPS</strong> deaktivieren.</li>
+  <li><strong>Gäste-WLAN</strong> getrennt vom Arbeitsnetz, eigenes Passwort.</li>
+  <li><strong>IoT trennen</strong>: Smart-Home ins Gäste- oder separates Netz.</li>
+  <li><strong>VPN/HTTPS</strong> für Firmendienste, Phishing-Vorsicht.</li>
+</ul>
+
+<h2>Schritt-für-Schritt Hilfen</h2>
+<ul>
+  <li><a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/Broschueren/Wegweiser_Checklisten_Flyer/Wegweiser_kompakt_Router_einrichten.pdf" target="_blank" rel="noopener">BSI: Router & WLAN einrichten (Wegweiser)</a></li>
+  <li><a href="https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Cyber-Sicherheitsempfehlungen/Router-WLAN-VPN/Schritt-fuer-Schritt-zum-Gaeste-WLAN/Schritt-fuer-Schritt-zum-Gaeste-WLAN_node.html" target="_blank" rel="noopener">BSI: Gäste-WLAN</a></li>
+  <li><a href="https://www.enisa.europa.eu/sites/default/files/all_files/Security%20when%20working%20remotely_Train%20the%20trainer%20guide.pdf" target="_blank" rel="noopener">ENISA: Sicher arbeiten von zuhause</a></li>
+</ul>
+
+<p><strong>CTA:</strong> Heimnetz-Check buchen (30 Min., remote) + Maßnahmenplan erhalten.</p>
+    `
+  },
+  {
     slug: "nis2-kmu-erste-90-tage",
     title: "NIS2: Erste 90 Tage für KMU",
     date: "2025-10-04",
