@@ -13,10 +13,10 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-foreground">Kontakt</h3>
             <div className="space-y-3 text-sm text-muted-foreground">
               <div className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 mt-0.5 text-primary" />
+                <MapPin className="h-4 w-4 mt-0.5 text-[hsl(var(--thp-cta))]" />
                 <div>
                   <div className="flex items-center gap-2 font-medium">
-                    <img src="/brand/logo-32.webp" alt="Logo" width="20" height="20" className="w-5 h-5" />
+                    <img src="/brand/logo-32.png" alt="Logo" width="20" height="20" className="w-5 h-5" />
                     <span>Tech <span className="text-[hsl(var(--thp-primary))]">Hilfe</span> Pro</span>
                   </div>
                   <p>Büro in Köln (HO).</p>
@@ -24,7 +24,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary" />
+                <Phone className="h-4 w-4 text-[hsl(var(--thp-cta))]" />
                 <div>
                   <a 
                     href={`tel:${COMPANY.telE164}`}
@@ -35,7 +35,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary" />
+                <Mail className="h-4 w-4 text-[hsl(var(--thp-cta))]" />
                 <div>
                   <a 
                     href={`mailto:${COMPANY.email}`}
@@ -46,7 +46,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Clock className="h-4 w-4 text-primary" />
+                <Clock className="h-4 w-4 text-[hsl(var(--thp-cta))]" />
                 <div>
                   <p className="font-medium">Öffnungszeiten</p>
                   <p>Mo-Fr: 9:00 - 18:00 Uhr</p>
@@ -73,18 +73,18 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-foreground">Rechtliches</h3>
             <nav className="space-y-2">
-              <a
-                href="/impressum"
+              <Link
+                to="/recht/impressum"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
               >
                 Impressum
-              </a>
-              <a
-                href="/datenschutz"
+              </Link>
+              <Link
+                to="/recht/datenschutz"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
               >
                 Datenschutz
-              </a>
+              </Link>
               <Link
                 to="/recht/agb"
                 className="block text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
