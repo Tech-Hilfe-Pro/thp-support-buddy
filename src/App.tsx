@@ -13,6 +13,7 @@ import StickyReentryHeader from "./components/StickyReentryHeader";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
 import WhatsAppFloat from "./components/WhatsAppFloat";
+import BackFab from "./components/BackFab";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -138,6 +139,7 @@ const App = () => {
             <Footer />
             <CookieBanner />
             <WhatsAppFloat />
+            <BackFab />
           </div>
           <RouteTracker />
           <RouteFocus />

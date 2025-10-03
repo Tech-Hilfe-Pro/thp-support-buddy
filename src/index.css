@@ -945,3 +945,60 @@ a:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
 }
+
+/* Back FAB */
+.back-fab {
+  position: fixed;
+  left: 1rem;
+  bottom: calc(1rem + var(--space-safe-bottom, 0px));
+  z-index: 60;
+}
+
+.back-fab-btn {
+  background: #f97316;
+  color: #fff;
+  border-radius: 9999px;
+  padding: 0.55rem 0.9rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-fab-btn:hover {
+  background: #ea580c;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.back-fab-btn:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+.back-fab-menu {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 0.5rem);
+  min-width: 12rem;
+  background: #fff;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 0.4rem;
+  animation: fadeUp 0.2s ease;
+}
+
+.back-fab-item {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s;
+}
+
+.back-fab-item:hover,
+.back-fab-item:focus-visible {
+  background: hsl(var(--muted));
+}
