@@ -11,7 +11,9 @@ export default function PaketePreisePage() {
       <SEO 
         title="Preise & Pakete | Tech Hilfe Pro"
         description="Transparente IT-Preise für Privat & KMU. Monatliche Abos mit Vor-Ort-Rabatt oder On-Demand-Support. Preis in 60 Sekunden berechnen."
-        path="/preise" 
+        path="/preise"
+        ogImage="/og/IT-Support-Preise_Tech-Hilfe-Pro.jpg"
+        imageAlt="Transparente IT-Support Preise für Privat und KMU – Pakete und On-Demand"
       />
       
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
