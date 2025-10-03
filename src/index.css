@@ -93,6 +93,9 @@
 
 /* Tech Hilfe Pro Design System - Color #3BA9FF */
 :root {
+  --space-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --space-safe-top: env(safe-area-inset-top, 0px);
+  
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
   --card: 0 0% 100%;
@@ -914,6 +917,31 @@ a:focus-visible {
   border-left: 4px solid hsl(var(--primary));
   padding-left: 1rem;
   margin: 1.5rem 0;
-  font-style: italic;
-  color: hsl(var(--muted-foreground));
+}
+
+/* Typography utilities */
+.h1-balance {
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.h1-fluid {
+  font-size: clamp(1.75rem, 2.5vw, 2.75rem);
+}
+
+/* Priority nav styles */
+.priority-nav {
+  overflow: hidden;
+}
+
+.priority-nav .nav-link {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+/* Focus visible for WCAG 2.4.7 */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
 }

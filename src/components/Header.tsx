@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { useScrollDir } from "@/hooks/useScrollDir";
 import LogoOrangen from "@/assets/logo-orangen.png";
 import PriorityNav from "@/components/nav/PriorityNav";
@@ -15,6 +15,20 @@ export default function Header() {
   const desktopMenuRef = useRef<HTMLDivElement>(null);
   const mobileTriggerRef = useRef<HTMLButtonElement>(null);
   const desktopTriggerRef = useRef<HTMLButtonElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const [rightW, setRightW] = useState(140);
+
+  // Measure right area
+  useLayoutEffect(() => {
+    if (!rightRef.current) return;
+    const ro = new ResizeObserver(() => {
+      if (rightRef.current) {
+        setRightW(rightRef.current.getBoundingClientRect().width + 16);
+      }
+    });
+    ro.observe(rightRef.current);
+    return () => ro.disconnect();
+  }, []);
 
   // Close menus on route change
   useEffect(() => { 
@@ -210,36 +224,31 @@ export default function Header() {
           </Link>
 
           {/* Desktop: Priority+ Navigation */}
-          <div className="hidden md:flex items-center gap-4 ml-auto">
-            <PriorityNav items={navItems} moreLabel="Mehr…" />
-            <NewsMenu />
-            <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-4 w-full ml-auto">
+            <div className="flex-1 min-w-0 flex items-center gap-4">
+              <PriorityNav items={navItems} moreLabel="Mehr…" reservedRight={rightW} />
+              <NewsMenu />
+            </div>
+            <div ref={rightRef} className="flex items-center gap-2 shrink-0">
               <Link to="/kontakt" className="btn-cta" aria-label="Kontakt aufnehmen">
                 Kontakt
               </Link>
-              <a 
-                href="https://wa.me/4915565029989" 
-                className="btn-wa" 
-                aria-label="WhatsApp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp
-              </a>
             </div>
           </div>
 
           {/* Mobile: Chips + Menu button */}
-          <div className="md:hidden flex items-center gap-2 ml-auto">
-            <Link to="/preise" className="chip-link" aria-label="Preise ansehen">
-              Preise
-            </Link>
-            <Link to="/nis2" className="chip-link" aria-label="NIS2 Informationen">
-              NIS2
-            </Link>
+          <div className="md:hidden flex items-center justify-between gap-2 ml-auto">
+            <div className="flex items-center gap-2 shrink-0">
+              <Link to="/preise" className="chip-link" aria-label="Preise ansehen">
+                Preise
+              </Link>
+              <Link to="/nis2" className="chip-link" aria-label="NIS2 Informationen">
+                NIS2
+              </Link>
+            </div>
             <button
               ref={mobileTriggerRef}
-              className="rounded-lg border px-3 py-2 min-h-[44px]"
+              className="rounded-lg border px-3 py-2 min-h-[44px] shrink-0"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="main-menu"
