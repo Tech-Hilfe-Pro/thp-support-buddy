@@ -228,6 +228,11 @@
   overflow-wrap: anywhere;   /* evita desbordes con palabras largas */
 }
 
+/* Anchor offset para header fijo */
+.anchor-offset {
+  scroll-margin-top: 6rem;   /* ~96px para compensar header fijo */
+}
+
 .muted {
   @apply text-muted-foreground;
 }

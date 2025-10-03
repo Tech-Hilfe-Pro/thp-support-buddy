@@ -22,7 +22,7 @@ export default function PreisePage() {
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {/* Intro */}
         <header className="text-center mb-12">
-          <h1 className="h1-balance text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] max-w-[22ch] mx-auto text-center">
+          <h1 className="h1-balance text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] max-w-[22ch] mx-auto text-center mt-10 md:mt-14">
             Preise & Service-Level
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center">
@@ -38,7 +38,7 @@ export default function PreisePage() {
         </header>
 
         {/* Service-Level Component (nur KMU) */}
-        <section id="kmu" className="scroll-mt-24">
+        <section id="kmu" className="anchor-offset scroll-mt-24">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">Service-Level für KMU</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -49,7 +49,7 @@ export default function PreisePage() {
         </section>
 
         {/* Privat Abo (optional) */}
-        <section id="privat-abo" className="mt-16 scroll-mt-24">
+        <section id="privat-abo" className="anchor-offset mt-16 scroll-mt-24">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">Privat Abo (optional)</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -96,7 +96,7 @@ export default function PreisePage() {
 
 
         {/* Preis-Rechner */}
-        <section id="rechner" className="mt-16 scroll-mt-24">
+        <section id="rechner" className="anchor-offset mt-16 scroll-mt-24">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">Preis-Rechner</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
