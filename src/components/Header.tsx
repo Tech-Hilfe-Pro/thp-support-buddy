@@ -279,14 +279,6 @@ export default function Header() {
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
               <a
-                href="https://wa.me/4915565029989"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-2 text-sm text-muted-foreground hover:text-primary min-h-[44px] flex items-center rounded-lg"
-              >
-                WhatsApp
-              </a>
-              <a
                 href="/termin"
                 className="rounded-xl bg-thp-cta px-4 py-2 text-white text-center hover:bg-thp-cta/90 transition-colors min-h-[44px] flex items-center justify-center"
               >
@@ -338,14 +330,6 @@ export default function Header() {
               <NavItem to="/nis2-koeln">NIS2</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
-              <a
-                href="https://wa.me/4915565029989"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-black block transition-colors min-h-[44px] flex items-center"
-              >
-                WhatsApp
-              </a>
 
               <div className="mt-4 pt-4 border-t">
                 <h3 className="text-sm font-medium text-slate-500 mb-2">Rechtliches</h3>
