@@ -1,12 +1,7 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-// El cliente auto-generado por Lovable Cloud:
-import { supabase as autoSupabase } from "@/integrations/supabase/client";
+/** Supabase temporalmente desactivado */
+export const supabaseOrNull = null;
 
-export let supabaseOrNull: SupabaseClient | null =
-  autoSupabase ?? null;
-
-export function requireSupabase(client: typeof supabaseOrNull): asserts client is SupabaseClient {
-  if (!client) {
-    throw new Error("Supabase no configurado por el entorno (Lovable Cloud).");
-  }
+/** Útil si un componente quiere abortar de forma explícita */
+export function requireSupabase(): never {
+  throw new Error("Supabase está desactivado en este entorno.");
 }
