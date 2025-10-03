@@ -24,15 +24,20 @@ export default function PaketePreisePage() {
             Transparente Leistungen und Preise. Berechnen Sie Ihren Preis in 60 Sekunden.
           </p>
           <div className="mt-4 flex gap-3 justify-center flex-wrap text-sm">
-            <a href="#service-level" className="link-anchor text-primary hover:underline">Zu Service-Level</a>
+            <a href="#kmu" className="link-anchor text-primary hover:underline">Zu Service-Level</a>
             <span className="text-muted-foreground">·</span>
             <a href="#rechner" className="link-anchor text-primary hover:underline">Zum Rechner</a>
           </div>
         </header>
 
         {/* Service-Level Component (nur KMU) */}
-        <section id="service-level" className="scroll-mt-24">
-          <h2 className="sr-only">Unsere Service-Level</h2>
+        <section id="kmu" className="scroll-mt-24">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">Service-Level für KMU</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Wählen Sie den passenden Service-Level für Ihr Unternehmen mit klaren SLAs.
+            </p>
+          </div>
           <Pricing />
         </section>
 
