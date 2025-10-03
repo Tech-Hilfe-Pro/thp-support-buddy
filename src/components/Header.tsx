@@ -196,7 +196,7 @@ export default function Header() {
           >
             <img src={LogoOrangen} alt="Tech Hilfe Pro" width="24" height="24" className="w-6 h-6" />
             <span className="brand-title inline-flex items-center font-semibold tracking-tight">
-              <span>Tech </span><span className="brand-hilfe">Hilfe</span><span> Pro</span>
+              Tech Hilfe Pro
             </span>
           </Link>
 
@@ -220,8 +220,8 @@ export default function Header() {
             className="ml-auto md:hidden rounded-lg border px-3 py-2 min-h-[44px]"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label="Menü öffnen"
+            aria-controls="main-menu"
+            aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
           >
             Menü
           </button>
@@ -233,13 +233,16 @@ export default function Header() {
             ref={mobileMenuRef}
             role="dialog"
             aria-modal="true"
-            id="mobile-menu"
+            id="main-menu"
             className="md:hidden border-t bg-white menu"
           >
-            <nav className="mx-auto max-w-7xl px-3 py-3 flex flex-col gap-2" aria-label="Hauptnavigation">
+            <nav role="navigation" aria-label="Hauptmenü" className="mx-auto max-w-7xl px-3 py-3 flex flex-col gap-2">
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/kmu">KMU</NavItem>
               <NavItem to="/preise">Preise & Service-Level</NavItem>
+              <Link to="/preise#kmu" className="px-3 py-2 rounded-lg block min-h-[44px] flex items-center text-slate-600 hover:bg-slate-100 hover:text-black">
+                KMU Service-Level
+              </Link>
               <NavItem to="/nis2-koeln">NIS2</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
@@ -293,10 +296,13 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className="p-4 flex flex-col gap-1" aria-label="Hauptnavigation">
+            <nav className="p-4 flex flex-col gap-1" role="navigation" aria-label="Hauptmenü">
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/kmu">KMU</NavItem>
               <NavItem to="/preise">Preise & Service-Level</NavItem>
+              <Link to="/preise#kmu" className="px-3 py-2 rounded-lg block min-h-[44px] flex items-center text-slate-600 hover:bg-slate-100 hover:text-black">
+                KMU Service-Level
+              </Link>
               <NavItem to="/nis2-koeln">NIS2</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
