@@ -4,6 +4,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import PriceCalculatorNew from "@/components/PriceCalculatorNew";
 import SEO from "@/components/SEO";
 import Pricing from "@/components/Pricing";
+import { PRIVAT_PLANS } from "@/data/pricingData";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check } from "lucide-react";
 
 export default function PaketePreisePage() {
   return (
@@ -27,6 +30,8 @@ export default function PaketePreisePage() {
             <a href="#kmu" className="link-anchor text-primary hover:underline">Zu Service-Level</a>
             <span className="text-muted-foreground">·</span>
             <a href="#rechner" className="link-anchor text-primary hover:underline">Zum Rechner</a>
+            <span className="text-muted-foreground">·</span>
+            <a href="#privat-abo" className="link-anchor text-muted-foreground hover:text-primary hover:underline">Privat Abo</a>
           </div>
         </header>
 
@@ -40,6 +45,53 @@ export default function PaketePreisePage() {
           </div>
           <Pricing />
         </section>
+
+        {/* Privat Abo (optional) */}
+        <section id="privat-abo" className="mt-16 scroll-mt-24">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">Privat Abo (optional)</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Remote & Vor-Ort-Service. Monatlich kündbar. Keine Mindestlaufzeit.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-6">
+            {PRIVAT_PLANS.map((plan) => (
+              <Card key={plan.id} className="border-2 hover:border-primary/50 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                  <CardDescription className="text-lg font-semibold text-foreground">
+                    {plan.monthly.toFixed(2).replace('.', ',')} € / Monat
+                  </CardDescription>
+                  <CardDescription className="text-sm mt-2">
+                    {plan.claim}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {plan.bullets.map((bullet, idx) => (
+                      <li key={idx} className="flex gap-2 text-sm">
+                        <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <p className="text-sm text-muted-foreground text-center max-w-3xl mx-auto mb-6">
+            Für Haushalte/Home-Office – kein Konkurrenzangebot zu Elektronikketten; Fokus auf Prävention & Remote-First.
+          </p>
+
+          <div className="text-center">
+            <Button asChild size="lg" variant="outline">
+              <Link to="/termin">Termin anfragen</Link>
+            </Button>
+          </div>
+        </section>
+
 
         {/* Preis-Rechner */}
         <section id="rechner" className="mt-16 scroll-mt-24">
