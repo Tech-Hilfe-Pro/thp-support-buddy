@@ -22,8 +22,10 @@ export default function PreisePage() {
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {/* Intro */}
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Preise & Service-Level</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="h1-balance text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] max-w-[22ch] mx-auto text-center">
+            Preise & Service-Level
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center">
             Transparente Leistungen und Preise. Berechnen Sie Ihren Preis in 60 Sekunden.
           </p>
           <div className="mt-4 flex gap-3 justify-center flex-wrap text-sm">

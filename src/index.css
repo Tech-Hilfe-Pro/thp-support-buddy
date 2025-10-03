@@ -222,6 +222,12 @@
   @apply py-16 px-4 sm:px-6 lg:px-8;
 }
 
+/* Heading balance y seguridad de salto */
+.h1-balance {
+  text-wrap: balance;        /* mejora composición de líneas */
+  overflow-wrap: anywhere;   /* evita desbordes con palabras largas */
+}
+
 .muted {
   @apply text-muted-foreground;
 }
