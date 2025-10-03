@@ -43,7 +43,7 @@ export default function PreisePage() {
               Wählen Sie den passenden Service-Level für Ihr Unternehmen mit klaren SLAs.
             </p>
           </div>
-          <Pricing />
+          <Pricing showHeading={false} />
         </section>
 
         {/* Privat Abo (optional) */}

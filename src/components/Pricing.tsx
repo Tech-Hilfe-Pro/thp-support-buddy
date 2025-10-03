@@ -5,20 +5,26 @@ import { Check } from "lucide-react";
 import { KMU_PLANS } from "@/data/pricingData";
 import { Link } from "react-router-dom";
 
-export default function Pricing() {
+type Props = {
+  showHeading?: boolean;
+};
+
+export default function Pricing({ showHeading = true }: Props) {
   // Solo mostrar KMU (Service-Level), sin toggle
 
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Service-Level für KMU
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Wählen Sie den passenden Service‑Level für Ihre Bedürfnisse – planbare IT-Kosten mit klaren SLAs.
-          </p>
-        </div>
+        {showHeading && (
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Service-Level für KMU
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+              Wählen Sie den passenden Service‑Level für Ihre Bedürfnisse – planbare IT-Kosten mit klaren SLAs.
+            </p>
+          </div>
+        )}
 
         {/* KMU Service-Level */}
         <>
