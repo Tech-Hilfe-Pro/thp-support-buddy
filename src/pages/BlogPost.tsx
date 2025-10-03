@@ -10,9 +10,9 @@ export default function BlogPost() {
     return (
       <main id="main" className="container py-16 px-4 text-center">
         <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-muted-foreground mb-6">Artículo no encontrado</p>
+        <p className="text-muted-foreground mb-6">Artikel nicht gefunden</p>
         <Link to="/blog" className="btn-cta">
-          Volver al Blog
+          Zurück zum Blog
         </Link>
       </main>
     );
@@ -29,7 +29,7 @@ export default function BlogPost() {
       <main id="main" className="container py-12 px-4 max-w-4xl">
         <div className="mb-6">
           <Link to="/blog" className="text-primary hover:underline mb-4 inline-block">
-            ← Volver al Blog
+            ← Zurück zum Blog
           </Link>
         </div>
         
@@ -49,7 +49,7 @@ export default function BlogPost() {
 
         <div className="mt-12 pt-6 border-t">
           <Link to="/blog" className="btn-cta">
-            ← Volver al Blog
+            ← Zurück zum Blog
           </Link>
         </div>
       </main>

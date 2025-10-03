@@ -214,7 +214,7 @@ export default function Header() {
             <PriorityNav items={navItems} moreLabel="Mehr…" />
             <NewsMenu />
             <div className="flex items-center gap-2">
-              <Link to="/kontakt" className="btn-cta">
+              <Link to="/kontakt" className="btn-cta" aria-label="Kontakt aufnehmen">
                 Kontakt
               </Link>
               <a 
@@ -224,17 +224,17 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WA
+                WhatsApp
               </a>
             </div>
           </div>
 
           {/* Mobile: Chips + Menu button */}
           <div className="md:hidden flex items-center gap-2 ml-auto">
-            <Link to="/preise" className="chip-link">
+            <Link to="/preise" className="chip-link" aria-label="Preise ansehen">
               Preise
             </Link>
-            <Link to="/nis2" className="chip-link">
+            <Link to="/nis2" className="chip-link" aria-label="NIS2 Informationen">
               NIS2
             </Link>
             <button

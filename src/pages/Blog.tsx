@@ -15,7 +15,7 @@ export default function Blog() {
           Blog
         </h1>
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
-          Noticias y guías prácticas para KMU y hogares avanzados.
+          Nachrichten und praxisnahe Leitfäden für KMU und anspruchsvolle Haushalte.
         </p>
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {POSTS.map((p) => (

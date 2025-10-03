@@ -23,7 +23,7 @@ export default function BlogCard({ slug, title, excerpt, tag, date }: BlogCardPr
       <p className="text-muted-foreground mb-3">{excerpt}</p>
       <div className="mt-3">
         <Link to={`/blog/${slug}`} className="text-primary hover:underline font-medium">
-          Leer más →
+          Weiterlesen →
         </Link>
       </div>
     </article>

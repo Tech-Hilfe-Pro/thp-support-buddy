@@ -6,7 +6,7 @@ export default function NIS2() {
     <>
       <SEO 
         title="NIS2: Was KMU jetzt tun sollten – Tech Hilfe Pro"
-        description="Marco, alcance y checklist de 10 pasos con evidencias mínimas. Remote & vor-Ort-Service für NIS2-Compliance."
+        description="Überblick, Geltungsbereich und eine umsetzbare 10-Punkte-Checkliste mit minimalen Nachweisen. Remote & vor-Ort-Service für NIS2-Compliance."
         path="/nis2"
       />
       <main id="main" className="container py-12 px-4">
@@ -16,11 +16,11 @@ export default function NIS2() {
           </h1>
           
           <p className="text-lg text-muted-foreground max-w-2xl mb-8">
-            Marco, alcance y checklist de 10 pasos con evidencias mínimas. Remote & vor-Ort-Service.
+            Überblick, Geltungsbereich und eine umsetzbare 10-Punkte-Checkliste mit minimalen Nachweisen. Remote & vor-Ort-Service.
           </p>
 
           <div className="mb-12 flex flex-wrap gap-3">
-            <Link to="/termin" className="btn-cta">
+            <Link to="/termin" className="btn-cta" aria-label="NIS2 Quick-Check anfragen">
               Quick-Check NIS2
             </Link>
             <a 
@@ -28,66 +28,67 @@ export default function NIS2() {
               className="btn-wa" 
               target="_blank" 
               rel="noopener noreferrer"
+              aria-label="Per WhatsApp schreiben"
             >
               WhatsApp
             </a>
           </div>
 
           <div className="prose prose-slate max-w-none">
-            <h2>¿Qué es NIS2?</h2>
+            <h2>Was ist NIS2?</h2>
             <p>
-              La directiva NIS2 (Network and Information Security Directive 2) establece requisitos de ciberseguridad 
-              para empresas de sectores esenciales e importantes en la Unión Europea.
+              Die NIS2-Richtlinie (Network and Information Security Directive 2) legt Cybersicherheitsanforderungen 
+              für Unternehmen in wesentlichen und wichtigen Sektoren in der Europäischen Union fest.
             </p>
 
-            <h2>¿Afecta a mi empresa?</h2>
+            <h2>Betrifft mein Unternehmen NIS2?</h2>
             <p>
-              NIS2 aplica a empresas medianas y grandes (50+ empleados o 10M€+ facturación) en sectores como:
+              NIS2 gilt für mittlere und große Unternehmen (50+ Mitarbeiter oder 10M€+ Umsatz) in Sektoren wie:
             </p>
             <ul>
-              <li>Energía y utilities</li>
-              <li>Transporte</li>
-              <li>Salud</li>
-              <li>Infraestructura digital</li>
-              <li>Gestión de residuos</li>
-              <li>Servicios postales</li>
-              <li>Y muchos más sectores críticos</li>
+              <li>Energie und Versorgung</li>
+              <li>Verkehr</li>
+              <li>Gesundheitswesen</li>
+              <li>Digitale Infrastruktur</li>
+              <li>Abfallwirtschaft</li>
+              <li>Postdienste</li>
+              <li>Und viele weitere kritische Sektoren</li>
             </ul>
 
-            <h2>Checklist de 10 pasos</h2>
+            <h2>10-Punkte-Checkliste</h2>
             <ol>
-              <li><strong>Evaluación de alcance:</strong> Determinar si tu empresa está sujeta a NIS2</li>
-              <li><strong>Análisis de riesgos:</strong> Identificar y evaluar riesgos de ciberseguridad</li>
-              <li><strong>Políticas de seguridad:</strong> Desarrollar y documentar políticas</li>
-              <li><strong>Gestión de incidentes:</strong> Establecer procedimientos de respuesta</li>
-              <li><strong>Continuidad de negocio:</strong> Planes de backup y recuperación</li>
-              <li><strong>Seguridad en la cadena de suministro:</strong> Evaluar proveedores</li>
-              <li><strong>Cifrado y control de acceso:</strong> Implementar MFA y encriptación</li>
-              <li><strong>Gestión de vulnerabilidades:</strong> Patching y actualizaciones</li>
-              <li><strong>Formación del personal:</strong> Concienciación en ciberseguridad</li>
-              <li><strong>Reporting:</strong> Procedimientos de notificación de incidentes</li>
+              <li><strong>Geltungsbereichsprüfung:</strong> Feststellen, ob Ihr Unternehmen unter NIS2 fällt</li>
+              <li><strong>Risikoanalyse:</strong> Cybersicherheitsrisiken identifizieren und bewerten</li>
+              <li><strong>Sicherheitsrichtlinien:</strong> Richtlinien entwickeln und dokumentieren</li>
+              <li><strong>Incident Management:</strong> Reaktionsverfahren einrichten</li>
+              <li><strong>Business Continuity:</strong> Backup- und Wiederherstellungspläne</li>
+              <li><strong>Lieferkettensicherheit:</strong> Anbieter bewerten</li>
+              <li><strong>Verschlüsselung und Zugriffskontrolle:</strong> MFA und Verschlüsselung implementieren</li>
+              <li><strong>Schwachstellenmanagement:</strong> Patching und Updates</li>
+              <li><strong>Mitarbeiterschulung:</strong> Cybersicherheitsbewusstsein schaffen</li>
+              <li><strong>Meldewesen:</strong> Verfahren zur Vorfallmeldung</li>
             </ol>
 
-            <h2>Nuestro servicio NIS2</h2>
+            <h2>Unser NIS2-Service</h2>
             <p>
-              Ofrecemos asesoramiento completo para cumplir con NIS2, desde la evaluación inicial hasta 
-              la implementación de medidas técnicas y organizativas.
+              Wir bieten umfassende Beratung zur Einhaltung von NIS2 – von der ersten Bewertung bis 
+              zur Umsetzung technischer und organisatorischer Maßnahmen.
             </p>
             <ul>
-              <li>Quick-Check inicial gratuito</li>
-              <li>Análisis de gap detallado</li>
-              <li>Roadmap de implementación</li>
-              <li>Soporte técnico continuo</li>
-              <li>Documentación y evidencias</li>
+              <li>Kostenloser Quick-Check zu Beginn</li>
+              <li>Detaillierte Gap-Analyse</li>
+              <li>Umsetzungs-Roadmap</li>
+              <li>Kontinuierlicher technischer Support</li>
+              <li>Dokumentation und Nachweise</li>
             </ul>
           </div>
 
           <div className="mt-12 pt-6 border-t flex flex-wrap gap-3">
-            <Link to="/termin" className="btn-cta">
+            <Link to="/termin" className="btn-cta" aria-label="NIS2 Quick-Check buchen">
               Quick-Check NIS2 buchen
             </Link>
-            <Link to="/blog/nis2-kmu-primeros-90-dias" className="btn-wa">
-              Más información →
+            <Link to="/blog/nis2-kmu-erste-90-tage" className="btn-wa">
+              Mehr Informationen →
             </Link>
           </div>
         </div>

@@ -22,9 +22,9 @@ export default function NewsMenu() {
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        aria-label="Novedades"
+        aria-label="Aktuelles"
       >
-        Novedades
+        Aktuelles
       </button>
       {open && (
         <div role="menu" className="menu-more" onMouseLeave={() => setOpen(false)}>
@@ -39,7 +39,7 @@ export default function NewsMenu() {
           ))}
           <div className="menu-divider" />
           <Link role="menuitem" to="/blog" className="menu-item">
-            Ver todo →
+            Alle Beiträge ansehen →
           </Link>
         </div>
       )}
