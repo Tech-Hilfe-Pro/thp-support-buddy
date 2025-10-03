@@ -657,3 +657,13 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Brand title - prevent uppercase transformation */
+.brand-title {
+  text-transform: none !important;
+}
+
+.brand-hilfe {
+  color: #f97316;
+  text-transform: none !important;
+}
