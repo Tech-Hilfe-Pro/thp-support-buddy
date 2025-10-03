@@ -21,8 +21,7 @@ export default function PaketePreisePage() {
         <header className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Transparente Preise ohne Überraschungen</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Wählen Sie das passende Paket für Ihre Bedürfnisse. 
-            Alle Pakete sind monatlich kündbar – keine versteckten Kosten.
+            Transparente Leistungen und Preise. Berechnen Sie Ihren Preis in 60 Sekunden.
           </p>
           <div className="mt-4 flex gap-3 justify-center flex-wrap text-sm">
             <a href="#pakete" className="link-anchor text-primary hover:underline">Zu Paketen</a>

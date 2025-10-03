@@ -164,13 +164,13 @@ export default function Pricing() {
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
-                <p className="text-sm font-medium">Keine versteckten Kosten</p>
+                <p className="text-sm font-medium">Klare SLA & Reaktionszeiten</p>
               </div>
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
                   <Headphones className="w-6 h-6 text-primary" />
                 </div>
-                <p className="text-sm font-medium">Support vor Ort & remote</p>
+                <p className="text-sm font-medium">Keine versteckten Kosten</p>
               </div>
             </div>
 
