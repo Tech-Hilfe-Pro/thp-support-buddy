@@ -4,19 +4,30 @@ import { useLocation } from "react-router-dom";
 export default function RouteFocus() {
   const loc = useLocation();
   useEffect(() => {
-    // Use requestAnimationFrame to avoid forced reflows during navigation
+    const smooth = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+
     const performNavigation = () => {
-      const el = document.getElementById("main");
-      if (el) {
-        (el as HTMLElement).setAttribute("tabindex","-1");
-        (el as HTMLElement).focus({ preventScroll: true });
-        el.scrollIntoView({ block:"start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      if (loc.hash) {
+        const el = document.querySelector(loc.hash) as HTMLElement | null;
+        if (el) {
+          // Asegura foco para AT
+          el.setAttribute("tabindex", "-1");
+          el.focus({ preventScroll: true });
+          el.scrollIntoView({ block: "start", behavior: smooth });
+          return;
+        }
+      }
+      // Fallback sin hash
+      const main = document.getElementById("main");
+      if (main) {
+        main.setAttribute("tabindex", "-1");
+        main.focus({ preventScroll: true });
+        main.scrollIntoView({ block: "start", behavior: smooth });
       } else {
-        window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        window.scrollTo({ top: 0, behavior: smooth });
       }
     };
 
-    // Defer DOM operations to avoid forced reflows
     requestAnimationFrame(performNavigation);
   }, [loc.pathname, loc.hash]);
   return null;

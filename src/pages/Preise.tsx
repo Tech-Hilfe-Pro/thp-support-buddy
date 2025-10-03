@@ -29,11 +29,11 @@ export default function PreisePage() {
             Transparente Leistungen und Preise. Berechnen Sie Ihren Preis in 60 Sekunden.
           </p>
           <div className="mt-4 flex gap-3 justify-center flex-wrap text-sm">
-            <a href="#kmu" className="link-anchor text-primary hover:underline">Zu Service-Level</a>
+            <Link to="/preise#kmu" className="link-anchor text-primary hover:underline">Zu Service-Level</Link>
             <span className="text-muted-foreground">·</span>
-            <a href="#rechner" className="link-anchor text-primary hover:underline">Zum Rechner</a>
+            <Link to="/preise#rechner" className="link-anchor text-primary hover:underline">Zum Rechner</Link>
             <span className="text-muted-foreground">·</span>
-            <a href="#privat-abo" className="link-anchor text-muted-foreground hover:text-primary hover:underline">Privat Abo</a>
+            <Link to="/preise#privat-abo" className="link-anchor text-muted-foreground hover:text-primary hover:underline">Privat Abo</Link>
           </div>
         </header>
 
