@@ -75,14 +75,17 @@ export default function PriceCalculatorNew() {
     // Validaciones
     if (!plz || !/^\d{5}$/.test(plz)) {
       setError('Bitte geben Sie eine gültige 5-stellige PLZ ein.');
+      document.getElementById('plz')?.focus();
       return;
     }
     if (!serviceId) {
       setError('Bitte wählen Sie einen Service aus.');
+      document.getElementById('service')?.focus();
       return;
     }
     if (hours < 0.5 || hours > 8) {
       setError('Stunden müssen zwischen 0,5 und 8 liegen.');
+      document.getElementById('hours')?.focus();
       return;
     }
 
@@ -140,7 +143,13 @@ export default function PriceCalculatorNew() {
               maxLength={5}
               pattern="\d{5}"
               required
+              aria-describedby={error && error.includes('PLZ') ? "plz-error" : undefined}
             />
+            {error && error.includes('PLZ') && (
+              <p id="plz-error" role="alert" className="text-sm text-destructive mt-1">
+                {error}
+              </p>
+            )}
           </div>
 
           {/* Service */}
@@ -153,17 +162,28 @@ export default function PriceCalculatorNew() {
               </div>
             ) : (
               <Select value={serviceId} onValueChange={setServiceId}>
-                <SelectTrigger id="service">
+                <SelectTrigger id="service" aria-describedby={error && !serviceId ? "service-error" : undefined}>
                   <SelectValue placeholder="Service auswählen" />
                 </SelectTrigger>
-                <SelectContent>
-                  {services.map((service) => (
-                    <SelectItem key={service.id} value={service.id}>
-                      {service.nameDe}
+                <SelectContent className="bg-popover z-50">
+                  {services.length > 0 ? (
+                    services.map((service) => (
+                      <SelectItem key={service.id} value={service.id}>
+                        {service.nameDe}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <SelectItem value="__empty" disabled>
+                      Keine Services verfügbar
                     </SelectItem>
-                  ))}
+                  )}
                 </SelectContent>
               </Select>
+            )}
+            {error && error.includes('Service') && (
+              <p id="service-error" role="alert" className="text-sm text-destructive mt-1">
+                {error}
+              </p>
             )}
           </div>
 
