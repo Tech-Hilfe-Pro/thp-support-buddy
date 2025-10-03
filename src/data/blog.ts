@@ -73,7 +73,7 @@ export const POSTS: Post[] = [
 <h2>Weiterführende Quellen</h2>
 <ul>
   <li><a href="https://www.cisa.gov/back-business-data" target="_blank" rel="noopener">CISA: Back Up Business Data (3-2-1)</a></li>
-  <li><a href="https://www.cisa.gov/sites/default/files/publications/data_backup_options.pdf" target="_blank" rel="noopener">CISA PDF: Data Backup Options</a></li>
+  <li><a href="/docs/data_backup_options.pdf" target="_blank" rel="noopener">CISA PDF: Data Backup Options</a></li>
 </ul>
 
 <p><strong>Nächster Schritt:</strong> Blueprint „Backup für KMU" anfordern + Termin buchen.</p>
