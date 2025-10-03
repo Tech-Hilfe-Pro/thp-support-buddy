@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import SEO from "@/components/SEO";
 import { SERVICES } from "@/data/services";
+import { COMPANY } from "@/data/company";
 import { readQuoteFromStorage, clearQuoteInStorage } from "@/lib/quote";
 import { buildICS, downloadICS } from "@/lib/ics";
 import { SEO_PAGES } from "@/data/seo";
@@ -63,6 +64,16 @@ const TerminZusammenfassung = () => {
     });
     
     downloadICS("tech-hilfe-pro-termin.ics", icsData);
+  };
+
+  const handleEmailDraft = () => {
+    if (!bookingData) return;
+    const service = SERVICES.find(s => s.id === bookingData.serviceId);
+    const subject = encodeURIComponent("Tech Hilfe Pro – Termin anfragen");
+    const body = encodeURIComponent(
+      `Name: ${bookingData.firstName} ${bookingData.lastName}\nE-Mail: ${bookingData.email}\nTelefon: ${bookingData.phone}\nPLZ: ${bookingData.plz}\nService: ${service?.titel || 'IT-Support'}\nArt: ${bookingData.appointmentType === "onsite" ? "Vor-Ort" : "Remote"}\nWunschtermin: ${bookingData.preferredDate} ${bookingData.preferredTime}\nBeschreibung:\n${bookingData.description || '-'}`
+    );
+    window.location.href = `mailto:${COMPANY.email}?subject=${subject}&body=${body}`;
   };
 
   if (!bookingData) {
@@ -226,6 +237,14 @@ const TerminZusammenfassung = () => {
             size="lg"
           >
             ICS herunterladen
+          </Button>
+          <Button 
+            onClick={handleEmailDraft} 
+            variant="outline" 
+            className="flex-1" 
+            size="lg"
+          >
+            E-Mail Entwurf
           </Button>
         </div>
       </div>
