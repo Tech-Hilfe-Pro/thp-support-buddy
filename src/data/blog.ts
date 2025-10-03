@@ -73,8 +73,8 @@ export const POSTS: Post[] = [
 <ul>
   <li><a href="https://www.w3.org/TR/webauthn-3/" target="_blank" rel="noopener">W3C WebAuthn Level 3</a></li>
   <li><a href="https://csrc.nist.gov/pubs/sp/800/63/b/upd2/final" target="_blank" rel="noopener">NIST SP 800-63B (Authentifizierung)</a></li>
-  <li><a href="https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf" target="_blank" rel="noopener">CISA: Phishing-resistente MFA</a></li>
-  <li><a href="https://www.enisa.europa.eu/sites/default/files/publications/Joint%20Publication%20-%20Enhanced%20Resilience_v.1.0-FINAL.pdf" target="_blank" rel="noopener">ENISA/CERT-EU: Resilienz – MFA ohne SMS/Voice</a></li>
+  <li><a href="/docs/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf" target="_blank" rel="noopener">CISA: Phishing-resistente MFA</a></li>
+  <li><a href="/docs/Joint_Publication_-_Enhanced_Resilience_v.1.0-FINAL.pdf" target="_blank" rel="noopener">ENISA/CERT-EU: Resilienz – MFA ohne SMS/Voice</a></li>
 </ul>
 
 <p><strong>CTA:</strong> Passkey-Pilot starten (Admin & Führung), danach Rollout-Plan buchen.</p>
