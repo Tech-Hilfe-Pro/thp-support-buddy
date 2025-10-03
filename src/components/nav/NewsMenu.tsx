@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { POSTS } from "@/data/blog";
 
 type NewsItem = { to: string; title: string; date: string; tag: string };
 
-export default function NewsMenu({ items }: { items: NewsItem[] }) {
+export default function NewsMenu() {
   const [open, setOpen] = useState(false);
+  
+  // Get latest 3 posts from blog data
+  const items: NewsItem[] = POSTS.slice(0, 3).map((p) => ({
+    to: `/blog/${p.slug}`,
+    title: p.title,
+    date: p.date,
+    tag: p.tag
+  }));
   
   return (
     <div className="relative">

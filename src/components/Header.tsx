@@ -181,14 +181,8 @@ export default function Header() {
   const navItems = [
     { key: "leistungen", to: "/leistungen", label: "Leistungen" },
     { key: "preise", to: "/preise", label: "Preise" },
-    { key: "nis2", to: "/nis2-koeln", label: "NIS2", badge: "NEU", ariaLabel: "NIS2 – Was KMU jetzt tun sollten" },
+    { key: "nis2", to: "/nis2", label: "NIS2", badge: "NEU", ariaLabel: "NIS2 – Was KMU jetzt tun sollten" },
     { key: "blog", to: "/blog", label: "Blog" }
-  ];
-
-  const newsItems = [
-    { to: "/nis2-koeln", title: "NIS2: Pflichten 2025", date: "2025-10-04", tag: "NIS2" },
-    { to: "/blog/windows-25h2", title: "Windows 11 25H2: Prepare", date: "2025-09-28", tag: "Windows" },
-    { to: "/blog/ransomware-2025", title: "Ransomware: Controles clave", date: "2025-09-20", tag: "Cyber" }
   ];
 
   return (
@@ -218,7 +212,7 @@ export default function Header() {
           {/* Desktop: Priority+ Navigation */}
           <div className="hidden md:flex items-center gap-4 ml-auto">
             <PriorityNav items={navItems} moreLabel="Mehr…" />
-            <NewsMenu items={newsItems} />
+            <NewsMenu />
             <div className="flex items-center gap-2">
               <Link to="/kontakt" className="btn-cta">
                 Kontakt
@@ -240,7 +234,7 @@ export default function Header() {
             <Link to="/preise" className="chip-link">
               Preise
             </Link>
-            <Link to="/nis2-koeln" className="chip-link">
+            <Link to="/nis2" className="chip-link">
               NIS2
             </Link>
             <button
