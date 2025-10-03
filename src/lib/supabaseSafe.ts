@@ -1,7 +1,7 @@
-/** Supabase temporalmente desactivado */
-export const supabaseOrNull = null;
+import type { SupabaseClient } from "@supabase/supabase-js";
 
-/** Útil si un componente quiere abortar de forma explícita */
+export const supabaseOrNull: SupabaseClient | null = null;
+
 export function requireSupabase(): never {
   throw new Error("Supabase está desactivado en este entorno.");
 }
