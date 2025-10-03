@@ -13,10 +13,18 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-foreground">Kontakt</h3>
             <div className="space-y-3 text-sm text-muted-foreground">
               <div className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 mt-0.5 text-[hsl(var(--thp-cta))]" />
+                <MapPin className="h-4 w-4 mt-0.5 text-[#f97316]" aria-hidden="true" />
                 <div>
                   <div className="flex items-center gap-2 font-medium">
-                    <img src="/brand/logo-32.png" alt="Logo" width="20" height="20" className="w-5 h-5" />
+                    <img 
+                      src="/brand/logo-32.svg" 
+                      alt="Tech Hilfe Pro" 
+                      width={32} 
+                      height={32} 
+                      className="w-5 h-5"
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <span>Tech <span className="text-[hsl(var(--thp-primary))]">Hilfe</span> Pro</span>
                   </div>
                   <p>Büro in Köln (HO).</p>
@@ -24,7 +32,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-[hsl(var(--thp-cta))]" />
+                <Phone className="h-4 w-4 text-[#f97316]" aria-hidden="true" />
                 <div>
                   <a 
                     href={`tel:${COMPANY.telE164}`}
@@ -35,7 +43,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-[hsl(var(--thp-cta))]" />
+                <Mail className="h-4 w-4 text-[#f97316]" aria-hidden="true" />
                 <div>
                   <a 
                     href={`mailto:${COMPANY.email}`}
@@ -46,7 +54,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Clock className="h-4 w-4 text-[hsl(var(--thp-cta))]" />
+                <Clock className="h-4 w-4 text-[#f97316]" aria-hidden="true" />
                 <div>
                   <p className="font-medium">Öffnungszeiten</p>
                   <p>Mo-Fr: 9:00 - 18:00 Uhr</p>
