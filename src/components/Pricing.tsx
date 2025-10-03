@@ -16,7 +16,7 @@ export default function Pricing() {
             Service-Level für KMU
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Wählen Sie den passenden Service-Level für Ihr Unternehmen – planbare IT-Kosten mit klaren SLAs.
+            Wählen Sie den passenden Service‑Level für Ihre Bedürfnisse – planbare IT-Kosten mit klaren SLAs.
           </p>
         </div>
 

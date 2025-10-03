@@ -35,7 +35,7 @@ export default function KMUPage() {
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
             Planbare IT-Kosten, proaktive Überwachung und schnelle Hilfe bei Problemen. 
-            Wählen Sie das passende Paket für Ihr Unternehmen.
+            Wählen Sie den passenden Service‑Level für Ihr Unternehmen.
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Für kleine & mittlere Unternehmen – planbare IT-Kosten.
@@ -126,7 +126,7 @@ export default function KMUPage() {
         {/* Tabla comparativa - sin "incluidas", solo features */}
         <section className="mb-16">
           <h2 className="text-2xl font-semibold mb-6 text-center">
-            Vergleichen Sie unsere KMU-Pakete
+            Vergleichen Sie unsere Service‑Level
           </h2>
           <div className="overflow-x-auto">
             <Table>
@@ -209,7 +209,7 @@ export default function KMUPage() {
           </h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Kontaktieren Sie uns für ein unverbindliches Angebot. 
-            Wir analysieren Ihre IT-Infrastruktur und empfehlen das passende Paket.
+            Wir analysieren Ihre IT-Infrastruktur und empfehlen den passenden Service‑Level.
           </p>
           <Link 
             to="/kontakt"

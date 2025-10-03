@@ -21,7 +21,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 const Leistungen = lazy(() => import("./pages/Leistungen"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 const KMU = lazy(() => import("./pages/KMU"));
-const PaketePreise = lazy(() => import("./pages/PaketePreise"));
+const Preise = lazy(() => import("./pages/Preise"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 
 // Lazy load heavy routes
@@ -101,8 +101,8 @@ const App = () => {
                     <Route path="/leistungen/:slug" element={<ServiceDetail />} />
                     <Route path="/service/:slug" element={<ServiceDetail />} /> {/* Legacy redirect */}
                     <Route path="/kmu" element={<KMU />} />
-                    <Route path="/preise" element={<PaketePreise />} />
-                    <Route path="/pakete-preise" element={<PaketePreise />} /> {/* Legacy redirect */}
+                    <Route path="/preise" element={<Preise />} />
+                    <Route path="/pakete-preise" element={<Preise />} /> {/* Legacy redirect */}
                     <Route path="/faq" element={<FAQ />} />
                     <Route path="/termin" element={<Termin />} />
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />

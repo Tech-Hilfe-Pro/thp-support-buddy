@@ -8,7 +8,7 @@ import { PRIVAT_PLANS } from "@/data/pricingData";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
 
-export default function PaketePreisePage() {
+export default function PreisePage() {
   return (
     <>
       <SEO 
@@ -123,10 +123,10 @@ export default function PaketePreisePage() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="kmu-benefits">
-              <AccordionTrigger>Was beinhalten die KMU-Pakete?</AccordionTrigger>
+              <AccordionTrigger>Was beinhalten die KMU-Service-Level?</AccordionTrigger>
               <AccordionContent>
-                Alle KMU-Pakete beinhalten Remote Monitoring & Management (RMM), automatisches Patch-Management und Remote-Support. 
-                Je nach Paket kommen Backup, erweiterte SLAs und Vor-Ort-Priorität hinzu. Detailvergleich auf <Link to="/kmu" className="text-primary underline">unserer KMU-Seite</Link>.
+                Alle KMU-Service-Level beinhalten Remote Monitoring & Management (RMM), automatisches Patch-Management und Remote-Support. 
+                Je nach Service-Level kommen Backup, erweiterte SLAs und Vor-Ort-Priorität hinzu. Detailvergleich auf <Link to="/kmu" className="text-primary underline">unserer KMU-Seite</Link>.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="more-faq">
