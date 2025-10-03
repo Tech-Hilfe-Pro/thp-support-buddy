@@ -101,7 +101,7 @@ export const POSTS: Post[] = [
 <ul>
   <li><a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/Broschueren/Wegweiser_Checklisten_Flyer/Wegweiser_kompakt_Router_einrichten.pdf" target="_blank" rel="noopener">BSI: Router & WLAN einrichten (Wegweiser)</a></li>
   <li><a href="https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Cyber-Sicherheitsempfehlungen/Router-WLAN-VPN/Schritt-fuer-Schritt-zum-Gaeste-WLAN/Schritt-fuer-Schritt-zum-Gaeste-WLAN_node.html" target="_blank" rel="noopener">BSI: Gäste-WLAN</a></li>
-  <li><a href="https://www.enisa.europa.eu/sites/default/files/all_files/Security%20when%20working%20remotely_Train%20the%20trainer%20guide.pdf" target="_blank" rel="noopener">ENISA: Sicher arbeiten von zuhause</a></li>
+  <li><a href="/docs/Security_when_working_remotely_Train_the_trainer_guide.pdf" target="_blank" rel="noopener">ENISA: Sicher arbeiten von zuhause</a></li>
 </ul>
 
 <p><strong>CTA:</strong> Heimnetz-Check buchen (30 Min., remote) + Maßnahmenplan erhalten.</p>
