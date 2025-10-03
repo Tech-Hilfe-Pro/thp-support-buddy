@@ -46,6 +46,10 @@ const Error500 = lazy(() => import("./pages/Error500"));
 const NIS2Koeln = lazy(() => import("./pages/nis2/Koeln"));
 const NIS2QuickCheck = lazy(() => import("./pages/thanks/NIS2QuickCheck"));
 
+// Blog pages (placeholder routes for now)
+// const Blog = lazy(() => import("./pages/Blog"));
+// const BlogPost = lazy(() => import("./pages/BlogPost"));
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -120,7 +124,11 @@ const App = () => {
                     <Route path="/recht/widerruf" element={<Widerruf />} />
                     <Route path="/recht/cookies" element={<Suspense fallback={<div className="p-8">Laden…</div>}><Cookies /></Suspense>} />
                     <Route path="/nis2-koeln" element={<NIS2Koeln />} />
+                    <Route path="/nis2" element={<NIS2Koeln />} />
                     <Route path="/thanks/nis2-quickcheck" element={<NIS2QuickCheck />} />
+                    {/* Blog routes - placeholder, to be implemented */}
+                    {/* <Route path="/blog" element={<Blog />} /> */}
+                    {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
                     <Route path="/error" element={<Error500 />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>

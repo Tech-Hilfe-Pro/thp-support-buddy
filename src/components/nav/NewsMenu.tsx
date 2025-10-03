@@ -1,0 +1,39 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+type NewsItem = { to: string; title: string; date: string; tag: string };
+
+export default function NewsMenu({ items }: { items: NewsItem[] }) {
+  const [open, setOpen] = useState(false);
+  
+  return (
+    <div className="relative">
+      <button
+        className="nav-link"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        aria-label="Novedades"
+      >
+        Novedades
+      </button>
+      {open && (
+        <div role="menu" className="menu-more" onMouseLeave={() => setOpen(false)}>
+          {items.slice(0, 3).map((n, i) => (
+            <Link role="menuitem" key={i} to={n.to} className="menu-item flex-col items-start">
+              <div className="flex items-center gap-2 w-full">
+                <span className="tag">{n.tag}</span>
+                <span className="title flex-1">{n.title}</span>
+              </div>
+              <time className="date text-xs">{n.date}</time>
+            </Link>
+          ))}
+          <div className="menu-divider" />
+          <Link role="menuitem" to="/blog" className="menu-item">
+            Ver todo →
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -2,6 +2,8 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useScrollDir } from "@/hooks/useScrollDir";
 import LogoOrangen from "@/assets/logo-orangen.png";
+import PriorityNav from "@/components/nav/PriorityNav";
+import NewsMenu from "@/components/nav/NewsMenu";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -176,6 +178,19 @@ export default function Header() {
   const isVisible = dir === "up" || atTop || menuOpen;
   const isHidden = dir === "down" && !atTop && !menuOpen;
 
+  const navItems = [
+    { key: "leistungen", to: "/leistungen", label: "Leistungen" },
+    { key: "preise", to: "/preise", label: "Preise" },
+    { key: "nis2", to: "/nis2-koeln", label: "NIS2", badge: "NEU", ariaLabel: "NIS2 – Was KMU jetzt tun sollten" },
+    { key: "blog", to: "/blog", label: "Blog" }
+  ];
+
+  const newsItems = [
+    { to: "/nis2-koeln", title: "NIS2: Pflichten 2025", date: "2025-10-04", tag: "NIS2" },
+    { to: "/blog/windows-25h2", title: "Windows 11 25H2: Prepare", date: "2025-09-28", tag: "Windows" },
+    { to: "/blog/ransomware-2025", title: "Ransomware: Controles clave", date: "2025-09-20", tag: "Cyber" }
+  ];
+
   return (
     <>
       {/* Skip to content link for accessibility */}
@@ -200,31 +215,45 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Desktop: Menu burger button */}
-          <button
-            ref={desktopTriggerRef}
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-lg hover:bg-slate-100 transition-colors ml-auto"
-            onClick={() => setSidebarOpen(true)}
-            aria-label="Menü öffnen"
-            aria-expanded={sidebarOpen}
-            aria-controls="desktop-menu"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          {/* Desktop: Priority+ Navigation */}
+          <div className="hidden md:flex items-center gap-4 ml-auto">
+            <PriorityNav items={navItems} moreLabel="Mehr…" />
+            <NewsMenu items={newsItems} />
+            <div className="flex items-center gap-2">
+              <Link to="/kontakt" className="btn-cta">
+                Kontakt
+              </Link>
+              <a 
+                href="https://wa.me/4915565029989" 
+                className="btn-wa" 
+                aria-label="WhatsApp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WA
+              </a>
+            </div>
+          </div>
 
-          {/* Mobile: Menu button */}
-          <button
-            ref={mobileTriggerRef}
-            className="ml-auto md:hidden rounded-lg border px-3 py-2 min-h-[44px]"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="main-menu"
-            aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
-          >
-            Menü
-          </button>
+          {/* Mobile: Chips + Menu button */}
+          <div className="md:hidden flex items-center gap-2 ml-auto">
+            <Link to="/preise" className="chip-link">
+              Preise
+            </Link>
+            <Link to="/nis2-koeln" className="chip-link">
+              NIS2
+            </Link>
+            <button
+              ref={mobileTriggerRef}
+              className="rounded-lg border px-3 py-2 min-h-[44px]"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="main-menu"
+              aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
+            >
+              Menü
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
