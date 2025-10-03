@@ -12,10 +12,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-foreground">Kontakt</h3>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <div className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 mt-0.5 text-[#f97316]" aria-hidden="true" />
-                <div>
-                  <div className="flex items-center gap-2 font-medium">
+              <div className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-[#f97316] mt-[0.2rem] shrink-0" aria-hidden="true" />
+                <div className="leading-tight">
+                  <div className="flex items-center gap-2 font-medium mb-1">
                     <img 
                       src="/brand/logo-32.svg" 
                       alt="Tech Hilfe Pro" 
@@ -25,7 +25,7 @@ const Footer = () => {
                       loading="lazy"
                       decoding="async"
                     />
-                    <span>Tech <span className="text-[hsl(var(--thp-primary))]">Hilfe</span> Pro</span>
+                    <span className="whitespace-nowrap">Tech <span className="text-[hsl(var(--thp-primary))]">Hilfe</span> Pro</span>
                   </div>
                   <p>Büro in Köln (HO).</p>
                   <p>Remote & Vor-Ort-Service.</p>
