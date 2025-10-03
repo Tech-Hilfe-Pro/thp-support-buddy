@@ -9,30 +9,30 @@ export default function PaketePreisePage() {
   return (
     <>
       <SEO 
-        title="Preise & Pakete | Tech Hilfe Pro"
-        description="Transparente IT-Preise für Privat & KMU. Monatliche Abos mit Vor-Ort-Rabatt oder On-Demand-Support. Preis in 60 Sekunden berechnen."
+        title="Preise & Service-Level | Tech Hilfe Pro"
+        description="Transparente IT-Preise mit klaren Service-Level für KMU. On-Demand-Support oder planbare monatliche Betreuung. Preis in 60 Sekunden berechnen."
         path="/preise"
         ogImage="/og/IT-Support-Preise_Tech-Hilfe-Pro.jpg"
-        imageAlt="Transparente IT-Support Preise für Privat und KMU – Pakete und On-Demand"
+        imageAlt="Transparente IT-Support Preise und Service-Level für KMU – On-Demand und monatliche Betreuung"
       />
       
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {/* Intro */}
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Transparente Preise ohne Überraschungen</h1>
+          <h1 className="text-4xl font-bold mb-4">Preise & Service-Level</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Transparente Leistungen und Preise. Berechnen Sie Ihren Preis in 60 Sekunden.
           </p>
           <div className="mt-4 flex gap-3 justify-center flex-wrap text-sm">
-            <a href="#pakete" className="link-anchor text-primary hover:underline">Zu Paketen</a>
+            <a href="#service-level" className="link-anchor text-primary hover:underline">Zu Service-Level</a>
             <span className="text-muted-foreground">·</span>
             <a href="#rechner" className="link-anchor text-primary hover:underline">Zum Rechner</a>
           </div>
         </header>
 
-        {/* Pricing Component (Tabs: Privat / KMU) */}
-        <section id="pakete" className="scroll-mt-24">
-          <h2 className="sr-only">Unsere Pakete</h2>
+        {/* Service-Level Component (nur KMU) */}
+        <section id="service-level" className="scroll-mt-24">
+          <h2 className="sr-only">Unsere Service-Level</h2>
           <Pricing />
         </section>
 

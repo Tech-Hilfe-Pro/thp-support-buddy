@@ -239,7 +239,7 @@ export default function Header() {
             <nav className="mx-auto max-w-7xl px-3 py-3 flex flex-col gap-2" aria-label="Hauptnavigation">
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/kmu">KMU</NavItem>
-              <NavItem to="/preise">Preise</NavItem>
+              <NavItem to="/preise">Preise & Service-Level</NavItem>
               <NavItem to="/nis2-koeln">NIS2</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
@@ -296,7 +296,7 @@ export default function Header() {
             <nav className="p-4 flex flex-col gap-1" aria-label="Hauptnavigation">
               <NavItem to="/leistungen">Leistungen</NavItem>
               <NavItem to="/kmu">KMU</NavItem>
-              <NavItem to="/preise">Preise</NavItem>
+              <NavItem to="/preise">Preise & Service-Level</NavItem>
               <NavItem to="/nis2-koeln">NIS2</NavItem>
               <NavItem to="/faq">FAQ</NavItem>
               <NavItem to="/kontakt">Kontakt</NavItem>
