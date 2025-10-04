@@ -78,7 +78,7 @@ export default function StickyReentryHeader() {
         <div className="flex items-center gap-2 flex-shrink-0">
           <Link
             to="/preise#rechner"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[hsl(var(--thp-cta))] text-white text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2"
+            className="btn-cta text-sm px-3 py-2"
           >
             <Calculator className="w-4 h-4" />
             <span className="hidden sm:inline">Preis berechnen</span>
@@ -88,7 +88,7 @@ export default function StickyReentryHeader() {
             href={COMPANY.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[hsl(var(--thp-cta))] text-white text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2"
+            className="btn-cta text-sm px-3 py-2"
             aria-label="WhatsApp kontaktieren"
           >
             <MessageCircle className="w-4 h-4" />

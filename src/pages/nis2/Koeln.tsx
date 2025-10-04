@@ -37,13 +37,13 @@ export default function NIS2Koeln() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a 
                 href="#quickcheck-form" 
-                className="btn-cta inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white hover:brightness-110 transition-all"
+                className="btn-cta"
               >
                 Kostenlosen QuickCheck anfragen
               </a>
               <a 
                 href="/nis2-checklist.pdf?utm_source=site&utm_medium=cta&utm_campaign=nis2" 
-                className="btn btn-secondary inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-white/90 text-[#1e293b] hover:bg-white transition-all"
+                className="btn-neutral"
                 download
               >
                 Checklist (PDF)

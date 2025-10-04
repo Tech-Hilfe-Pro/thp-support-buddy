@@ -40,7 +40,7 @@ export default function Leistungen() {
         <div className="text-center mt-16">
           <h2 className="text-2xl font-semibold mb-4">Bereit anzufangen?</h2>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg" className="bg-cta hover:bg-cta/90 text-cta-foreground">
+            <Button asChild size="lg" className="btn-cta">
               <Link to="/preise">Preise ansehen</Link>
             </Button>
             <Button asChild size="lg" variant="outline">

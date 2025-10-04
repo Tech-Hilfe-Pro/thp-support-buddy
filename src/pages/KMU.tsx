@@ -213,7 +213,7 @@ export default function KMUPage() {
           </p>
           <Link 
             to="/kontakt"
-            className="inline-block rounded-xl bg-[hsl(var(--thp-cta))] px-6 py-3 font-semibold text-white transition-all hover:opacity-90 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--thp-cta))] focus-visible:ring-offset-2"
+            className="btn-cta"
           >
             Jetzt Beratung anfragen
           </Link>

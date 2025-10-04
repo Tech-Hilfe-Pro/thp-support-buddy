@@ -145,7 +145,7 @@ export default function PreisePage() {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <Button asChild size="lg" className="bg-[hsl(var(--thp-cta))] hover:opacity-90">
+          <Button asChild size="lg" className="btn-cta">
             <Link to="/kontakt">Jetzt Kontakt aufnehmen</Link>
           </Button>
         </div>

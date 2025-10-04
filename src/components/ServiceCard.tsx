@@ -72,7 +72,7 @@ export default function ServiceCard({ service, highlighted = false, onDetails }:
                 Preis in 60s
               </Link>
             </Button>
-            <Button asChild size="sm" className="bg-cta hover:bg-cta/90 text-cta-foreground min-h-[44px]">
+            <Button asChild size="sm" className="btn-cta min-h-[44px]">
               <Link
                 to="/termin"
                 aria-label={`Termin buchen für ${service.title}`}
