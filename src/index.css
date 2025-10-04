@@ -807,20 +807,30 @@ a:focus-visible {
   border-color: hsl(var(--primary));
 }
 
+/* CTA unificado - desktop y móvil */
 .btn-cta {
   background: #f97316;
   color: #fff;
-  padding: 0.5rem 0.9rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
-  font-weight: 500;
-  transition: all 0.2s;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 44px;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
 .btn-cta:hover {
   background: #ea580c;
+}
+
+.btn-cta:focus-visible {
+  outline: 2px solid #f97316;
+  outline-offset: 2px;
 }
 
 .btn-wa {
@@ -1035,16 +1045,17 @@ a:focus-visible {
   transform: none;
 }
 
-/* Glass effect */
+/* Glass effect - Safari/iOS compatible */
 .thp-header--glass {
-  background: rgba(255, 255, 255, 0.72);
-  border-bottom: 1px solid hsl(var(--border) / 0.6);
-  backdrop-filter: saturate(140%) blur(12px);
-  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  background: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  backdrop-filter: blur(12px) saturate(130%);
 }
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+/* Fallback sin backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   .thp-header--glass {
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.95);
   }
 }
 .brand {
