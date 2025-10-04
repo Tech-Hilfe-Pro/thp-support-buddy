@@ -41,32 +41,35 @@ export default function MobileMenu() {
         ☰
       </button>
       <div id="mnav" role="menu" className={`hamb-menu ${open ? "is-open" : ""}`}>
-          <Link role="menuitem" to="/nis2" className="hamb-item">
-            NIS2
-          </Link>
-          <Link role="menuitem" to="/preise" className="hamb-item">
-            Preise
-          </Link>
-          <Link role="menuitem" to="/leistungen" className="hamb-item">
-            Leistungen
-          </Link>
-          <Link role="menuitem" to="/blog" className="hamb-item">
-            Blog
-          </Link>
-          <div className="hamb-sep" />
-          <Link role="menuitem" to="/faq" className="hamb-item">
-            FAQ
-          </Link>
-          <Link role="menuitem" to="/recht/agb" className="hamb-item">
-            AGB
-          </Link>
-          <Link role="menuitem" to="/recht/impressum" className="hamb-item">
-            Impressum
-          </Link>
-          <Link role="menuitem" to="/recht/datenschutz" className="hamb-item">
-            Datenschutz
-          </Link>
-        </div>
+        <Link role="menuitem" to="/nis2" className="hamb-item">
+          NIS2
+        </Link>
+        <Link role="menuitem" to="/preise" className="hamb-item">
+          Preise
+        </Link>
+        <Link role="menuitem" to="/leistungen" className="hamb-item">
+          Leistungen
+        </Link>
+        <Link role="menuitem" to="/blog" className="hamb-item">
+          Blog
+        </Link>
+        <div className="hamb-sep" />
+        <Link role="menuitem" to="/sitemap" className="hamb-item">
+          Sitemap
+        </Link>
+        <Link role="menuitem" to="/faq" className="hamb-item">
+          FAQ
+        </Link>
+        <Link role="menuitem" to="/recht/agb" className="hamb-item">
+          AGB
+        </Link>
+        <Link role="menuitem" to="/recht/impressum" className="hamb-item">
+          Impressum
+        </Link>
+        <Link role="menuitem" to="/recht/datenschutz" className="hamb-item">
+          Datenschutz
+        </Link>
+      </div>
     </div>
   );
 }
