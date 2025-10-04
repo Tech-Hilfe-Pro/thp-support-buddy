@@ -72,6 +72,19 @@
   h1, h2, h3, h4, h5, h6 {
     @apply text-foreground;
   }
+
+  /* Estabilizar titulación para evitar desbordes */
+  h1, .text-hero {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+  
+  /* Container estable */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
 }
 
 /* Zahlen in Tabellen/Preisen sauber ausrichten */
@@ -1062,4 +1075,11 @@ a:focus-visible {
   height: 1px; 
   background: hsl(var(--border)); 
   margin: .25rem .35rem; 
+}
+
+/* Móviles pequeños: reducir padding nav */
+@media (max-width: 380px) {
+  .nav-link {
+    padding: .45rem .55rem;
+  }
 }
