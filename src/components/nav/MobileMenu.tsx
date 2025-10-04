@@ -40,8 +40,7 @@ export default function MobileMenu() {
       >
         ☰
       </button>
-      {open && (
-        <div id="mnav" role="menu" className="hamb-menu">
+      <div id="mnav" role="menu" className={`hamb-menu ${open ? "is-open" : ""}`}>
           <Link role="menuitem" to="/nis2" className="hamb-item">
             NIS2
           </Link>
@@ -68,7 +67,6 @@ export default function MobileMenu() {
             Datenschutz
           </Link>
         </div>
-      )}
     </div>
   );
 }
