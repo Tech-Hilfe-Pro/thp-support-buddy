@@ -1,34 +1,35 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useNavigationType } from "react-router-dom";
 
 export default function BackFab() {
   const nav = useNavigate();
   const loc = useLocation();
+  const navType = useNavigationType();
   const [canGoBack, setCanGoBack] = useState(false);
   const [open, setOpen] = useState(false);
+  const KEY = "thp_has_nav";
 
-  const computeCanGoBack = () => {
-    try {
-      const hasHist = window.history.length > 1; // MDN History.length
-      const ref = document.referrer;             // MDN Document.referrer
-      // Si vienes de otra página (interna o externa) o ya has navegado dentro de la SPA, mostramos
-      return hasHist || !!ref;
-    } catch {
-      return false;
-    }
+  const compute = () => {
+    const hasHist = window.history.length > 1;         // History API
+    const ref = document.referrer || "";
+    const hasRef = ref.length > 0;
+    const hasNav = sessionStorage.getItem(KEY) === "1";
+    return hasHist || hasRef || hasNav;
   };
 
   useEffect(() => {
-    setCanGoBack(computeCanGoBack());
-  }, [loc.key]); // se recalcula en cada cambio de ruta (React Router useLocation)
+    // Marca navegación interna cuando no es 'POP'
+    if (navType !== "POP") sessionStorage.setItem(KEY, "1");
+    setCanGoBack(compute());
+  }, [loc.key, navType]);
 
   useEffect(() => {
     setOpen(false);
   }, [loc.pathname]);
 
   useEffect(() => {
-    const onPop = () => setCanGoBack(computeCanGoBack());
-    window.addEventListener("popstate", onPop); // History API popstate
+    const onPop = () => setCanGoBack(compute());
+    window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
