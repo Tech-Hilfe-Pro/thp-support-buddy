@@ -1002,3 +1002,63 @@ a:focus-visible {
 .back-fab-item:focus-visible {
   background: hsl(var(--muted));
 }
+
+/* Header redesign */
+.thp-header { 
+  position: sticky; 
+  top: 0; 
+  background: #fff; 
+  z-index: 50; 
+  border-bottom: 1px solid hsl(var(--border));
+}
+.brand { 
+  font-weight: 800; 
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem); 
+  letter-spacing: .2px; 
+}
+.brand-orange { 
+  color: #f97316; 
+}
+.nav-link { 
+  padding: .5rem .75rem; 
+  border-radius: .5rem; 
+}
+.nav-link:focus-visible { 
+  outline: 2px solid var(--ring); 
+  outline-offset: 2px; 
+}
+.hamb-btn { 
+  padding: .45rem .6rem; 
+  border: 1px solid hsl(var(--border)); 
+  border-radius: .6rem; 
+  font-size: 1.25rem;
+  background: transparent;
+  cursor: pointer;
+}
+.hamb-menu { 
+  position: absolute; 
+  right: 0; 
+  top: calc(100% + .5rem); 
+  min-width: 15rem; 
+  background: #fff; 
+  border: 1px solid hsl(var(--border)); 
+  border-radius: .75rem; 
+  box-shadow: 0 10px 30px rgba(0,0,0,.08); 
+  padding: .4rem; 
+}
+.hamb-item { 
+  display: block; 
+  padding: .55rem .6rem; 
+  border-radius: .5rem; 
+  text-decoration: none;
+  color: inherit;
+}
+.hamb-item:focus-visible, 
+.hamb-item:hover { 
+  background: hsl(var(--muted)); 
+}
+.hamb-sep { 
+  height: 1px; 
+  background: hsl(var(--border)); 
+  margin: .25rem .35rem; 
+}
