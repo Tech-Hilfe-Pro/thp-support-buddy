@@ -1083,6 +1083,7 @@ a:focus-visible {
   background: transparent;
   cursor: pointer;
 }
+/* Hamburguesa: transición */
 .hamb-menu {
   position: absolute;
   right: 0;
@@ -1129,19 +1130,7 @@ a:focus-visible {
 
 /* Respeta reduce-motion */
 @media (prefers-reduced-motion: reduce) {
-  .thp-header {
-    transition: none;
-  }
-  .hamb-menu {
-    transition: none;
-  }
-}
-
-/* Respeta reduce-motion */
-@media (prefers-reduced-motion: reduce) {
-  .thp-header {
-    transition: none;
-  }
+  .thp-header,
   .hamb-menu {
     transition: none;
   }
