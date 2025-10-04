@@ -1025,8 +1025,14 @@ a:focus-visible {
   transform: translateY(0);
   transition: transform .18s ease;
 }
-.thp-header--hidden {
+.thp-header.is-hidden {
   transform: translateY(-100%);
+}
+
+/* Asegurar que no haya conflictos de transform en contenedores padre */
+.app-shell, .layout-root {
+  overflow: visible;
+  transform: none;
 }
 
 /* Glass effect */

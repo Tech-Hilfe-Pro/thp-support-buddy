@@ -3,7 +3,7 @@ import MobileMenu from "@/components/nav/MobileMenu";
 import { useHideOnScroll } from "@/hooks/useHideOnScroll";
 
 export default function Header() {
-  const hidden = useHideOnScroll(14);
+  const hidden = useHideOnScroll({ threshold: 14, minY: 32 });
 
   return (
     <>
@@ -11,7 +11,7 @@ export default function Header() {
         Zum Inhalt springen
       </a>
 
-      <header className={`thp-header thp-header--glass ${hidden ? "thp-header--hidden" : ""}`}>
+      <header className={`thp-header thp-header--glass ${hidden ? "is-hidden" : ""}`}>
         <div className="container flex items-center justify-between gap-4 py-3">
           <Link to="/" className="brand" aria-label="Tech Hilfe Pro – Startseite">
             Tech <span className="brand-orange">Hilfe</span> Pro
