@@ -9,28 +9,28 @@ export default function NIS2() {
         description="Überblick, Geltungsbereich und eine umsetzbare 10-Punkte-Checkliste mit minimalen Nachweisen. Remote & vor-Ort-Service für NIS2-Compliance."
         path="/nis2"
       />
-      <main id="main" className="container py-12 px-4">
+      <main id="main" className="container py-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+          <h1 className="h1-fluid h1-balance mb-3">
             NIS2: Was KMU jetzt tun sollten
           </h1>
           
-          <p className="text-lg text-muted-foreground max-w-2xl mb-8">
+          <p className="text-muted-foreground max-w-2xl mb-5">
             Überblick, Geltungsbereich und eine umsetzbare 10-Punkte-Checkliste mit minimalen Nachweisen. Remote & vor-Ort-Service.
           </p>
 
-          <div className="mb-12 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3 mb-12">
             <Link to="/termin" className="btn-cta" aria-label="NIS2 Quick-Check anfragen">
               Quick-Check NIS2
             </Link>
             <a 
-              href="https://wa.me/4915565029989" 
+              href="/nis2-checklist.pdf" 
               className="btn-wa" 
               target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Per WhatsApp schreiben"
+              rel="noopener"
+              aria-label="Checkliste als PDF öffnen"
             >
-              WhatsApp
+              Checkliste (PDF)
             </a>
           </div>
 
