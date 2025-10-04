@@ -1024,6 +1024,11 @@ a:focus-visible {
   background: #fff; 
   z-index: 50; 
   border-bottom: 1px solid hsl(var(--border));
+  transform: translateY(0);
+  transition: transform .18s ease;
+}
+.thp-header--hidden {
+  transform: translateY(-100%);
 }
 .brand { 
   font-weight: 800; 
@@ -1081,5 +1086,12 @@ a:focus-visible {
 @media (max-width: 380px) {
   .nav-link {
     padding: .45rem .55rem;
+  }
+}
+
+/* Respeta usuarios con motion reducido */
+@media (prefers-reduced-motion: reduce) {
+  .thp-header {
+    transition: none;
   }
 }
