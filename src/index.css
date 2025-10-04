@@ -969,59 +969,41 @@ a:focus-visible {
 }
 
 
-/* HEADER sticky + auto-hide con glass real */
-.thp-header {
+/* ===== HEADER sticky + efecto glass (móvil y desktop) ===== */
+.thp-header{
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: blur(16px) saturate(180%);
-  transform: translateY(0);
-  transition: transform .18s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.thp-header.is-hidden {
-  transform: translateY(-100%);
+.thp-header--glass{
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid hsl(var(--border)/.6);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  backdrop-filter: saturate(140%) blur(12px);
 }
 
-/* Fallback para navegadores sin backdrop-filter */
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .thp-header {
-    background: rgba(255, 255, 255, 0.96);
+/* Fallback sin blur si no hay soporte */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))){
+  .thp-header--glass{
+    background: rgba(255,255,255,0.92);
   }
 }
 
-/* Dark mode */
-:root[data-theme="dark"] .thp-header,
-.dark .thp-header {
-  background: rgba(0, 0, 0, 0.12);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-}
-
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  :root[data-theme="dark"] .thp-header,
-  .dark .thp-header {
-    background: rgba(0, 0, 0, 0.92);
-  }
-}
-
-/* Evitar padres que rompan sticky */
-.app-shell, .layout-root {
+/* Evitar que ancestros rompan sticky en Safari/iOS */
+.app-shell,
+.layout-root{
   overflow: visible;
   transform: none;
 }
 
-/* Marca más visible */
-.brand {
+/* Marca (Hilfe en naranja) */
+.brand{
   font-weight: 800;
   font-size: clamp(1.2rem, 2.2vw, 1.6rem);
   letter-spacing: .2px;
 }
-.brand-orange {
-  color: #f97316;
-}
+.brand-orange{ color: #f97316; }
 .nav-link { 
   padding: .5rem .75rem; 
   border-radius: .5rem; 
@@ -1030,68 +1012,50 @@ a:focus-visible {
   outline: 2px solid var(--ring); 
   outline-offset: 2px; 
 }
-.hamb-btn { 
-  padding: .45rem .6rem; 
-  border: 1px solid hsl(var(--border)); 
-  border-radius: .6rem; 
-  font-size: 1.25rem;
-  background: transparent;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-  min-width: 44px;
-  min-height: 44px;
+/* ===== Hamburguesa: botón + panel con transición elegante ===== */
+.hamb-btn{
+  padding: .45rem .6rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: .6rem;
 }
 
-.hamb-btn:hover {
-  opacity: 0.7;
-}
-
-.hamb-btn:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-}
-
-/* Hamburguesa: transición elegante */
-.hamb-menu {
+/* Panel accesible con transición (abre/cierra suave) */
+.hamb-menu{
   position: absolute;
   right: 0;
   top: calc(100% + .5rem);
   min-width: 15rem;
-  background: hsl(var(--card));
+  background: #fff;
   border: 1px solid hsl(var(--border));
   border-radius: .75rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
   padding: .4rem;
-  opacity: 0;
-  transform: translateY(-8px) scale(0.95);
-  pointer-events: none;
-  transition: opacity .25s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform .25s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.hamb-menu.is-open {
+  /* Transición */
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.hamb-menu.is-open{
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   pointer-events: auto;
 }
 
-.hamb-item {
-  display: flex;
-  align-items: center;
+/* Items del menú */
+.hamb-item{
+  display: block;
   padding: .55rem .6rem;
   border-radius: .5rem;
-  text-decoration: none;
-  color: inherit;
-  min-height: 44px;
-  transition: background-color 0.15s ease;
 }
-
-.hamb-item:focus-visible,
-.hamb-item:hover {
+.hamb-item:hover,
+.hamb-item:focus-visible{
   background: hsl(var(--muted));
 }
 
-.hamb-sep {
+/* Separador visual */
+.hamb-sep{
   height: 1px;
   background: hsl(var(--border));
   margin: .25rem .35rem;
@@ -1104,12 +1068,9 @@ a:focus-visible {
   }
 }
 
-/* Respeta reduce-motion */
-@media (prefers-reduced-motion: reduce) {
-  .thp-header,
-  .hamb-menu {
-    transition: none;
-  }
+/* Respeta preferencias de movimiento del usuario */
+@media (prefers-reduced-motion: reduce){
+  .hamb-menu{ transition: none; }
 }
 
 /* Footer: Logo y contacto */
