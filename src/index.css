@@ -953,10 +953,18 @@ a:focus-visible {
   backdrop-filter: blur(16px) saturate(180%);
 }
 
+.dark .thp-header--glass{
+  background: rgba(17, 24, 39, 0.85);
+  border-bottom: 1px solid rgba(55, 65, 81, 0.4);
+}
+
 /* Fallback sin blur si no hay soporte */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))){
   .thp-header--glass{
-    background: rgba(255,255,255,0.92);
+    background: rgba(255, 255, 255, 0.96);
+  }
+  .dark .thp-header--glass{
+    background: rgba(17, 24, 39, 0.96);
   }
 }
 

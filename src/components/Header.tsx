@@ -3,7 +3,7 @@ import MobileMenu from "@/components/nav/MobileMenu";
 import { useHideOnScroll } from "@/hooks/useHideOnScroll";
 
 export default function Header() {
-  const hidden = useHideOnScroll({ threshold: 14, minY: 32 });
+  const hidden = useHideOnScroll({ threshold: 16, minY: 100 });
 
   return (
     <>
