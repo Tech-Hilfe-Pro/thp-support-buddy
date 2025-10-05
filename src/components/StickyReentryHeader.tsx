@@ -60,7 +60,7 @@ export default function StickyReentryHeader() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md transition-all duration-300 max-[360px]:hidden ${
+      className={`fixed top-0 left-0 right-0 z-[45] bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md transition-all duration-300 max-[360px]:hidden ${
         isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
       onMouseEnter={handleInteraction}

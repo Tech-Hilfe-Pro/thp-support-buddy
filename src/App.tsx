@@ -95,8 +95,8 @@ const App = () => {
         <BrowserRouter>
           <SkipLink />
           <Header />
+          <StickyReentryHeader />
           <div className="min-h-screen flex flex-col layout-root" lang="de-DE">
-            <StickyReentryHeader />
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>
                 <Suspense fallback={<div className="p-8">Laden…</div>}>
