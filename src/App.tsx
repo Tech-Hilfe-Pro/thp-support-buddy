@@ -94,8 +94,8 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <SkipLink />
-          <div className="min-h-screen flex flex-col" lang="de-DE">
-            <Header />
+          <Header />
+          <div className="min-h-screen flex flex-col layout-root" lang="de-DE">
             <StickyReentryHeader />
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>

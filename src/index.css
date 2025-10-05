@@ -939,6 +939,11 @@ a:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
+  transition: transform .24s cubic-bezier(.4,0,.2,1);
+}
+
+.thp-header.is-hidden{
+  transform: translateY(-100%);
 }
 
 .thp-header--glass{
@@ -956,7 +961,6 @@ a:focus-visible {
 }
 
 /* Evitar que ancestros rompan sticky en Safari/iOS */
-.app-shell,
 .layout-root{
   overflow: visible;
   transform: none;
@@ -1036,6 +1040,7 @@ a:focus-visible {
 /* Respeta preferencias de movimiento del usuario */
 @media (prefers-reduced-motion: reduce){
   .hamb-menu{ transition: none; }
+  .thp-header{ transition: none; }
 }
 
 /* Footer: Logo y contacto */
