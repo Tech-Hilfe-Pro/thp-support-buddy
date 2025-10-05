@@ -11,7 +11,15 @@ export default function Header() {
         Zum Inhalt springen
       </a>
 
-      <header className={`thp-header thp-header--glass ${hidden ? "is-hidden" : ""}`}>
+      <header 
+        className={`thp-header thp-header--glass ${hidden ? "is-hidden" : ""}`}
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 60,
+          willChange: 'transform, backdrop-filter'
+        }}
+      >
         <div className="container flex items-center justify-between gap-4 py-3">
           <Link to="/" className="brand" aria-label="Tech Hilfe Pro – Startseite">
             Tech <span className="brand-orange">Hilfe</span> Pro

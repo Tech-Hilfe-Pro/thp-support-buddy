@@ -9,7 +9,6 @@ import RouteTracker from "./components/RouteTracker";
 import RouteFocus from "./components/RouteFocus";
 import SkipLink from "./components/SkipLink";
 import Header from "./components/Header";
-import StickyReentryHeader from "./components/StickyReentryHeader";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
 import WhatsAppFloat from "./components/WhatsAppFloat";
@@ -95,7 +94,6 @@ const App = () => {
         <BrowserRouter>
           <SkipLink />
           <Header />
-          <StickyReentryHeader />
           <div className="min-h-screen flex flex-col layout-root" lang="de-DE">
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>

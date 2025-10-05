@@ -936,10 +936,7 @@ a:focus-visible {
 
 /* ===== HEADER sticky + efecto glass (móvil y desktop) ===== */
 .thp-header{
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  transition: transform .24s cubic-bezier(.4,0,.2,1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .thp-header.is-hidden{
@@ -947,15 +944,17 @@ a:focus-visible {
 }
 
 .thp-header--glass{
-  background: rgba(255, 255, 255, 0.85);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.4);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
 }
 
 .dark .thp-header--glass{
-  background: rgba(17, 24, 39, 0.85);
-  border-bottom: 1px solid rgba(55, 65, 81, 0.4);
+  background: rgba(17, 24, 39, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Fallback sin blur si no hay soporte */
@@ -965,6 +964,16 @@ a:focus-visible {
   }
   .dark .thp-header--glass{
     background: rgba(17, 24, 39, 0.96);
+  }
+}
+
+/* Respetar prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .thp-header{
+    transition: none;
+  }
+  .thp-header.is-hidden{
+    transform: none;
   }
 }
 
