@@ -107,8 +107,7 @@ export default function SEO({
       <meta name="twitter:image:alt" content={imageAlt} />
       
       {/* Favicons */}
-      <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon.png" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <meta name="theme-color" content="#3BA9FF" />
       
       {/* Schema.org structured data */}
