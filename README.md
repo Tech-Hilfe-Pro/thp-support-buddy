@@ -59,29 +59,6 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
-- **Lovable Cloud** (backend gestionado con Supabase)
-
-## Configurar Backend (Lovable Cloud)
-
-Este proyecto usa **Lovable Cloud**, que gestiona automáticamente:
-- Base de datos (Supabase PostgreSQL)
-- Autenticación de usuarios
-- Almacenamiento de archivos
-- Edge Functions (serverless)
-- Secrets management
-
-**Variables de entorno:**
-- Las variables `VITE_SUPABASE_*` en `.env` son **auto-generadas** por Lovable Cloud
-- **NO editar `.env` manualmente** — se sobrescribirá automáticamente
-- Para desarrollo local, asegúrate de que `.env` existe (se crea al sincronizar con Lovable)
-
-**Cliente Supabase:**
-- Usa `import { supabaseOrNull } from "@/lib/supabaseSafe"` para acceso seguro con degradación
-- El cliente auto-generado está en `src/integrations/supabase/client.ts` (no editar)
-
-**Acceder al backend:**
-- Dashboard: [Lovable Project](https://lovable.dev/projects/99334e78-6c6d-4f88-bdac-93399888a914) → "View Backend"
-- Gestiona tablas, RLS policies, usuarios y storage desde la UI de Lovable
 
 ## How can I deploy this project?
 

@@ -2,38 +2,29 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#3BA9FF">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Tech Hilfe Pro">
+    <link rel="icon" type="image/webp" href="/brand/logo-32.webp">
+    <link rel="apple-touch-icon" sizes="192x192" href="/brand/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     <!-- Preconnect to Google Fonts to reduce network chain -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Load Google Fonts asynchronously to avoid render blocking -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" media="print" onload="this.media='all';this.onload=null;">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"></noscript>
+    <!-- Load Google Fonts early -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
     
     <link rel="preload" as="image" href="/og/default.jpg" fetchpriority="high">
     <title>Tech Hilfe Pro</title>
     <meta name="description" content="IT-Support für Privat & KMU in Köln, Neuss & Umgebung" />
     <meta name="author" content="Tech Hilfe Pro" />
 
-    <meta property="og:title" content="Tech Hilfe Pro — IT-Support Köln & NRW" />
-    <meta property="og:description" content="Schneller IT-Support — REMOTE & vor Ort in Köln, Neuss & Umgebung." />
+    <meta property="og:title" content="Tech Hilfe Pro" />
+    <meta property="og:description" content="IT-Support für Privat & KMU in Köln, Neuss & Umgebung" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/brand/og-1200x630.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="/og/default.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/brand/og-1200x630.png" />
+    <meta name="twitter:image" content="/og/default.jpg" />
     
     <!-- Critical CSS to prevent render blocking -->
     <style>

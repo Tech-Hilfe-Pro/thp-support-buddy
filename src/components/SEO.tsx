@@ -4,26 +4,16 @@ import { COMPANY } from "@/data/company";
 const SITE_URL = import.meta.env.SITE_URL || import.meta.env.VITE_SITE_URL || "https://techhilfepro.de";
 
 type Props = {
-  title?: string; 
-  description?: string; 
+  title: string; 
+  description: string; 
   path: string;
   robots?: string; 
   ogImage?: string; 
   ogType?: "website"|"article"; 
   lang?: "de";
-  imageAlt?: string;
 };
 
-export default function SEO({ 
-  title = "IT-Support & Managed Services in Köln & Neuss | Tech Hilfe Pro", 
-  description = "Remote & vor-Ort-Service. Transparente Preise. DSGVO-konform.", 
-  path, 
-  robots, 
-  ogImage = "/og/IT-Support-Koeln_Tech-Hilfe-Pro.jpg", 
-  ogType = "website", 
-  lang = "de",
-  imageAlt = "IT-Support in Köln – Tech Hilfe Pro"
-}: Props) {
+export default function SEO({ title, description, path, robots, ogImage="/og/default.jpg", ogType="website", lang="de" }: Props) {
   const base = SITE_URL.replace(/\/$/, "");
   const url = `${base}${path}`;
   const img = ogImage.startsWith("http") ? ogImage : `${base}${ogImage}`;
@@ -96,18 +86,16 @@ export default function SEO({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={img} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
       
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={img} />
-      <meta name="twitter:image:alt" content={imageAlt} />
       
       {/* Favicons */}
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon.png" />
       <meta name="theme-color" content="#3BA9FF" />
       
       {/* Schema.org structured data */}

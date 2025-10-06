@@ -19,8 +19,6 @@ export default function Leistungen() {
         title="IT-Leistungen für Privatkunden | Tech Hilfe Pro"
         description="Umfassende IT-Services: Computer-Reparatur, WLAN-Setup, Smart-Home, Drucker, und mehr. Remote oder vor Ort in Köln & Neuss."
         path="/leistungen"
-        ogImage="/og/IT-Support-Leistungen_Tech-Hilfe-Pro.jpg"
-        imageAlt="Alle IT-Leistungen für Privatkunden in Köln – Computer, WLAN, Smart-Home"
       />
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
@@ -40,7 +38,7 @@ export default function Leistungen() {
         <div className="text-center mt-16">
           <h2 className="text-2xl font-semibold mb-4">Bereit anzufangen?</h2>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg" className="btn-cta">
+            <Button asChild size="lg" className="bg-cta hover:bg-cta/90 text-cta-foreground">
               <Link to="/preise">Preise ansehen</Link>
             </Button>
             <Button asChild size="lg" variant="outline">

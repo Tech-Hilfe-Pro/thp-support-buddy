@@ -186,7 +186,7 @@ export default function ServiceDrawer({ service, isOpen, onClose }: ServiceDrawe
                 Preis berechnen
               </Link>
             </Button>
-            <Button asChild size="lg" className="btn-cta min-h-[48px]">
+            <Button asChild size="lg" className="bg-cta hover:bg-cta/90 text-cta-foreground min-h-[48px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
               <Link to="/termin">
                 Termin buchen
               </Link>

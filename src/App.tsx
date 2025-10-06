@@ -9,19 +9,18 @@ import RouteTracker from "./components/RouteTracker";
 import RouteFocus from "./components/RouteFocus";
 import SkipLink from "./components/SkipLink";
 import Header from "./components/Header";
+import StickyReentryHeader from "./components/StickyReentryHeader";
 import Footer from "./components/Footer";
 import CookieBanner from "./components/CookieBanner";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import Home from "./pages/Home";
+import Leistungen from "./pages/Leistungen";
+import ServiceDetail from "./pages/ServiceDetail";
+import KMU from "./pages/KMU";
+import PaketePreise from "./pages/PaketePreise";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
-
-// Lazy load all other routes to reduce initial bundle
-const Leistungen = lazy(() => import("./pages/Leistungen"));
-const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
-const KMU = lazy(() => import("./pages/KMU"));
-const Preise = lazy(() => import("./pages/Preise"));
-const FAQ = lazy(() => import("./pages/FAQ"));
 
 // Lazy load heavy routes
 const Termin = lazy(() => import("./pages/Termin"));
@@ -40,15 +39,6 @@ const AGB = lazy(() => import("./pages/recht/AGB"));
 const Widerruf = lazy(() => import("./pages/recht/Widerruf"));
 const Cookies = lazy(() => import("./pages/recht/Cookies"));
 const Error500 = lazy(() => import("./pages/Error500"));
-
-// NIS2 pages
-const NIS2Koeln = lazy(() => import("./pages/nis2/Koeln"));
-const NIS2 = lazy(() => import("./pages/NIS2"));
-const NIS2QuickCheck = lazy(() => import("./pages/thanks/NIS2QuickCheck"));
-
-// Blog pages
-const Blog = lazy(() => import("./pages/Blog"));
-const BlogPost = lazy(() => import("./pages/BlogPost"));
 
 const queryClient = new QueryClient();
 
@@ -93,8 +83,9 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <SkipLink />
-          <Header />
-          <div className="min-h-screen flex flex-col layout-root" lang="de-DE">
+          <div className="min-h-screen flex flex-col" lang="de-DE">
+            <Header />
+            <StickyReentryHeader />
             <main id="main" className="flex-1 min-h-[60vh] focus:outline-none">
               <ErrorBoundary>
                 <Suspense fallback={<div className="p-8">Laden…</div>}>
@@ -104,8 +95,8 @@ const App = () => {
                     <Route path="/leistungen/:slug" element={<ServiceDetail />} />
                     <Route path="/service/:slug" element={<ServiceDetail />} /> {/* Legacy redirect */}
                     <Route path="/kmu" element={<KMU />} />
-                    <Route path="/preise" element={<Preise />} />
-                    <Route path="/pakete-preise" element={<Preise />} /> {/* Legacy redirect */}
+                    <Route path="/preise" element={<PaketePreise />} />
+                    <Route path="/pakete-preise" element={<PaketePreise />} /> {/* Legacy redirect */}
                     <Route path="/faq" element={<FAQ />} />
                     <Route path="/termin" element={<Termin />} />
                     <Route path="/termin/zusammenfassung" element={<TerminZusammenfassung />} />
@@ -122,11 +113,6 @@ const App = () => {
                     <Route path="/recht/agb" element={<AGB />} />
                     <Route path="/recht/widerruf" element={<Widerruf />} />
                     <Route path="/recht/cookies" element={<Suspense fallback={<div className="p-8">Laden…</div>}><Cookies /></Suspense>} />
-                    <Route path="/nis2-koeln" element={<NIS2Koeln />} />
-                    <Route path="/nis2" element={<NIS2 />} />
-                    <Route path="/thanks/nis2-quickcheck" element={<NIS2QuickCheck />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/error" element={<Error500 />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>

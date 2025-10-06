@@ -90,10 +90,16 @@ export default function Hero() {
           Wir lösen Ihre Technikprobleme – <strong>REMOTE</strong> oder vor Ort in Köln, Neuss & Umgebung.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link to="/preise#rechner" className="btn-cta">
+          <Link 
+            to="/preise#rechner" 
+            className="btn-cta rounded-xl px-6 py-3.5 transition-all hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+          >
             Preis in 60 Sekunden
           </Link>
-          <Link to="/termin" className="btn-cta">
+          <Link 
+            to="/termin" 
+            className="btn-ghost rounded-xl px-6 py-3.5 font-semibold hover:bg-white transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+          >
             Jetzt Termin buchen
           </Link>
         </div>

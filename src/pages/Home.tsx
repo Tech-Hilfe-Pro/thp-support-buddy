@@ -21,8 +21,7 @@ const Home = () => {
         description="Schnelle PC/Mac-Hilfe für Zuhause & KMU. Remote zuerst, Vor-Ort bei Bedarf. Preis in 60 Sekunden."
         path="/" 
         ogType="website"
-        ogImage="/og/IT-Support-Koeln_Tech-Hilfe-Pro.jpg"
-        imageAlt="IT-Support für Privat und KMU in Köln und Neuss – Tech Hilfe Pro"
+        ogImage={`/og?title=${encodeURIComponent("Tech Hilfe Pro")}&subtitle=${encodeURIComponent("Schneller IT-Support für Zuhause & KMU")}`}
       />
       <script 
         type="application/ld+json" 
